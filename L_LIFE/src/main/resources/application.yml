@@ -1,0 +1,26 @@
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+#spring:
+#  datasource:
+#    url: ${db-url}
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    username: ${db-username}
+#    password: ${db-password}
+#  profiles:
+#    include:
+#      - dev
+
+#mybatis:
+#  type-aliases-package:
+#  mapper-locations: mapper/**/*.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info
+    kosa.com.suntofu: debug
