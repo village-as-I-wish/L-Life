@@ -1,0 +1,35 @@
+footer{
+    margin-top:40px;
+}
+.footer-top{
+    background-color: #333;
+    min-height: 116px;
+    padding: 45px 0;
+}
+.footer-top-menu{
+    float: left;
+    font-size: 14px;
+}
+.footer-top-menu ul {
+    display: flex;
+    list-style: none;
+}
+.footer-top li:first-child {
+    padding-left: 0;
+}
+
+.footer-top li {
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+
+element.style {
+}
+.icon-foot-sns-youtube {
+    background-image: url(../resources/static/img/footer/social_icon.png);
+    background-position: -589px -492px;
+    width: 34px;
+    height: 34px;
+}

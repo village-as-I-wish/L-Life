@@ -1,0 +1,79 @@
+.main-second-section{
+    margin-top: 50px;
+}
+.main-top-slide{
+    width:100%;
+    top:0;
+    height: 800px;
+    background-image: url(https://static.hyundailivart.co.kr/upload_mall/view/V000000005/D100000452/P000000443_S100016485.jpg?20230816153535);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.main-content-category{
+    margin-left:2%;
+    margin-right:2%;
+}
+.main-category-card{
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    margin:20px;
+    background-color: transparent;
+    color: black;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+.main-category-card img{
+    width: inherit;
+    height: inherit;
+    border-radius: 20px;
+}
+.main-category-card h3 {
+    position: absolute;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+.main-third-section{
+    margin-top:30px;
+}
+.etc-container{
+    width: 1020px;
+    height:200px;
+    margin: 0 auto;
+}
+.etc-card{
+    width:100px;
+    height:120px;
+    padding: 0;
+    margin: 20px;
+}
+.etc-card > a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.etc-card > a >span{
+    width: 100%;
+    height: 100%;
+}
+.etc-card>a>span>img{
+    background: #f2f2f2;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+.etc-card>a > .name{
+    display: block;
+    margin-top: 10px;
+    color: #000;
+    font-size: 16px;
+    text-align: center;
+}
