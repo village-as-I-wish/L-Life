@@ -11,8 +11,8 @@
     background-size:cover;
 }
 .main-content-category{
-    margin-left:2%;
-    margin-right:2%;
+    margin:0 auto;
+    width:1500px;
 }
 .main-category-card{
     top: 0;
