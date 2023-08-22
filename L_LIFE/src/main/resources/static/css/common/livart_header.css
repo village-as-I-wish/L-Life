@@ -15,11 +15,23 @@ header{
     margin-left: 100px;
     z-index: 11;
 }
-.header-logo > img{
-    width:auto;
-    height: 50px;
+.header-logo-title{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
-
+.header-logo-title>h1{
+        width: 158px;
+        height: 42px;
+        margin: 0 30px 0 0;
+        background: url(../../img/header/logo_livart_w.png) center no-repeat;
+        text-indent: -999em;
+        text-align: center;
+}
+.header-logo-title> h1 a{
+    display: flex;
+    align-items: center;
+}
 .header-search{
     display: flex;
     justify-content: center;

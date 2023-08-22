@@ -1,12 +1,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="headerFragment()">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/common/header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common/livart_header.css}"/>
 
     <header>
         <div class="header-main">
             <div class="header-logo">
-                <img th:src="@{/img/header/logo_l_life_w.png}" />
+                <div class="header-logo-title">
+                    <h1>
+                        <a href="https://www.hyundailivart.co.kr/index">LIVART</a>
+                    </h1>
+                </div>
             </div>
             <div class="header-search">
                 <form class="header-search-form">
