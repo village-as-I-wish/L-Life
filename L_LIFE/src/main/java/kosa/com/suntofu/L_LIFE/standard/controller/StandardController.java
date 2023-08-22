@@ -16,16 +16,16 @@ import java.util.List;
 public class StandardController {
 
     private final StandardService standardService;
-    @GetMapping
+    @GetMapping("/main")
     public String loadStandardMainPage(Model model){
-        model.addAttribute("data", "test");
-        return "livart_main";
+//        model.addAttribute("data", "test");
+        return "pages/standard/main";
     }
 
     @GetMapping(value="all")
     public String showAllStandardFurniture(Model model){
-        List<StandardVO> standardList = standardService.getAllStandard();
-        System.out.println(standardList);
-        return "livart_main";
+        //List<StandardVO> standardList = standardService.getAllStandard();
+      //  System.out.println(standardList);
+        return "pages/standard/livart_main";
     }
 }

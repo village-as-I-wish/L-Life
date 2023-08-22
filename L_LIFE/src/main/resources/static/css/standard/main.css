@@ -1,0 +1,9 @@
+.main-top-slide{
+    width:100%;
+    top:0;
+    height: 800px;
+    background: url(../../img/standard/main_banner_background.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
