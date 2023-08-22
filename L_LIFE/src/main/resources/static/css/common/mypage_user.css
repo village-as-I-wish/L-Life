@@ -1,0 +1,103 @@
+.user-info {
+    background-color: #5D493E;
+    opacity:0.5;
+    border-radius: 15px; /* 둥근 모서리 */
+    padding: 40px; /* 내부 간격 */
+    color: white;
+}
+
+.user-info > div:first-child {
+    display: flex;
+    justify-content: space-between; /* 항목들 사이에 공간 분배 */
+}
+
+.user-info > div:first-child > div:first-child {
+    flex-grow: 1;  /* 가능한 모든 공간을 차지하도록 설정 */
+    text-align: left;  /* 왼쪽으로 부터 시작되게 설정 */
+}
+
+.user-info > div:first-child > div:last-child {
+    display: flex;
+    gap: 15px; /* a 태그들 사이의 간격 */
+}
+
+.user-info a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    display: flex; /* Flexbox를 사용하여 항목들을 가로로 배치 */
+    flex-direction: column; /* 항목들을 수직으로 배열 */
+    align-items: center; /* 항목들을 수직 중앙에 정렬 */
+    gap: 15px; /* 항목들 사이 간격 */
+}
+
+.user-info a > div {
+    display: flex;  /* 항목들을 가로로 배치 */
+    align-items: center;  /* 항목들을 수직 중앙에 정렬 */
+    gap: 10px; /* 항목들 사이 간격 */
+}
+
+.user-hello {
+    font-size: 30px;
+}
+
+.img-size1 {
+    width: 20px;
+    height: 20px;
+}
+
+/* 이미지 사이즈를 고정하고, 그 하위의 텍스트를 중앙 정렬합니다. */
+.img-size2 {
+    width: 28px;  /* 이미지의 너비. 필요에 따라 조정하세요. */
+    display: block;
+    margin: 0 auto;
+}
+
+/* delivery-info 내부의 div 간격 조정 */
+.delivery-info > div {
+    margin-bottom: 20px; /* 간격 조정 */
+}
+
+/* 배송 현황 정보를 가로로 배열합니다. */
+.delivery-info > div:last-child {
+    display: flex;
+    justify-content: space-around; /* 요소들 사이에 동일한 간격을 만들기 위해 사용합니다. */
+    align-items: center; /* 요소들을 수직 중앙으로 정렬합니다. */
+}
+
+/* 배송 현황의 각 항목을 수직으로 중앙 정렬하고, 텍스트는 수평으로 배열합니다. */
+.delivery-info > div:last-child > div {
+    flex-grow: 1;  /* 각 div가 동일한 공간을 차지하도록 합니다. */
+    flex-basis: 0; /* 초기 너비를 0으로 설정하여 동일한 공간만 차지하도록 합니다. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #E3E3E3;
+    padding: 15px 10px; /* 필요한 경우 내부 패딩을 조정하여 공간을 확보할 수 있습니다. */
+}
+
+/* 건 수를 수평으로 배열합니다. */
+.delivery-info > div:last-child > div > div:last-child {
+    display: flex;
+    align-items: center;
+}
+
+.delivery-info > div:last-child > div > div:last-child > span:first-child {
+    color: red;
+}
+
+.delivery-info {
+    margin-top: 50px;
+}
+
+.delivery-title {
+    font-size: 20px;
+    color: #5D493E;
+}
+
+.delivery-content {
+    margin: 20px;
+    font-size: 15px;
+}
+
+.num {
+    font-size: 22px;
+}
