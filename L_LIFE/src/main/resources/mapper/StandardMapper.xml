@@ -6,4 +6,10 @@
 
 
 
+    <select id="selectAllStandard" resultType="StandardVO">
+        SELECT *
+        FROM StandardFurniture
+    </select>
+
+
 </mapper>
