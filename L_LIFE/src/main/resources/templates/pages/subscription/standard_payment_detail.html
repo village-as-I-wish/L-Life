@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="common/fragment/commonHead"></th:block>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/css/subscription/subscription_select.css}"/>
+  <style>
+    .st-payment-username{
+      display: inline-block;
+      padding: 20px 0px 20px 0px;
+      background: #f2f2f2;
+      width: 15%;
+    }
+
+    .st-payment-user{
+      width: 100%;
+      border: 1px solid;
+    }
+
+    .st-payment-row{
+      padding-left: 20px;
+      color: red;
+    }
+
+    .st-payment-telnum{
+      display: inline-block;
+      padding: 20px 0px 20px 0px;
+      background: #f2f2f2;
+      width: 15%;
+    }
+
+    .st-payment-tel{
+      width: 100%;
+      border: 1px solid;
+    }
+
+    .st-payment{
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      padding: 20px;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .st-payment-subscript-table{
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .st-payment-section {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .st-payment-method,
+    .st-payment-money {
+      flex: 8;
+    }
+
+    .st-payment-money {
+      flex: 2;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-weight: bold;
+
+    }
+
+    .st-payment-pay-method{
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-right: 10px;
+    }
+
+    h5{
+      margin-bottom: 30px;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-main">
+    <div class="header-logo">
+      <img th:src="@{/img/header/logo_l_life_b.png}" />
+    </div>
+  </div>
+</header>
+  <div class="hd__inner1100">
+    <h3>
+      주문 결제
+    </h3>
+    <hr class="hr">
+    <div class="st-payment">
+      <h5>
+        주문자 정보
+      </h5>
+    <div class="st-payment-user">
+
+      <div class="st-payment-username">
+        <span class="st-payment-row"> * </span>
+        <span> 주문자 </span>
+      </div>
+      <input type="text">
+    </div>
+
+    <div class="st-payment-tel">
+
+      <div class="st-payment-telnum">
+        <span class="st-payment-row"> * </span>
+        <span> 휴대폰 번호 </span>
+      </div>
+      <select>
+        <option value="010">010</option>
+        <option value="011">011</option>
+        <option value="017">017</option>
+      </select>
+      <input th:type="number">
+      <input th:type="number">
+    </div>
+    </div>
+    <hr class="hr">
+
+    <div class="st-payment-subscript">
+      <h5>
+        주문 상품
+      </h5>
+      <div class="st-payment-subscript-table">
+        <table>
+          <tr>
+            <th class="bold-text">상품명/옵션정보</th>
+            <th class="bold-text">수량</th>
+            <th class="bold-text">판매가</th>
+            <th class="bold-text">할인금액</th>
+            <th class="bold-text">최종구매가</th>
+          </tr>
+
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <hr class="hr">
+    <div class="st-payment-section">
+
+      <div class="st-payment-method">
+        <h5>
+          결제수단선택
+        </h5>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-1-1" autocomplete="off" checked>
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-1-1">신용카드</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-1-2" autocomplete="off">
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-1-2">실시간 계좌이체</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-1-3" autocomplete="off">
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-1-3">가상계좌</label>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-naver" autocomplete="off" checked>
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-naver">네이버페이</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-samsung" autocomplete="off">
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-samsung">삼성페이</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-kakao" autocomplete="off">
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-kakao">카카오페이</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-toss" autocomplete="off">
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-toss">토스페이</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="pay-method-payco" autocomplete="off">
+          <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-payco">페이코</label>
+        </div>
+      </div>
+
+      <div class="st-payment-money">
+        <h5>
+          최종결제금액
+        </h5>
+      </div>
+
+    </div>
+
+
+    </div>
+
+  <th:block th:replace="common/fragment/footer :: footerFragment()"></th:block>
+</body>
+</html>

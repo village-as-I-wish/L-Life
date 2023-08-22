@@ -1,0 +1,22 @@
+header{
+    width:100%;
+    min-height:100px;
+    display: flex;
+    align-items: center;
+}
+.header-main{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    background-color: #9E9E9E;
+}
+.header-logo{
+    position: relative;
+    margin-left: 100px;
+    z-index: 11;
+}
+.header-logo > img{
+    width:auto;
+    height: 50px;
+}

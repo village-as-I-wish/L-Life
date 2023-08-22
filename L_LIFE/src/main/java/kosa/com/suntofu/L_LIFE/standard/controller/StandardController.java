@@ -1,14 +1,11 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,6 +23,13 @@ public class StandardController {
     public String showAllStandardFurniture(Model model){
         //List<StandardVO> standardList = standardService.getAllStandard();
       //  System.out.println(standardList);
-        return "pages/standard/livart_main";
+        return "pages/subscription/subscription_select";
+    }
+
+    @GetMapping(value="standard_payment_detail")
+    public String standardPaymentDetail(Model model){
+        //List<StandardVO> standardList = standardService.getAllStandard();
+        //  System.out.println(standardList);
+        return "pages/subscription/standard_payment_detail";
     }
 }
