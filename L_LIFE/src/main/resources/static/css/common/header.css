@@ -40,3 +40,7 @@ header{
 .header-user{
     display: flex;
 }
+.header-user >  li{
+    list-style: none;
+    margin-right: 15px;
+}

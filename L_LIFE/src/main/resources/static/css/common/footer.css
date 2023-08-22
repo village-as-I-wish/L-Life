@@ -1,9 +1,18 @@
 footer{
     margin-top:40px;
+    height:350px;
     background-color: #333;
 }
+.float-left{
+    float:left;
+}
+.float-right{
+    float: right;
+}
 .footer_inner{
-    margin-bottom:60px;
+    padding-left: 50px;
+    width: 1400px;
+    margin : 0 auto;
 
 }
 .footer-top{
@@ -11,6 +20,7 @@ footer{
     padding: 45px 0;
 
 }
+
 .footer-top-menu{
     float: left;
     font-size: 14px;
@@ -24,11 +34,11 @@ footer{
     display: flex;
     list-style: none;
 }
-.footer-top li:first-child {
+.footer-top li:first-child , .footer-bottom li:first-child {
     padding-left: 0;
 }
 
-.footer-top li {
+.footer-top li , .footer-bottom li{
     position: relative;
     display: inline-block;
     padding: 0 15px;
@@ -37,7 +47,32 @@ footer{
     color:white;
 
 }
+.footer-bottom-left-top{
+    height:60px;
+}
+.footer-bottom-left{
+    display: inline-block;
+}
+.footer-bottom-right {
+    display: flex;
+    float: right;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 20px;
+}
+
+.footer-bottom-right-qr > img{
+    width: 70px;
+    height: auto;
+}
+.footer-bottom-right-qr > span{
+    text-align: right;
+    margin-right: 5px;
+}
+.footer-bottom-service ul{
+    margin-top:15px;
+    margin-bottom: 15px;
+}
 .footer-bottom-menu.float-left {
-    background-color: #f0f0f0;
     color: #333;
 }
