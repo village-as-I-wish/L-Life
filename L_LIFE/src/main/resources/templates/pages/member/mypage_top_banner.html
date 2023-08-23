@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="mypageUserFragment()">
-  <link rel="stylesheet" th:href="@{/css/common/mypage_user.css}">
+  <link rel="stylesheet" th:href="@{/css/member/mypage_standard.css}">
 
   <section class = "user-info">
     <div>
@@ -15,7 +15,7 @@
         </a>
         <a>
           <div>
-            <img th:src="@{/img/mypage/heart.png}" class="img-size1">
+            <img th:src="@{/img/member/heart.png}" class="img-size1">
             <span th:text="${like}"></span>
           </div>
           <span>찜한 상품</span>
@@ -32,27 +32,27 @@
     <div class="delivery-title">주문 배송 현황</div>
     <div>
       <div>
-        <img th:src="@{/img/mypage/delivery1.png}" class="img-size2">
+        <img th:src="@{/img/member/delivery1.png}" class="img-size2">
         <div class = "delivery-content">입금대기중</div>
         <div><span class ="num">0</span><span>건</span></div>
       </div>
       <div>
-        <img th:src="@{/img/mypage/delivery2.png}" class="img-size2">
+        <img th:src="@{/img/member/delivery2.png}" class="img-size2">
         <div class = "delivery-content">결제완료</div>
         <div><span class ="num">0</span><span>건</span></div>
       </div>
       <div>
-        <img th:src="@{/img/mypage/delivery3.png}" class="img-size2">
+        <img th:src="@{/img/member/delivery3.png}" class="img-size2">
         <div class = "delivery-content">배송준비중</div>
         <div><span class ="num">0</span><span>건</span></div>
       </div>
       <div>
-        <img th:src="@{/img/mypage/delivery4.png}" class="img-size2">
+        <img th:src="@{/img/member/delivery4.png}" class="img-size2">
         <div class = "delivery-content">배송중</div>
           <div><span class ="num">0</span><span>건</span></div>
       </div>
         <div>
-        <img th:src="@{/img/mypage/delivery5.png}" class="img-size2">
+        <img th:src="@{/img/member/delivery5.png}" class="img-size2">
         <div class = "delivery-content">배송완료</div>
           <div><span class ="num">0</span><span>건</span></div>
         </div>
