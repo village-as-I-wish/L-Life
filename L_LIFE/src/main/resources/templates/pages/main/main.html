@@ -6,7 +6,9 @@
 </head>
 <body>
     <div class="main-top-slide ">
-        <th:block th:replace="common/fragment/header/header :: headerFragment()"></th:block>
+        <th:block th:replace="common/fragment/header/header :: headerFragment(1)"></th:block>
+        <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(1)"></th:block>
+
     </div>
 
     <div class="main-content hd__inner1100">
@@ -55,7 +57,7 @@
 
         </div>
     </div>
-    <th:block th:replace="common/fragment/footer :: footerFragment()"></th:block>
+    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 
 </body>
 </html>

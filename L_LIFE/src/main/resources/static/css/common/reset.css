@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 
-html, body, div, span, applet, object, iframe, p,
+html, body, div, span, applet, object, iframe, p,h1, h2,h3,h4,h5,h6,
 blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
 em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
 b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
@@ -36,7 +36,42 @@ menu, nav, section {
 
 html, body {
     min-height: 100%;
-    min-width: 1920px;
+    min-width: 1480px;
+}
+
+
+@media screen and (min-width: 1200px) {
+    body{
+        min-width: 1200px;
+    }
+}
+@media screen and (min-width: 1300px) {
+    body{
+        min-width: 1300px;
+    }
+}
+@media screen and (min-width: 1400px) {
+    body{
+        min-width: 1400px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    body{
+        min-width: 1600px;
+    }
+}
+
+
+@media screen and (min-width: 1600px) {
+    body{
+        min-width: 1600px;
+    }
+}
+@media screen and (min-width: 1900px) {
+    body{
+        min-width: 1900px;
+    }
 }
 
 body {
@@ -95,4 +130,15 @@ table {
     border-top: 0.5px solid #9E9E9E;
 }
 
-
+.text-xsm{
+    font-size:18px;
+}
+.text-sm{
+    font-size:20px;
+}
+.text-md{
+    font-size:24px;
+}
+.text-lg{
+    font-size:30px;
+}
