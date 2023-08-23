@@ -12,13 +12,13 @@
     <main>
         <!-- 사이드바 프래그먼트 삽입 -->
         <section class="mypage-sidebar">
-            <th:block th:replace="common/fragment/mypage_side::mypageSidebarFragment()"></th:block>
+            <th:block th:replace="common/fragment/mypage_sidebar::mypageSidebarFragment()"></th:block>
         </section>
 
         <!-- 주 내용 영역 -->
         <section class="mypage-content">
             <!-- 회원 정보, 주문 배송 현황 -->
-            <th:block th:replace="common/fragment/mypage_user::mypageUserFragment()"></th:block>
+            <th:block th:replace="common/fragment/mypage_top_banner::mypageUserFragment()"></th:block>
         </section>
     </main>
 </div>
