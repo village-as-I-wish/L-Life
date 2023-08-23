@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>L-Life Standard</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/standard/standard_list.css}"/>
 </head>
 <body>
-<th:block th:replace="common/fragment/header/header :: headerFragment()"></th:block>
-<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment()"></th:block>
+<th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 <th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment()"></th:block>
 
 <div class="sl-top-banner">
@@ -38,8 +38,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -50,11 +48,9 @@
                 <div class="row row-cols-4 m-0">
                     <div th:each="i : ${#numbers.sequence(1, 10)}">
                         <div class="sub-product-card col">
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 

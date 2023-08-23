@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/common/reset.css}">
+    <th:block th:replace="common/fragment/commonHead"></th:block>
 </head>
 <body>
 
 <!-- 헤더 프래그먼트 삽입 -->
-<th:block th:replace="common/fragment/header::headerFragment()"></th:block>
+<th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
 
-<div class="container">
+<!-- 서브 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/sub_header::subHeaderFragment(0)"></th:block>
+
+<div class="mypage_container hd__inner1100">
     <main>
         <!-- 사이드바 프래그먼트 삽입 -->
         <section class="mypage-sidebar">
-            <th:block th:replace="common/fragment/mypage_sidebar::mypageSidebarFragment()"></th:block>
+            <th:block th:replace="common/fragment/sidebar/mypage_sidebar::mypageSidebarFragment()"></th:block>
         </section>
 
         <!-- 주 내용 영역 -->
         <section class="mypage-content">
             <!-- 회원 정보, 주문 배송 현황 -->
-            <th:block th:replace="common/fragment/mypage_top_banner::mypageUserFragment()"></th:block>
+            <th:block th:replace="pages/member/mypage_top_banner::mypageUserFragment()"></th:block>
         </section>
     </main>
 </div>
 
 <!-- 푸터 프래그먼트 -->
-<th:block th:replace="common/fragment/footer :: footerFragment()"></th:block>
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 </body>
 </html>

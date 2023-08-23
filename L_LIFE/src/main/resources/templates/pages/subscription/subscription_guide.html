@@ -7,7 +7,8 @@
 <body>
     <section>
         <div class="main-top-slide ">
-            <th:block th:replace="common/fragment/livart_header :: headerFragment()"></th:block>
+            <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+            <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
         </div>
     </section>
     
@@ -28,6 +29,6 @@
             <a href="#" class="btn">프리미엄 멤버십 가입하러 가기 ></a>
         </div>
     </section>
-    <th:block th:replace="common/fragment/footer :: footerFragment()"></th:block>
+    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 </body>
 </html>

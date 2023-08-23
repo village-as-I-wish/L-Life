@@ -1,10 +1,12 @@
 .sub-cate-header{
-    margin-top:40px;
+    margin-top: 30px;
     margin-bottom: 40px;
+    font-weight: bold;
+    color: #BBBBBB;
 }
 .sub-cate-header-main li{
     list-style: none;
     margin-right: 15px;
     display: inline-block;
-    font-size: 24px;
+    font-size: 22px;
 }

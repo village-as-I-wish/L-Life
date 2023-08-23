@@ -13,7 +13,7 @@ public class SubscriptionController {
 
     private final SubscriptionService subscriptionService;
 
-    @GetMapping("/")
+    @GetMapping()
     public String loadGuidePage(){
         return "pages/subscription/subscription_guide";
     }

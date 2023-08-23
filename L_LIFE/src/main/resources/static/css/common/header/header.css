@@ -1,8 +1,9 @@
 header{
-    width:100%;
-    min-height:100px;
+    width: 100%;
+    min-height: 100px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 .text-white{
     color:white;
@@ -25,7 +26,7 @@ header{
     position: relative;
     z-index: 11;
 }
-.header-logo > img{
+.header-logo img{
     width:auto;
     height: 50px;
 }
@@ -44,6 +45,8 @@ header{
     background-color: transparent;
     padding: 15px;
     border-radius: 20px;
+    color: inherit;
+    border: 1px solid;
 }
 .header-user{
     display: flex;
@@ -51,4 +54,8 @@ header{
 .header-user >  li{
     list-style: none;
     margin-right: 15px;
+}
+.header-user a {
+    text-decoration: none;
+    color: inherit;
 }

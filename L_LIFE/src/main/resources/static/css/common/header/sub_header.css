@@ -1,0 +1,23 @@
+.sub-header{
+    min-height: 30px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.sub-header-main li{
+    list-style: none;
+    margin-right: 15px;
+    display: inline-block;
+}
+.text-white > *{
+    color : white;
+}
+.text-black > * {
+    color: black;
+}
+.sub-header-main a {
+    color : inherit;
+    text-decoration: none;
+}

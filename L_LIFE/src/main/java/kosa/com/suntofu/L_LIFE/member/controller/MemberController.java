@@ -9,21 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/mypage")
+@RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
 
-    @GetMapping("/")
-    public String loadMyPage(Model model){
-        return "pages/mypage/mypage";
+    @GetMapping("/login")
+    public String loadLoginPage(){
+        return "pages/member/login";
     }
-    @GetMapping("/{memberId}/standard")
+    @GetMapping("/mypage")
+    public String loadMyPage(Model model){
+        return "pages/member/mypage";
+    }
+    @GetMapping("/mypage/{memberId}/standard")
     public String loadStandardMyPage(Model model){
-        return "pages/mypage/standard_mypage";
+        return "pages/member/standard_mypage";
     }
 
-    @GetMapping("/{memberId}/premium")
+    @GetMapping("/mypage/{memberId}/premium")
     public String loadPremiumMyPage(Model model){
-        return "pages/mypage/premium_mypage";
+        return "pages/member/premium_mypage";
     }
 }
