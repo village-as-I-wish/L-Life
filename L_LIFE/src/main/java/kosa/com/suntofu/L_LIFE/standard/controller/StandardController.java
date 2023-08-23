@@ -28,4 +28,9 @@ public class StandardController {
       //  System.out.println(standardList);
         return "pages/standard/livart_main";
     }
+
+    @GetMapping(value = "subscription_guide")
+    public String subscriptionGuide(Model model) {
+        return "pages/subscription/subscription_guide";
+    }
 }
