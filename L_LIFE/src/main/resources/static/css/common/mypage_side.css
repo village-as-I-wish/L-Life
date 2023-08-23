@@ -1,0 +1,50 @@
+.container {
+    width: 1100px;
+    margin: 0 auto;
+    display: flex;
+}
+
+main {
+    display: flex;
+}
+
+.mypage-sidebar {
+    width: 300px;
+}
+
+.mypage-content {
+    width: 800px;
+}
+
+.hr{
+    width: 150px;
+    height: 1px;
+    border-top: 0.5px solid #9E9E9E;
+}
+
+.mypage-menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mypage-menu > li {
+    margin-bottom: 15px;
+}
+
+.mypage-menu a {
+    text-decoration: none;
+    color: #333; /* Change to your preferred color */
+}
+
+.mypage-menu a:hover {
+    text-decoration: underline;
+}
+
+.mypage-menu li ul {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.mypage-menu li ul li {
+    margin-bottom: 5px;
+}
