@@ -1,0 +1,88 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="productFilterSidebar()">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common/sidebar/product_filter_sidebar.css}"/>
+
+    <div class="pf-sidebar">
+        <div class="pf-brand pf-cate-box">
+            <div class="pf-main-cate"> 브랜드</div>
+
+            <div class="pf-main-list checkbox-group">
+                <input type="checkbox" id="checkbox1">
+                <label for="checkbox1">Global Livart Gallery</label>
+
+                <input type="checkbox" id="checkbox2">
+                <label for="checkbox2">리바트 </label>
+
+                <input type="checkbox" id="checkbox3">
+                <label for="checkbox3">리바트 H-몬도</label>
+
+                <input type="checkbox" id="checkbox4">
+                <label for="checkbox4">FM 디자인</label>
+
+                <input type="checkbox" id="checkbox5">
+                <label for="checkbox5">리바트 온라인 </label>
+            </div>
+
+        </div>
+        <hr>
+        <div class="pf-mode pf-cate-box">
+            <div class="pf-main-cate"> 분위기</div>
+
+            <div class="pf-main-list checkbox-group">
+                <input type="checkbox" id="modetype1">
+                <label for="modetype1">모던</label>
+
+
+                <input type="checkbox" id="modetype2">
+                <label for="modetype2">미니멀 & 심플 </label>
+
+                <input type="checkbox" id="modetype3">
+                <label for="modetype3">내추럴</label>
+
+
+                <input type="checkbox" id="modetype4">
+                <label for="modetype4">북유럽 </label>
+
+                <input type="checkbox" id="modetype5">
+                <label for="modetype5">빈티지 & 레트로 </label>
+
+            </div>
+
+        </div>
+        <hr>
+
+        <div class="pf-price pf-cate-box">
+            <div class="pf-main-cate"> 가격 </div>
+
+            <div class="pf-main-list">
+                <div class="slidecontainer">
+
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <p>가격 :   0 ~ <span id="demo"></span></p>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="pf-submit-buttons d-flex mt-4">
+            <button> 초기화 </button>
+
+            <button> 적용하기 </button>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+    </script>
+</th:block>
+</html>
