@@ -22,12 +22,12 @@ public class MemberController {
         return "pages/member/mypage";
     }
     @GetMapping("/mypage/{memberId}/standard")
-    public String loadStandardMyPage(Model model){
-        return "pages/member/standard_mypage";
+    public String loadMyPageStandard(Model model){
+        return "pages/member/mypage_standard";
     }
 
     @GetMapping("/mypage/{memberId}/premium")
-    public String loadPremiumMyPage(Model model){
-        return "pages/member/premium_mypage";
+    public String loadMyPagePremium(Model model){
+        return "pages/member/mypage_premium";
     }
 }

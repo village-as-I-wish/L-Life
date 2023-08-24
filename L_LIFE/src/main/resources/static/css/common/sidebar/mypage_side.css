@@ -16,10 +16,10 @@ main {
     width: 800px;
 }
 
-.hr{
+.hr {
     width: 150px;
     height: 1px;
-    border-top: 0.5px solid #9E9E9E;
+    border-top: 0.5px solid #5D493E;
 }
 
 .mypage-menu {
@@ -47,4 +47,30 @@ main {
 
 .mypage-menu li ul li {
     margin-bottom: 5px;
+}
+
+/* @@님위 */
+.username {
+    margin-top: 90px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #5D493E;
+}
+
+.mypage-text {
+    font-size: 30px;
+    margin-bottom: 35px;
+    color: #333333;
+}
+
+.header-title {
+    color: #5D493E;
+    margin-top: 35px;
+    font-size: 20px;
+}
+
+.header-list {
+    color: #333333;
+    margin-top: 10px;
+    font-size: 15px;
 }
