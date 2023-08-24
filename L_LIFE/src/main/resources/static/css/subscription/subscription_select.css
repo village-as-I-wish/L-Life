@@ -1,79 +1,88 @@
-/*.main-second-section{*/
-/*    margin-top: 50px;*/
-/*}*/
-/*.main-top-slide{*/
-/*    width:100%;*/
-/*    top:0;*/
-/*    height: 800px;*/
-/*    background-image: url(https://static.hyundailivart.co.kr/upload_mall/view/V000000005/D100000452/P000000443_S100016485.jpg?20230816153535);*/
-/*    background-position:center;*/
-/*    background-repeat: no-repeat;*/
-/*    background-size:cover;*/
-/*}*/
-/*.main-content-category{*/
-/*    margin-left:2%;*/
-/*    margin-right:2%;*/
-/*}*/
-/*.main-category-card{*/
-/*    top: 0;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    width: 200px;*/
-/*    height: 200px;*/
-/*    margin:20px;*/
-/*    background-color: transparent;*/
-/*    color: black;*/
-/*    opacity: 1;*/
-/*    transition: opacity 0.5s ease-in-out;*/
-/*}*/
-/*.main-category-card img{*/
-/*    width: inherit;*/
-/*    height: inherit;*/
-/*    border-radius: 20px;*/
-/*}*/
-/*.main-category-card h3 {*/
-/*    position: absolute;*/
-/*    border-radius: 20px;*/
-/*    color: white;*/
-/*    font-weight: bold;*/
-/*    font-size: 24px;*/
-/*}*/
-/*.main-third-section{*/
-/*    margin-top:30px;*/
-/*}*/
-/*.etc-container{*/
-/*    width: 1020px;*/
-/*    height:200px;*/
-/*    margin: 0 auto;*/
-/*}*/
-/*.etc-card{*/
-/*    width:100px;*/
-/*    height:120px;*/
-/*    padding: 0;*/
-/*    margin: 20px;*/
-/*}*/
-/*.etc-card > a{*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*}*/
-/*.etc-card > a >span{*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*}*/
-/*.etc-card>a>span>img{*/
-/*    background: #f2f2f2;*/
-/*    border-radius: 50%;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    padding: 10px;*/
-/*}*/
-/*.etc-card>a > .name{*/
-/*    display: block;*/
-/*    margin-top: 10px;*/
-/*    color: #000;*/
-/*    font-size: 16px;*/
-/*    text-align: center;*/
-/*}*/
+body {
+    /*background-color: #BBBBBB;*/
+    display: flex;
+    flex-direction: column; /* 컨텐츠를 수직으로 배치 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    min-height: 100vh; /* 뷰포트 높이 만큼 최소 높이 설정 */
+    margin-left: 100px; /* 페이지 왼쪽 마진 추가 */
+    margin-right: 100px; /* 페이지 오른쪽 마진 추가 */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1400px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.card {
+    width: 400px;
+    height: 500px;
+    text-align: center; /* 카드 내용 중앙 정렬 */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+        -5px -5px 10px rgba(0, 0, 0, 0.1),
+        5px -5px 10px rgba(0, 0, 0, 0.1),
+        -5px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50px; /* 카드에 곡률 주기 */
+    overflow: hidden; /* 내용이 카드를 벗어나지 않도록 설정 */
+    margin-left: 20px;
+    margin-right: 20px;
+    border: none;
+    transition: background-color 0.3s; /* 호버 효과를 부드럽게 만들기 위한 트랜지션 설정 */
+}
+
+.card:hover {
+    background-color: #E2BEAD; /* 호버 시 배경색 변경 */
+}
+
+.card-out {
+}
+
+.button-container {
+    margin-top: 100px;
+}
+
+.complete-btn {
+    background-color: #5D493F;
+    color: white;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.title-text{
+    font-weight: bold;
+    font-size: 50px;
+    color: #917261;
+}
+
+.card-body{
+    margin-top: 50px;
+    padding-bottom: 0;
+}
+
+.price-button{
+    background-color: #8D7F78;
+    color: white;
+    width: 250px;
+    height: 75px;
+    border-radius: 10px;
+    font-size: 35px;
+    font-weight: bold;
+    border: none;
+    margin-top: 20px;
+}
+
+.card-hr{
+    margin-top: 50px;
+    border: none;
+    height: 4px !important;
+    background-color: #917261;
+}
+
+.card-coin{
+    margin :0;
+}
