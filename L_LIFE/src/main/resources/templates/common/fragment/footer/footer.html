@@ -1,0 +1,117 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="../../../../static/css/common/footer/footer.css">
+<th:block th:fragment="footerFragment()">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common/footer/footer.css}"/>
+    <footer>
+        <div class="footer_inner">
+            <div class="footer-top">
+                <div class="footer-top-menu">
+                    <ul>
+                        <li><a class="footer-top-menu__link"
+                               href="https://company.hyundailivart.co.kr/ko/index">회사소개</a>
+                        </li>
+                        <li><a class="footer-top-menu__link" href="/footerTermInfo?type=1"><strong>개인정보
+                            처리방침</strong></a>ㅜ
+                        </li>
+                        <li><a class="footer-top-menu__link" href="/footerTermInfo?type=3">위치정보 이용약관</a></li>
+                        <li><a class="footer-top-menu__link" href="/footerTermInfo?type=4">영상정보처리기기 운영/관리방침</a></li>
+                        <li><a class="footer-top-menu__link" href="/footerTermInfo?type=2">이용약관</a></li>
+                        <li><a class="footer-top-menu__link"
+                               href="http://www.ehyundai.com/newPortal/ir/ETH/ETH000001.do?ir=3">경영이념</a></li>
+                        <li><a class="footer-top-menu__link"
+                               href="https://company.hyundailivart.co.kr/ko/statements">투자정보</a></li>
+                        <li><a class="footer-top-menu__link" href="https://recruit.ehyundai.com/index.nhd">인재채용</a></li>
+                        <li><a class="footer-top-menu__link" href="https://www.hyundailivart.co.kr/csCenter/agency">제휴 및
+                            대리점
+                            개설안내</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <div class="footer-bottom-left-top">
+                        <div class="footer-bottom-menu float-left">
+                            <ul>
+                                <li>AS 예약</li>
+                                <li>자주하는 질문</li>
+                                <li>1:1 문의</li>
+                                <li>매장찾기</li>
+                                <li>고객의 소리</li>
+                                <li>대량 구매</li>
+                            </ul>
+                        </div>
+                        <div class="footer-bottom-menu float-right">
+                            <div class="footer-bottom-sns float-right">
+                                <a class="footer-bottom-sns__link icon"
+                                   href="https://www.youtube.com/user/hyundailivart"
+                                   target="_blank" title="새창 열림">
+                                    <i class="icon-foot-sns-youtube">&nbsp; </i>
+                                    <span class="hidden">유튜브</span>
+                                </a>
+                                <a class="footer-bottom-sns__link icon" href="http://blog.naver.com/hd_livart"
+                                   target="_blank"
+                                   title="새창 열림">
+                                    <i class="icon-foot-sns-blog">&nbsp; </i>
+                                    <span class="hidden">네이버 블로그</span>
+                                </a>
+                                <a class="footer-bottom-sns__link icon"
+                                   href="https://www.instagram.com/hyundailivart_official/" target="_blank"
+                                   title="새창 열림">
+                                    <i class="icon-foot-sns-insta">&nbsp; </i>
+                                    <span class="hidden">인스타그램</span>
+                                </a>
+                                <a class="footer-bottom-sns__link icon" href="https://www.facebook.com/LIVARTstory"
+                                   target="_blank" title="새창 열림">
+                                    <i class="icon-foot-sns-facebook">&nbsp; </i>
+                                    <span class="hidden">페이스북</span>
+                                </a>
+                                <a class="footer-bottom-sns__link icon"
+                                   href="https://post.naver.com/hd_livart" target="_blank" title="새창 열림">
+                                    <i class="icon-foot-sns-hinge">&nbsp; </i>
+                                    <span class="hidden">매거진힌지</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom-service">
+                        <h1>고객센터 1577-3332 ( 유료 )</h1>
+                        <ul>
+                            <li>T. 제휴 / 대리점 개설 문의 02.3480-8000</li>
+                            <li> F. 02-6442-8081</li>
+                            <li> M. livartcs@hyundailivart.co.kr</li>
+                        </ul>
+
+                        <ul>
+                            <li> (주) 현대리바트</li>
+                            <li> 대표 이사 윤기철</li>
+                            <li> 본사 경기도 용인시 남사읍 경기동로 316</li>
+                            <li> 서울사무소 서울특별시 강남구 압구정로 201</li>
+                            <li> 개인정보관리 책임자 이은수</li>
+                        </ul>
+
+                        <ul>
+                            <li>사업자등록번호 135-81-32239</li>
+                            <li> 통신판매업신고 2014-용인처인-00049</li>
+                        </ul>
+                    </div>
+                    Copyrightⓒ HYUNDAI LIVART Corporation. All Rights Reserved.
+                </div>
+
+                <div class="footer-bottom-right">
+                    <!-- 리바트 바코드 있는 부분 -->
+                    <div class="footer-bottom-right-logo">
+                        <img alt="QR 코드 " th:src="@{/img/footer/footer_livart_img_logo.png}"/>
+                    </div>
+                    <div class="footer-bottom-right-qr d-flex mt-4">
+                        <span><strong>모바일 앱으로</strong> <br> 더욱 편하게 쇼핑하세요 </span>
+                        <img alt="QR 코드 " th:src="@{/img/footer/footer_livart_img_qr.png}"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</th:block>
+</html>

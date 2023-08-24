@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="headerFragment(headerStyle)">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common/header/header.css}"/>
+
+    <header th:class="${headerStyle == 1} ? 'text-white' : 'text-black'">
+        <div class="header-main hd__inner1400">
+
+            <div th:if="${headerStyle==1}" class="header-logo">
+                <a th:href="@{/main}">
+                    <img th:src="@{/img/header/logo_l_life_w.png}"/>
+                </a>
+            </div>
+            <div th:unless="${headerStyle==1}" class="header-logo">
+                <a th:href="@{/main}">
+                    <img th:src="@{/img/header/logo_l_life_b.png}"/>
+                </a>
+            </div>
+            <div class="header-user">
+                <li><a th:href="@{/member/login}"> 로그인 </a></li>
+                <li> 회원가입</li>
+                <li> 고객센터</li>
+            </div>
+        </div>
+    </header>
+</th:block>
+</html>

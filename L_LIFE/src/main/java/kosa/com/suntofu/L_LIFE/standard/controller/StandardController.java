@@ -13,23 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StandardController {
 
     private final StandardService standardService;
-    @GetMapping("/main")
+    @GetMapping("")
     public String loadStandardMainPage(Model model){
-//        model.addAttribute("data", "test");
-        return "pages/standard/main";
+        return "pages/standard/standard_main";
     }
 
-    @GetMapping(value="all")
-    public String showAllStandardFurniture(Model model){
-        //List<StandardVO> standardList = standardService.getAllStandard();
-      //  System.out.println(standardList);
-        return "pages/subscription/subscription_select";
-    }
 
     @GetMapping(value="standard_payment_detail")
     public String standardPaymentDetail(Model model){
         //List<StandardVO> standardList = standardService.getAllStandard();
         //  System.out.println(standardList);
         return "pages/subscription/standard_payment_detail";
+
+
     }
 }

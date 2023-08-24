@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>L-Life Standard</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/standard/standard_list.css}"/>
+</head>
+<body>
+<th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment()"></th:block>
+
+<div class="sl-top-banner">
+    <img alt="베너 사진1 " th:src="@{/img/standard/list_top_banner.png}"/>
+    <a class="banner-guide" href="#"> 리바트 라이브 구독 이용 가이드 </a>
+    <span class="banner-user"> 리바트스트님, 환영합니다. </span>
+</div>
+
+<div class="sl-main-content">
+    <th:block th:replace="common/fragment/sidebar/product_filter_sidebar :: productFilterSidebar()"></th:block>
+
+    <div class="sl-main-products">
+        <div class="sl-main-live">
+            <img alt="베너 사진1 " th:src="@{/img/standard/l-life-live-logo.png}"/>
+
+            <div class="sl-main-live-products">
+                <div th:each="i : ${#numbers.sequence(1, 4)}">
+
+                    <div class="sl-live-box">
+                        <img alt="베너 사진1 " th:src="@{/img/standard/live-box-sample.png}"/>
+                        <div class="sl-live-box-info d-flex">
+                            <img class="sl-live-box-info-img" th:src="@{/img/standard/live-box-sample.png}"/>
+                            <div class="sl-live-box-info-title">
+                                <h6> 가드니아 주방</h6>
+                                <h6>3만원</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sl-main-sub">
+            <span class="sl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
+
+            <div class="sl-main-sub-products">
+                <div class="row row-cols-4 m-0">
+                    <div th:each="i : ${#numbers.sequence(1, 10)}">
+                        <div class="sub-product-card col">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
