@@ -6,5 +6,8 @@ import lombok.Data;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class MemberVo {
+    private String image;
+    private String name;
 }
