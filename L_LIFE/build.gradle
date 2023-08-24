@@ -35,7 +35,14 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	compileOnly 'org.projectlombok:lombok'
 //	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8:19.8.0.0'
+//	runtimeOnly 'com.oracle.database.jdbc:ojdbc8:19.8.0.0'
+	implementation ('com.oracle.database.jdbc:ojdbc8-production:21.9.0.0') {
+		exclude group: 'com.oracle.database.ha', module: 'simplefan'
+		exclude group: 'com.oracle.database.ha', module: 'ons'
+	}
+	implementation 'com.oracle.database.security:osdt_cert'
+	implementation 'com.oracle.database.security:oraclepki'
+	implementation 'com.oracle.database.security:osdt_core'
 
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

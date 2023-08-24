@@ -18,15 +18,13 @@ public class StandardController {
         return "pages/standard/standard_main";
     }
 
-//    @GetMapping(value="all")
-//    public String showAllStandardFurniture(Model model){
-//        //List<StandardVO> standardList = standardService.getAllStandard();
-//      //  System.out.println(standardList);
-//        return "pages/standard/livart_main";
-//    }
 
-    @GetMapping(value = "subscription_guide")
-    public String subscriptionGuide(Model model) {
-        return "pages/subscription/subscription_guide";
+    @GetMapping(value="standard_payment_detail")
+    public String standardPaymentDetail(Model model){
+        //List<StandardVO> standardList = standardService.getAllStandard();
+        //  System.out.println(standardList);
+        return "pages/subscription/standard_payment_detail";
+
+
     }
 }
