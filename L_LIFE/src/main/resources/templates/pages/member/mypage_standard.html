@@ -21,10 +21,10 @@
         <section class="mypage-content">
             <!-- 회원 정보, 주문 배송 현황 -->
             <th:block th:replace="pages/member/mypage_top_banner::mypageUserFragment()"></th:block>
-            <!--
-            <th:block th:replace="pages/member/mypage_standard_subscription::mypagesubscribeFragment()"></th:block>
-            스탠다드 구독 품목 -->
-
+            <!--스탠다드 구독 품목 -->
+            <th:block th:replace="pages/member/mypage_standard_subscription::mypageStandardSubscriptionFragment()"></th:block>
+            <!--최근 구독 내약 -->
+            <th:block th:replace="pages/member/mypage_standard_recent_subscription::mypageStandardRecentSubscription()"></th:block>
         </section>
     </main>
 </div>
