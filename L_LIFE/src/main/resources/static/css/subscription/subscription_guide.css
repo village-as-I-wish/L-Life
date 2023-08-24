@@ -14,7 +14,7 @@
     color: #5D493F;
 }
 
-.btnContainer, .imgContainer {
+.btn-container, .img-container {
     display: flex;
     justify-content: center;
     align-items: center;
