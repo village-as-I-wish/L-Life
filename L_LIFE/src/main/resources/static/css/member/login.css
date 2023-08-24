@@ -1,0 +1,97 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* 로고 이미지 스타일 */
+.header-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 로그인 컨테이너 스타일 */
+.login-container {
+    width: 36%;
+    background-color: white;
+    padding: 20px;
+}
+
+/* 로그인 폼 스타일 */
+.login-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 아이디 입력창, 비밀번호 입력창 스타일 */
+.text-input {
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+
+/* 아이디 저장하기 스타일 */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #777777;
+}
+
+.text-btn {
+    width: 103.5%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid;
+}
+
+#btn-login {
+    background-color: #5D493E;
+    color: #ffffff;
+}
+
+#btn-join {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+/* 아이디찾기와 비밀번호 찾기 스타일 */
+.login-find {
+    width: 103.5%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    color: #777777;
+    cursor: pointer;
+}
+
+#find-id {
+    margin-right: 20px;
+}
+
+/* sns 로그인 스타일 */
+
+.sns-login ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+.sns-login li {
+    margin: 20px;
+}
+
+/* 사업자 회원가입 스타일 */
+div a {
+    display: block;
+    text-align: center;
+    color: #777777;
+    margin-top: 10px;
+}
