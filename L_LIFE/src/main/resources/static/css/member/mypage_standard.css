@@ -4,6 +4,7 @@
     border-radius: 15px; /* 둥근 모서리 */
     padding: 40px; /* 내부 간격 */
     color: white;
+    margin-top: 35px;
 }
 
 .user-info > div:first-child {
