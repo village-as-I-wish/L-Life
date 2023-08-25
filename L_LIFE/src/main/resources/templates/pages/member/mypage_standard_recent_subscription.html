@@ -27,7 +27,42 @@
         </div>
     </div>
 
-        <script>
+    <!-- 테이블 부분 -->
+    <table class="recent-table">
+        <colgroup>
+            <col style="width: 25%">
+            <col style="width: 50%">
+            <col style="width: 25%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="col-title">주문일</th>
+            <th class="col-title">구독항목</th>
+            <th class="col-title">구독상품</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.date}"></td> <!-- 주문일 -->
+            <td>
+                <div class="product-info">
+                    <img th:src="@{'/img/member/' + ${product.image}}" alt="Product Image" width="50">
+                    <div class="product-details">
+                        <span th:text="${product.name}"></span>
+                        <div class="coins">
+                            <th:block th:each="coin, stat : ${#numbers.sequence(1, product.coins)}">
+                                <img th:src="@{/img/member/coin.png}" alt="Coin Image" width="20"/>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td th:text="${product.subscriptionType} + '원'"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script>
             document.addEventListener("DOMContentLoaded", function() {
                 setDefaultDates();
             });

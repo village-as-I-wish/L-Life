@@ -15,7 +15,7 @@
                     <div class="product-details">
                         <span class="product-name" th:text="${product.name}"></span>
                         <div class="coins">
-                            <th:block th:each="price, stat : ${#numbers.sequence(1, product.price)}">
+                            <th:block th:each="coins, stat : ${#numbers.sequence(1, product.coins)}">
                                 <img th:src="@{/img/member/coin.png}" />
                             </th:block>
                         </div>
