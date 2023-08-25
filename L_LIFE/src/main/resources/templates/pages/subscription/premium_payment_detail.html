@@ -3,7 +3,7 @@
 <head>
     <th:block th:replace="common/fragment/commonHead"></th:block>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/css/subscription/standard_payment_detail.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/subscription/premium_payment_detail.css}"/>
 
 </head>
 <body>
@@ -116,10 +116,6 @@
             <div class="card-interest-free">카드 무이자 혜택 (?)</div>
             <hr class="hr card-interest-free-hr">
 
-            <div class="st-payment-promotion-section">
-
-            </div>
-
         </div>
 
         <div class="st-payment-money">
@@ -128,7 +124,7 @@
                     <h5 class="card-title">최종결제금액</h5>
                 </div>
                 <hr class="hr">
-                <div class="card-body price-section">
+                <div class="card-body price-section" >
                     <div class="price">
                         <div class="sum-price-name bold-text">
                             총 판매가
@@ -159,19 +155,19 @@
                 <div class="card-body">
                     <input type="checkbox" class="agreement-checkbox">
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
-                </span>
+                    </span>
 
-                <div class="card-body">
-                    <button class="payment-button" th:color="white">결제 하기</button>
+                    <div class="card-body">
+                        <button class="payment-button" th:color="white">결제 하기</button>
+                    </div>
                 </div>
             </div>
+
         </div>
 
+
     </div>
-
-
-</div>
-<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 
 </body>
 </html>
