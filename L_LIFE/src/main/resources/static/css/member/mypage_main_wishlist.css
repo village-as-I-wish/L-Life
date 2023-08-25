@@ -1,0 +1,66 @@
+.wishlist-title {
+    font-size: 20px;
+    color: #5D493E;
+    margin-top: 60px;
+}
+
+.wishlist-section {
+    border-top: 1px solid #DCDCDC;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.wishlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wishlist-sub-title {
+    flex-grow: 1; /* 이 속성을 사용하여 title이 가능한 모든 공간을 차지하도록 합니다. */
+    font-size: 16px;
+    color: #5D493E;
+    font-weight: bold;
+}
+
+/* 오른쪽 컨텐츠를 컨테이너로 묶어주는 부분 */
+.wishlist-header-right {
+    display: flex;
+    align-items: flex-start;
+}
+
+.add {
+    margin-right: 10px; /* add-img와의 간격을 조절 */
+}
+
+.add-img {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1%;  /* 항목 간 간격을 1%로 조절 */
+    margin-top: 10px;
+}
+
+.product-item {
+    flex: 0 0 19.2%;  /* 너비를 19.2%로 조절. 5개 항목에 19%씩 총 96%, 나머지 4%는 간격으로 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.product-list span {
+    font-size: 12px;
+}

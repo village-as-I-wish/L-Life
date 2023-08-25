@@ -81,10 +81,6 @@
     align-items: center;
 }
 
-.delivery-info > div:last-child > div > div:last-child > span:first-child {
-    color: red;
-}
-
 .delivery-info {
     margin-top: 50px;
 }
@@ -101,4 +97,5 @@
 
 .num {
     font-size: 22px;
+    color: red;
 }

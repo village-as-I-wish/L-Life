@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/member/mypage_main.css}">
+
+<head>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+</head>
+<body>
+
+<!-- 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
+
+<!-- 서브 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/sub_header::subHeaderFragment(0)"></th:block>
+
+<div class="mypage_container hd__inner1100">
+    <main>
+        <!-- 사이드바 프래그먼트 삽입 -->
+        <section class="mypage-sidebar">
+            <th:block th:replace="common/fragment/sidebar/mypage_sidebar::mypageSidebarFragment()"></th:block>
+        </section>
+
+        <section class="mypage-content">
+            <!-- 회원 정보, 주문 배송 현황 -->
+            <th:block th:replace="pages/member/mypage_top_banner::mypageUserFragment()"></th:block>
+
+            <!--커뮤니티 활동 부분 -->
+            <div class="community-title">커뮤니티활동</div>
+            <div class="community-info">
+                <div class="info-item">
+                    <div class="community-content">등록한 리빙북</div>
+                    <div><span class="num">0</span><span>건</span></div>
+                </div>
+                <div class="info-item">
+                    <div class="community-content">관림 리빙북</div>
+                    <div><span class="num">0</span><span>건</span></div>
+                </div>
+                <div class="info-item">
+                    <div class="community-content">참여한 래플</div>
+                    <div><span class="num">0</span><span>건</span></div>
+                </div>
+            </div>
+
+
+
+            <!--찜한 상품 내역-->
+            <th:block th:replace="pages/member/mypage_main_wishlist::mypageMainWishlist()"></th:block>
+
+        </section>
+    </main>
+</div>
+
+<!-- 푸터 프래그먼트 -->
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+</body>
+</html>
