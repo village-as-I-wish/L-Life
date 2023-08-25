@@ -48,8 +48,92 @@
             <input th:type="text" class="st-payment-tel-input">
         </div>
     </div>
+
+
     <hr class="hr">
 
+    <div class="st-payment-delivery-section">
+        <div class="delivery-title">
+            <div class="sub-title">
+                배송지 정보
+            </div>
+            <div class="delivery-info-option">
+                <input type="radio" id="same" name="delivery-info" value="same">
+                <label for="same" style="margin-right: 15px">주문자와 동일</label>
+
+                <input type="radio" id="direct" name="delivery-info" value="direct">
+                <label for="direct">직접입력</label>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="st-payment">
+        <div class="st-payment-user">
+            <div class="align-vertical">
+                <div class="st-payment-username">
+                    <span class="st-payment-row"> * </span>
+                    <span> 받는사람 </span>
+                </div>
+                <input type="text" class="st-payment-username-input">
+            </div>
+        </div>
+
+        <div class="st-payment-tel">
+
+            <div class="st-payment-telnum">
+                <span class="st-payment-row"> * </span>
+                <span> 휴대폰 번호 </span>
+            </div>
+            <select class="st-payment-tel-input">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="017">017</option>
+            </select>
+            <input th:type="text" class="st-payment-tel-input">
+            <input th:type="text" class="st-payment-tel-input">
+        </div>
+    </div>
+
+    <div class="delivery-info">
+
+        <div class="delivery-destination">
+            <div class="delivery-destination-title">
+                <span class="st-payment-row"> * </span>
+                <span> 배송주소 </span>
+            </div>
+            <div class="delivery-destination-content">
+                <input type="text" class="delivery-destination-num">
+                <button class="delivery-destination-find-btn">우편번호 확인</button>
+                <div class="delivery-destination-content-input">
+                    <input type="text" disabled><br>
+                    <input type="text" placeholder="상세 주소 입력">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="delivery-request">
+            <div class="delivery-request-title">
+                <span> 배송요청사항 </span>
+            </div>
+            <div class="delivery-request-content">
+                <select class="delivery-request-option">
+                    <option value="direct_input">직접입력</option>
+                    <option value="opt1">opt1</option>
+                    <option value="opt2">opt2</option>
+                </select>
+                <br>
+                <input class="delivery-request-textarea" placeholder="직접입력(설치 기사님에게 전할 말씀을 50자 이내로 남겨주세요">
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <hr class="hr">
     <div class="st-payment-subscript">
         <div class="sub-title">
             주문 상품
@@ -58,15 +142,22 @@
             <table>
                 <tr>
                     <th class="bold-text">상품명/옵션정보</th>
+                    <th class="bold-text">수량</th>
                     <th class="bold-text">판매가</th>
+                    <th class="bold-text">배송정보</th>
                 </tr>
                 <tr>
                     <td class="table-td">스탠다드33 구독권</td>
-                    <td class="table-td">33,000원</td>
+                    <td class="table-td">1</td>
+                    <td class="table-td">89,000원</td>
+                    <td class="table-td">직접 배송 (무료)</td>
                 </tr>
             </table>
         </div>
     </div>
+
+
+
 
     <hr class="hr">
     <div class="st-payment-section">
@@ -86,7 +177,7 @@
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-1-3">가상계좌</label>
             </div>
 
-            <div class="btn-group" role="group" >
+            <div class="btn-group" role="group">
                 <input type="radio" class="btn-check" name="btnradio2" id="pay-method-naver" autocomplete="off" checked>
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-naver">
                     <img th:src="@{/img/subscription/payment_icon/i.icon-npay.png}"/>
@@ -124,7 +215,7 @@
                     <h5 class="card-title">최종결제금액</h5>
                 </div>
                 <hr class="hr">
-                <div class="card-body price-section" >
+                <div class="card-body price-section">
                     <div class="price">
                         <div class="sum-price-name bold-text">
                             총 판매가
