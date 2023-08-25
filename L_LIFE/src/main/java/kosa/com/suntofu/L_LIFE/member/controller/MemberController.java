@@ -29,8 +29,8 @@ public class MemberController {
     public String loadMyPageStandard(Model model){
 
         List<MemberVo> products = new ArrayList<>();
-        products.add(new MemberVo("product1.jpeg", "Product1"));
-        products.add(new MemberVo("product2.jpeg", "Product2"));
+        products.add(new MemberVo("product1.jpeg", "제품1", 2));
+        products.add(new MemberVo("product2.jpeg", "제품2", 5));
         model.addAttribute("products", products);
 
         return "pages/member/mypage_standard";
