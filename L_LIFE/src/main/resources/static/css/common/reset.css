@@ -142,3 +142,17 @@ table {
 .text-lg{
     font-size:30px;
 }
+
+.light-gray{
+    color:#A1A1A1;
+}
+.f-bold{
+    font-weight: bold;
+}
+.lf-btn-brown{
+    background: #5D493E;
+}
+
+.lf-btn-light-brown{
+    background: #AEA49E;
+}
