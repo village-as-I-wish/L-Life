@@ -226,18 +226,18 @@ h5{
 }
 
 .delivery-destination-title{
-    flex: 2;
+    flex: 1.5;
     padding: 20px 0px 20px 0px;
     background: #f2f2f2;
 }
 
 .delivery-destination-content{
-    flex: 8;
-    margin-left: 10px;
+    flex: 8.5;
 }
 
 .delivery-destination-num{
-    margin-left: 5px;
+    margin: 20px;
+    margin-bottom: 0;
     width: 350px;
     height: 45px;
     border: 0.5px solid #ccc;
@@ -253,34 +253,36 @@ h5{
 }
 
 .delivery-request-title{
-    flex: 2;
-    padding: 20px 20px 20px 20px;
+    flex: 1.5;
+    padding: 20px 0px 20px 0px;
     background: #f2f2f2;
     width: 15%;
     height: 120px;
 }
 
+.delivery-request-title-name{
+    padding-left: 20px;
+}
 .delivery-request-content {
-    flex: 8;
-    margin-left: 10px;
+    flex: 8.5;
+    margin-left: 20px;
 }
 
 .delivery-request-textarea{
-    margin: 5px;
     width: 750px;
     height: 45px;
     border: 0.5px solid #ccc;
 }
 
 .delivery-request-option{
-    margin: 5px;
     width: 200px;
     height: 45px;
     border: 0.5px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .delivery-destination-find-btn{
-    margin: 5px;
     width: 200px;
     height: 45px;
     border: 0.5px solid #ccc;
@@ -288,6 +290,7 @@ h5{
 
 .delivery-destination-content-input{
     margin: 20px;
+    margin-top: 0;
 }
 
 .delivery-destination-content-input > input{
