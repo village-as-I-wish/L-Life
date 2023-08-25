@@ -1,5 +1,5 @@
 .subscribe-title {
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 .date-select {
@@ -29,29 +29,67 @@
     color: white;
     background-color: #5D493F;
     border: 0px;
-    font-size: 18px;
+    font-size: 14px;
     margin-left: 5px;
 }
 
+.date-input-wrap {
+    display: flex;
+    align-items: center;
+}
+
 .date-input {
-    display: inline-block;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    align-items: center;
     border: 1px solid #ccc;
     padding: 5px 10px;
     cursor: pointer;
-    position: relative;
+    gap: 5px;
 }
 
 .calendar-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    margin-left: auto;
     cursor: pointer;
 }
 
-.date-text {
-    margin-right: 5px; /* 이미 있는 경우, 조절하시면 됩니다. */
-    padding-right: 25px; /* 25px는 달력 아이콘의 크기와 얼마나 떨어뜨릴지에 따라 조절할 수 있습니다. */
-    height: 40px;
-    width: 80px;
+
+
+/* 최근 구독 내역 테이블 */
+.recent-table {
+    width: 100%; /* 테이블을 화면에 꽉 차게 함 */
+    table-layout: fixed;
+    border-collapse: collapse; /* 셀 간의 경계를 병합 */
+    margin-top: 12px;
+    border: 1px solid #5D493F; /* 테이블 전체 테두리를 추가 */
 }
+
+/* 테이블 row */
+.recent-table td {
+    vertical-align: middle;
+    height: 80px;
+    text-align: center; /* 수평으로 중앙에 위치시킵니다. */
+    border: 1px solid #DCDCDC; /* 각 셀에 경계선을 추가 */
+}
+
+.col-title {
+    color: white;
+    background-color: #5D493F;
+    opacity: 50%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    border: 1px solid #DCDCDC; /* 제목 행의 각 셀에 경계선을 추가 */
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.product-details {
+    margin-left: 20px;
+}
+
