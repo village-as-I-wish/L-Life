@@ -1,8 +1,7 @@
 .pf-sidebar{
-    padding:20px;
-    margin-left:150px;
+    padding: 20px;
     border: 2px solid black;
-    width: 300px;
+    width: 220px;
     min-height: 500px;
 }
 .pf-main-cate{

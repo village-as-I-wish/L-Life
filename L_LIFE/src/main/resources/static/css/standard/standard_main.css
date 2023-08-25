@@ -1,11 +1,13 @@
-.sl-top-banner{
-    width:100%;
+.sl-top-banner {
+    width: 100%;
     height: 300px;
-    position:relative;
+    position: relative;
+    margin-bottom: 70px;
 
 }
-.sl-top-banner > img{
-    width:100%;
+
+.sl-top-banner > img {
+    width: 100%;
     height: inherit;
 }
 
@@ -31,68 +33,79 @@
     border-radius: 20px;
 }
 
-.sl-main-content{
-    margin-top: 80px;
-    display:flex;
-    width: 100%;
+.sl-main-content {
+    display: flex;
+    width: 1400px;
+    margin: 0 auto;
+    justify-content: space-between;
 }
 
-.sl-main-products{
+.sl-main-products {
     margin-left: 100px;
     width: 100%;
 
 }
-.sl-main-live-products, .sl-main-sub-products{
+
+.sl-main-live-products, .sl-main-sub-products {
     margin-bottom: 100px;
     display: flex;
+    justify-content: space-between;
 
 }
-.sl-live-box{
-    height:350px;
-    width: 300px;
-    border : 2px solid saddlebrown;
+
+.sl-live-box {
+    height: 300px;
+    width: 240px;
+    border: 2px solid saddlebrown;
     position: relative;
-    margin-right: 40px;
 }
-.sl-live-box > img{
+
+.sl-live-box > img {
     width: 100%;
-    height : inherit;
+    height: inherit;
 }
-.sl-live-box-info{
+
+.sl-live-box-info {
     position: absolute;
     height: 80px;
     width: 90%;
-    bottom:5px;
+    bottom: 5px;
     left: 50%;
     border-radius: 10px;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
 
 }
-.sl-live-box-info-img{
+
+.sl-live-box-info-img {
     width: 30%;
     height: inherit;
     border-radius: 10px 0px 0px 10px;
 }
-.sl-live-box-info-title{
+
+.sl-live-box-info-title {
     width: 70%;
     font-color: white;
     color: white;
     padding: 16px;
 }
-sl-live-box-info-title > span{
+
+sl-live-box-info-title > span {
     display: block;
 }
 
-.sl-main-sub-products-txt{
-    color:gray;
+.sl-main-sub-products-txt {
+    color: gray;
     font-size: 24px;
 }
-.txt-pink{
-    color : #ED2650;
+
+.txt-pink {
+    color: #ED2650;
 }
-.sub-product-card{
-    height:350px;
-    width: 300px;
+
+.sub-product-card {
+    height: 300px;
+    width: 260px;
+    padding: 20px;
     border: 2px solid gray;
 }
