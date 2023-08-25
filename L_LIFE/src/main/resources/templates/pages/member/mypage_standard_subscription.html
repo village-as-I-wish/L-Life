@@ -8,15 +8,19 @@
     <ul>
         <li th:each="product : ${products}" class="list-item">
             <div class="product-item">
-                <img class="product-image" th:src="@{'/img/member/' + ${product.image}}" />
-                <div class="product-details">
-                    <span class="product-name" th:text="${product.name}"></span>
-                    <div class="coins">
-                        <th:block th:each="price, stat : ${#numbers.sequence(1, product.price)}">
-                            <img th:src="@{/img/member/coin.png}" />
-                        </th:block>
+                <!-- a 태그안에 경로와 제품id를 넣어서 제품의 상세페이지로 이동하게 하기 - 일단 #
+                <a th:href="@{'/productDetails/' + ${product.id}}"> -->
+                <a th:href="@{'#'}" class="product-link">
+                    <img class="product-image" th:src="@{'/img/member/' + ${product.image}}" />
+                    <div class="product-details">
+                        <span class="product-name" th:text="${product.name}"></span>
+                        <div class="coins">
+                            <th:block th:each="price, stat : ${#numbers.sequence(1, product.price)}">
+                                <img th:src="@{/img/member/coin.png}" />
+                            </th:block>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="buttons">
                 <a href="#" class="custom-button">구독연장</a>
@@ -24,8 +28,8 @@
                 <a href="#" class="custom-button">케어신청</a>
                 <a href="#" class="custom-button">배송조회</a>
             </div>
-
         </li>
     </ul>
+
 </th:block>
 </html>
