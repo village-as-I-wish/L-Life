@@ -203,3 +203,99 @@ h5{
 .card-interest-free-hr{
     margin-right: 20px !important;
 }
+
+.delivery-title{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+
+}
+
+.delivery-info-option{
+    padding-top: 10px;
+    color: #ccc;
+}
+
+.delivery-info{
+    width: 100%;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-destination{
+    display: flex;
+}
+
+.delivery-destination-title{
+    flex: 1.5;
+    padding: 20px 0px 20px 0px;
+    background: #f2f2f2;
+}
+
+.delivery-destination-content{
+    flex: 8.5;
+}
+
+.delivery-destination-num{
+    margin: 20px;
+    margin-bottom: 0;
+    width: 350px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+
+.delivery-request {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* 위쪽 정렬 */
+    border-top: 0.5px solid #ccc;
+
+}
+
+.delivery-request-title{
+    flex: 1.5;
+    padding: 20px 0px 20px 0px;
+    background: #f2f2f2;
+    width: 15%;
+    height: 120px;
+}
+
+.delivery-request-title-name{
+    padding-left: 20px;
+}
+.delivery-request-content {
+    flex: 8.5;
+    margin-left: 20px;
+}
+
+.delivery-request-textarea{
+    width: 750px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-request-option{
+    width: 200px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.delivery-destination-find-btn{
+    width: 200px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-destination-content-input{
+    margin: 20px;
+    margin-top: 0;
+}
+
+.delivery-destination-content-input > input{
+    width: 500px;
+    margin-top: 10px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
