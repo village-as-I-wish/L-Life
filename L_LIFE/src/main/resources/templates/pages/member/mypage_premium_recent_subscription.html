@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="mypageStandardRecentSubscriptionFragment()">
-    <link rel="stylesheet" th:href="@{/css/member/mypage_standard_recent_subscription.css}">
+<th:block th:fragment="mypagePremiumRecentSubscription()">
+    <link rel="stylesheet" th:href="@{/css/member/mypage_premium_recent_subscription.css}">
     <link rel="stylesheet" th:href="@{/css/common/reset.css}">
 
     <div class="subscribe-title">최근 구독 내역</div>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <!-- 테이블 부분 -->
+    <!-- 프리미엄 테이블 부분 -->
     <table class="recent-table">
         <colgroup>
             <col style="width: 25%">
@@ -38,7 +38,7 @@
         <tr>
             <th class="col-title">주문일</th>
             <th class="col-title">구독항목</th>
-            <th class="col-title">구독상품</th>
+            <th class="col-title">월구독가격</th>
         </tr>
         </thead>
         <tbody>
@@ -49,15 +49,10 @@
                     <img th:src="@{'/img/member/' + ${product.image}}" alt="Product Image" width="50">
                     <div class="product-details">
                         <span th:text="${product.name}"></span>
-                        <div class="coins">
-                            <th:block th:each="coin, stat : ${#numbers.sequence(1, product.coins)}">
-                                <img th:src="@{/img/member/coin.png}" alt="Coin Image" width="20"/>
-                            </th:block>
-                        </div>
                     </div>
                 </div>
             </td>
-            <td th:text="${product.subscriptionType} + '원'"></td>
+            <td th:text="${product.price} + '원'"></td>
         </tr>
         </tbody>
     </table>
