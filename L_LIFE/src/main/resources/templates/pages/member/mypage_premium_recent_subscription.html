@@ -3,6 +3,7 @@
 <th:block th:fragment="mypagePremiumRecentSubscription()">
     <link rel="stylesheet" th:href="@{/css/member/mypage_premium_recent_subscription.css}">
     <link rel="stylesheet" th:href="@{/css/common/reset.css}">
+    <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
 
     <div class="subscribe-title">최근 구독 내역</div>
     <div class="date-select">
@@ -57,12 +58,15 @@
         </tbody>
     </table>
 
+    <script src="https://unpkg.com/js-datepicker"></script>
     <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                setDefaultDates();
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            setDefaultDates();
+            initDatepickers();
+        });
 
-            function setDefaultDates() {
+
+        function setDefaultDates() {
                 let today = new Date();
                 let oneMonthAgo = new Date(today);
                 oneMonthAgo.setMonth(today.getMonth() - 1);
@@ -97,8 +101,33 @@
                 document.getElementById("endDate").innerHTML = formatDate(today);
             }
 
+        let startDatePicker, endDatePicker;
 
-        </script>
-    </div>
+        function initDatepickers() {
+            const startDateDiv = document.getElementById('startDateDiv');
+            const endDateDiv = document.getElementById('endDateDiv');
+
+            startDatePicker = datepicker(startDateDiv, {
+                onSelect: (instance, date) => {
+                    document.getElementById("startDate").textContent = formatDate(date);
+                }
+            });
+
+            endDatePicker = datepicker(endDateDiv, {
+                onSelect: (instance, date) => {
+                    document.getElementById("endDate").textContent = formatDate(date);
+                }
+            });
+        }
+
+        function openDatePicker(id) {
+            if (id === 'startDate') {
+                startDatePicker.show();
+            } else if (id === 'endDate') {
+                endDatePicker.show();
+            }
+        }
+
+    </script>
 </th:block>
 </html>
