@@ -1,89 +1,269 @@
-body {
-    /*background-color: #BBBBBB;*/
-    display: flex;
-    flex-direction: column; /* 컨텐츠를 수직으로 배치 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
-    min-height: 100vh; /* 뷰포트 높이 만큼 최소 높이 설정 */
-    margin-left: 100px; /* 페이지 왼쪽 마진 추가 */
-    margin-right: 100px; /* 페이지 오른쪽 마진 추가 */
-}
+/*body{*/
+/*    background: url(../../img/standard/main_banner_background.png);*/
+/*}*/
+/*.lf-st-contianer{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    height: inherit;*/
+/*    justify-content: center;*/
+/*}*/
+/*.lf-st-container-inner{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    margin: 0 auto;*/
+/*}*/
+/*.card {*/
+/*    width: 400px;*/
+/*    height: 500px;*/
+/*    text-align: center; !* 카드 내용 중앙 정렬 *!*/
+/*    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),*/
+/*        -5px -5px 10px rgba(0, 0, 0, 0.1),*/
+/*        5px -5px 10px rgba(0, 0, 0, 0.1),*/
+/*        -5px 5px 10px rgba(0, 0, 0, 0.1);*/
+/*    border-radius: 50px; !* 카드에 곡률 주기 *!*/
+/*    overflow: hidden; !* 내용이 카드를 벗어나지 않도록 설정 *!*/
+/*    margin-left: 20px;*/
+/*    margin-right: 20px;*/
+/*    border: none;*/
+/*    transition: background-color 0.3s; !* 호버 효과를 부드럽게 만들기 위한 트랜지션 설정 *!*/
+/*}*/
 
-.card-container {
+/*.card:hover {*/
+/*    background-color: #E2BEAD; !* 호버 시 배경색 변경 *!*/
+/*}*/
+
+
+
+/*.button-container {*/
+/*    margin-top: 100px;*/
+/*}*/
+
+/*.complete-btn {*/
+/*    background-color: #5D493F;*/
+/*    color: white;*/
+/*    width: 200px;*/
+/*    height: 50px;*/
+/*    border-radius: 10px;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*.title-text{*/
+/*    font-weight: bold;*/
+/*    font-size: 50px;*/
+/*    color: #917261;*/
+/*}*/
+
+/*.card-body{*/
+/*    margin-top: 50px;*/
+/*    padding-bottom: 0;*/
+/*}*/
+
+/*.price-button{*/
+/*    background-color: #8D7F78;*/
+/*    color: white;*/
+/*    width: 250px;*/
+/*    height: 75px;*/
+/*    border-radius: 10px;*/
+/*    font-size: 35px;*/
+/*    font-weight: bold;*/
+/*    border: none;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.card-hr{*/
+/*    margin-top: 50px;*/
+/*    border: none;*/
+/*    height: 4px !important;*/
+/*    background-color: #917261;*/
+/*}*/
+
+/*.card-coin{*/
+/*    margin :0;*/
+/*    padding-top: 0;*/
+/*}*/
+
+/* 새롭게 디자인 한 페이지 css*/
+body{
+    background: #ece5da;
+}
+.ls-st-container{
     display: flex;
-    flex-wrap: wrap;
-    width: 1400px;
-    margin: 0 auto;
+    height: 100%;
     justify-content: center;
 }
-
-.card {
-    width: 400px;
-    height: 500px;
-    text-align: center; /* 카드 내용 중앙 정렬 */
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
-        -5px -5px 10px rgba(0, 0, 0, 0.1),
-        5px -5px 10px rgba(0, 0, 0, 0.1),
-        -5px 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 50px; /* 카드에 곡률 주기 */
-    overflow: hidden; /* 내용이 카드를 벗어나지 않도록 설정 */
-    margin-left: 20px;
-    margin-right: 20px;
-    border: none;
-    transition: background-color 0.3s; /* 호버 효과를 부드럽게 만들기 위한 트랜지션 설정 */
+.lf-st-section-1{
+    background: #ece5da;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
-.card:hover {
-    background-color: #E2BEAD; /* 호버 시 배경색 변경 */
+.lf-st-section-1 span{
+    display: block;
 }
-
-.card-out {
+.lf-st-sec1-banner-img{
+    width: 22rem;
+    height: auto;
+    margin-top: 10%;
 }
-
-.button-container {
-    margin-top: 100px;
-}
-
-.complete-btn {
-    background-color: #5D493F;
-    color: white;
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    font-size: 20px;
-}
-
-.title-text{
-    font-weight: bold;
-    font-size: 50px;
-    color: #917261;
-}
-
-.card-body{
+.lt-st-sec1-txt{
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 50px;
-    padding-bottom: 0;
+    margin-bottom: 50px;
 }
 
-.price-button{
-    background-color: #8D7F78;
-    color: white;
-    width: 250px;
-    height: 75px;
-    border-radius: 10px;
-    font-size: 35px;
+
+.lf-st-sec1-stname{
+    font-size: 3rem;
+    margin-top: 10%;
+    font-weight: 300;
+}
+.lf-st-sec1-stsubtxt{
+    line-height: 2rem;
+    font-size: calc(1rem + 0.5vw);
+    color: #5e5d49;
+}
+.lf-st-sec1-stsubtxt2{
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #5e5d49;
+}
+/* 작은 화면 */
+@media (max-width: 576px) {
+    .lf-st-stname{
+        font-size: 50px;
+    }
+    .lf-st-stsubtxt{
+        font-size: 40px;
+        line-height: 50px;
+        margin-top: 10px;
+    }
+    .lf-st-stsubtxt2 {
+        font-size: 30px;
+        margin-bottom:30px;
+
+    }
+
+    .lf-st-sec2-maintxt{
+        font-size: 3rem;
+        line-height: 4rem;
+
+    }
+}
+
+/* 중간 화면 */
+@media (min-width: 577px) and (max-width: 991px) {
+    .lf-st-stname{
+        font-size: 50px;
+    }
+    .lf-st-stsubtxt{
+        font-size: 40px;
+        line-height: 50px;
+        margin-top: 10px;
+    }
+    .lf-st-stsubtxt2{
+        font-size: 30px;
+        margin-top:20px;
+        margin-bottom:30px;
+
+    }
+}
+
+/* 큰 화면 */
+@media (min-width: 992px) {
+    .lf-st-stname{
+        font-size: 36px;
+        margin-top: 25px;
+    }
+    .lf-st-stsubtxt{
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    .lf-st-stsubtxt2 {
+        font-size: 16px;
+        margin-top:20px;
+        margin-bottom:30px;
+    }
+}
+.coin-img{
+    margin: 3px 0px 30px 0px;
+    width: 100px;
+    height: auto;
+}
+.lf-st-section-2{
+    background: #bca88c;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.lf-st-section-2 span{
+    text-align: center;
+}
+.lf-st-sec2-maintxt{
+    margin-top:20px;
+    font-size: 30px;
     font-weight: bold;
-    border: none;
-    margin-top: 20px;
+    color: white;
+    line-height: 40px;
+    margin-bottom: 65px;
+}
+.lf-st-sec2-subtxt{
+    font-size: 24px;
+    color: white;
+    font-weight: 100;
+    line-height: 35px;
+    margin-bottom: 30px;
+}
+.lf-st-sec2-subtxt2{
+    line-height: 20px;
+    font-size: 14px;
+    color: white;
+    font-weight: 100;
+}
+.lf-st-section-3{
+    background: #ece5da;
+    position: relative;
+    padding: 70px 0px 50px 0px;
+    min-height: 500px;
+}
+.lf-st-sec3-maintxt{
+    position:absolute;
+    top: 30px;
+    left: 60px;
+    font-size: 65px;
+    color: #5e5d49;
+    line-height: 70px;
 }
 
-.card-hr{
-    margin-top: 50px;
-    border: none;
-    height: 4px !important;
-    background-color: #917261;
+.lf-st-sec3-banner-img{
+    width: 22rem;
+    height: auto;
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
+.ls-st-img-box{
+    margin-bottom:25px;
+}
+/*.sub-btn{*/
+/*    right: 80px;*/
+/*    position: absolute;*/
+/*    bottom: 20px;*/
+/*    font-size: 30px;*/
+/*    font-weight: 500;*/
+/*    color: #5e5d49;*/
 
-.card-coin{
-    margin :0;
-    padding-top: 0;
-}
+/*}*/
+/*.sub-btn-img{*/
+/*    right: 30px;*/
+/*    position: absolute;*/
+/*    bottom: 20px;*/
+/*    font-size: 40px;*/
+/*    font-weight: bold;*/
+/*    color: #5e5d49;*/
+/*}*/
