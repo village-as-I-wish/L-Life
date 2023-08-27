@@ -5,13 +5,13 @@
 }
 
 .cart-sub-title {
-    font-size: 16px;
+    font-size: 17px;
     color: #5D493E;
     font-weight: bold;
     margin-top: 20px;
 }
 
-.standard-section, .standard-product {
+.standard-section, .standard-product, .premium-product {
     width: 100%;
 }
 
@@ -57,9 +57,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    white-space: nowrap;
 }
 
-#standard-subscription{
+#standard-subscription, #premium-subscription {
     margin-right: 20px;
 }
 
@@ -80,11 +81,12 @@ a.product-link {
     text-decoration: none;
 }
 
+
 .product-name {
     color: #333333;
 }
 
-.standard-add-link {
+.standard-add-link, .premium-add-link {
     text-align: center;
     display: block;
     margin: 20px 0px;
@@ -92,7 +94,7 @@ a.product-link {
     text-decoration: none;
 }
 
-.reminder {
+.reminder, .total-premium-price {
     text-align: right;
 }
 
@@ -110,3 +112,23 @@ a.product-link {
     margin-top: 10px;
 }
 
+.item-price {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.quantity {
+    width: 25px;
+    text-align: center
+}
+
+.increment, .decrement {
+    background-color: white;
+    border: white;
+}
+
+.subscription-price {
+    margin-left: 12px;
+}
