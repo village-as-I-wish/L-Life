@@ -1,0 +1,261 @@
+.livestream-container{
+
+    display: flex;
+    justify-content: space-around;
+    min-height: 100%;
+    align-items: center;
+}
+.stream-info-box{
+    width:30%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    min-height: 800px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+
+}
+.stream-chat-box{
+    width: 30%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+
+}
+.stream-chat-box-onboard{
+    width: 30%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3)
+}
+.chat-box {
+    width: 100%;
+    height: 700px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chat {
+    padding: 6px;
+    font-size: 16px;
+    margin: 0;
+}
+.chat-blue{
+    color:blue
+}
+.chat-user{
+    font-weight: bold;
+    margin-right: 5px;
+}
+.chat-submit-btn{
+    background: none;
+    border: none;
+}
+.chat-btn-box{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.chat-btn-box input{
+    width: 85%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+
+}
+.stream-product-box{
+    width: 30%;
+    border: 1px solid lightgray;
+    min-height: 800px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    /*padding:10px;*/
+}
+.livestream-name{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    line-height: 20px;
+}
+.stream-info-txt-box{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+}
+.livestream-packinfo{
+    font-size: 18px;
+    margin: 10px 0px 0px 0px;
+    font-weight: bold;
+    color: #AEA49F;
+}
+.livestream-tags{
+    color: grey;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 7px 0px 25px 0px;
+    font-weight: bold;
+}
+.livestream-sharebtn{
+    height: 40px;
+    background: #AEA49F;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+
+}
+.share-btn-box{
+    width: 10%;
+    border-right: 2px solid white;
+}
+.share-btn-txt{
+    width:90%;
+}
+.llife-logo-box{
+    display: flex;
+    padding: 10px;
+    background: #F5F5F5;
+    min-height: 75px;
+    align-items: center;
+}
+.llife-logo-box span{
+    margin-left: 20px;
+    font-weight: bold;
+}
+.livestream-notice-box{
+    padding: 10px;
+    margin: 20px 0px 0px 0px;
+}
+.livestream-notice-header{
+    font-size:18px;
+    font-weight: bold;
+}
+.livestream-notice{
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+    line-height: 20px;
+}
+
+.hourglass{
+    color: #c9cbcf;
+    width: 50px;
+    height: 50px;
+    font-size: xxx-large;
+    margin-bottom: 20px;
+}
+.stream-chat-box p{
+    font-size: 18px;
+    margin-top: 10px;
+    color: #5D493E;
+
+}
+.stream-product-box-header{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #a5a5a5;
+}
+.stream-product-box-header p{
+    font-size: 20px;
+    font-weight: bold;
+}
+.stream-product-name{
+    height: 55px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    padding-left: 10px;
+}
+.stream-product-price{
+    position: relative;
+    padding-left: 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+
+}
+.stream-product-price-txt{
+    font-size: 17px;
+    font-weight: 600;
+}
+.stream-product-price button{
+    position: absolute;
+    right: 18px;
+}
+
+.package-info-txt{
+    padding-left: 10px;
+    font-size:18px;
+    font-weight: 400;
+}
+.package-info-i{
+    margin: 2px 0px 0px 5px;
+    font-size: larger;
+}
+.stream-info-box > img{
+    height: 50%;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+
+}
+.stream-sub-product{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 10px 0px 10px;
+    justify-content: space-between;
+
+}
+.stream-sub-product-name{
+    height: 40px;
+    display: flex;
+    align-items: flex-start;
+    font-size: 18px;
+    margin-top: 7px;
+}
+.stream-sub-product-card{
+    width: 100%;
+    display: flex;
+    padding: 5px 10px 5px 10px;
+    margin-top: 20px
+}
+.stream-sub-product-card > img{
+    border-radius: 7px;
+}
+
+.stream-sub-product-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.stream-sub-product-info coin{
+    width:20px;
+    height:20px;
+}
+.stream-sub-product-cart-btn,.stream-product-cart-btn{
+    height: 35px;
+    padding: 10px;
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left:10px;
+}
