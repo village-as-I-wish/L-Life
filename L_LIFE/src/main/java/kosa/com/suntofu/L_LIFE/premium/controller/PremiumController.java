@@ -17,4 +17,9 @@ public class PremiumController {
     public String loadPremiumMainPage(){
         return "pages/premium/premium_main";
     }
+
+    @GetMapping("/package/{packageNum}/detail")
+    public String loadPremiumPackageDetail(){
+        return "pages/premium/premium_package_detail";
+    }
 }
