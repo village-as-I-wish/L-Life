@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>L-Life Standard</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    `
+    <link rel="stylesheet" type="text/css" th:href="@{/css/livestream/livestream.css}"/>
+</head>
+<body>
+<div class="livestream-container hd__inner1400">
+
+    <div class="stream-info-box">
+        <img alt="라이브 샘플 사진" th:src="@{/img/livestream/livestream_sample.png}"/>
+
+        <div class="stream-info-txt-box">
+            <span class="dark-brown"> 오늘 저녁 6시  </span>
+            <div class="livestream-name">
+                ❤️ 리바트 라이프 LIVE ❤️ 8/27 (일) 주방&욕실 스탠다드 구독!
+            </div>
+            <div class="livestream-packinfo">
+                스탠다드 구독관 편 - L-COIN 5
+            </div>
+            <div class="livestream-tags">
+                #리바트 라이프 #스탠다드 구독 #주방인테리어 #L-COIN 5개
+            </div>
+
+            <button class="livestream-sharebtn">
+                <div class="share-btn-box">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
+                <span class="share-btn-txt">
+                방송 공유하기
+                </span>
+            </button>
+        </div>
+        <div class="llife-logo-box">
+            <img alt="리바트 라이프 로고" th:src="@{/img/livestream/livestream-llifelogo.png}"/>
+            <span> 리바트 라이프</span>
+        </div>
+
+        <div class="livestream-notice-box">
+            <div class="livestream-notice-header"> 방송 공지사항</div>
+            <span class="livestream-notice">
+                리바트 라이프만의 라이브에서는 구독 패키지 상품을 <br> 기존보다 더욱 저렴하게 구독이 가능합니다. <br>
+                리바트 라이브의 패키지 상품은 한정 수량입니다.
+                <br><br>
+                장바구니 담기 후 포인트 결제 완료 시 구독이 확정됩니다.
+            </span>
+        </div>
+    </div>
+    <div class="stream-chat-box">
+<!--        <i class="fa-solid fa-hourglass-half hourglass" style="color: #c9cbcf;"></i>-->
+<!--        <p> 채팅은 라이브가 시작되면 참여하실 수 있습니다. </p>-->
+<!--        <p> 라이브가 시작하기 전까지 기다려주세요. </p>-->
+
+    </div>
+    <div class="stream-product-box">
+        <div class="stream-product-box-header">
+            <p> 판매 상품 </p>
+        </div>
+
+        <div class="stream-product-name">
+            <span class="dark-brown"> 패키지 상품명 </span>: <span>리바트 주방 패키지 구성 상품! </span>
+        </div>
+        <div class="stream-product-price">
+            <span class="stream-product-price-txt"> 판매 ( 할인 ) 코인 :  </span>
+            <span> L-life Coin 5개 </span>
+            <button class="stream-product-cart-btn dark-brown"> 패키지 상품 담기</button>
+        </div>
+        <hr>
+        <span class="package-info-txt"> 패키지 구성 상품 </span>
+        <i class="fa-solid fa-sort-down package-info-i dark-brown"></i>
+
+        <div class="stream-sub-product-card">
+            <img alt="리바트 라이프 패키지 상품 샘플 " th:src="@{/img/livestream/livestream_product_sample.png}"/>
+            <div class="stream-sub-product">
+                <div class="stream-sub-product-name">
+                    <p> 리바트 키친 가드니아 주방 </p>
+                </div>
+                <div class="stream-sub-product-info">
+                    <div class="stream-sub-product-coins">
+                        <img class="coin" alt="리바트 라이프 코인" th:src="@{/img/livestream/coin.png}"/>
+                        <img class="coin" alt="리바트 라이프 코인" th:src="@{/img/livestream/coin.png}"/>
+                    </div>
+                    <div class="stream-sub-product-btns">
+                        <i class="fa-regular fa-heart fa-xl dark-brown"></i>
+                        <button class="stream-sub-product-cart-btn dark-brown"> 개별 상품 담기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stream-sub-product-card">
+            <img alt="리바트 라이프 패키지 상품 샘플 " th:src="@{/img/livestream/livestream_product_sample.png}"/>
+            <div class="stream-sub-product">
+                <div class="stream-sub-product-name">
+                    <p> 리바트 키친 가드니아 주방 </p>
+                </div>
+                <div class="stream-sub-product-info">
+                    <div class="stream-sub-product-coins">
+                        <img class="coin" alt="리바트 라이프 코인" th:src="@{/img/livestream/coin.png}"/>
+                        <img class="coin" alt="리바트 라이프 코인" th:src="@{/img/livestream/coin.png}"/>
+                    </div>
+                    <div class="stream-sub-product-btns">
+                        <i class="fa-regular fa-heart fa-xl dark-brown"></i>
+                        <button class="stream-sub-product-cart-btn dark-brown"> 개별 상품 담기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
