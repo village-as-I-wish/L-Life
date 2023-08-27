@@ -1,63 +1,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="mypageUserFragment()">
-  <link rel="stylesheet" th:href="@{/css/member/mypage_standard.css}">
+    <link rel="stylesheet" th:href="@{/css/member/mypage_standard.css}">
 
-  <section class = "user-info">
-    <div>
-      <div>
-        <p class = "user-hello">안녕하세요 ${순두부}님</p>
-      </div>
-      <div>
-        <a>
-          <span th:text="${hPoint}"></span>
-          <span>H.Point</span>
-        </a>
-        <a>
-          <div>
-            <img th:src="@{/img/member/heart.png}" class="img-size1">
-            <span th:text="${like}"></span>
-          </div>
-          <span>찜한 상품</span>
-        </a>
-        <a>
-          <span th:text="${restock}"></span>
-          <span>재입고 알림</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class = "delivery-info">
-    <div class="delivery-title">주문배송현황</div>
-    <div>
-      <div>
-        <img th:src="@{/img/member/delivery1.png}" class="img-size2">
-        <div class = "delivery-content">입금대기중</div>
-        <div><span class ="num">0</span><span>건</span></div>
-      </div>
-      <div>
-        <img th:src="@{/img/member/delivery2.png}" class="img-size2">
-        <div class = "delivery-content">결제완료</div>
-        <div><span class ="num">0</span><span>건</span></div>
-      </div>
-      <div>
-        <img th:src="@{/img/member/delivery3.png}" class="img-size2">
-        <div class = "delivery-content">배송준비중</div>
-        <div><span class ="num">0</span><span>건</span></div>
-      </div>
-      <div>
-        <img th:src="@{/img/member/delivery4.png}" class="img-size2">
-        <div class = "delivery-content">배송중</div>
-          <div><span class ="num">0</span><span>건</span></div>
-      </div>
+    <section class="user-info">
         <div>
-        <img th:src="@{/img/member/delivery5.png}" class="img-size2">
-        <div class = "delivery-content">배송완료</div>
-          <div><span class ="num">0</span><span>건</span></div>
+            <div>
+                <p class="user-hello">안녕하세요 ${순두부}님</p>
+            </div>
+            <div>
+                <a>
+                    <span th:text="${hPoint}"></span>
+                    <span>H.Point</span>
+                </a>
+                <a>
+                    <div>
+                        <img th:src="@{/img/member/heart.png}" class="img-size1">
+                        <span th:text="${like}"></span>
+                    </div>
+                    <span>찜한 상품</span>
+                </a>
+                <a>
+                    <span th:text="${restock}"></span>
+                    <span>재입고 알림</span>
+                </a>
+            </div>
         </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="delivery-info">
+        <div class="delivery-title-wrap">
+            <div class="delivery-title">주문배송현황</div>
+            <a href="/l-life/member/mypage/1/delivery">
+                <button class="delivery-btn">배송현황 보러가기</button>
+            </a>
+        </div>
+        <div>
+            <div>
+                <img th:src="@{/img/member/delivery1.png}" class="img-size2">
+                <div class="delivery-content">입금대기중</div>
+                <div><span class="num">0</span><span>건</span></div>
+            </div>
+            <div>
+                <img th:src="@{/img/member/delivery2.png}" class="img-size2">
+                <div class="delivery-content">결제완료</div>
+                <div><span class="num">0</span><span>건</span></div>
+            </div>
+            <div>
+                <img th:src="@{/img/member/delivery3.png}" class="img-size2">
+                <div class="delivery-content">배송준비중</div>
+                <div><span class="num">0</span><span>건</span></div>
+            </div>
+            <div>
+                <img th:src="@{/img/member/delivery4.png}" class="img-size2">
+                <div class="delivery-content">배송중</div>
+                <div><span class="num">0</span><span>건</span></div>
+            </div>
+            <div>
+                <img th:src="@{/img/member/delivery5.png}" class="img-size2">
+                <div class="delivery-content">배송완료</div>
+                <div><span class="num">0</span><span>건</span></div>
+            </div>
+        </div>
+    </section>
 
 </th:block>
 </html>
