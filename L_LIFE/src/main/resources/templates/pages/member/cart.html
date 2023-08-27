@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/member/cart.css}">
+
+<head>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+</head>
+<body>
+
+<!-- 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
+
+<!-- 서브 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/sub_header::subHeaderFragment(0)"></th:block>
+
+<div class="cart_container hd__inner1100">
+    <main>
+
+        <!-- 사이드바 프래그먼트 삽입 -->
+        <section class="mypage-sidebar">
+            <th:block th:replace="common/fragment/sidebar/mypage_sidebar::mypageSidebarFragment()"></th:block>
+        </section>
+
+        <!--스탠다드 장바구니 부분 -->
+        <section class="standard-section">
+            <div class="cart-title">장바구니</div>
+
+            <div class="standard-container">
+
+                <div class="standard-product">
+                    <div class="cart-sub-title">스탠다드구독상품</div>
+                    <div class="list-item" th:each="product : ${products}">
+                        <input type="checkbox" id="standard-subscription" name="subscription" value="standard">
+                        <a class="product-link" th:href="@{'#'}">
+                            <img class="product-image" th:src="@{'/img/member/' + ${product.image}}"/>
+                            <div class="product-details">
+                                <span class="product-name" th:text="${product.name}"></span>
+                                <div class="coins">
+                                    <th:block th:each="coins, stat : ${#numbers.sequence(1, product.coins)}">
+                                        <img th:src="@{/img/member/coin.png}"/>
+                                    </th:block>
+                                </div>
+                                <div class="product-coins" th:text="${product.coins}" style="display: none;"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="coins-remaining">
+                    <div class="coins"></div>
+                    <span>{체크박스 코인 개수의 합}/{구독한 요금제}</span>
+                </div>
+
+
+            </div>
+
+            <div class="standard-start">
+                <a href="#" class="standard-add-link">스탠다드상품 추가하기</a>
+                <div class="reminder">H-coin이 {}개 남았어요!</div>
+                <a href="#" class="custom-button-link"><button class="custom-button">구독시작하기</button></a>
+            </div>
+
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const checkboxes = document.querySelectorAll('input[type=checkbox]');
+                const coinsRemainingElement = document.querySelector('.coins-remaining .coins');
+                const coinsRemainingTextElement = document.querySelector('.coins-remaining span');
+
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        const productCoins = parseInt(checkbox.closest('.list-item').querySelector('.product-coins').textContent);
+                        const currentCoins = coinsRemainingElement.querySelectorAll('img').length;
+
+                        if (checkbox.checked) {
+                            for (let i = 0; i < productCoins; i++) {
+                                const img = document.createElement('img');
+                                img.src = '/img/member/coin.png';
+                                coinsRemainingElement.appendChild(img);
+                            }
+                        } else {
+                            for (let i = 0; i < productCoins; i++) {
+                                coinsRemainingElement.removeChild(coinsRemainingElement.lastChild);
+                            }
+                        }
+
+                        coinsRemainingTextElement.textContent = `${coinsRemainingElement.querySelectorAll('img').length}/{구독한 요금제}`;
+                    });
+                });
+            });
+        </script>
+
+    </main>
+</div>
+
+<!-- 푸터 프래그먼트 -->
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+</body>
+</html>
