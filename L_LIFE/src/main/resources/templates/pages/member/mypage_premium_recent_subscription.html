@@ -3,6 +3,7 @@
 <th:block th:fragment="mypagePremiumRecentSubscription()">
     <link rel="stylesheet" th:href="@{/css/member/mypage_premium_recent_subscription.css}">
     <link rel="stylesheet" th:href="@{/css/common/reset.css}">
+    <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
 
     <div class="subscribe-title">최근 구독 내역</div>
     <div class="date-select">
@@ -14,14 +15,14 @@
         </div>
 
         <div class="date-input-wrap">
-            <div class="date-input" id="startDateDiv" onclick="openDatePicker('startDate')">
+            <div class="date-input" id="startDateDiv">
                 <span class="date-text" id="startDate"></span>
-                <img th:src="@{/img/member/calender.png}" alt="calendar icon" class="calendar-icon">
+                <img th:src="@{/img/member/calender.png}" alt="calendar icon" class="calendar-icon" onclick="openDatePicker('startDate')">
             </div>
             ~
-            <div class="date-input" id="endDateDiv" onclick="openDatePicker('endDate')">
+            <div class="date-input" id="endDateDiv">
                 <span class="date-text" id="endDate"></span>
-                <img th:src="@{/img/member/calender.png}" alt="calendar icon" class="calendar-icon">
+                <img th:src="@{/img/member/calender.png}" alt="calendar icon" class="calendar-icon" onclick="openDatePicker('endDate')">
             </div>
             <button type="button" id="btnNewOrder" class="datepicker-search" onclick="goNewPage(1);">검색하기</button>
         </div>
@@ -43,10 +44,10 @@
         </thead>
         <tbody>
         <tr th:each="product : ${products}">
-            <td th:text="${product.date}"></td> <!-- 주문일 -->
+            <td th:text="${product.date}"></td>
             <td>
                 <div class="product-info">
-                    <img th:src="@{'/img/member/' + ${product.image}}" alt="Product Image" width="50">
+                    <img class="product-img" th:src="@{'/img/member/' + ${product.image}}">
                     <div class="product-details">
                         <span th:text="${product.name}"></span>
                     </div>
@@ -57,48 +58,75 @@
         </tbody>
     </table>
 
+    <script src="https://unpkg.com/js-datepicker"></script>
     <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                setDefaultDates();
+        document.addEventListener("DOMContentLoaded", function () {
+            setDefaultDates();
+            initDatepickers();
+        });
+
+
+        function setDefaultDates() {
+            let today = new Date();
+            let oneMonthAgo = new Date(today);
+            oneMonthAgo.setMonth(today.getMonth() - 1);
+
+            document.getElementById("startDate").innerHTML = formatDate(oneMonthAgo);
+            document.getElementById("endDate").innerHTML = formatDate(today);
+        }
+
+        function formatDate(date) {
+            let dd = date.getDate();
+            let mm = date.getMonth() + 1;
+            let yyyy = date.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+
+            return yyyy + '.' + mm + '.' + dd;
+        }
+
+
+        function setMonth(monthsAgo) {
+            let today = new Date();
+            let pastDate = new Date(today);
+            pastDate.setMonth(today.getMonth() - monthsAgo);
+
+            document.getElementById("startDate").innerHTML = formatDate(pastDate);
+            document.getElementById("endDate").innerHTML = formatDate(today);
+        }
+
+        let startDatePicker, endDatePicker;
+
+        function initDatepickers() {
+            const startDateDiv = document.getElementById('startDateDiv');
+            const endDateDiv = document.getElementById('endDateDiv');
+
+            startDatePicker = datepicker(startDateDiv, {
+                onSelect: (instance, date) => {
+                    document.getElementById("startDate").textContent = formatDate(date);
+                }
             });
 
-            function setDefaultDates() {
-                let today = new Date();
-                let oneMonthAgo = new Date(today);
-                oneMonthAgo.setMonth(today.getMonth() - 1);
-
-                document.getElementById("startDate").innerHTML = formatDate(oneMonthAgo);
-                document.getElementById("endDate").innerHTML = formatDate(today);
-            }
-
-            function formatDate(date) {
-                let dd = date.getDate();
-                let mm = date.getMonth() + 1;
-                let yyyy = date.getFullYear();
-
-                if (dd < 10) {
-                    dd = '0' + dd;
+            endDatePicker = datepicker(endDateDiv, {
+                onSelect: (instance, date) => {
+                    document.getElementById("endDate").textContent = formatDate(date);
                 }
+            });
+        }
 
-                if (mm < 10) {
-                    mm = '0' + mm;
-                }
-
-                return yyyy + '.' + mm + '.' + dd;
+        function openDatePicker(id) {
+            if (id === 'startDate') {
+                startDatePicker.show();
+            } else if (id === 'endDate') {
+                endDatePicker.show();
             }
-
-
-            function setMonth(monthsAgo) {
-                let today = new Date();
-                let pastDate = new Date(today);
-                pastDate.setMonth(today.getMonth() - monthsAgo);
-
-                document.getElementById("startDate").innerHTML = formatDate(pastDate);
-                document.getElementById("endDate").innerHTML = formatDate(today);
-            }
-
-
-        </script>
-    </div>
+        }
+    </script>
 </th:block>
 </html>

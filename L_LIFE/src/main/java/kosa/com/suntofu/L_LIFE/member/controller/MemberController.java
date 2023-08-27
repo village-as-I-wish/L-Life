@@ -24,11 +24,11 @@ public class MemberController {
     public String loadMyPage(Model model){
 
         List<MemberVo> products = new ArrayList<>();
-        products.add(new MemberVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", "월28,000"));
-        products.add(new MemberVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", "월54,000"));
-        products.add(new MemberVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", "월15,000"));
-        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000"));
-        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000"));
+        products.add(new MemberVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", "월28,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", "월54,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", "월15,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
         model.addAttribute("products", products);
         return "pages/member/mypage_main";
     }
@@ -37,11 +37,11 @@ public class MemberController {
     public String loadMyPageStandard(Model model){
 
         List<MemberVo> products = new ArrayList<>();
-        products.add(new MemberVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", "월28,000"));
-        products.add(new MemberVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", "월54,000"));
-        products.add(new MemberVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", "월15,000"));
-        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000"));
-        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000"));
+        products.add(new MemberVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", "월28,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", "월54,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", "월15,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
         model.addAttribute("products", products);
 
         return "pages/member/mypage_standard";
@@ -51,12 +51,25 @@ public class MemberController {
     public String loadMyPagePremium(Model model){
 
         List<MemberVo> products = new ArrayList<>();
-        products.add(new MemberVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", "월28,000"));
-        products.add(new MemberVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", "월54,000"));
-        products.add(new MemberVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", "월15,000"));
-        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000"));
-        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000"));
+        products.add(new MemberVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", "월28,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", "월54,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", "월15,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
         model.addAttribute("products", products);
         return "pages/member/mypage_premium";
+    }
+
+    @GetMapping("/mypage/{memberId}/delivery")
+    public String loadMyPageDelivery(Model model){
+
+        List<MemberVo> products = new ArrayList<>();
+        products.add(new MemberVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", "월28,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", "월54,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", "월15,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
+        products.add(new MemberVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", "월48,000",19970526, 12341234));
+        model.addAttribute("products", products);
+        return "pages/member/mypage_delivery";
     }
 }
