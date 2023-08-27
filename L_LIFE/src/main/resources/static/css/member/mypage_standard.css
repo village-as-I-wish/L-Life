@@ -1,6 +1,6 @@
 .user-info {
     background-color: #5D493E;
-    opacity:0.5;
+    opacity: 0.5;
     border-radius: 15px; /* 둥근 모서리 */
     padding: 40px; /* 내부 간격 */
     color: white;
@@ -13,8 +13,8 @@
 }
 
 .user-info > div:first-child > div:first-child {
-    flex-grow: 1;  /* 가능한 모든 공간을 차지하도록 설정 */
-    text-align: left;  /* 왼쪽으로 부터 시작되게 설정 */
+    flex-grow: 1; /* 가능한 모든 공간을 차지하도록 설정 */
+    text-align: left; /* 왼쪽으로 부터 시작되게 설정 */
 }
 
 .user-info > div:first-child > div:last-child {
@@ -31,8 +31,8 @@
 }
 
 .user-info a > div {
-    display: flex;  /* 항목들을 가로로 배치 */
-    align-items: center;  /* 항목들을 수직 중앙에 정렬 */
+    display: flex; /* 항목들을 가로로 배치 */
+    align-items: center; /* 항목들을 수직 중앙에 정렬 */
     gap: 10px; /* 항목들 사이 간격 */
 }
 
@@ -47,7 +47,7 @@
 
 /* 이미지 사이즈를 고정하고, 그 하위의 텍스트를 중앙 정렬합니다. */
 .img-size2 {
-    width: 28px;  /* 이미지의 너비. 필요에 따라 조정하세요. */
+    width: 28px; /* 이미지의 너비. 필요에 따라 조정하세요. */
     display: block;
     margin: 0 auto;
 }
@@ -66,7 +66,7 @@
 
 /* 배송 현황의 각 항목을 수직으로 중앙 정렬하고, 텍스트는 수평으로 배열합니다. */
 .delivery-info > div:last-child > div {
-    flex-grow: 1;  /* 각 div가 동일한 공간을 차지하도록 합니다. */
+    flex-grow: 1; /* 각 div가 동일한 공간을 차지하도록 합니다. */
     flex-basis: 0; /* 초기 너비를 0으로 설정하여 동일한 공간만 차지하도록 합니다. */
     display: flex;
     flex-direction: column;
@@ -98,4 +98,19 @@
 .num {
     font-size: 22px;
     color: red;
+}
+
+.delivery-title-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delivery-btn {
+    background-color: #5D493F;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    padding: 7px 10px;
+    border: #5D493F;
+    font-weight: normal;
 }
