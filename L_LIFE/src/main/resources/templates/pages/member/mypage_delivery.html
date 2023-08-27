@@ -24,26 +24,8 @@
             <!-- 회원 정보, 주문 배송 현황 -->
             <th:block th:replace="pages/member/mypage_top_banner::mypageUserFragment()"></th:block>
 
-            <!--커뮤니티 활동 부분 -->
-            <div class="community-title">커뮤니티활동</div>
-            <div class="community-info">
-                <div class="info-item">
-                    <div class="community-content">등록한 리빙북</div>
-                    <div><span class="num">0</span><span>건</span></div>
-                </div>
-                <div class="info-item">
-                    <div class="community-content">관림 리빙북</div>
-                    <div><span class="num">0</span><span>건</span></div>
-                </div>
-                <div class="info-item">
-                    <div class="community-content">참여한 래플</div>
-                    <div><span class="num">0</span><span>건</span></div>
-                </div>
-            </div>
-
-            <!--찜한 상품 내역-->
-            <th:block th:replace="pages/member/mypage_main_wishlist::mypageMainWishlistFragment()"></th:block>
-
+            <!--주문/배송 조회-->
+            <th:block th:replace="pages/member/mypage_delivery_tracking::mypageDeliveryTrackingFragment()"></th:block>
         </section>
     </main>
 </div>

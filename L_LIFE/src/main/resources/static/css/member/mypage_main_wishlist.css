@@ -17,7 +17,7 @@
 }
 
 .wishlist-sub-title {
-    flex-grow: 1; /* 이 속성을 사용하여 title이 가능한 모든 공간을 차지하도록 합니다. */
+    flex-grow: 1; /* 이 속성을 사용하여 title이 가능한 모든 공간을 차지 */
     font-size: 16px;
     color: #5D493E;
     font-weight: bold;
@@ -59,6 +59,7 @@
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
+    border-radius: 5px;
 }
 
 .product-list span {

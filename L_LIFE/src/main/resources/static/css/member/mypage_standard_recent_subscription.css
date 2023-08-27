@@ -80,16 +80,21 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    border: 1px solid #DCDCDC; /* 제목 행의 각 셀에 경계선을 추가 */
+    border: 1px solid #DCDCDC;
 }
 
 .product-info {
     display: flex;
     align-items: center;
-    padding-left: 15px;
+    margin: 10px 10px;
 }
 
 .product-details {
     margin-left: 20px;
 }
 
+.product-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+}
