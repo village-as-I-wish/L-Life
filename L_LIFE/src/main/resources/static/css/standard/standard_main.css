@@ -1,0 +1,111 @@
+.sl-top-banner {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    margin-bottom: 70px;
+
+}
+
+.sl-top-banner > img {
+    width: 100%;
+    height: inherit;
+}
+
+
+.banner-guide {
+    position: absolute;
+    right: 450px;
+    top: 40px;
+    background-color: white;
+    color: #C1B9A9;
+    padding: 15px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.banner-user {
+    position: absolute;
+    right: 450px;
+    top: 125px;
+    font-weight: bold;
+    font-size: 31px;
+    color: white;
+    border-radius: 20px;
+}
+
+.sl-main-content {
+    display: flex;
+    width: 1400px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.sl-main-products {
+    margin-left: 100px;
+    width: 100%;
+
+}
+
+.sl-main-live-products, .sl-main-sub-products {
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.sl-live-box {
+    height: 300px;
+    width: 240px;
+    border: 2px solid saddlebrown;
+    position: relative;
+}
+
+.sl-live-box > img {
+    width: 100%;
+    height: inherit;
+}
+
+.sl-live-box-info {
+    position: absolute;
+    height: 80px;
+    width: 90%;
+    bottom: 5px;
+    left: 50%;
+    border-radius: 10px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+
+}
+
+.sl-live-box-info-img {
+    width: 30%;
+    height: inherit;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.sl-live-box-info-title {
+    width: 70%;
+    font-color: white;
+    color: white;
+    padding: 16px;
+}
+
+sl-live-box-info-title > span {
+    display: block;
+}
+
+.sl-main-sub-products-txt {
+    color: gray;
+    font-size: 24px;
+}
+
+.txt-pink {
+    color: #ED2650;
+}
+
+.sub-product-card {
+    height: 300px;
+    width: 260px;
+    padding: 20px;
+    border: 2px solid gray;
+}

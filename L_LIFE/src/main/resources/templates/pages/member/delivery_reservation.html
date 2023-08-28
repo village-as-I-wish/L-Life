@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/member/delivery_reservation.css}">
+
+<head>
+  <th:block th:replace="common/fragment/commonHead"></th:block>
+</head>
+<body>
+
+<!-- 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
+
+<!-- 서브 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/sub_header::subHeaderFragment(0)"></th:block>
+
+<div class="mypage_container hd__inner1400">
+
+
+
+  <!-- 배송 일정 예약 -->
+  <div class="dr-title">
+    <div class="delivery-reservation-title">배송 일정 예약</div>
+    <hr class="hr">
+  </div>
+
+
+  <!--  배송 도착지 입력 -->
+  <div class="dr-destination">
+    <div class="delivery-reservation-destination-title">도착지에 대해 알려주세요</div>
+    <div class="delivery-reservation-destination-content">
+      <!-- 이름     -->
+      <div class="delivery-reservation-username">
+        <div class="delivery-reservation-username-title">
+          <span class="asterisk"> * </span>
+          <span> 이름 </span>
+        </div>
+        <div class="delivery-reservation-username-content">
+          <input type="text" class="delivery-reservation-username-input">
+        </div>
+      </div>
+      <!--  휴대폰 번호-->
+      <div class="delivery-reservation-tel">
+        <div class="delivery-reservation-tel-title">
+          <span class="asterisk"> * </span>
+          <span> 휴대폰번호 </span>
+        </div>
+
+        <div class="delivery-reservation-tel-content">
+          <select class="delivery-reservation-tel-input">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="017">017</option>
+          </select>
+          <input th:type="text" class="delivery-reservation-tel-input">
+          <input th:type="text" class="delivery-reservation-tel-input">
+        </div>
+      </div>
+
+      <!--  주소   -->
+      <div class="delivery-reservation-address">
+        <div class="delivery-reservation-address-title">
+          <span class="asterisk"> * </span>
+          <span> 주소 </span>
+        </div>
+        <div class="delivery-reservation-address-content">
+          <div>
+              <input type="text" class="delivery-reservation-address-num-input">
+              <button class="delivery-reservation-address-find-btn">우편번호 확인</button>
+          </div>
+              <div class="delivery-reservation-address-text-input">
+                <input type="text" disabled><br>
+                <input type="text" placeholder="상세 주소 입력">
+              </div>
+
+        </div>
+      </div>
+
+      <!-- 주거 형태-->
+      <div class="delivery-reservation-address-type">
+        <div class="delivery-reservation-address-type-title">
+          <span class="asterisk"> * </span>
+          <span> 주거형태 </span>
+        </div>
+        <div class="delivery-reservation-address-type-content">
+          <select class="delivery-reservation-address-type-option">
+            <option value="opt1-1">선택</option>
+            <option value="opt1-2">opt2</option>
+            <option value="opt1-3">opt3</option>
+          </select>
+          <select class="delivery-reservation-address-type-option">
+            <option value="opt2-1">선택</option>
+            <option value="opt2-2">opt2</option>
+            <option value="opt2-3">opt3</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="dr-date">
+    <div class="delivery-reservation-date-title">원하시는 방문 날짜와 시간대를 알려주세요</div>
+    <div class="delivery-reservation-date-checkbox">
+      <input type='checkbox' name='is-reservation' value='able' /> 예약가능
+      <input type='checkbox' name='reservation' value='select' /> 선택
+    </div>
+    <div class="delivery-reservation-date-content">
+      <div class="delivery-reservation-day-select">
+        <div class="delivery-reservation-day-select-title">
+          <span class="asterisk"> * </span>
+          <span> 서비스 희망일 선택 </span>
+        </div>
+        <div class="delivery-reservation-day-select-content">
+          <img th:src="@{/img/member/calandar_sample.png}"/>
+        </div>
+      </div>
+
+
+      <div class="delivery-reservation-time-select">
+        <div class="delivery-reservation-time-select-title">
+          <span class="asterisk"> * </span>
+          <span> 예약시간 선택 </span>
+        </div>
+        <div class="delivery-reservation-time-select-content">
+            <div class="delivery-reservation-time-select-content-boxcontent">
+                <div>
+                  <div class="btn-group" role="group">
+                    <input type="radio" name="btnradio" id="box-am" checked>
+                    <label class="select-box" for="box-am">오전</label>
+
+                    <input type="radio" name="btnradio" id="box-pm">
+                    <label class="select-box" for="box-pm">오후</label>
+
+                    <input type="radio" name="btnradio" id="box-anytime">
+                    <label class="select-box" for="box-anytime">상관없음</label>
+                  </div>
+                </div>
+                <ul class="delivery-reservation-time-select-content-ul">
+                  <li>A/S예약은 오전/ 오후/ 상관없음으로 선택하실 수 있습니다. </li>
+                  <li>접수확정 후 상담사/담당기사와 일정 조정 연락드릴 수 있습니다.</li>
+                  <li>부득이한 경우, AS예약시간이 변경될 수 있음을 양해 부탁드립니다.</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="dr-button">
+    <button class="button reset-btn">다시하기</button>
+    <button class="button join-btn">서비스 신청</button>
+  </div>
+
+
+
+
+
+</div>
+
+<!-- 푸터 프래그먼트 -->
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+</body>
+</html>

@@ -3,8 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <title>L-Life Premium</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/premium/premium_main.css}"/>
+
+    <!-- slick 사용을 위함.  -->
+    <script
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <script th:src="@{/js/premium/premium_main.js}" type="text/javascript"></script>
+
 </head>
 <body>
+<th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 
+<div class="sl-top-banner">
+    <img alt="베너 사진1 " th:src="@{/img/premium/main_top_banner.png}"/>
+    <a class="banner-guide" href="#"> 리바트 라이브 구독 이용 가이드 </a>
+    <span class="banner-user"> 리바트스트님, <span class="banner-user-sm"> 환영합니다. </span></span>
+</div>
+
+<div class="hd__inner1400">
+    <div class="pr-container-inner">
+        <div class="pr-md-pick-list">
+            <div class="pr-md-pick-header">
+                <h1 class="lf-pr-slider-title"> MD PICK</h1>
+                <button> 가구 둘러보기 ></button>
+            </div>
+            <div class="lf-pr-slider">
+                <i class="fas fa-chevron-left prev"></i>
+                <i class="fas fa-chevron-right next"></i>
+                <div class="lf-pr-slide-wrapper">
+                    <div class="lf-pr-slide-product-img">
+                        <img class="pr-real-img" alt="상품 사진 "
+                             th:src="@{/img/premium/premium_md_pick_sample1.png}"/>
+                        <div class="img-overlay">
+                            <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+                        </div>
+                    </div>
+                    <div class="lf-pr-slide-product-img">
+                        <img class="pr-real-img" alt="상품 사진 "
+                             th:src="@{/img/premium/premium_md_pick_sample2.png}"/>
+                        <div class="img-overlay">
+                            <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+                        </div>
+                    </div>
+                    <div class="lf-pr-slide-product-img">
+                        <img class="pr-real-img" alt="상품 사진 "
+                             th:src="@{/img/premium/premium_md_pick_sample3.png}"/>
+                        <div class="img-overlay">
+                            <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+                        </div>
+                    </div>
+                    <div class="lf-pr-slide-product-img">
+                        <img class="pr-real-img" alt="상품 사진 "
+                             th:src="@{/img/premium/premium_md_pick_sample4.png}"/>
+
+                        <div class="img-overlay">
+                            <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+                        </div>
+                    </div>
+                    <div class="lf-pr-slide-product-img">
+                        <img class="pr-real-img" alt="상품 사진 "
+                             th:src="@{/img/premium/premium_md_pick_sample1.png}"/>
+
+                        <div class="img-overlay">
+                            <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pr-promotion-list">
+            <div class="pr-promotion-header">
+                <h1 class="lf-pr-slider-title"> 이달의 프로모션 </h1>
+            </div>
+            <div class="lf-pr-promotion-slider">
+                <i class="fas fa-chevron-left prev"></i>
+                <i class="fas fa-chevron-right next"></i>
+                <div class="lf-pr-promotion-slide-wrapper">
+                    <div class="lf-pr-slide-product-img" th:each="i : ${#numbers.sequence(1, 4)}">
+                        <img class="pr-real-img" alt="상품 사진 "
+                             th:src="@{'/img/premium/premium_promotion_sample' + ${i} + '.png'}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pr-popular-list">
+            <div class="pr-popular-header">
+                <h1 class="lf-pr-slider-title"> 지금 인기 많아요 </h1>
+            </div>
+            <div class="lf-pr-popular-slider">
+                <i class="fas fa-chevron-left prev"></i>
+                <i class="fas fa-chevron-right next"></i>
+                <div class="lf-pr-popular-slide-wrapper">
+                    <div class="lf-pr-slide-product-img" th:each="i : ${#numbers.sequence(1, 8)}">
+                        <img class="pr-real-img" alt="상품 사진 "
+                             th:src="@{/img/standard/product_detail_main_sample.png}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

@@ -1,0 +1,23 @@
+.community-title {
+    font-size: 20px;
+    color: #5D493E;
+    margin-top: 60px;
+}
+
+.community-info {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.info-item {
+    text-align: center;
+    border: 1px solid #DCDCDC;
+    height: 140px;
+    width: 160px;
+    margin-top: 20px;
+}
+
+.community-content {
+    margin-top: 45px;
+    margin-bottom: 25px;
+}

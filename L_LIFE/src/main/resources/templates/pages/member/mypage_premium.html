@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+</head>
+<body>
+
+<!-- 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
+
+<!-- 서브 헤더 프래그먼트 삽입 -->
+<th:block th:replace="common/fragment/header/sub_header::subHeaderFragment(0)"></th:block>
+
+<div class="mypage_container hd__inner1100">
+    <main>
+        <!-- 사이드바 프래그먼트 삽입 -->
+        <section class="mypage-sidebar">
+            <th:block th:replace="common/fragment/sidebar/mypage_sidebar::mypageSidebarFragment()"></th:block>
+        </section>
+
+        <section class="mypage-content">
+            <!-- 회원 정보, 주문 배송 현황 -->
+            <th:block th:replace="pages/member/mypage_top_banner::mypageUserFragment()"></th:block>
+            <!-- 프리미엄 구독 품목 -->
+            <th:block th:replace="pages/member/mypage_premium_subscription::mypagePremiumSubscriptionFragment()"></th:block>
+            <!-- 프리미엄 최근 구독 내역  -->
+            <th:block th:replace="pages/member/mypage_premium_recent_subscription::mypagePremiumRecentSubscription()"></th:block>
+        </section>
+    </main>
+</div>
+
+<!-- 푸터 프래그먼트 -->
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+</body>
+</html>

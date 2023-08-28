@@ -1,0 +1,325 @@
+/* 전체 정렬 코드 */
+.delivery-reservation-username-title,
+.delivery-reservation-username-content,
+.delivery-reservation-tel-title,
+.delivery-reservation-tel-content,
+.delivery-reservation-address-title,
+.delivery-reservation-address-type-title,
+.delivery-reservation-address-type-content,
+.delivery-reservation-day-select-title,
+.delivery-reservation-time-select-title {
+    display: flex;
+    align-items: center;
+}
+
+.delivery-reservation-address-content{
+    display: flex;
+    flex-direction: column;
+}
+
+/* 여기서부터 제목*/
+.dr-title{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.delivery-reservation-title{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/* 여기서 부터 배송지 입력*/
+.dr-destination{
+    margin: 10px;
+}
+
+.delivery-reservation-destination-title{
+    font-size: 25px;
+    font-weight: bold;
+    color: #5D493E;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* 배송지 입력 표*/
+.delivery-reservation-destination-content{
+    border: 0.5px solid #ccc;
+}
+
+.delivery-reservation-username{
+    display: flex;
+    border: 0.5px solid #ccc;
+    height: 80px;
+}
+
+.asterisk{
+    padding-left: 20px;
+    color: red;
+}
+
+.delivery-reservation-username-title{
+    flex: 1.5;
+    background: #f2f2f2;
+}
+
+.delivery-reservation-username-content{
+    flex: 8.5;
+}
+
+.delivery-reservation-username-input {
+    width: 300px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+    margin-left: 20px;
+}
+
+
+/* 휴대폰 번호*/
+.delivery-reservation-tel{
+    display: flex;
+    border: 0.5px solid #ccc;
+    height: 80px;
+}
+
+.delivery-reservation-tel-title{
+    flex: 1.5;
+    background: #f2f2f2;
+}
+
+.delivery-reservation-tel-content{
+    flex: 8.5;
+}
+
+select.delivery-reservation-tel-input{
+    margin-left: 20px;
+}
+.delivery-reservation-tel-input {
+    width: 300px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-reservation-tel-input{
+    margin-left: 5px;
+    width: 200px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+
+/* 주소 */
+.delivery-reservation-address{
+    display: flex;
+    border: 0.5px solid #ccc;
+    height: 200px;
+}
+
+.delivery-reservation-address-title{
+    flex: 1.5;
+    background: #f2f2f2;
+}
+
+.delivery-reservation-address-content{
+    flex: 8.5;
+}
+
+.delivery-reservation-address-num-input{
+    margin: 20px;
+    margin-bottom: 0;
+    width: 350px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-reservation-address-find-btn{
+    width: 200px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-reservation-address-text-input{
+    margin: 20px;
+    margin-top: 0;
+}
+
+.delivery-reservation-address-text-input > input{
+    width: 500px;
+    margin-top: 10px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+
+
+/* 주거 형태 */
+.delivery-reservation-address-type{
+    display: flex;
+    border: 0.5px solid #ccc;
+    height: 80px;
+
+}
+
+.delivery-reservation-address-type-title{
+    flex: 1.5;
+    background: #f2f2f2;
+}
+
+.delivery-reservation-address-type-content{
+    flex: 8.5;
+}
+
+
+.delivery-reservation-address-type-option{
+    width: 200px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+    margin-left: 20px;
+}
+
+
+
+/* 여기서부터 배송 날짜 및 시간 선택*/
+.dr-date{
+    margin-top: 150px;
+    margin-bottom: 30px;
+}
+
+.delivery-reservation-date-title{
+    font-size: 25px;
+    font-weight: bold;
+    color: #5D493E;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.delivery-reservation-date-content{
+    display: flex;
+    /*border: 0.5px solid #ccc;*/
+}
+
+.delivery-reservation-date-checkbox{
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+
+.delivery-reservation-day-select{
+    flex: 5;
+}
+
+.delivery-reservation-time-select{
+    flex: 5;
+}
+
+
+.delivery-reservation-day-select-title{
+    border: 0.5px solid #ccc;
+    height: 120px;
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.delivery-reservation-time-select-title{
+    border: 0.5px solid #ccc;
+    height: 120px;
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+
+.delivery-reservation-day-select-content{
+    border: 0.5px solid #ccc;
+    height: 600px;
+    display: flex;
+}
+
+
+.delivery-reservation-time-select-content{
+    border: 0.5px solid #ccc;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.delivery-reservation-time-select-content-boxcontent{
+    margin: 30px 15px;
+}
+
+.btn-group{
+    display: flex;
+}
+
+.select-box{
+    margin: 15px !important;
+    font-size: 20px;
+    width: 200px;
+    height: 300px;
+    display: flex !important;
+    flex-direction: column !important;
+    /*justify-content: space-around !important;*/
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+
+
+/* 버튼!*/
+.dr-button{
+    margin: 50px;
+    text-align: center;
+}
+
+.button{
+    width: 200px;
+    height: 50px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.reset-btn{
+    background-color: #AEA49F;
+}
+
+.join-btn{
+    background-color: #5D493E;
+}
+
+
+/* 시간 선택 버튼 */
+.btn-group {
+    display: inline-block;
+    /*border: 1px solid #ccc;*/
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label.select-box {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+input[type="radio"]:checked + label.select-box {
+    background-color: #f0f0f0;
+}
+
+.delivery-reservation-time-select-content-ul{
+    list-style: disc !important;
+    margin-left: 40px;
+}
+
+.delivery-reservation-time-select-content-ul > li{
+    margin-bottom: 5px;
+}

@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="mypageDeliveryTrackingFragment()">
+    <link rel="stylesheet" th:href="@{/css/member/mypage_delivery_tracking.css}">
+    <link rel="stylesheet" th:href="@{/css/common/reset.css}">
+
+    <div class="subscribe-title">주문/배송조회</div>
+    <table class="recent-table">
+        <colgroup>
+            <col style="width: 20%">
+            <col style="width: 40%">
+            <col style="width: 20%">
+            <col style="width: 20%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="col-title">주문날짜/주문번호</th>
+            <th class="col-title">상품이미지/상품명</th>
+            <th class="col-title">가격</th>
+            <th class="col-title">주문상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td>
+                <span th:text="${product.date}"></span>
+                <br>
+                <span th:text="${product.orderNumber}"></span>
+            </td>
+            <td>
+                <div class="product-info">
+                    <img class="product-img" th:src="@{'/img/member/' + ${product.image}}">
+                    <div class="product-details">
+                        <span th:text="${product.name}"></span>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="coins">
+                    <th:block th:each="coin, stat : ${#numbers.sequence(1, product.coins)}">
+                        <img th:src="@{/img/member/coin.png}" alt="Coin Image" width="20"/>
+                    </th:block>
+                </div>
+            </td>
+            <td>
+                CJ대한통운
+                <br>
+                <span th:text="${product.trackingNumber}"></span>
+                <br>
+                <button class="custom-button" onclick="location.href='#'">배송조회</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</th:block>
+</html>

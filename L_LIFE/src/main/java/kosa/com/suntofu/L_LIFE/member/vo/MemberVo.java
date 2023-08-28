@@ -18,3 +18,4 @@ public class MemberVo {
     private String mProfile;
     private String mPhone;
 }
+

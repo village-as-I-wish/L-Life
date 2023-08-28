@@ -4,35 +4,44 @@
     <link rel="stylesheet" th:href="@{/css/common/sidebar/mypage_side.css}">
 
     <div>
-        <h2>순두부님</h2>
+        <div class="username">${순두부님}</div>
+
         <ul class="mypage-menu">
-            <li><a href="#">마이페이지</a></li>
-            <div class = "hr"></div>
-            <li>
-                주문정보
+            <li class = "mypage-text"><a href="#">마이페이지</a></li>
+            <div class="hr"></div>
+            <li class="header-title">주문정보
                 <ul>
-                    <li><a href="#">주문/배송 조회</a></li>
+                    <li class = "header-list"><a href="/l-life/member/mypage/1/delivery">주문/배송 조회</a></li>
                 </ul>
             </li>
-            <li>
-                구독
+            <li class="header-title">구독
                 <ul>
-                    <li><a href="#">스탠다드 구독</a></li>
-                    <li><a href="#">프리미엄 구독</a></li>
+                    <li class = "header-list"><a href="/l-life/member/mypage/1/standard">스탠다드 구독</a></li>
+                    <li class = "header-list"><a href="/l-life/member/mypage/1/premium">프리미엄 구독</a></li>
                 </ul>
             </li>
-            <li>
-                회원정보
+            <li class="header-title">관심상품관리
                 <ul>
-                    <li><a href="#">회원정보 수정</a></li>
+                    <li class = "header-list"><a href="/l-life/member/mypage">찜한 상품</a></li>
+                    <li class = "header-list"><a href="#">재입고 알림</a></li>
                 </ul>
             </li>
-            <li><a href="#">쿠폰/eco마일리지</a></li>
-            <li>
-                고객센터
+            <li class="header-title">커뮤니티활동
                 <ul>
-                    <li><a href="#">공지사항</a></li>
-                    <li><a href="#">자주묻는질문</a></li>
+                    <li class = "header-list"><a href="#">등록한 스토리</a></li>
+                    <li class = "header-list"><a href="#">관심 스토리</a></li>
+                </ul>
+            </li>
+            <li class="header-title">회원정보
+                <ul>
+                    <li class = "header-list"><a href="#">회원정보 수정</a></li>
+                    <li class = "header-list"><a href="#">쿠폰/eco마일리지</a></li>
+                </ul>
+            </li>
+            <li class="header-title">고객센터
+                <ul>
+                    <li class = "header-list"><a href="#">공지사항</a></li>
+                    <li class = "header-list"><a href="#">자주묻는질문</a></li>
                 </ul>
             </li>
         </ul>

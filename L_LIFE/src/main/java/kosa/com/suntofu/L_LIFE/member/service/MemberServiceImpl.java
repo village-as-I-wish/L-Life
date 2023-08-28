@@ -5,6 +5,8 @@ import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
@@ -25,5 +27,9 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    public List<MemberVo> getAllProducts() {
+
+        return memberDao.findAllProducts();
+    }
 }
 

@@ -1,0 +1,100 @@
+.subscribe-title {
+    margin-top: 60px;
+}
+
+.date-select {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.time-select {
+    border: 1px solid #EEEEEE;
+    height: 20px;
+    width: 100px;
+    padding: 7px 20px;
+    color: #666666;
+    cursor: pointer;
+}
+
+.time-select:hover {
+    color: #333333;
+    border-color: #333333;
+}
+
+.datepicker-search {
+    height: 40px;
+    width: 80px;
+    color: white;
+    background-color: #5D493F;
+    border: 0px;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.date-input-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.date-input {
+    height: 40px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.calendar-icon {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+
+
+/* 최근 구독 내역 테이블 */
+.recent-table {
+    width: 100%; /* 테이블을 화면에 꽉 차게 함 */
+    table-layout: fixed;
+    border-collapse: collapse; /* 셀 간의 경계를 병합 */
+    margin-top: 12px;
+    border: 1px solid #5D493F; /* 테이블 전체 테두리를 추가 */
+}
+
+/* 테이블 row */
+.recent-table td {
+    vertical-align: middle;
+    height: 80px;
+    text-align: center; /* 수평으로 중앙에 위치시킵니다. */
+    border: 1px solid #DCDCDC; /* 각 셀에 경계선을 추가 */
+}
+
+.col-title {
+    color: white;
+    background-color: #5D493F;
+    opacity: 50%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    border: 1px solid #DCDCDC;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    margin: 10px 10px;
+}
+
+.product-details {
+    margin-left: 20px;
+}
+
+.product-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+}
