@@ -5,10 +5,7 @@ import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,18 +16,11 @@ public class MemberController {
     @GetMapping("/login")
     public String loadLoginPage(){ return "pages/member/login"; }
 
-    @RequestMapping(value="/kakaoLogin", method= RequestMethod.GET)
-    public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
-        System.out.println("#########" + code);
-        String access_Token = memberService.getAccessToken(code);
-
-        // userInfo의 타입을 KakaoDTO로 변경 및 import.
-        MemberVo userInfo = memberService.getUserInfo(access_Token);
-
-        System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###nickname#### : " + userInfo.get("nickname"));
-        System.out.println("###email#### : " + userInfo.get("email"));
-        return "pages/member/testPage";
+    @PostMapping("/login")
+    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile){
+        MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
+        MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
+        return "pages/main/main";
     }
 
     @GetMapping("/mypage")
