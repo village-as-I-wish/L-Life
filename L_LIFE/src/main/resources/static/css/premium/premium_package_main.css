@@ -1,0 +1,115 @@
+.sl-top-banner{
+    width: 100%;
+    height: 300px;
+    position: relative;
+    margin-bottom: 70px;
+    margin-top: 40px;
+}
+.sl-top-banner img{
+    width: 100%;
+    height: inherit;
+}
+.banner-guide{
+    position: absolute;
+    right: 150px;
+    bottom: 130px;
+    background-color: white;
+    color: #C1B9A9;
+    padding: 15px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+.banner-user{
+    position: absolute;
+    bottom: 70px;
+    right: 150px;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+}
+.banner-user-sm{
+    font-size: 30px;
+}
+.lf-pr-slider,.lf-pr-popular-slider, .lf-pr-promotion-slider{
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+}
+.lf-pr-slider .prev, .lf-pr-popular-slider .prev, .lf-pr-promotion-slider .prev{
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    font-size: 3em;
+    color: gray;
+    cursor: pointer;
+    z-index: 1;
+}
+.lf-pr-slider .next, .lf-pr-promotion-slider .next, .lf-pr-popular-slider .next {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 3em;
+    color: gray;
+    cursor: pointer;
+    z-index: 1;
+}
+.lf-pr-slider .lf-pr-slide-product-img {
+    margin: 0px 10px;
+    display: inline-block;
+    background: white;
+    border-radius: 5px;
+    position: relative;
+}
+.lf-pr-slider-title{
+    font-size: 30px;
+    font-weight: bold;
+
+}
+.pr-md-pick-header,.pr-popular-header,.pr-promotion-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px 0px 20px;
+    margin: 0px 0px 10px 0px;
+}
+.pr-md-pick-header a{
+    padding: 10px;
+    border-radius: 50px;
+    background: #5D493F;
+    color: white !important;
+    font-weight: bold;
+    width: 150px;
+    text-decoration: none;
+    text-align: center;
+}
+.pr-real-img{
+    width: 300px !important;
+    display: block;
+    width: inherit;
+    height: 410px;
+    position: relative;
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center
+}
+
+.lf-pr-slide-product-img:hover .img-overlay {
+    opacity: 1; /* 마우스 호버 시 투명도 조절하여 나타나게 함 */
+}
+
+.img-overlay p {
+    color: white;
+}
+.pr-promotion-list, .pr-popular-list{
+    margin-top:80px;
+}

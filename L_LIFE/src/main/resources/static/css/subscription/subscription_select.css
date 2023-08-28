@@ -250,6 +250,10 @@ body{
 .ls-st-img-box{
     margin-bottom:25px;
 }
+.sub-btn a{
+    text-decoration: none;
+    color:black;
+}
 /*.sub-btn{*/
 /*    right: 80px;*/
 /*    position: absolute;*/

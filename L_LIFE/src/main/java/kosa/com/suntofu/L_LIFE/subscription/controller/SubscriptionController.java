@@ -39,11 +39,26 @@ public class SubscriptionController {
      * @param model
      * @return String
      */
-    @GetMapping(value="/standard/{standardType}/standard_payment_detail")
+    @GetMapping(value="/standard/payment_detail")
 
     public String loadStandardPaymentDetail(Model model){
         //List<StandardVO> standardList = standardService.getAllStandard();
         //  System.out.println(standardList);
         return "pages/subscription/standard_payment_detail";
     }
+
+    /**
+     * 프리미엄 구독 이용료 결제 페이지 로드
+     * @param model
+     * @return String
+     */
+    @GetMapping(value="/premium/payment_detail")
+
+    public String loadPremiumPaymentDetail(Model model){
+        //List<StandardVO> standardList = standardService.getAllStandard();
+        //  System.out.println(standardList);
+        return "pages/subscription/premium_payment_detail";
+    }
+
+
 }

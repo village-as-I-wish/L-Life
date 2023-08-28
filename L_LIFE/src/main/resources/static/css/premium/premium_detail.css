@@ -1,0 +1,177 @@
+.lf-pr-summary-container{
+    display: flex;
+}
+
+.lf-pr-summary-img-box{
+    width: 50%;
+    height: 370px;
+    display: inline-block;
+    padding:10px;
+}
+.lf-pr-summary-img-box > img{
+    width : 100%;
+    height:100%;
+}
+.lf-pr-summary-info{
+    display: inline-block;
+    min-width: 50%;
+    padding:10px;
+    position: relative;
+}
+.lf-pr-summary-header{
+    margin-top:10px;
+    display: flex;
+    justify-content: space-between;
+}
+.lf-pr-name{
+    padding: 10px 0px 10px 0px;
+    font-size: 30px;
+}
+.lf-pr-summary-detail{
+    margin-top: 20px;
+}
+.lf-pr-point-txt{
+    margin-right:10px;
+}
+.lf-pr-point img{
+    width:20px;
+    height:auto;
+    background: none;
+    border-radius: 50%;
+    margin: 0px 1px 0px 1px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+}
+
+.lf-pr-options input{
+    width:100%;
+}
+.lf-pr-submit-btns button{
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 0;
+}
+
+.lf-pr-submit-btns button:first-child {
+    bottom: 70px;
+}
+
+.lf-pr-submit-btns button:last-child {
+    bottom: 25px;
+}
+
+/* tab content css */
+ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display:flex;
+}
+ul.tabs li{
+    background: none;
+    color: #222;
+    padding: 10px 0px 10px 0px;
+    cursor: pointer;
+    width: 25%;
+    margin: 0px;
+    border: 1px solid lightgray;
+    text-align: center;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul.tabs li.current{
+    color: #222;
+    border:1px solid black;
+}
+
+.tab-content{
+    display: none;
+    padding: 15px;
+}
+
+/* tab 본문 css */
+
+.tab-content.current{
+    display: inherit;
+}
+.tab-pr-maininfo-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tab-pr-maininfo-content span{
+    display: block;
+}
+
+
+/* slider css */
+/*post slider*/
+.page-wrapper{
+    position:relative;
+    width:100%;
+}
+.lf-pr-slider{
+    width:100%;
+    margin:0px auto;
+    position:relative;
+}
+
+.lf-pr-slider .lf-pr-slider-title{
+    text-align:center;
+    margin:30px auto;
+}
+.lf-pr-slider .next{
+    position:absolute;
+    top:50%;
+    right:30px;
+    font-size:2em;
+    color:gray;
+    cursor: pointer;
+}
+.lf-pr-slider .prev{
+    position: absolute;
+    top: 50%;
+    font-size: 2em;
+    color: gray;
+    cursor: pointer;
+}
+.lf-pr-slider .lf-pr-slide-wrapper{
+
+    width:90%;
+    height:350px;
+    margin:0px auto;
+    overflow: hidden;
+    padding:10px 0px 10px 0px;
+}
+.lf-pr-slider .lf-pr-slide-wrapper .lf-pr-slide-product-img{
+    width:210px;
+    height:300px;
+    margin:0px 10px;
+    display:inline-block;
+    background:white;
+    border-radius: 5px;
+}
+
+.lf-pr-slider .lf-pr-slide-wrapper .lf-pr-slide-product-img .pr-real-img{
+    width:100%;
+    height:300px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+.lf-pr-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.lf-pr-info img{
+    width: 100%;
+    height: auto;
+}

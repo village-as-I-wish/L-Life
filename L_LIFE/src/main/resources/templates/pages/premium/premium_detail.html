@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>L-Life Premium</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/premium/premium_detail.css}"/>
+</head>
+<body>
+    <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+    <div class="lf-pr-summary-container hd__inner1100">
+        <div class="lf-pr-summary-img-box">
+            <img alt="상품 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+        </div>
+        <div class="lf-pr-summary-info">
+            <span class="light-gray text-xsm pt-4"> 리바트 > </span>
+            <div class="lf-pr-summary-header">
+                <span class="lf-pr-name"> 오브니 패브릭 4인 소파 와이드 </span>
+                <i> 하트 </i>
+            </div>
+            <hr>
+            <div class="lf-pr-summary-detail">
+                <div class="lf-pr-point d-flex">
+                    <span class="lf-pr-point-txt text-sm f-bold"> 포인트 3개 </span>
+                    <img th:each="i : ${#numbers.sequence(1, 4)}" alt="코인 사진" th:src="@{/img/standard/coin.png}"/>
+                </div>
+                <div class="lf-pr-etc-info">
+                    <span class="material-symbols-outlined">
+                    check_circle
+                    </span>
+
+
+                </div>
+            </div>
+
+            <div class="lf-pr-options">
+                <input type="text" value="옵션 커멘트" readonly>
+            </div>
+
+            <div class="lf-pr-submit-btns">
+                <button class="lf-btn-brown text-white"> 장바구니 담기</button>
+                <button class="lf-btn-light-brown text-white"> 할인 쿠폰 받기</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="lf-pr-main-content hd__inner1100">
+        <ul class="tabs">
+            <li class="tab-link current" data-tab="tab-1">상품 정보</li>
+            <li class="tab-link" data-tab="tab-2">상품리뷰</li>
+            <li class="tab-link" data-tab="tab-3">상품 Q & A</li>
+            <li class="tab-link" data-tab="tab-3">배송 정보</li>
+        </ul>
+
+        <div id="tab-1" class="tab-content current">
+            <div class="tab-pr-maininfo-content">
+                <div class="lf-pr-info">
+
+                    <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample1.png}">
+                    <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample2.png}">
+                    <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample3.png}">
+                    <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample4.png}">
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div id="tab-2" class="tab-content">tab content2</div>
+        <div id="tab-3" class="tab-content">tab content3</div>
+        <div id="tab-4" class="tab-content">tab content4</div>
+    </div>
+    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+
+</body>
+</html>

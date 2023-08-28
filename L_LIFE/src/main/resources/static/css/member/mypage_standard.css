@@ -1,10 +1,14 @@
 .user-info {
     background-color: #5D493E;
     opacity: 0.5;
-    border-radius: 15px; /* 둥근 모서리 */
-    padding: 40px; /* 내부 간격 */
+    border-radius: 15px;
+    padding: 0px 20px 0px 20px;
+    height: 130px;
     color: white;
     margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .user-info > div:first-child {
@@ -39,7 +43,31 @@
 .user-hello {
     font-size: 30px;
 }
-
+.user-info-box-list{
+    display: flex;
+    width: 40%;
+    height: 55%;
+}
+.user-info-box{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    align-items: center;
+    padding: 10px;
+    border-right: 1px solid white;
+    position: relative;
+    margin-left: 10px;
+}
+.user-info-box:last-child{
+    border:none;
+}
+.user-info-box > span:last-child{
+    position:absolute;
+    bottom: 0;
+}
+.user-info-box > span{
+    min-height: 25px;
+}
 .img-size1 {
     width: 20px;
     height: 20px;
@@ -103,14 +131,16 @@
 .delivery-title-wrap {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .delivery-btn {
     background-color: #5D493F;
     border-radius: 5px;
     color: white;
-    font-size: 12px;
-    padding: 7px 10px;
+    font-size: 15px;
+    height: 35px;
+    padding: 10px;
     border: #5D493F;
     font-weight: normal;
 }
