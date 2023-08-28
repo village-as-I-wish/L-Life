@@ -1,3 +1,22 @@
+/* 전체 정렬 코드 */
+.delivery-reservation-username-title,
+.delivery-reservation-username-content,
+.delivery-reservation-tel-title,
+.delivery-reservation-tel-content,
+.delivery-reservation-address-title,
+.delivery-reservation-address-type-title,
+.delivery-reservation-address-type-content,
+.delivery-reservation-day-select-title,
+.delivery-reservation-time-select-title {
+    display: flex;
+    align-items: center;
+}
+
+.delivery-reservation-address-content{
+    display: flex;
+    flex-direction: column;
+}
+
 /* 여기서부터 제목*/
 .dr-title{
     margin-top: 40px;
@@ -52,6 +71,7 @@
     width: 300px;
     height: 45px;
     border: 0.5px solid #ccc;
+    margin-left: 20px;
 }
 
 
@@ -71,6 +91,9 @@
     flex: 8.5;
 }
 
+select.delivery-reservation-tel-input{
+    margin-left: 20px;
+}
 .delivery-reservation-tel-input {
     width: 300px;
     height: 45px;
@@ -151,6 +174,7 @@
     width: 200px;
     height: 45px;
     border: 0.5px solid #ccc;
+    margin-left: 20px;
 }
 
 
@@ -171,7 +195,7 @@
 
 .delivery-reservation-date-content{
     display: flex;
-    border: 0.5px solid #ccc;
+    /*border: 0.5px solid #ccc;*/
 }
 
 .delivery-reservation-date-checkbox{
@@ -191,28 +215,34 @@
 
 .delivery-reservation-day-select-title{
     border: 0.5px solid #ccc;
-    height: 80px;
+    height: 120px;
     font-size: 20px;
     font-weight: bold;
+    justify-content: center;
 }
 
 .delivery-reservation-time-select-title{
     border: 0.5px solid #ccc;
-    height: 80px;
+    height: 120px;
     font-size: 20px;
     font-weight: bold;
+    justify-content: center;
 }
 
 
 .delivery-reservation-day-select-content{
     border: 0.5px solid #ccc;
-    height: 750px;
+    height: 600px;
+    display: flex;
 }
 
 
 .delivery-reservation-time-select-content{
     border: 0.5px solid #ccc;
-    height: 500px;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .delivery-reservation-time-select-content-boxcontent{
@@ -225,10 +255,14 @@
 
 .select-box{
     margin: 15px !important;
-    font-weight: bold;
+    font-size: 20px;
     width: 200px;
     height: 300px;
-    background-color: #AEA49F;
+    display: flex !important;
+    flex-direction: column !important;
+    /*justify-content: space-around !important;*/
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 
@@ -253,4 +287,39 @@
 
 .join-btn{
     background-color: #5D493E;
+}
+
+
+/* 시간 선택 버튼 */
+.btn-group {
+    display: inline-block;
+    /*border: 1px solid #ccc;*/
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label.select-box {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+input[type="radio"]:checked + label.select-box {
+    background-color: #f0f0f0;
+}
+
+.delivery-reservation-time-select-content-ul{
+    list-style: disc !important;
+    margin-left: 40px;
+}
+
+.delivery-reservation-time-select-content-ul > li{
+    margin-bottom: 5px;
 }
