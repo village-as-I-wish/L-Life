@@ -17,9 +17,15 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/login")
-    public String loadLoginPage(){
-        return "pages/member/login";
+    public String loadLoginPage(){ return "pages/member/login"; }
+
+    @PostMapping("/login")
+    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile){
+        MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
+        MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
+        return "pages/main/main";
     }
+
     @GetMapping("/mypage")
     public String loadMyPage(Model model){
 

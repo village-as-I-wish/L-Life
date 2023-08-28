@@ -9,9 +9,24 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     private final MemberDao memberDao;
+
+    @Override
+    public MemberVo insertOrSelectMember(MemberVo memberVo) {
+        MemberVo existingMember = memberDao.selectMemberByEmail(memberVo.getMEmail());
+
+        if (existingMember == null) {
+            // 이메일로 검색한 멤버가 존재하지 않으면 새로운 멤버를 추가합니다.
+            memberDao.insertMember(memberVo);
+            return memberVo;
+        } else {
+            // 이메일로 검색한 멤버가 이미 존재하면 해당 멤버를 반환합니다.
+            return existingMember;
+        }
+    }
+
     public List<MemberVo> getAllProducts() {
 
         return memberDao.findAllProducts();
