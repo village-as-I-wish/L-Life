@@ -61,3 +61,55 @@
 .pd-more-header{
     font-size: 25px;
 }
+
+.pd-more-list{
+    margin: 20px 0px 0px 0px;
+}
+.pd-more-slider{
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+}
+.pd-more-slider .prev{
+    position: absolute;
+    top: 50%;
+    left: -60px;
+    font-size: 3em;
+    color: lightgray;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 80px;
+}
+.pd-more-slider .next {
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    font-size: 80px;
+    color: lightgrey;
+    cursor: pointer;
+}
+.pd-more-slider .pd-more-product-img {
+    margin: 0px 10px 0px 0px;
+    display: inline-block;
+    background: white;
+    border-radius: 5px;
+}
+.pd-more-slide-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.pd-more-product-img > img{
+
+    width: 250px !important;
+    display: block;
+    height: 280px;
+    position: relative;
+
+}
+.pd-more-product-img p{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 23px;
+    color: #735F4C;
+}
