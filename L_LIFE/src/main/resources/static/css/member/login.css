@@ -12,14 +12,20 @@ body {
     text-align: center;
     margin-bottom: 20px;
 }
-
+.header-logo > img{
+    height: 50px;
+    width: auto;
+}
 /* 로그인 컨테이너 스타일 */
 .login-container {
-    width: 36%;
+    width: 500px;
     background-color: white;
     padding: 20px;
 }
-
+#login-form{
+    display: flex;
+    flex-direction: column;
+}
 /* 로그인 폼 스타일 */
 .login-wrapper {
     text-align: center;
@@ -28,7 +34,6 @@ body {
 
 /* 아이디 입력창, 비밀번호 입력창 스타일 */
 .text-input {
-    width: 100%;
     height: 30px;
     padding: 10px;
     margin-bottom: 10px;
@@ -45,11 +50,12 @@ label {
 }
 
 .text-btn {
-    width: 103.5%;
+    width: 100%;
     padding: 15px;
     margin-bottom: 10px;
     border: 1px solid;
 }
+
 
 #btn-login {
     background-color: #5D493E;
@@ -64,7 +70,7 @@ label {
 
 /* 아이디찾기와 비밀번호 찾기 스타일 */
 .login-find {
-    width: 103.5%;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     margin-bottom: 10px;

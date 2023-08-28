@@ -14,12 +14,21 @@ public class PremiumController {
     private final PremiumService premiumService;
     
     @GetMapping()
-    public String loadPremiumMainPage(){
-        return "pages/premium/premium_main";
+    public String loadPremiumPackageMainPage(){
+        return "pages/premium/premium_package_main";
     }
 
     @GetMapping("/package/{packageNum}/detail")
     public String loadPremiumPackageDetail(){
         return "pages/premium/premium_package_detail";
+    }
+
+    @GetMapping("/main")
+    public String loadPremiumMainPage(){
+        return "pages/premium/premium_main";
+    }
+    @GetMapping("/{productId}/detail")
+    public String loadPremiumDetailPage(){
+        return "pages/premium/premium_detail";
     }
 }

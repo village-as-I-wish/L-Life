@@ -19,6 +19,7 @@ function kakaoLogin() {
                         type:"POST",
                         data:data,
                         success : function (res) {
+                            window.location.href = "/l-life/main";
                         }
                     })
                 },

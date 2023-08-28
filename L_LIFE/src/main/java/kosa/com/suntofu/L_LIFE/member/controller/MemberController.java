@@ -25,8 +25,8 @@ public class MemberController {
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
         return "pages/main/main";
     }
-
-    @GetMapping("/mypage")
+  
+    @GetMapping("/{memberId}/mypage")
     public String loadMyPage(Model model){
 
         List<TestVo> products = new ArrayList<>();
@@ -39,7 +39,7 @@ public class MemberController {
         return "pages/member/mypage_main";
     }
 
-    @GetMapping("/mypage/{memberId}/standard")
+    @GetMapping("/{memberId}/mypage/standard")
     public String loadMyPageStandard(Model model){
 
         List<TestVo> products = new ArrayList<>();
@@ -53,7 +53,7 @@ public class MemberController {
         return "pages/member/mypage_standard";
     }
 
-    @GetMapping("/mypage/{memberId}/premium")
+    @GetMapping("/{memberId}/mypage/premium")
     public String loadMyPagePremium(Model model){
 
         List<TestVo> products = new ArrayList<>();
@@ -66,7 +66,7 @@ public class MemberController {
         return "pages/member/mypage_premium";
     }
 
-    @GetMapping("/mypage/{memberId}/delivery")
+    @GetMapping("/{memberId}/mypage/delivery")
     public String loadMyPageDelivery(Model model){
 
         List<TestVo> products = new ArrayList<>();
@@ -79,7 +79,7 @@ public class MemberController {
         return "pages/member/mypage_delivery";
     }
 
-    @GetMapping("/mypage/{memberId}/cart")
+    @GetMapping("/{memberId}/mypage/cart")
     public String loadCart(Model model){
 
         List<TestVo> products = new ArrayList<>();
@@ -89,6 +89,13 @@ public class MemberController {
         products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
         products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
         model.addAttribute("products", products);
-        return "pages/member/cart";
+        return "pages/member/mypage_cart";
     }
+
+    @GetMapping("/{memberId}/delivery_reservation")
+    public String loadDeliveryReservationPage(Model model){
+        return "pages/member/delivery_reservation";
+    }
+
+
 }
