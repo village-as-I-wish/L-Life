@@ -1,10 +1,14 @@
 .lf-pr-summary-container{
     display: flex;
+    height: 540px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    justify-content: space-around;
 }
 
 .lf-pr-summary-img-box{
-    width: 50%;
-    height: 370px;
+    width: 40%;
+    height: 100%;
     display: inline-block;
     padding:10px;
 }
@@ -14,18 +18,39 @@
 }
 .lf-pr-summary-info{
     display: inline-block;
-    min-width: 50%;
+    width: 55%;
     padding:10px;
     position: relative;
 }
 .lf-pr-summary-header{
-    margin-top:10px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .lf-pr-name{
     padding: 10px 0px 10px 0px;
     font-size: 30px;
+}
+.lf-pr-etc-infos{
+    margin-top:20px;
+}
+.lr-pr-etc-info{
+    height: 30px;
+    font-size: 18px;
+}
+.lr-pr-etc-subtxt{
+    color: gray;
+    line-height: 22px;
+    margin: 10px 0px 10px 0px;
+    font-size: 10px;
+    width: 100%;
+}
+.lf-pr-summary-header > i {
+    font-size: 30px;
+}
+.fill-heart{
+    color: #ED2650;
 }
 .lf-pr-summary-detail{
     margin-top: 20px;
@@ -42,13 +67,71 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     display: inline-block;
 }
+.lf-pr-options > select {
+    word-wrap: normal;
+    width: 100%;
+    height: 40px;
+}
+
+.dropbtn{
+    display : block;
+    border : 2px solid rgb(94, 94, 94);
+    border-radius : 4px;
+    background-color: #fcfcfc;
+    font-weight: 400;
+    color : rgb(124, 124, 124);
+    padding : 12px;
+    width :100%;
+    text-align: left;
+    cursor : pointer;
+    font-size : 12px;
+    z-index :1;
+    position : relative;
+}
+.dropdown-content{
+    display : none;
+    font-weight: 400;
+    background-color: #fcfcfc;
+    width: 95%;
+    border-radius: 8px;
+    height : 160px;
+    overflow : scroll;
+    box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
+}
+.dropdown-content::-webkit-scrollbar{
+    width : 5px;
+    height : 10px;
+}
+.dropdown-content::-webkit-scrollbar-thumb{
+    border-radius : 2px;
+    background-color :rgb(194, 194, 194)
+}
+
+.dropdown-content div{
+    display : block;
+    text-decoration : none;
+    color : rgb(37, 37, 37);
+    font-size: 12px;
+    padding : 12px 20px;
+}
+.dropdown-content div:hover{
+    background-color: rgb(226, 226, 226);
+}
+
+.dropdown-content.show{
+    display: block;
+    position: absolute;
+    z-index: 5 !important;
+}
+
 
 .lf-pr-options input{
     width:100%;
+    height: 40px;
 }
 .lf-pr-submit-btns button{
     width: 100%;
-    height: 35px;
+    height: 50px;
     border-radius: 5px;
     border: none;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
@@ -56,15 +139,21 @@
     left: 0;
 }
 
+
 .lf-pr-submit-btns button:first-child {
-    bottom: 70px;
+    bottom: 95px;
 }
 
 .lf-pr-submit-btns button:last-child {
-    bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 35px;
 }
-
-/* tab content css */
+.lf-pr-submit-btns button:last-child > img{
+    margin-right: 10px;
+}
+    /* tab content css */
 ul.tabs{
     margin: 0px;
     padding: 0px;
@@ -94,6 +183,7 @@ ul.tabs li.current{
 .tab-content{
     display: none;
     padding: 15px;
+    min-height: 500px;
 }
 
 /* tab 본문 css */
@@ -108,14 +198,24 @@ ul.tabs li.current{
 }
 .tab-pr-maininfo-content span{
     display: block;
+    margin: 10px 0px 10px 0px;
+    font-size: 13px;
+    color: gray;
 }
-
+.tab-pr-maininfo-content span:first-child{
+    margin-top:50px;
+}
+.pr-grade{
+    margin-top:45px !important;
+    font-size: 18px !important;
+}
 
 /* slider css */
 /*post slider*/
 .page-wrapper{
     position:relative;
     width:100%;
+    margin-top: 50px;
 }
 .lf-pr-slider{
     width:100%;
@@ -124,8 +224,11 @@ ul.tabs li.current{
 }
 
 .lf-pr-slider .lf-pr-slider-title{
-    text-align:center;
-    margin:30px auto;
+    text-align: center;
+    margin: 30px auto;
+    font-size: 20px;
+    color: darkgray;
+
 }
 .lf-pr-slider .next{
     position:absolute;
@@ -174,4 +277,125 @@ ul.tabs li.current{
 .lf-pr-info img{
     width: 100%;
     height: auto;
+}
+.lf-pr-delivery{
+    width:100%;
+    margin-top:50px;
+}
+
+.lf-pr-delivery > p{
+    font-size: 30px !important;
+}
+.lf-pr-delivery li{
+    width:50% !important;
+}
+.table-dl-wrap {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-dl-row {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-dl-row__dt {
+    width: 250px;
+    background-color: #f9f9f9;
+}
+.table-dl-row__dt, .table-dl-row__dd {
+    display: table-cell;
+    padding: 0.9em 1.3em;
+    border: 1px solid #eee;
+    font-size: 16px;
+    color: #333;
+}
+.table-dl-row__dd{
+    color: gray;
+    font-size: 14px;
+    line-height: 18px;
+}
+.lf-recommendation-page-wrapper{
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+.lf-recommendation-slide-wrapper{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.lf-recommendation-product{
+    width: 100%;
+    margin-top: 60px;
+    font-size: 30px;
+    color: #333;
+
+}
+.lf-recommendation-slide-product-img{
+    padding: 17px;
+    color: black;
+    text-decoration: none;
+
+}
+.lf-recommendation-slide-product-img > img{
+    width: 100%;
+
+}
+.lf-recommendation-slide-product-img > span{
+    font-size: 14px;
+    padding: 5px;
+    width: 45%;
+    border: 1px solid black;
+    text-align: center;
+    margin: 0px 0px 10px 0px !important;
+}
+.lf-recommendation-slide-product-img > p {
+    font-size: 14px;
+}
+.coin-img{
+    width:20px !important;
+    height: auto;
+}
+
+/*tab 2*/
+.review-banner-img{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.review-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:30px;
+}
+.review-header > span{
+    font-size: 22px;
+}
+
+.review-write-btn{
+    padding: 5px;
+    border: 1px solid #AEA49E;
+    background: none;
+    width: 88px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+.review-sub-header{
+    font-size:20px;
+}
+.review-card-content{
+    display: flex;
+    margin-top: 10px;
+}
+.review-card-content > p{
+    padding: 10px 0px 0px 10px;
+}
+.review-card-content > img{
+    width: 100px;
+}
+.review-writer{
+    float:right
 }
