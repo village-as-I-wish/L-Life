@@ -24,28 +24,30 @@
             주문자 정보
         </div>
         <div class="st-payment-user">
-            <div class="align-vertical">
-                <div class="st-payment-username">
-                    <span class="st-payment-row"> * </span>
-                    <span> 주문자 </span>
-                </div>
+            <div class="st-payment-username-title">
+                <span class="st-payment-row"> * </span>
+                <span> 주문자 </span>
+            </div>
+            <div class="st-payment-username-content">
                 <input type="text" class="st-payment-username-input">
             </div>
         </div>
 
         <div class="st-payment-tel">
 
-            <div class="st-payment-telnum">
+            <div class="st-payment-tel-title">
                 <span class="st-payment-row"> * </span>
                 <span> 휴대폰 번호 </span>
             </div>
-            <select class="st-payment-tel-input">
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="017">017</option>
-            </select>
-            <input th:type="text" class="st-payment-tel-input">
-            <input th:type="text" class="st-payment-tel-input">
+            <div class="st-payment-tel-content">
+                <select class="st-payment-tel-input">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="017">017</option>
+                </select>
+                <input th:type="text" class="st-payment-tel-input">
+                <input th:type="text" class="st-payment-tel-input">
+            </div>
         </div>
     </div>
 
@@ -71,28 +73,30 @@
 
     <div class="st-payment">
         <div class="st-payment-user">
-            <div class="align-vertical">
-                <div class="st-payment-username">
+            <div class="st-payment-username-title">
                     <span class="st-payment-row"> * </span>
                     <span> 받는사람 </span>
-                </div>
+            </div>
+            <div class="st-payment-username-content">
                 <input type="text" class="st-payment-username-input">
+
             </div>
         </div>
 
         <div class="st-payment-tel">
-
-            <div class="st-payment-telnum">
+            <div class="st-payment-tel-title">
                 <span class="st-payment-row"> * </span>
                 <span> 휴대폰 번호 </span>
             </div>
-            <select class="st-payment-tel-input">
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="017">017</option>
-            </select>
-            <input th:type="text" class="st-payment-tel-input">
-            <input th:type="text" class="st-payment-tel-input">
+            <div class="st-payment-tel-content">
+                <select class="st-payment-tel-input">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="017">017</option>
+                </select>
+                <input th:type="text" class="st-payment-tel-input">
+                <input th:type="text" class="st-payment-tel-input">
+            </div>
         </div>
     </div>
 
@@ -149,7 +153,7 @@
                 <tr>
                     <td class="table-td">
                         <img th:src="@{/img/standard/live-box-sample.png}" style="height: 100px"/>
-                        스탠다드33 구독권
+                        소윤이 귀여워
                     </td>
                     <td class="table-td">1</td>
                     <td class="table-td">89,000원</td>
@@ -259,9 +263,10 @@
 
         </div>
 
-
     </div>
-    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+    </div>
 
 </body>
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+
 </html>

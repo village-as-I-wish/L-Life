@@ -11,39 +11,57 @@
     max-height: 100px;
 }
 
-.st-payment-username{
-    display: inline-block;
-    padding: 20px 0px 20px 0px;
+
+.st-payment-username-title,
+.st-payment-username-content,
+.st-payment-tel-title,
+.st-payment-tel-content,
+.delivery-request-title,
+.delivery-request-content,
+.delivery-destination-title{
+    display: flex;
+    align-items: center;
+}
+
+
+.st-payment-username-title{
+    flex: 1.5;
     background: #f2f2f2;
-    width: 15%;
-    height: 75px;
+}
+
+.st-payment-username-content{
+    flex : 8.5;
 }
 
 .st-payment-user{
-    width: 100%;
+    display: flex;
     border: 0.5px solid #ccc;
+    height: 80px;
 }
 
-.align-vertical {
-
-}
 
 .st-payment-row{
     padding-left: 20px;
     color: red;
 }
 
-.st-payment-telnum{
-    display: inline-block;
-    padding: 20px 0px 20px 0px;
+.st-payment-tel-title{
     background: #f2f2f2;
-    width: 15%;
-    height: 75px;
+    flex: 1.5;
+}
+
+.st-payment-tel-content{
+    flex: 8.5;
 }
 
 .st-payment-tel{
-    width: 100%;
+    display: flex;
     border: 0.5px solid #ccc;
+    height: 80px;
+}
+
+select.st-payment-tel-input{
+    margin-left: 20px;
 }
 
 .st-payment{
@@ -52,7 +70,7 @@
 }
 
 .st-payment-username-input{
-    margin-left: 5px;
+    margin-left: 20px;
     width: 350px;
     height: 45px;
     border: 0.5px solid #ccc;
@@ -227,7 +245,6 @@ h5{
 
 .delivery-destination-title{
     flex: 1.5;
-    padding: 20px 0px 20px 0px;
     background: #f2f2f2;
 }
 
@@ -246,18 +263,14 @@ h5{
 
 .delivery-request {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start; /* 위쪽 정렬 */
     border-top: 0.5px solid #ccc;
+    height: 150px;
 
 }
 
 .delivery-request-title{
     flex: 1.5;
-    padding: 20px 0px 20px 0px;
     background: #f2f2f2;
-    width: 15%;
-    height: 120px;
 }
 
 .delivery-request-title-name{
@@ -265,13 +278,20 @@ h5{
 }
 .delivery-request-content {
     flex: 8.5;
-    margin-left: 20px;
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    justify-content: center;
 }
 
 .delivery-request-textarea{
     width: 750px;
     height: 45px;
     border: 0.5px solid #ccc;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .delivery-request-option{
@@ -280,6 +300,10 @@ h5{
     border: 0.5px solid #ccc;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+select.delivery-request-option{
+    margin-left: 20px;
 }
 
 .delivery-destination-find-btn{
