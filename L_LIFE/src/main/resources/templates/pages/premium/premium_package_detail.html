@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Premium Package</title>
+
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/premium/premium_package_detail.css}"/>
+
+    <!-- slick 사용을 위함.  -->
+    <script
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <script th:src="@{/js/premium/premium_package_detail.js}" type="text/javascript"></script>
+
+</head>
+<body>
+    <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+
+    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+
+
+    <div class="hd__inner1100 pd-container">
+        <div class="pd-detail-container">
+            <p class="pd-main-package-name"> 우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+            <hr>
+            <div class="pd-detail-box">
+                <div class="pd-detail-img">
+                    <img alt="상품 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+                </div>
+                <div class="pd-detail-product-list">
+                    <div class="pd-detail-product">
+                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample1.png}"/>
+                        <div class="pd-detail-product-info">
+                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
+                            <i class="fa-solid fa-heart fill-heart"></i>
+                            <p> 58000원 / 월</p>
+                        </div>
+                    </div>
+
+                    <div class="pd-detail-product">
+                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample2.png}"/>
+                        <div class="pd-detail-product-info">
+                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
+                            <i class="fa-solid fa-heart fill-heart"></i>
+                            <p> 58000원 / 월</p>
+                        </div>
+                    </div>
+                    <div class="pd-detail-product">
+                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample3.png}"/>
+                        <div class="pd-detail-product-info">
+                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
+                            <i class="fa-solid fa-heart fill-heart"></i>
+                            <p> 58000원 / 월</p>
+                        </div>
+                    </div>
+                    <div class="pd-detail-product">
+                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample4.png}"/>
+                        <div class="pd-detail-product-info">
+                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
+                            <i class="fa-solid fa-heart fill-heart"></i>
+                            <p> 40000원 / 월</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="pd-more-container">
+            <p class="pd-more-header"> PACKAGE 더보기 </p>
+
+            <div class="pd-more-list">
+                <div class="pd-more-slider">
+                    <i class="fas fa-chevron-left prev"></i>
+                    <i class="fas fa-chevron-right next"></i>
+                    <div class="pd-more-slide-wrapper">
+                        <div class="pd-more-product-img" th:each="i : ${#numbers.sequence(1, 5)}">
+                            <img  alt="상품 사진 "
+                                 th:src="@{'/img/premium/premium_promotion_sample' + ${i} + '.png'}"/>
+                            <p> 사랑스러운 조명으로 <br> 분위기 업</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+
+</body>
+</html>

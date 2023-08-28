@@ -1,0 +1,115 @@
+
+.pd-container{
+    min-height: 800px;
+}
+.pd-detail-container{
+    margin-top: 40px;
+}
+.pd-main-package-name{
+    font-size: 25px;
+    line-height: 28px;
+}
+.pd-detail-box{
+    display: flex;
+    justify-content: space-between;
+}
+.pd-detail-img{
+    width: 36%;
+    height: 700px;
+    padding-top: 20px;
+}
+.pd-detail-img img{
+    width: 100%;
+    height: inherit;
+}
+.pd-detail-product-list{
+    width: 60%;
+}
+.pd-detail-product{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    position: relative;
+    padding: 20px 0px 20px 0px;
+    border-bottom: 1px solid lightgrey;
+}
+.pd-detail-product:last-child {
+    border-bottom: none;
+}
+.pd-detail-product img{
+    height: auto;
+    width: 13%;
+
+}
+
+.pd-detail-product-info{
+    margin-left: 30px;
+    font-size: 20px;
+    line-height: 30px;
+}
+.pd-detail-product-info > .fill-heart{
+    position: absolute;
+    right: 75px;
+    font-size: 30px;
+    top: 20px;
+    color: red;
+}
+
+.pd-more-container{
+    margin-top: 40px;
+}
+.pd-more-header{
+    font-size: 25px;
+}
+
+.pd-more-list{
+    margin: 20px 0px 0px 0px;
+}
+.pd-more-slider{
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+}
+.pd-more-slider .prev{
+    position: absolute;
+    top: 50%;
+    left: -60px;
+    font-size: 3em;
+    color: lightgray;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 80px;
+}
+.pd-more-slider .next {
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    font-size: 80px;
+    color: lightgrey;
+    cursor: pointer;
+}
+.pd-more-slider .pd-more-product-img {
+    margin: 0px 10px 0px 0px;
+    display: inline-block;
+    background: white;
+    border-radius: 5px;
+}
+.pd-more-slide-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.pd-more-product-img > img{
+
+    width: 250px !important;
+    display: block;
+    height: 280px;
+    position: relative;
+
+}
+.pd-more-product-img p{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 23px;
+    color: #735F4C;
+}
