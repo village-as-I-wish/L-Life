@@ -11,5 +11,38 @@
         FROM StandardFurniture
     </select>
 
+    <!-- 라이브 필터 -->
+
+
+    <!-- 카테고리 필터 -->
+    <select id="selectStandardCategory" resultType="StandardVO">
+        SELECT a.*, b.*, c.*
+        FROM Furniture a
+        JOIN FurnitureCategory b ON a.f_category_id = b.f_category_id
+        JOIN LLifeFurniture c ON a.f_id = c.f_id
+        WHERE b.f_category_name IN ('소파', '테이블', '조명', '의자', '침대', '수납')
+    </select>
+
+    <!-- 상품(브랜드) 필터 -->
+    <select id="selectStandardBrand" resultType="StandardVO">
+        SELECT a.*, b.*, c.*
+        FROM Furniture a
+        JOIN FurnitureBrand b ON a.f_brand_id = b.f_brand_id
+        JOIN LLifeFurniture c ON a.f_id = c.f_id
+        WHERE b.f_brand_name IN ('Global Livart Gallery', '리바트', '리바트  H-몬도', 'FM 디자인', '리바트 온라인')
+    </select>
+
+    <!-- 상품(분위기) 필터 -->
+    <select id="selectStandardMood" resultType="StandardVO">
+        SELECT a.*, b.*, c.*
+        FROM Furniture a
+        JOIN FurnitureMood b ON a.f_mood_id = b.f_mood_id
+        JOIN LLifeFurniture c ON a.f_id = c.f_id
+        WHERE b.f_mood_name IN ('모던', '미니멀 /심플', '내추럴', '북유럽', '빈티지/레트로')
+    </select>
+
+    <!-- 상품(가격) 필터 -->
+
+
 
 </mapper>
