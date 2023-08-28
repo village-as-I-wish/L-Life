@@ -58,19 +58,19 @@
                     url: '/v2/user/me',
                     success: function (response) {
                         console.log(response)
-                        const data = {
-                            id:response.id,
-                            email:response.kakao_account.email,
-
-                        }
-                        $.ajax({
-                            url:"/member/login",
-                            type:"POST",
-                            data:data,
-                            success : function (res) {
-
-                            }
-                        })
+                        // const data = {
+                        //     id:response.id,
+                        //     email:response.kakao_account.email,
+                        //
+                        // }
+                        // $.ajax({
+                        //     url:"/member/login",
+                        //     type:"POST",
+                        //     data:data,
+                        //     success : function (res) {
+                        //
+                        //     }
+                        // })
                     },
                     fail: function (error) {
                         console.log(error)
