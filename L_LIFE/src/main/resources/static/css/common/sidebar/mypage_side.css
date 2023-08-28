@@ -10,6 +10,7 @@ main {
 
 .mypage-sidebar {
     width: 300px;
+    padding-right: 60px;
 }
 
 .mypage-content {
