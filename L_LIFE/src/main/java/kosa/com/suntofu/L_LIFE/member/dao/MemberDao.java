@@ -9,5 +9,7 @@ import java.util.List;
 @Mapper
 public interface MemberDao {
 
+    MemberVo selectMemberByEmail(String email);
+    int insertMember(MemberVo memberVo);
     List<MemberVo> findAllProducts();
 }
