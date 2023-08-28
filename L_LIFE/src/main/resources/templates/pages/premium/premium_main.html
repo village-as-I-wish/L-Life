@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>L-Life Premium</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/premium/premium_main.css}"/>
+
 </head>
 <body>
-$END$
+    <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+    <th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment()"></th:block>
+
+
+    <div class="sl-top-banner">
+        <img alt="베너 사진1 " th:src="@{/img/premium/list_top_banner.png}"/>
+    </div>
+
+    <div class="pl-main-content">
+        <th:block th:replace="common/fragment/sidebar/product_filter_sidebar :: productFilterSidebar()"></th:block>
+        <div class="pl-main-products">
+            <div class="pl-search-box">
+                <input type="text" placeholder="상품명으로 검색">
+            </div>
+            <div class="pl-main-sub">
+                <span class="pl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
+                <ul>
+                    <li> 추천순</li>
+                    <li> 신상품순</li>
+                    <li> 낮은포인트순</li>
+                    <li> 높은포인트순</li>
+                    <li> 평점높은순</li>
+                </ul>
+                <div class="pl-main-sub-products">
+                    <div class="pl-main-sub-product" th:each="i : ${#numbers.sequence(1, 10)}">
+                        <a th:href="@{/premium/1/detail}">
+                            <div class="pl-main-sub-product-img col">
+                                <img alt="베너 사진1 " th:src="@{/img/standard/main_product_sample.png}"/>
+                            </div>
+                            <div class="pl-main-sub-product-txt">
+                                <p> [리바트] 오브니 패브릭 4인 소파 와이드</p>
+                                <hr style="margin: 3px 0px 10px 0px">
+                                <div class="d-flex pl-main-sub-product-price">
+                                    <span> 리바트 </span>
+                                    <div class="coin-img-box">
+                                        <img class="coin-img" th:src="@{/img/standard/coin.png}" th:each="i : ${#numbers.sequence(1, 3)}">
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </body>
 </html>

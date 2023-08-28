@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>L-Life Premium</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/premium/premium_main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/premium/premium_package_main.css}"/>
 
     <!-- slick 사용을 위함.  -->
     <script
@@ -12,7 +12,7 @@
     <link rel="stylesheet"
           href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
-    <script th:src="@{/js/premium/premium_main.js}" type="text/javascript"></script>
+    <script th:src="@{/js/premium/premium_package_main.js}" type="text/javascript"></script>
 
 </head>
 <body>
@@ -30,7 +30,7 @@
         <div class="pr-md-pick-list">
             <div class="pr-md-pick-header">
                 <h1 class="lf-pr-slider-title"> MD PICK</h1>
-                <button> 가구 둘러보기 ></button>
+                <a th:href="@{/premium/main}"> 가구 둘러보기 ></a>
             </div>
             <div class="lf-pr-slider">
                 <i class="fas fa-chevron-left prev"></i>

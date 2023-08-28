@@ -71,20 +71,21 @@
     padding: 0px 40px 0px 20px;
     margin: 0px 0px 10px 0px;
 }
-.pr-md-pick-header button{
+.pr-md-pick-header a{
     padding: 10px;
     border-radius: 50px;
     background: #5D493F;
-    color: white;
+    color: white !important;
     font-weight: bold;
     width: 150px;
+    text-decoration: none;
+    text-align: center;
 }
 .pr-real-img{
     width: 300px !important;
     display: block;
     width: inherit;
     height: 410px;
-    position: relative;
     position: relative;
 }
 
