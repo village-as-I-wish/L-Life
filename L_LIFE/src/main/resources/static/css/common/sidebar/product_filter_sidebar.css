@@ -1,6 +1,5 @@
 .pf-sidebar{
     padding: 20px;
-    border: 2px solid black;
     width: 220px;
     min-height: 500px;
 }
@@ -51,7 +50,7 @@
 
 .slider {
     width: 100%;
-    height: 15px;
+    height: 4px;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
@@ -61,25 +60,29 @@
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #04AA6D;
-    cursor: pointer;
+    background-color: blue; /* 원하는 색상으로 변경 */
+    width: 20px; /* 원하는 크기로 변경 */
+    height: 20px; /* 원하는 크기로 변경 */
+    border-radius: 50%; /* 동그라미 모양으로 변경 */
 }
 
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #04AA6D;
+    background: black;
     cursor: pointer;
 }
-
+.slidecontainer > p{
+    margin: 10px 0px 0px 0px;
+}
 .pf-submit-buttons > button{
     width: 50%;
     padding: 8px;
     background: none;
+    border: 1px solid #5D493E;
+}
+.pf-submit-buttons > button:last-child {
+    background: #5D493E;
+    color: white;
 }
