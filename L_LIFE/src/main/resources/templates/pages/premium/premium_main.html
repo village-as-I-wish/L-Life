@@ -24,7 +24,7 @@
                 <input type="text" placeholder="상품명으로 검색">
             </div>
             <div class="pl-main-sub">
-                <span class="pl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
+                <span class="pl-main-sub-products-txt"> <span class="txt-pink" th:text="${totalNum}"> </span> 개의 상품이 있습니다. </span>
                 <ul>
                     <li> 추천순</li>
                     <li> 신상품순</li>
@@ -33,18 +33,20 @@
                     <li> 평점높은순</li>
                 </ul>
                 <div class="pl-main-sub-products">
-                    <div class="pl-main-sub-product" th:each="i : ${#numbers.sequence(1, 10)}">
+                    <div class="pl-main-sub-product" th:each="product : ${premiumProducts}">
                         <a th:href="@{/premium/1/detail}">
                             <div class="pl-main-sub-product-img col">
-                                <img alt="베너 사진1 " th:src="@{/img/standard/main_product_sample.png}"/>
+                                <img alt="베너 사진1 " th:src="${product.fImgUrl}"/>
                             </div>
                             <div class="pl-main-sub-product-txt">
-                                <p> [리바트] 오브니 패브릭 4인 소파 와이드</p>
+                                <p th:text="${product.fName}"></p>
                                 <hr style="margin: 3px 0px 10px 0px">
                                 <div class="d-flex pl-main-sub-product-price">
-                                    <span> 리바트 </span>
+                                    <span th:text="${product.fBrandName}"></span>
+
                                     <div class="coin-img-box">
-                                        <img class="coin-img" th:src="@{/img/standard/coin.png}" th:each="i : ${#numbers.sequence(1, 3)}">
+                                        월
+                                        <span th:text="${product.lfPrPrice}"></span>
                                     </div>
                                 </div>
                             </div>
