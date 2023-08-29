@@ -32,6 +32,11 @@ public class StandardController {
         List<StandardVo> standardList = standardService.getAllStandard();
         model.addAttribute("standardList", standardList);
         System.out.println(standardList);
+
+        // 라이브 리스트 가져오기
+        List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
+        model.addAttribute("standardLiveList", standardLiveList);
+        System.out.println(standardLiveList);
         return "pages/standard/standard_main";
     }
 

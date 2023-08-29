@@ -16,6 +16,23 @@
           AND img.f_img_seq = 0
     </select>
 
+
+    <!-- 라이브 리스트 가져오기 -->
+    <select id = "selectAllLiveStream">
+        SELECT
+            LS.l_stream_name,
+            TO_CHAR(LS.l_stream_time, 'MM / DD') as stream_date,
+            TO_CHAR(LS.l_stream_time, 'HH24 : MI') as stream_time,
+            LFP.lf_package_name,
+            LFP.lf_package_img,
+            LFP.lf_package_st_coin
+        FROM LSProduct LSP
+        JOIN LiveStream LS ON LSP.l_stream_id = LS.l_stream_id
+        JOIN LFPackage LFP ON LSP.lf_package_id = LFP.lf_package_id
+        WHERE LFP.lf_package_type = 0
+    </select>
+
+
         <!-- 카테고리 필터 -->
     <select id="selectStandardCategory" resultType="StandardVO">
         SELECT a.*, b.*, c.*
