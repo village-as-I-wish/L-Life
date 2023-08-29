@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -37,6 +38,11 @@ public class StandardController {
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
         model.addAttribute("standardLiveList", standardLiveList);
         System.out.println(standardLiveList);
+
+        // 현재 날짜와 시간 가져오기
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("now", LocalDateTime.now());
+        System.out.println("시간!!!!" + now);
         return "pages/standard/standard_main";
     }
 
