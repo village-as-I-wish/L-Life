@@ -43,11 +43,19 @@
                 </div>
             </td>
             <td>
-                CJ대한통운
-                <br>
-                <span th:text="${product.trackingNumber}"></span>
-                <br>
-                <button class="custom-button" onclick="location.href='#'">배송조회</button>
+                <form action="http://info.sweettracker.co.kr/tracking/4" method="post">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="t_key" name="t_key" placeholder="제공받은 APIKEY" value="DYBDMHvGGJHqOQQV7oFIwA">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="05">
+                    </div>
+                    <div class="form-group">
+                        <label for="t_invoice">CJ 대한통운</label>
+                        <input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" value="532006588341" th:disabled>
+                    </div>
+                    <button type="submit" class="btn custom-button">조회하기</button>
+                </form>
             </td>
         </tr>
         </tbody>
