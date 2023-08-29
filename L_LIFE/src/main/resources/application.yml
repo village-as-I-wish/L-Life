@@ -13,6 +13,10 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
     username: ${db-username}
     password: ${db-password}
+#  profiles:
+#    include:
+#      - dev
+    
 
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration

@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class StandardLiveVo {
 
     private String lStreamName; //라이브 방송 이름
-    private String l_stream_time; // 라이브 방송 날짜 (timestamp)
+    private LocalDateTime lStreamTime; // 라이브 방송 날짜 (timestamp)
     private String streamDate; // 라이브 날짜
     private String streamTime; // 라이브 시간
     private String lfPackageName; // 라이브 패키지 이름

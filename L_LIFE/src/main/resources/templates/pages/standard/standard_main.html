@@ -25,9 +25,11 @@
         <div class="sl-main-live">
             <img alt="베너 사진1 " th:src="@{/img/standard/l-life-live-logo.png}"/>
 
-            <div class="sl-main-live-products">
+            <div class="sl-main-live-products" th:each="LiveList : ${standardLiveList}">
+
                 <!-- 방송 시작전 -->
-                <a th:href="@{/livestream}" class="sl-live-box" th:each="LiveList : ${standardLiveList}">
+                <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isBefore(LiveList.lStreamTime)}">
+
                     <img alt="베너 사진1 " th:src="${LiveList.lfPackageImg}"/>
                     <div class="overlay">
                         <p class="sl-live-box-day-txt" th:text="${LiveList.streamDate}"></p>
@@ -46,7 +48,7 @@
                 </a>
 
                 <!-- 방송 시작 후 -->
-                <a class="sl-live-box" th:each="LiveList : ${standardLiveList}">
+                <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isAfter(LiveList.lStreamTime)}">
                     <img alt="베너 사진1" th:src="${LiveList.lfPackageImg}"/>
                     <div class="sl-live-box-info d-flex">
                         <img class="sl-live-box-info-img" th:src="@{/img/standard/live-box-sample.png}"/>
@@ -54,7 +56,7 @@
                             <span th:text="${LiveList.lfPackageName}">패키지이름</span>
                             <div class="coin-img-box">
                                 <th:block th:each="coins, stat : ${#numbers.sequence(1, LiveList.lfPackageStCoin)}">
-                                    <img class="coin-img" th:src="@{/img/member/coin.png}" />
+                                    <img class="coin-img" th:src="@{/img/member/coin.png}"/>
                                 </th:block>
                             </div>
                         </div>
@@ -80,7 +82,7 @@
                     <div class="sl-main-sub-product" th:each="standardList : ${standardList}">
                         <a th:href="@{/standard/1/detail}">
                             <div class="sl-main-sub-product-img col">
-                                <img alt="베너 사진1 "th:src="${standardList.fImgUrl}"/>
+                                <img alt="베너 사진1 " th:src="${standardList.fImgUrl}"/>
                             </div>
                             <div class="sl-main-sub-product-txt">
                                 <p th:text="${standardList.fName}">상품명</p>
@@ -88,20 +90,19 @@
                                 <div class="d-flex sl-main-sub-product-price">
                                     <span th:text="${standardList.fBrandName}">브랜드이름</span>
                                     <div class="coin-img-box">
-                                       <th:block th:each="coins, stat : ${#numbers.sequence(1, standardList.lfStCoin)}">
-                                            <img class="coin-img" th:src="@{/img/member/coin.png}" />
+                                        <th:block
+                                                th:each="coins, stat : ${#numbers.sequence(1, standardList.lfStCoin)}">
+                                            <img class="coin-img" th:src="@{/img/member/coin.png}"/>
                                         </th:block>
                                     </div>
-
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+</div>
 </body>
-
 </html>
