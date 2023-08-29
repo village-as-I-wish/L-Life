@@ -64,12 +64,12 @@
         </div>
         <div class="delivery-reservation-address-content">
           <div>
-              <input type="text" class="delivery-reservation-address-num-input">
-              <button class="delivery-reservation-address-find-btn">우편번호 확인</button>
+              <input type="text" id="zip_code" class="delivery-reservation-address-num-input">
+              <button class="delivery-reservation-address-find-btn"  onclick="daumAddress()">우편번호 확인</button>
           </div>
               <div class="delivery-reservation-address-text-input">
-                <input type="text" disabled><br>
-                <input type="text" placeholder="상세 주소 입력">
+                <input type="text" id="addr" disabled><br>
+                <input type="text" id="addr_dtl" placeholder="상세 주소 입력">
               </div>
 
         </div>
@@ -164,4 +164,26 @@
 <!-- 푸터 프래그먼트 -->
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 </body>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  function daumAddress() {
+    new daum.Postcode({
+      oncomplete: function(data) {
+        var addr = '';
+        if (data.userSelectedType === 'R') {
+          addr = data.roadAddress;
+        } else {
+          addr = data.jibunAddress;
+        }
+
+        $("#zip_code").val(data.zonecode);
+        $("#addr").val(addr);
+        $("#addr_dtl").val("");
+        $("#addr_dtl").focus();
+      }
+    }).open();
+  }
+
+</script>
 </html>
