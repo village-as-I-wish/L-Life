@@ -108,11 +108,11 @@
                 <span> 배송주소 </span>
             </div>
             <div class="delivery-destination-content">
-                <input type="text" class="delivery-destination-num">
-                <button class="delivery-destination-find-btn">우편번호 확인</button>
+                <input type="text" id="zip_code" class="delivery-destination-num">
+                <button class="delivery-destination-find-btn" onclick="daumAddress()">우편번호 확인</button>
                 <div class="delivery-destination-content-input">
-                    <input type="text" disabled><br>
-                    <input type="text" placeholder="상세 주소 입력">
+                    <input type="text" id="addr" disabled><br>
+                    <input type="text" id="addr_dtl" placeholder="상세 주소 입력">
                 </div>
             </div>
         </div>
@@ -269,4 +269,25 @@
 </body>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function daumAddress() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = '';
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                $("#zip_code").val(data.zonecode);
+                $("#addr").val(addr);
+                $("#addr_dtl").val("");
+                $("#addr_dtl").focus();
+            }
+        }).open();
+    }
+
+</script>
 </html>
