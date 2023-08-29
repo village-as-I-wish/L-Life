@@ -1,0 +1,114 @@
+.review-container{
+    width: 820px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+.review-guide-box{
+    text-decoration: none;
+    display: flex;
+    color: black;
+    padding: 20px;
+    border: 1px solid #ccc;    border-radius: 10px;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between;
+}
+.comm-editor__desc{
+    display: block;
+    font-size: 16px;
+    line-height: 1.1;
+    color: #777;
+}
+.review-guide-content{
+    margin-top: 20px;
+    border-radius: 10px;
+    min-height: 400px;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+.review-guide-tabs{
+    display: flex;
+    justify-content: center;
+}
+.review-guide-tab1{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background: #101d3d;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    border-radius: 10px;
+    color:white;
+    margin: 0px 20px 0px 20px;
+}
+.review-guide-tab2{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background: #ccc;
+    height: 100px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    color: #ec1a47;
+    margin: 0px 20px 0px 20px;
+}
+.review-guide-content > ul{
+    padding: 40px 0px 0px 20px;
+}
+.review-guide-content .dot-list.is-size-5 li {
+    font-size: 16px;
+    line-height: 1.5;
+    color: gray;
+    margin-bottom: 10px;
+}
+.review-img-box{
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.review-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.review-title{
+    height: auto;
+    padding-top: 0;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 30px;
+    margin: 10px 0px 30px 0px;
+}
+.review-content{
+    width: 100%;
+    border: 1px solid #ccc;
+    outline: none;
+    resize: unset;
+    min-height: 150px;
+    padding: 15px;
+    border-radius: 10px;
+}
+.review-form-btns{
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.btn-back, .btn-submit{
+    width: 50%;
+    height: 45px;
+    color: white;
+    margin: 0px 10px 0px 10px;
+}
+.btn-back{
+    background: #5D493E;
+}
+.btn-submit{
+    background: #735F4C;
+}
+

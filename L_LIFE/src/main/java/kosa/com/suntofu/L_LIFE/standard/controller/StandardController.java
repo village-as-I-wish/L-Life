@@ -38,4 +38,8 @@ public class StandardController {
     }
 
 
+    @GetMapping("/review")
+    public String loadReviewCreatePage(){
+        return "pages/standard/review";
+    }
 }
