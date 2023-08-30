@@ -28,7 +28,13 @@ public class StandardServiceImpl implements StandardService {
 
     @Override
     public List<StandardVo> getStandardByCategory(int fCategoryId) {
+
         return standardDAO.selectStandardCategory(fCategoryId);
     }
 
+    @Override
+    public List<StandardVo> getStandardProductByKeyword(String keyword) {
+
+        return standardDAO.searchStandardProductByKeyword(keyword);
+    }
 }

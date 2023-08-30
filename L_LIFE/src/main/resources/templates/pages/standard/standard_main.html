@@ -73,6 +73,15 @@
 
             <!-- 상품리스트 부분 -->
             <div class="sl-main-sub">
+                <!-- 스탠다드 상품 검색 -->
+                <form th:action="@{/standard/search}" method="get">
+                <div class="pl-search-box">
+                    <input type="text" name="keyword" placeholder="상품명으로 검색">
+                    <button type="submit" th:text="검색">
+                        <img class="search-icon" th:src="@{img/common/search.png}" />
+                    </button>
+                </div>
+                </form>
                 <span class="sl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
                 <ul>
                     <li>추천순</li>
@@ -85,13 +94,13 @@
                     <div class="sl-main-sub-product" th:each="standardList : ${standardList}">
                         <a th:href="@{/standard/1/detail}">
                             <div class="sl-main-sub-product-img col">
-                                <img alt="베너 사진1 " th:src="${standardList.fImgUrl}"/>
+                                <img alt="베너 사진1 " th:src="${standardList.lfImgMain}"/>
                             </div>
                             <div class="sl-main-sub-product-txt">
-                                <p th:text="${standardList.fName}">상품명</p>
+                                <p th:text="${standardList.lfName}">상품명</p>
                                 <hr style="margin: 3px 0px 10px 0px">
                                 <div class="d-flex sl-main-sub-product-price">
-                                    <span th:text="${standardList.fBrandName}">브랜드이름</span>
+                                    <span th:text="${standardList.lfBrandName}">브랜드이름</span>
                                     <div class="coin-img-box">
                                         <th:block
                                                 th:each="coins, stat : ${#numbers.sequence(1, standardList.lfStCoin)}">

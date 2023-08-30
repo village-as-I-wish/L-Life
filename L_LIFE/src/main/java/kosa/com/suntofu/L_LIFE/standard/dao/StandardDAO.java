@@ -12,5 +12,6 @@ public interface StandardDAO {
     List<StandardVo> selectAllStandard();
     List<StandardLiveVo> selectAllLiveStream();
     List<StandardVo> selectStandardCategory(int fCategoryId);
+    List<StandardVo> searchStandardProductByKeyword(String keyword);
 }
 
