@@ -36,13 +36,13 @@
                 <div class="pl-main-sub-product" th:each="product : ${premiumProducts}">
                     <a th:href="@{/premium/1/detail}">
                         <div class="pl-main-sub-product-img col">
-                            <img alt="베너 사진1 " th:src="${product.fImgUrl}"/>
+                            <img alt="베너 사진1 " th:src="${product.lfImgMain}"/>
                         </div>
                         <div class="pl-main-sub-product-txt">
-                            <p th:text="${product.fName}"></p>
+                            <p th:text="${product.lfName}"></p>
                             <hr style="margin: 3px 0px 10px 0px">
                             <div class="d-flex pl-main-sub-product-price">
-                                <span th:text="${product.fBrandName}"></span>
+                                <span th:text="${product.lfBrandName}"></span>
 
                                 <div class="coin-img-box">
                                     월

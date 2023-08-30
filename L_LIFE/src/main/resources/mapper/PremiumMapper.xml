@@ -5,30 +5,20 @@
 <mapper namespace="kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao">
     <!-- 프리미엄 상품 리스트 -->
     <select id="selectPremiumProductList">
-        SELECT f.f_id, fi.f_img_url, fb.f_brand_name, f.f_name, lf.lf_pr_price
-        FROM FurnitureImage fi
-        JOIN Furniture f
-        ON fi.f_id = f.f_id
-        JOIN FurnitureBrand fb
-        ON f.f_brand_id = fb.f_brand_id
-        JOIN LLifeFurniture lf
-        ON f.f_id = lf.f_id
-        WHERE lf.lf_sub_type = 1
-        AND fi.f_img_seq = 0
+        SELECT lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
+        FROM LLifeFurniture lf
+        JOIN LFurnitureBrand lfb
+        ON lf.lf_brand_id = lfb.lf_brand_id
+        WHERE lf_sub_type = 1
     </select>
 
     <!-- pagination 전체 상품 개수 구하기 -->
     <select id="selectProductCountPagination" resultType="_int">
         SELECT count(*)
-        FROM FurnitureImage fi
-        JOIN Furniture f
-        ON fi.f_id = f.f_id
-        JOIN FurnitureBrand fb
-        ON f.f_brand_id = fb.f_brand_id
-        JOIN LLifeFurniture lf
-        ON f.f_id = lf.f_id
-        WHERE lf.lf_sub_type = 1
-        AND fi.f_img_seq = 0
+        FROM LLifeFurniture lf
+        JOIN LFurnitureBrand lfb
+        ON lf.lf_brand_id = lfb.lf_brand_id
+        WHERE lf_sub_type = 1
     </select>
 
     <!-- pagination 카테고리별 상품 개수 구하기 -->
