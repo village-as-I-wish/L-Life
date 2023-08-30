@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface PremiumDao {
-    List<PremiumVo> selectPremiumProductList();
+    List<PremiumVo> selectPremiumProductList(PaginationVo paginationVo);
     int selectProductCountPagination(PaginationVo paginationVo);
 }

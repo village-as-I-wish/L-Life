@@ -10,6 +10,7 @@
         JOIN LFurnitureBrand lfb
         ON lf.lf_brand_id = lfb.lf_brand_id
         WHERE lf_sub_type = 1
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
     <!-- pagination 전체 상품 개수 구하기 -->

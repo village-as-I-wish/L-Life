@@ -16,18 +16,22 @@
             <i class="fa-solid fa-angle-left"></i>
         </button>
         <div class="links">
-            <a href="#" class="link active">1</a>
-            <a href="#" class="link">2</a>
-            <a href="#" class="link">3</a>
-            <a href="#" class="link">4</a>
-            <a href="#" class="link">5</a>
+            <th:block th:each="pageNum : ${#numbers.sequence(1, paginationNum)}">
+                <a th:href="@{/premium/main(page=${pageNum})}"
+                   th:class="${pageNum == page} ? 'link active' : 'link'">
+                    [[${pageNum}]]
+                </a>
+            </th:block>
         </div>
+
         <button class="button prevNext" id="next">
             <i class="fa-solid fa-angle-right"></i>
         </button>
         <button class="button" id="endBtn">
             <i class="fa-solid fa-angles-right"></i>
         </button>
+
+        <script th:src="@{/js/pagination/pagination.js}" defer="defer"></script>
     </div>
     </body>
 </div>
