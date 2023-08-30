@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface PremiumService {
 
-    List<PremiumVo> selectPremiumProductList();
+    List<PremiumVo> selectPremiumProductList(PaginationVo paginationVo);
     int selectProductCountPagination (PaginationVo paginationVo);
+    PaginationVo calculateAndSetOffset(PaginationVo paginationVo);
+    int calculatePaginationNum(int totalNum);
 }

@@ -31,11 +31,14 @@ public class PremiumController {
 
     @GetMapping("/main")
     public String loadPremiumMainPage(PaginationVo paginationVo, Model model){
-        List<PremiumVo> premiumProductList = premiumService.selectPremiumProductList();
+        List<PremiumVo> premiumProductList = premiumService.selectPremiumProductList(paginationVo);
         int totalNum = premiumService.selectProductCountPagination(paginationVo);
+        int paginationNum = premiumService.calculatePaginationNum(totalNum);
 
         model.addAttribute("premiumProducts", premiumProductList);
         model.addAttribute("totalNum", totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("page", paginationVo.getPage());
 
         return "pages/premium/premium_main";
     }
