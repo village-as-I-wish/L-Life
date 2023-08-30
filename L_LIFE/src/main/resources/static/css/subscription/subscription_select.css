@@ -84,19 +84,15 @@
 /*}*/
 
 /* 새롭게 디자인 한 페이지 css*/
-body{
-    background: #ece5da;
-}
+
 .ls-st-container{
     display: flex;
     height: 100%;
     justify-content: center;
 }
 .lf-st-section-1{
-    background: #ece5da;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 .lf-st-section-1 span{
     display: block;
@@ -104,7 +100,6 @@ body{
 .lf-st-sec1-banner-img{
     width: 22rem;
     height: auto;
-    margin-top: 10%;
 }
 .lt-st-sec1-txt{
     padding-left: 1.5rem;
@@ -225,7 +220,6 @@ body{
     font-weight: 100;
 }
 .lf-st-section-3{
-    background: #ece5da;
     position: relative;
     padding: 70px 0px 50px 0px;
     min-height: 500px;
