@@ -73,8 +73,9 @@
         WHERE
             lf.lf_sub_type = 0
         AND
-            (lfb.lf_brand_name LIKE '%' || #{keyword} || '%'
-            OR lf.lf_name LIKE '%' || #{keyword} || '%')
+            (UPPER(lfb.lf_brand_name) LIKE '%' || UPPER(#{keyword}) || '%'
+             OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
+
     </select>
 
     <!-- 상품(브랜드) 필터 -->
