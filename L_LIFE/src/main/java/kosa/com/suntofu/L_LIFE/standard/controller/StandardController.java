@@ -43,8 +43,8 @@ public class StandardController {
     }
 
     // 스탠다드 상품 카테고리별 필터링
-    @GetMapping("/category/{fCategoryId}")
-    public String getStandardByCategory(Model model, @PathVariable int fCategoryId) {
+    @GetMapping("/category/{lfSubType}/{fCategoryId}")
+    public String getStandardByCategory(Model model, @PathVariable int fCategoryId, @PathVariable int lfSubType) {
 
         model.addAttribute("lfSubType", lfSubType);
 
