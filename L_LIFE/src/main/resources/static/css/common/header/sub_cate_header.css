@@ -10,3 +10,12 @@
     display: inline-block;
     font-size: 22px;
 }
+.sub-cate-header *{
+    text-decoration: none;
+    color: #BBBBBB;
+}
+
+.sub-cate-header *:hover{
+    text-decoration: none;
+    color: #333333;
+}
