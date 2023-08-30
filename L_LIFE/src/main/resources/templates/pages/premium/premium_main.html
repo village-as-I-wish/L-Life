@@ -8,55 +8,56 @@
 
 </head>
 <body>
-    <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
-    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
-    <th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment()"></th:block>
+<th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment()"></th:block>
 
 
-    <div class="sl-top-banner">
-        <img alt="베너 사진1 " th:src="@{/img/premium/list_top_banner.png}"/>
-    </div>
+<div class="sl-top-banner">
+    <img alt="베너 사진1 " th:src="@{/img/premium/list_top_banner.png}"/>
+</div>
 
-    <div class="pl-main-content">
-        <th:block th:replace="common/fragment/sidebar/product_filter_sidebar :: productFilterSidebar()"></th:block>
-        <div class="pl-main-products">
-            <div class="pl-search-box">
-                <input type="text" placeholder="상품명으로 검색">
-            </div>
-            <div class="pl-main-sub">
-                <span class="pl-main-sub-products-txt"> <span class="txt-pink" th:text="${totalNum}"> </span> 개의 상품이 있습니다. </span>
-                <ul>
-                    <li> 추천순</li>
-                    <li> 신상품순</li>
-                    <li> 낮은포인트순</li>
-                    <li> 높은포인트순</li>
-                    <li> 평점높은순</li>
-                </ul>
-                <div class="pl-main-sub-products">
-                    <div class="pl-main-sub-product" th:each="product : ${premiumProducts}">
-                        <a th:href="@{/premium/1/detail}">
-                            <div class="pl-main-sub-product-img col">
-                                <img alt="베너 사진1 " th:src="${product.fImgUrl}"/>
-                            </div>
-                            <div class="pl-main-sub-product-txt">
-                                <p th:text="${product.fName}"></p>
-                                <hr style="margin: 3px 0px 10px 0px">
-                                <div class="d-flex pl-main-sub-product-price">
-                                    <span th:text="${product.fBrandName}"></span>
+<div class="pl-main-content">
+    <th:block th:replace="common/fragment/sidebar/product_filter_sidebar :: productFilterSidebar()"></th:block>
+    <div class="pl-main-products">
+        <div class="pl-search-box">
+            <input type="text" placeholder="상품명으로 검색">
+        </div>
+        <div class="pl-main-sub">
+            <span class="pl-main-sub-products-txt"> <span class="txt-pink" th:text="${totalNum}"> </span> 개의 상품이 있습니다. </span>
+            <ul>
+                <li> 추천순</li>
+                <li> 신상품순</li>
+                <li> 낮은포인트순</li>
+                <li> 높은포인트순</li>
+                <li> 평점높은순</li>
+            </ul>
+            <div class="pl-main-sub-products">
+                <div class="pl-main-sub-product" th:each="product : ${premiumProducts}">
+                    <a th:href="@{/premium/1/detail}">
+                        <div class="pl-main-sub-product-img col">
+                            <img alt="베너 사진1 " th:src="${product.fImgUrl}"/>
+                        </div>
+                        <div class="pl-main-sub-product-txt">
+                            <p th:text="${product.fName}"></p>
+                            <hr style="margin: 3px 0px 10px 0px">
+                            <div class="d-flex pl-main-sub-product-price">
+                                <span th:text="${product.fBrandName}"></span>
 
-                                    <div class="coin-img-box">
-                                        월
-                                        <span th:text="${product.lfPrPrice}"></span>
-                                    </div>
+                                <div class="coin-img-box">
+                                    월
+                                    <span th:text="${product.lfPrPrice}"></span>
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
+            <div>
+                <div th:replace="common/fragment/pagination/pagination :: paginationFragment"></div>
+            </div>
         </div>
-
-
     </div>
+</div>
 </body>
 </html>
