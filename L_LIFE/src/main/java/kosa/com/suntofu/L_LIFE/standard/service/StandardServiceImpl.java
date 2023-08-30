@@ -25,4 +25,10 @@ public class StandardServiceImpl implements StandardService {
 
         return standardDAO.selectAllLiveStream();
     }
+
+    @Override
+    public List<StandardVo> getStandardByCategory(int fCategoryId) {
+        return standardDAO.selectStandardCategory(fCategoryId);
+    }
+
 }

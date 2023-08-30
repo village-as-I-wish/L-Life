@@ -8,4 +8,5 @@ import java.util.List;
 public interface StandardService {
     List<StandardVo> getAllStandard();
     List<StandardLiveVo> getAllLiveStream();
+    List<StandardVo> getStandardByCategory(int fCategoryId);
 }
