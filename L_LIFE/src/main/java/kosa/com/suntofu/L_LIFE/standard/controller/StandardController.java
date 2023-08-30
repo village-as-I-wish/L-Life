@@ -74,7 +74,7 @@ public class StandardController {
         model.addAttribute("now", LocalDateTime.now());
 
         List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
-        model.addAttribute("stkeyword", stkeyword);
+        model.addAttribute("standardList", stkeyword);
 
         return "pages/standard/standard_main";
     }
