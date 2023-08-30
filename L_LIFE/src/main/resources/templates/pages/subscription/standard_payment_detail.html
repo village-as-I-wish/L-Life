@@ -6,6 +6,18 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/subscription/standard_payment_detail.css}"/>
     <script th:src="@{/js/subscription/standard_payment_detail.js}" type="text/javascript"></script>
 
+    <!-- iamport 결제 -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+    <!-- Toss payments -->
+    <script type="text/javascript" src="https://js.tosspayments.com/v1"></script>
+
+    <!-- js -->
+    <script th:inline="javascript">
+        var payKeys = /*[[${payKeys}]]*/ null;
+    </script>
+    <script th:src="@{/js/subscription/standard_payment_detail.js}" type="text/javascript"></script>
+
 </head>
 <body>
 <header>
@@ -105,28 +117,28 @@
             </div>
             <div class="payment-btn-group" role="group" >
                 <!-- 네이버 페이 -->
-                <input type="radio" class="btn-check radio npay" name="btnradio2" id="pay-method-naver" autocomplete="off">
+                <input type="radio" class="btn-check radio npay" name="payment-method" id="pay-method-naver" autocomplete="off" value="naver">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-naver">
                     <i class="icon-npay"></i>
                 </label>
 
                 <!-- 삼성페이 -->
-                <input type="radio" class="btn-check radio samsungpay" name="btnradio2" id="pay-method-samsung" autocomplete="off">
+                <input type="radio" class="btn-check radio samsungpay" name="payment-method" id="pay-method-samsung" autocomplete="off" value="samsung">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-samsung">
                     <i class="icon-samsungpay"></i>
                 </label>
 
-                <input type="radio" class="btn-check radio kakaopay" name="btnradio2" id="pay-method-kakao" autocomplete="off">
+                <input type="radio" class="btn-check radio kakaopay" name="payment-method" id="pay-method-kakao" autocomplete="off" value="kakao">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-kakao">
                     <i class="icon-kakaopay"></i>
                 </label>
 
-                <input type="radio" class="btn-check radio tosspay" name="btnradio2" id="pay-method-toss" autocomplete="off">
+                <input type="radio" class="btn-check radio tosspay" name="payment-method" id="pay-method-toss" autocomplete="off" value="toss">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-toss">
                     <i class="icon-tosspay"></i>
                 </label>
 
-                <input type="radio" class="btn-check radio payco" name="btnradio2" id="pay-method-payco" autocomplete="off">
+                <input type="radio" class="btn-check radio payco" name="payment-method" id="pay-method-payco" autocomplete="off" value="payco">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-payco">
                     <i class="icon-payco"></i>
                 </label>
@@ -195,7 +207,7 @@
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
                 </span>
 
-                    <button class="payment-button" th:color="white">결제하기</button>
+                    <button class="payment-button"  th:color="white">결제하기</button>
             </div>
         </div>
 
