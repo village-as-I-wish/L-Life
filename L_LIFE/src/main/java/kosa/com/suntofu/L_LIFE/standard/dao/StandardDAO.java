@@ -11,5 +11,6 @@ import java.util.List;
 public interface StandardDAO {
     List<StandardVo> selectAllStandard();
     List<StandardLiveVo> selectAllLiveStream();
+    List<StandardVo> selectStandardCategory(int fCategoryId);
 }
 

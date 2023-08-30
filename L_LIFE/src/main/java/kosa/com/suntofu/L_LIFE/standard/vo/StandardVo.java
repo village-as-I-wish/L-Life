@@ -19,6 +19,6 @@ public class StandardVo {
     private String fBrandName; //브랜드이름
     private Integer fMoodId;
     private Integer fBrandId;
-    private Integer fCategroyId;
+    private Integer fCategoryId;  // 카테고리 별 필터링
 }
 
