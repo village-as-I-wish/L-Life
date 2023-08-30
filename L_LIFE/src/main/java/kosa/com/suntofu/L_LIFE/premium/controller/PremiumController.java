@@ -1,10 +1,15 @@
 package kosa.com.suntofu.L_LIFE.premium.controller;
 
 import kosa.com.suntofu.L_LIFE.premium.service.PremiumService;
+import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,9 +27,16 @@ public class PremiumController {
     public String loadPremiumPackageDetail(){
         return "pages/premium/premium_package_detail";
     }
+//-------------------------------------------------------------------------------------------------------
 
     @GetMapping("/main")
-    public String loadPremiumMainPage(){
+    public String loadPremiumMainPage(PaginationVo paginationVo, Model model){
+        List<PremiumVo> premiumProductList = premiumService.selectPremiumProductList();
+        int totalNum = premiumService.selectProductCountPagination(paginationVo);
+
+        model.addAttribute("premiumProducts", premiumProductList);
+        model.addAttribute("totalNum", totalNum);
+
         return "pages/premium/premium_main";
     }
     @GetMapping("/{productId}/detail")

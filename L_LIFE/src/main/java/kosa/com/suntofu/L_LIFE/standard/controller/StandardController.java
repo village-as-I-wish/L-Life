@@ -1,20 +1,24 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/standard")
 public class StandardController {
 
-    /*
-        스탠다드 구독관 메인 ( 리스트 ) 페이지
-     */
     private final StandardService standardService;
 
     /**
@@ -22,8 +26,23 @@ public class StandardController {
      * @param model
      * @return String
      */
+
     @GetMapping("")
-    public String loadStandardMainPage(Model model){
+    public String loadStandardMainPage(Model model) {
+        // 메인 상품 리스트 가져오기
+        List<StandardVo> standardList = standardService.getAllStandard();
+        model.addAttribute("standardList", standardList);
+        System.out.println(standardList);
+
+        // 라이브 리스트 가져오기
+        List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
+        model.addAttribute("standardLiveList", standardLiveList);
+        System.out.println(standardLiveList);
+
+        // 현재 날짜와 시간 가져오기
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("now", LocalDateTime.now());
+        System.out.println("시간!!!!" + now);
         return "pages/standard/standard_main";
     }
 

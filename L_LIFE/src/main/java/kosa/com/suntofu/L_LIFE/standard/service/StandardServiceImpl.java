@@ -1,7 +1,8 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardVO;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +10,19 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class StandardServiceImpl implements StandardService{
+public class StandardServiceImpl implements StandardService {
 
     private final StandardDAO standardDAO;
-    public List<StandardVO> getAllStandard() {
+
+    @Override
+    public List<StandardVo> getAllStandard() {
+
         return standardDAO.selectAllStandard();
     }
 
+    @Override
+    public List<StandardLiveVo> getAllLiveStream() {
 
+        return standardDAO.selectAllLiveStream();
+    }
 }

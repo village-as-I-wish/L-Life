@@ -97,23 +97,23 @@ th, td {
 }
 
 th {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-color: #f2f2f2;
     font-weight: bold;
 }
 
 .table-td{
     padding-top: 20px;
+    vertical-align: middle;
 }
 
 .st-payment-subscript-table{
-    padding-bottom: 30px;
 }
 
 .st-payment-section {
     display: flex;
-    flex-direction: row;
+    position: relative;
 }
 
 .st-payment-method,
@@ -154,7 +154,7 @@ th {
     font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 18px;
 }
 
 h5{
@@ -190,19 +190,26 @@ h5{
 }
 
 .final-price-num {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding-bottom: 20px;
-
+    bottom: 35px;
+    right: 30px;
+    color: #ed2650;
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 10px 0px 10px;
 }
 
 
 .payment-button{
-    background-color: #5D493F;
+    background-color: #ed2650;
     color: white;
     width: 100%;
     height: 50px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
 }
 
 .bold-text{
@@ -223,4 +230,145 @@ h5{
 .card-interest-free-hr{
     margin-right: 20px !important;
 }
+.payment-btn-group{
+    display: flex;
+}
+.payment-btn-group > label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    margin-right: 7px;
+    width:20%;
+    padding : 0;
+}
+/* 결제 관련 아이콘 */
 
+.icon-npay{
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -71px -553px;
+    width: 61px;
+    height: 24px;
+}
+
+.payment-btn-group > .npay:checked +label i {
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: 0px -553px !important;
+    width: 61px;
+    height: 24px;
+}
+
+.icon-samsungpay{
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -250px -387px;
+    width: 138px;
+    height: 20px;
+}
+.payment-btn-group > .samsungpay:checked +label i {
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -103px -387px;
+    width: 138px;
+    height: 20px;
+}
+.icon-kakaopay{
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -393px -510px;
+    width: 55px;
+    height: 17px;
+}
+.payment-btn-group > .kakaopay:checked +label i {
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -328px -510px;
+    width: 55px;
+    height: 17px;
+}
+.icon-tosspay{
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -399px -440px;
+    width: 106px;
+    height: 20px;
+}
+
+.payment-btn-group > .tosspay:checked +label i {
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -398px -387px;
+    width: 106px;
+    height: 20px;
+}
+.icon-payco{
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -63px -510px;
+    width: 82px;
+    height: 19px;
+}
+.payment-btn-group > .payco:checked +label i {
+    background-image: url(../../img/common/l_life_icons.png);
+    background-position: -247px -510px;
+    width: 71px;
+    height: 17px;
+}
+.st-payment-promotion-section{
+    width: 100%;
+    height: 138px;
+    background: #f9f9f9;
+    bottom: 0px;
+    position: absolute;
+    padding: 32px 36px;
+}
+.payment-info-wrap--title {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 13px;
+}
+.payment-info-wrap--info .dot-list li {
+    color: #999;
+    font-size: 13px;
+    word-break: keep-all;
+    margin-bottom: 8px;
+}
+.final-point{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -8px;
+    padding-right: 9px;
+}
+.final-point > span{
+    font-size: 14px;
+    color: gray;
+}
+.tb-prodcut-info-box{
+    width:40%;
+}
+.table-td-product-info{
+    display: flex;
+}
+.table-td-product-info img{
+    width: 100px;
+    height: auto;
+}
+.table-td-product-info-txt{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 10px 0px 0px 20px;
+    align-items: flex-start;
+}
+.table-td-product-info-txt > span:first-child{
+    border: 1px solid black;
+    padding: 6px;
+    border-radius: 5px;
+    margin-bottom: 13px;
+    font-weight: bold;
+}
+.table-td-product-info-txt > span{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: gray;
+}
+.st-payment-subscript{
+    margin-bottom: 40px;
+}

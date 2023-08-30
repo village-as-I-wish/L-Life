@@ -4,14 +4,15 @@
     <th:block th:replace="common/fragment/commonHead"></th:block>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/subscription/premium_payment_detail.css}"/>
+    <script th:src="@{/js/subscription/premium_payment_detail.js}" type="text/javascript"></script>
 
 </head>
 <body>
 <header>
     <div class="header-main">
-        <div class="header-logo">
+        <a th:href="@{/main}" class="header-logo">
             <img th:src="@{/img/header/logo_l_life_b.png}"/>
-        </div>
+        </a>
     </div>
 </header>
 <div class="hd__inner1100">
@@ -50,94 +51,8 @@
             </div>
         </div>
     </div>
-
-
     <hr class="hr">
 
-    <div class="st-payment-delivery-section">
-        <div class="delivery-title">
-            <div class="sub-title">
-                배송지 정보
-            </div>
-            <div class="delivery-info-option">
-                <input type="radio" id="same" name="delivery-info" value="same">
-                <label for="same" style="margin-right: 15px">주문자와 동일</label>
-
-                <input type="radio" id="direct" name="delivery-info" value="direct">
-                <label for="direct">직접입력</label>
-            </div>
-        </div>
-
-
-    </div>
-
-    <div class="st-payment">
-        <div class="st-payment-user">
-            <div class="st-payment-username-title">
-                    <span class="st-payment-row"> * </span>
-                    <span> 받는사람 </span>
-            </div>
-            <div class="st-payment-username-content">
-                <input type="text" class="st-payment-username-input">
-
-            </div>
-        </div>
-
-        <div class="st-payment-tel">
-            <div class="st-payment-tel-title">
-                <span class="st-payment-row"> * </span>
-                <span> 휴대폰 번호 </span>
-            </div>
-            <div class="st-payment-tel-content">
-                <select class="st-payment-tel-input">
-                    <option value="010">010</option>
-                    <option value="011">011</option>
-                    <option value="017">017</option>
-                </select>
-                <input th:type="text" class="st-payment-tel-input">
-                <input th:type="text" class="st-payment-tel-input">
-            </div>
-        </div>
-    </div>
-
-    <div class="delivery-info">
-
-        <div class="delivery-destination">
-            <div class="delivery-destination-title">
-                <span class="st-payment-row"> * </span>
-                <span> 배송주소 </span>
-            </div>
-            <div class="delivery-destination-content">
-                <input type="text" id="zip_code" class="delivery-destination-num">
-                <button class="delivery-destination-find-btn" onclick="daumAddress()">우편번호 확인</button>
-                <div class="delivery-destination-content-input">
-                    <input type="text" id="addr" disabled><br>
-                    <input type="text" id="addr_dtl" placeholder="상세 주소 입력">
-                </div>
-            </div>
-        </div>
-
-
-        <div class="delivery-request">
-            <div class="delivery-request-title">
-                <span class="delivery-request-title-name"> 배송요청사항 </span>
-            </div>
-            <div class="delivery-request-content">
-                <select class="delivery-request-option">
-                    <option value="direct_input">직접입력</option>
-                    <option value="opt1">opt1</option>
-                    <option value="opt2">opt2</option>
-                </select>
-                <br>
-                <input class="delivery-request-textarea" placeholder="직접입력(설치 기사님에게 전할 말씀을 50자 이내로 남겨주세요)">
-            </div>
-        </div>
-
-
-    </div>
-
-
-    <hr class="hr">
     <div class="st-payment-subscript">
         <div class="sub-title">
             주문 상품
@@ -145,27 +60,105 @@
         <div class="st-payment-subscript-table">
             <table>
                 <tr>
-                    <th class="bold-text">상품명/옵션정보</th>
+                    <th class="bold-text">상품명 / 옵션정보</th>
                     <th class="bold-text">수량</th>
                     <th class="bold-text">판매가</th>
-                    <th class="bold-text">배송정보</th>
+                    <th class="bold-text">구독기간</th>
+                    <th class="bold-text">최종구매가</th>
                 </tr>
                 <tr>
-                    <td class="table-td">
-                        <img th:src="@{/img/standard/live-box-sample.png}" style="height: 100px"/>
-                        소윤이 귀여워
+                    <td class="table-td tb-prodcut-info-box">
+                        <div class="table-td-product-info">
+                            <img alt="스탠다드 33" th:src="@{/img/subscription/standard_33.png}"/>
+                            <div class="table-td-product-info-txt">
+                                <span> 리바트 라이프</span>
+                                <span> L-Life 스탠다드 33 구독권</span>
+                            </div>
+                        </div>
                     </td>
                     <td class="table-td">1</td>
-                    <td class="table-td">89,000원</td>
-                    <td class="table-td">직접 배송 (무료)</td>
+                    <td class="table-td"> 33000원</td>
+                    <td class="table-td"> 2023.08.14 - 2023.09.13</td>
+                    <td class="table-td"> 33000원</td>
+
                 </tr>
             </table>
         </div>
     </div>
 
+    <hr class="hr">
 
+    <!-- 배송 선택  -->
+    <div class="pr-delivery-section">
+        <div class="sub-title">
+            직접배송 상품 주문
+            <span class="sub-title-sub-txt"> 직접배송 상품(가구 등)의 배송 및 설치를 위해 아래 사항을 선택해주세요. 선택하신 사항에 따라 배송 전 등록된 연락처로 안내를 드릴 예정입니다. </span>
+        </div>
+        <div class="pr-delivery-box">
+            <div class="pr-delivery-box-txt">
+                <span class="st-payment-row"> * </span>
+                <span> 희망 배송일 </span>
+            </div>
+            <div class="pr-delivery-content">
+                <button type="button" class="delivery-modal-btn" data-bs-toggle="modal" data-bs-target="#deliveryModal">
+                    배송일 선택
+                </button>
+                <p>희망 배송일을 선택해주세요.(배송 시간 및 기타 안내는 배송 전 연락 드릴 예정입니다.) </p>
+                <p class="txt-pink">입점 브랜드는 업체에서 직접 배송하는 상품으로 배송일 지정이 불가한 점 양해 부탁드립니다.</p>
+                <!-- Modal -->
+                <div class="modal fade" id="deliveryModal" tabindex="-1" aria-labelledby="deliveryModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="deliveryModalLabel"> 희망 배송일 선택</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="delivery-sub-txt"> 배송 시간 및 기타 안내는 배송 전 연락드릴 예정입니다. 희망일 선택 후, 시간대를 선택하세요.</p>
 
+                                <div class="modal-inner">
+                                    <div class="calendar-box">
+                                        <div class="calendar-header">
+                                            <i class="fa-solid fa-chevron-left go-prev"></i>
+                                            <span class="year-month"></span>
+                                            <i class="fa-solid fa-chevron-right go-next"></i>
+                                        </div>
+                                        <div class="calendar" th:utext="${calendarHTML}">
+                                        </div>
+                                    </div>
+                                    <div class="time-select-box">
+                                        <p> 배송 희망 시간대를 선택해주세요.</p>
+                                        <div class="time-btn-group">
+                                            <button class="time-btn" data-value="all-day">종일</button>
+                                            <button class="time-btn" data-value="morning">오전</button>
+                                            <button class="time-btn" data-value="afternoonA">오후A</button>
+                                            <button class="time-btn" data-value="afternoonB">오후B</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="delivery-notice">
+                                    <strong class="delivery-notice-title">배송 전 유의사항</strong>
+                                    <ul class="dot-list">
+                                        <li>오후A·B타입은 12~19시 사이에 이루어집니다.</li>
+                                        <li>최대한 고객님 요청시간에 방문드리나, 당일 배송코스 및 다른 고객님의 설치환경에 따라 방문시간이 변경될 수도 있습니다.</li>
+                                        <li>퇴근배송의 경우, 장거리 및 외각지역에 따라 일정이 변경될 수 있습니다.</li>
+                                        <li style="color: red;">입점 브랜드는 업체에서 직접 배송하는 상품으로 배송일 지정이 불가한 점 양해 부탁드립니다.</li>
+                                    </ul>
+                                </div>
+                            </div>
 
+                            <div class="modal-footer">
+                                <button type="button" class="btn-close modal-save-btn"> 선택완료</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <hr class="hr">
     <div class="st-payment-section">
 
@@ -183,36 +176,55 @@
                 <input type="radio" class="btn-check" name="btnradio" id="pay-method-1-3" autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-1-3">가상계좌</label>
             </div>
-
-            <div class="btn-group" role="group">
-                <input type="radio" class="btn-check" name="btnradio2" id="pay-method-naver" autocomplete="off" checked>
+            <div class="payment-btn-group" role="group">
+                <!-- 네이버 페이 -->
+                <input type="radio" class="btn-check radio npay" name="btnradio2" id="pay-method-naver"
+                       autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-naver">
-                    <img th:src="@{/img/subscription/payment_icon/i.icon-npay.png}"/>
+                    <i class="icon-npay"></i>
                 </label>
 
-                <input type="radio" class="btn-check" name="btnradio2" id="pay-method-samsung" autocomplete="off">
+                <!-- 삼성페이 -->
+                <input type="radio" class="btn-check radio samsungpay" name="btnradio2" id="pay-method-samsung"
+                       autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-samsung">
-                    <img th:src="@{/img/subscription/payment_icon/i.icon-samsungpay.png}"/>
+                    <i class="icon-samsungpay"></i>
                 </label>
 
-                <input type="radio" class="btn-check" name="btnradio2" id="pay-method-kakao" autocomplete="off">
+                <input type="radio" class="btn-check radio kakaopay" name="btnradio2" id="pay-method-kakao"
+                       autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-kakao">
-                    <img th:src="@{/img/subscription/payment_icon/i.icon-kakaopay.png}"/>
+                    <i class="icon-kakaopay"></i>
                 </label>
 
-                <input type="radio" class="btn-check" name="btnradio2" id="pay-method-toss" autocomplete="off">
+                <input type="radio" class="btn-check radio tosspay" name="btnradio2" id="pay-method-toss"
+                       autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-toss">
-                    <img th:src="@{/img/subscription/payment_icon/i.icon-tosspay.png}"/>
+                    <i class="icon-tosspay"></i>
                 </label>
 
-                <input type="radio" class="btn-check" name="btnradio2" id="pay-method-payco" autocomplete="off">
+                <input type="radio" class="btn-check radio payco" name="btnradio2" id="pay-method-payco"
+                       autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-payco">
-                    <img th:src="@{/img/subscription/payment_icon/i.icon-payco.png}"/>
+                    <i class="icon-payco"></i>
                 </label>
 
             </div>
-            <div class="card-interest-free">카드 무이자 혜택 (?)</div>
+            <div class="card-interest-free">결제 이용안내</div>
             <hr class="hr card-interest-free-hr">
+
+            <div class="st-payment-promotion-section">
+                <div id="kakaopay-info" class="payment-info-wrap clear" style="display: block;">
+                    <p class="payment-info-wrap--title">카카오페이 이용안내</p>
+                    <div class="payment-info-wrap--info fl">
+                        <ul class="dot-list">
+                            <li>카카오페이 간편결제 혜택 및 할부 적용 여부는 해당 카드사 정책에 따라 변경될 수 있습니다.</li>
+                            <li>자세한 내용은 카카오페이에서 제공하는 카드사별 정책을 확인해주세요.</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -249,45 +261,28 @@
                     <div class="final-price-num text-lg bold-text">
                         33,000원
                     </div>
+                    <hr>
+                    <div class="final-point">
+                        <span> 적립 예정 H-point</span>
+                        <span> 1000 P </span>
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <input type="checkbox" class="agreement-checkbox">
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
                     </span>
 
-                    <div class="card-body">
-                        <button class="payment-button" th:color="white">결제 하기</button>
-                    </div>
+                    <button class="payment-button" th:color="white">결제하기</button>
                 </div>
             </div>
 
         </div>
-
-    </div>
     </div>
 
-</body>
+</div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    function daumAddress() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var addr = '';
-                if (data.userSelectedType === 'R') {
-                    addr = data.roadAddress;
-                } else {
-                    addr = data.jibunAddress;
-                }
+</body>
 
-                $("#zip_code").val(data.zonecode);
-                $("#addr").val(addr);
-                $("#addr_dtl").val("");
-                $("#addr_dtl").focus();
-            }
-        }).open();
-    }
-
-</script>
 </html>

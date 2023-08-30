@@ -5,6 +5,7 @@
     <title>L-Life Standard</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/standard/standard_main.css}"/>
+
 </head>
 <body>
 <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
@@ -24,78 +25,83 @@
         <div class="sl-main-live">
             <img alt="베너 사진1 " th:src="@{/img/standard/l-life-live-logo.png}"/>
 
-            <div class="sl-main-live-products">
-                    <!-- 방송 시작전 -->
-                        <a th:href="@{/livestream}" class="sl-live-box" th:each="i : ${#numbers.sequence(1, 2)}">
-                            <img alt="베너 사진1 " th:src="@{/img/standard/live-box-sample.png}"/>
-                            <div class="overlay">
-                                <p class="sl-live-box-day-txt"> 8월 28일</p>
-                                <p class="sl-live-box-time-txt"> 20 : 00 </p>
-                                <div class="share-btn-box">
-                                    <i class="fa-solid fa-share-nodes"></i>
-                                    <span class="share-btn-txt">
-                                        방송 공유하기
-                                    </span>
-                                </div>
+            <div class="sl-main-live-products" th:each="LiveList : ${standardLiveList}">
 
-                            </div>
-                            <p> ❤️ 리바트 LIVE ❤️ 주방 라이브</p>
-                            <div class="sl-live-box-user">
-                                <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
-                                <span> 리바트 라이프 </span>
-                            </div>
-                        </a>
-                    <!-- 방송 시작 후 -->
+                <!-- 방송 시작전 -->
+                <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isBefore(LiveList.lStreamTime)}">
 
-                    <a class="sl-live-box" th:each="i : ${#numbers.sequence(1, 2)}">
-                        <img alt="베너 사진1 " th:src="@{/img/standard/live-box-sample.png}"/>
-                        <div class="sl-live-box-info d-flex">
-                            <img class="sl-live-box-info-img" th:src="@{/img/standard/live-box-sample.png}"/>
-                            <div class="sl-live-box-info-title">
-                                <span> 가드니아 주방</span>
-                                <div class="coin-img-box">
-                                    <img class="coin-img" th:src="@{/img/standard/coin.png}" th:each="i : ${#numbers.sequence(1, 3)}">
-                                </div>
+                    <img alt="베너 사진1 " th:src="${LiveList.lfPackageImg}"/>
+                    <div class="overlay">
+                        <p class="sl-live-box-day-txt" th:text="${LiveList.streamDate}"></p>
+                        <p class="sl-live-box-time-txt" th:text="${LiveList.streamTime}"></p>
+                        <div class="share-btn-box">
+                            <i class="fa-solid fa-share-nodes"></i>
+                            <span class="share-btn-txt">방송 공유하기</span>
+                        </div>
+
+                    </div>
+                    <p th:text="${LiveList.lStreamName}">라이브제목</p>
+                    <div class="sl-live-box-user">
+                        <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
+                        <span> 리바트 라이프 </span>
+                    </div>
+                </a>
+
+                <!-- 방송 시작 후 -->
+                <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isAfter(LiveList.lStreamTime)}">
+                    <img alt="베너 사진1" th:src="${LiveList.lfPackageImg}"/>
+                    <div class="sl-live-box-info d-flex">
+                        <img class="sl-live-box-info-img" th:src="@{/img/standard/live-box-sample.png}"/>
+                        <div class="sl-live-box-info-title">
+                            <span th:text="${LiveList.lfPackageName}">패키지이름</span>
+                            <div class="coin-img-box">
+                                <th:block th:each="coins, stat : ${#numbers.sequence(1, LiveList.lfPackageStCoin)}">
+                                    <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                                </th:block>
                             </div>
                         </div>
-                        <p> ❤️ 리바트 LIVE ❤️ 주방 라이브</p>
-                        <div class="sl-live-box-user">
-                            <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
-                            <span> 리바트 라이프 </span>
-                        </div>
-                    </a>
-        </div>
+                    </div>
+                    <p th:text="${LiveList.lStreamName}">라이브제목</p>
+                    <div class="sl-live-box-user">
+                        <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
+                        <span> 리바트 라이프 </span>
+                    </div>
+                </a>
+            </div>
 
-        <div class="sl-main-sub">
-            <span class="sl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
-            <ul>
-                <li> 추천순</li>
-                <li> 신상품순</li>
-                <li> 낮은포인트순</li>
-                <li> 높은포인트순</li>
-                <li> 평점높은순</li>
-            </ul>
-            <div class="sl-main-sub-products">
-                    <div class="sl-main-sub-product" th:each="i : ${#numbers.sequence(1, 10)}">
+            <div class="sl-main-sub">
+                <span class="sl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
+                <ul>
+                    <li>추천순</li>
+                    <li>신상품순</li>
+                    <li>낮은포인트순</li>
+                    <li>높은포인트순</li>
+                    <li>평점높은순</li>
+                </ul>
+                <div class="sl-main-sub-products">
+                    <div class="sl-main-sub-product" th:each="standardList : ${standardList}">
                         <a th:href="@{/standard/1/detail}">
                             <div class="sl-main-sub-product-img col">
-                                <img alt="베너 사진1 " th:src="@{/img/standard/main_product_sample.png}"/>
+                                <img alt="베너 사진1 " th:src="${standardList.fImgUrl}"/>
                             </div>
                             <div class="sl-main-sub-product-txt">
-                                <p> [리바트] 오브니 패브릭 4인 소파 와이드</p>
+                                <p th:text="${standardList.fName}">상품명</p>
                                 <hr style="margin: 3px 0px 10px 0px">
                                 <div class="d-flex sl-main-sub-product-price">
-                                    <span> 리바트 </span>
+                                    <span th:text="${standardList.fBrandName}">브랜드이름</span>
                                     <div class="coin-img-box">
-                                        <img class="coin-img" th:src="@{/img/standard/coin.png}" th:each="i : ${#numbers.sequence(1, 3)}">
+                                        <th:block
+                                                th:each="coins, stat : ${#numbers.sequence(1, standardList.lfStCoin)}">
+                                            <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                                        </th:block>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 </body>
