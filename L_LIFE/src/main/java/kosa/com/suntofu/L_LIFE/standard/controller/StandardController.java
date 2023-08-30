@@ -19,15 +19,13 @@ import java.util.List;
 public class StandardController {
 
     private final StandardService standardService;
-
-    /**
-     * 스탠다드 구독관 메인 ( 리스트 ) 페이지 로드
-     * @param model
-     * @return String
-     */
+    private int lfSubType = 0;
 
     @GetMapping("")
     public String loadStandardMainPage(Model model) {
+
+        model.addAttribute("lfSubType", lfSubType);
+
         // 메인 상품 리스트 가져오기
         List<StandardVo> standardList = standardService.getAllStandard();
         model.addAttribute("standardList", standardList);
@@ -47,7 +45,8 @@ public class StandardController {
     // 스탠다드 상품 카테고리별 필터링
     @GetMapping("/category/{fCategoryId}")
     public String getStandardByCategory(Model model, @PathVariable int fCategoryId) {
-        System.out.println("fCategoryId" + fCategoryId);
+
+        model.addAttribute("lfSubType", lfSubType);
 
         List<StandardVo> standardList = standardService.getStandardByCategory(fCategoryId);
         model.addAttribute("standardList", standardList);
