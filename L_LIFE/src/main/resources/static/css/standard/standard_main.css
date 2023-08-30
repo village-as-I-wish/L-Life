@@ -232,3 +232,30 @@
     border: 2px solid gray;
     margin-bottom: 40px;
 }
+
+.pl-search-box {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.pl-search-box > input {
+    height: 41px;
+    background: white;
+    border: 1px solid #5D493E;
+    border-radius: 15px;
+    color: black;
+    width: 500px;
+    padding-left: 15px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 22px;
+    width: auto;
+}
