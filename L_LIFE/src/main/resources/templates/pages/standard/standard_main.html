@@ -73,10 +73,15 @@
 
             <!-- 상품리스트 부분 -->
             <div class="sl-main-sub">
+                <!-- 스탠다드 상품 검색 -->
+                <form th:action="@{/standard/search}" method="get">
                 <div class="pl-search-box">
-                    <input type="text" placeholder="상품명으로 검색">
-                    <img class="search-icon" th:src="@{img/common/search.png}" />
+                    <input type="text" name="keyword" placeholder="상품명으로 검색">
+                    <button type="submit" th:text="검색">
+                        <img class="search-icon" th:src="@{img/common/search.png}" />
+                    </button>
                 </div>
+                </form>
                 <span class="sl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
                 <ul>
                     <li>추천순</li>

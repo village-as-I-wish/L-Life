@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -59,6 +60,24 @@ public class StandardController {
         return "pages/standard/standard_main";
     }
 
+
+    // 스탠다드 상품 검색
+    @GetMapping("/search")
+    public String getStandardProductByKeyword(@RequestParam String keyword, Model model) {
+
+        model.addAttribute("lfSubType", lfSubType);
+
+        List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
+        model.addAttribute("standardLiveList", standardLiveList);
+
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("now", LocalDateTime.now());
+
+        List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
+        model.addAttribute("stkeyword", stkeyword);
+
+        return "pages/standard/standard_main";
+    }
 
     /**
      * 스탠다드 구독관 제품 상세 페이지 로드
