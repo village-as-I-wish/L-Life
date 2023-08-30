@@ -16,9 +16,8 @@ footer{
 
 }
 .footer-top{
-    min-height: 116px;
+    min-height: 90px;
     padding: 45px 0;
-
 }
 
 .footer-top-menu{
@@ -45,7 +44,7 @@ footer{
 }
 .footer-bottom *{
     color:white;
-
+    text-decoration: none;
 }
 .footer-bottom-left-top{
     height:60px;
@@ -75,4 +74,40 @@ footer{
 }
 .footer-bottom-menu.float-left {
     color: #333;
+}
+.icon-foot-sns-youtube {
+    background-image: url(../../../img/common/l_life_icons.png);
+    background-position: -589px -492px;
+    width: 34px;
+    display: inline-block;
+    height: 34px;
+}
+.icon-foot-sns-blog {
+    background-image: url(../../../img/common/l_life_icons.png);
+    background-position: -589px -272px;
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+}
+.icon-foot-sns-insta {
+    background-image: url(../../../img/common/l_life_icons.png);
+    background-position: -589px -404px;
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+}
+.icon-foot-sns-facebook {
+    background-image: url(../../../img/common/l_life_icons.png);
+    background-position: -589px -316px;
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+}
+.icon-foot-sns-hinge {
+    background-image: url(../../../img/common/l_life_icons.png);
+    background-position: -589px -360px;
+    width: 34px;
+    height: 34px;
+    display: inline-block;
 }

@@ -187,6 +187,8 @@
     font-size: 65px;
     color: #5e5d49;
     line-height: 70px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
 }
 
 .lf-st-sec3-banner-img{
@@ -209,7 +211,7 @@
     color: #5e5d49;
     font-weight: bold;
     font-size: 17px;
-
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
 }
 .sub-btn-img{
     width: 7%;
@@ -241,6 +243,8 @@
 .lf-st-stname{
     font-family: 'Libre Baskerville', serif;
     font-size: 35px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
+
 }
  .lf-st-section-3 .lf-st-stname{
      display: block;
@@ -248,6 +252,8 @@
      text-align: right;
      font-family: 'Libre Baskerville', serif;
      color:#5e5d49;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
+
  }
  .lf-st-sec2-maintxt,
 .lf-st-sec2-subtxt ,
@@ -316,4 +322,5 @@
     font-weight: bold;
     font-size: 17px;
     justify-content: flex-end;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
 }
