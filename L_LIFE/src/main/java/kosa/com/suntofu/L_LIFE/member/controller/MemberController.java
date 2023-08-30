@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.member.controller;
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
+import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
 import kosa.com.suntofu.L_LIFE.member.vo.TestVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -26,10 +27,10 @@ public class MemberController {
     public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpSession session){
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
-
+        int currentCoin = memberService.getCurrentCoin(existingMember.getMId());
         // 세션 저장
         session.setAttribute("loggedInMemberInfo", existingMember);
-
+        session.setAttribute("currentCoin", currentCoin);
         return "pages/main/main";
     }
 
@@ -60,15 +61,16 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}/mypage/standard")
-    public String loadMyPageStandard(Model model){
+    public String loadMyPageStandard(Model model, @PathVariable int memberId){
+        // 스탠다드 구독내역
+        List<SubscriptionListVo> standardSubscriptionList  = memberService.getAllStandardScriptionList(memberId);
 
-        List<TestVo> products = new ArrayList<>();
-        products.add(new TestVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", 28000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", 54000,19970526, 12341234, 12));
-        products.add(new TestVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", 15000,19970526, 12341234, 6));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        model.addAttribute("products", products);
+        System.out.println("standardSubscriptionList" + standardSubscriptionList);
+
+        // 스탠다드 최근 구독 내역
+
+
+        model.addAttribute("standardSubscriptionList", standardSubscriptionList);
 
         return "pages/member/mypage_standard";
     }
@@ -110,13 +112,8 @@ public class MemberController {
         System.out.println("standard cart" + standardCarts);
         System.out.println("premium cart" + premiumCarts);
 
-        List<TestVo> products = new ArrayList<>();
-        products.add(new TestVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", 28000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", 54000,19970526, 12341234, 12));
-        products.add(new TestVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", 15000,19970526, 12341234, 6));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        model.addAttribute("products", products);
+        model.addAttribute("standardCarts", standardCarts);
+        model.addAttribute("premiumCarts", premiumCarts);
         return "pages/member/mypage_cart";
     }
 

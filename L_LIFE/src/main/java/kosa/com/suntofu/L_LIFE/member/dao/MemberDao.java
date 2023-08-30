@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.member.dao;
 
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
+import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,8 @@ public interface MemberDao {
     List<CartVo> findAllStandardCarts(int memberId);
 
     List<CartVo> findAllPremiumCarts(int memberId);
+
+    int getCurrentCoin(int memberId);
+
+    List<SubscriptionListVo> getAllStandardScriptionList(int memberId);
 }

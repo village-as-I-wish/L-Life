@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.member.service;
 import kosa.com.suntofu.L_LIFE.member.dao.MemberDao;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
+import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,16 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<CartVo> getAllPremiumCarts(int memberId) {
         return memberDao.findAllPremiumCarts(memberId);
+    }
+
+    @Override
+    public int getCurrentCoin(int memberId) {
+        return memberDao.getCurrentCoin(memberId);
+    }
+
+    @Override
+    public List<SubscriptionListVo> getAllStandardScriptionList(int memberId) {
+        return memberDao.getAllStandardScriptionList(memberId);
     }
 }
 
