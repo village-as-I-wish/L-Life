@@ -11,7 +11,11 @@ import java.util.List;
 public interface StandardDAO {
     List<StandardVo> selectAllStandard();
     List<StandardLiveVo> selectAllLiveStream();
-    List<StandardVo> selectStandardCategory(int fCategoryId);
-    List<StandardVo> searchStandardProductByKeyword(String keyword);
-}
+    List<StandardVo> selectStandardProductByCategory(int fCategoryId);
+    List<StandardVo> selectStandardProductByKeyword(String keyword);
+    List<StandardVo> searchStandardProductByFilter(@Param("lfBrandId") List<String> lfBrandId,
+                                                   @Param("lfMoodId") List<String> lfMoodId,
+                                                   @Param("minCoin") int minCoin,
+                                                   @Param("maxCoin") int maxCoin);
+    }
 

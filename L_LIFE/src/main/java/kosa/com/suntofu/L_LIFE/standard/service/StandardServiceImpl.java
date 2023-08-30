@@ -29,12 +29,18 @@ public class StandardServiceImpl implements StandardService {
     @Override
     public List<StandardVo> getStandardByCategory(int fCategoryId) {
 
-        return standardDAO.selectStandardCategory(fCategoryId);
+        return standardDAO.selectStandardProductByCategory(fCategoryId);
     }
 
     @Override
     public List<StandardVo> getStandardProductByKeyword(String keyword) {
 
-        return standardDAO.searchStandardProductByKeyword(keyword);
+        return standardDAO.selectStandardProductByKeyword(keyword);
+    }
+
+    @Override
+    public List<StandardVo> getStandardProductByFilter(List<String> lfBrandId, List<String> lfMoodId, int minCoin, int maxCoin) {
+
+        return standardDAO.searchStandardProductByFilter(lfBrandId, lfMoodId, minCoin, maxCoin);
     }
 }

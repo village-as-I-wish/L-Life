@@ -10,5 +10,5 @@ public interface StandardService {
     List<StandardLiveVo> getAllLiveStream();
     List<StandardVo> getStandardByCategory(int fCategoryId);
     List<StandardVo> getStandardProductByKeyword(String keyword);
-
+    List<StandardVo> getStandardProductByFilter(List<String> lfBrandId, List<String> lfMoodId, int minCoin, int maxCoin);
 }

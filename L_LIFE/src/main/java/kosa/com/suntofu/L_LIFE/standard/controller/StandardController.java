@@ -6,10 +6,7 @@ import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -45,7 +42,7 @@ public class StandardController {
 
     // 스탠다드 상품 카테고리별 필터링
     @GetMapping("/category/{lfSubType}/{fCategoryId}")
-    public String getStandardByCategory(Model model, @PathVariable int fCategoryId, @PathVariable int lfSubType) {
+    public String getStandardProductByCategory(Model model, @PathVariable int fCategoryId, @PathVariable int lfSubType) {
 
         model.addAttribute("lfSubType", lfSubType);
 
@@ -75,23 +72,47 @@ public class StandardController {
 
         List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
         model.addAttribute("stkeyword", stkeyword);
-
         return "pages/standard/standard_main";
     }
 
+    // 스탠다드 상품(브랜드, 분위기, 코인개수) 검색
+    @PostMapping("/search")
+    public String getStandardProductByFilter(@RequestParam List<String> lfBrandId,
+                                             @RequestParam List<String> lfMoodId,
+                                             @RequestParam int minCoin,
+                                             @RequestParam int maxCoin,
+                                             Model model) {
+
+        model.addAttribute("lfSubType", lfSubType);
+
+        List<StandardVo> stListBySearch = standardService.getStandardProductByFilter(lfBrandId, lfMoodId, minCoin, maxCoin);
+        model.addAttribute("standardList", stListBySearch);
+
+        List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
+        model.addAttribute("standardLiveList", standardLiveList);
+
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("now", LocalDateTime.now());
+
+        model.addAttribute("productCount", stListBySearch.size());
+        return "pages/standard/standard_main";
+    }
+
+
     /**
      * 스탠다드 구독관 제품 상세 페이지 로드
+     *
      * @param model
      * @return String
      */
     @GetMapping("/{productId}/detail")
-    public String loadStandardDetailPage(Model model){
+    public String loadStandardDetailPage(Model model) {
         return "pages/standard/standard_detail";
     }
 
 
     @GetMapping("/review")
-    public String loadReviewCreatePage(){
+    public String loadReviewCreatePage() {
         return "pages/standard/review";
     }
 }
