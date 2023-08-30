@@ -1,18 +1,26 @@
 package kosa.com.suntofu.L_LIFE.subscription.controller;
 
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
+import kosa.com.suntofu.L_LIFE.subscription.vo.BillVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.PayKeysVo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/subscription")
 public class SubscriptionController {
+
+    @Value("${baseurl}")
+    private String baseUrl;
 
     private final PayKeysVo payKeysVO;
 
@@ -44,11 +52,12 @@ public class SubscriptionController {
      * @return String
      */
     @GetMapping(value="/standard/payment_detail")
-
-    public String loadStandardPaymentDetail(Model model){
-        //List<StandardVO> standardList = standardService.getAllStandard();
-        //  System.out.println(standardList);
+    public String loadStandardPaymentDetail(Model model, @RequestParam int subscriptionPlanType){
+        model.addAttribute("baseUrl", baseUrl);
         model.addAttribute("payKeys", payKeysVO);
+        log.info("SubscriptionType {}", subscriptionPlanType);
+        BillVo billVo = subscriptionService.getSubscriptionPayBill(subscriptionPlanType);
+        model.addAttribute("billVo", billVo);
         return "pages/subscription/standard_payment_detail";
     }
 
@@ -67,5 +76,7 @@ public class SubscriptionController {
     }
 
 
-
+//    public String loadPaymentSuccessPage(){
+//
+//    }
 }
