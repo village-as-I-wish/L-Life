@@ -160,3 +160,7 @@ table {
 .dark-brown{
     color: #5D493E;
 }
+.modal-backdrop {
+    width: 100% !important;
+    height: 100% !important;
+}
