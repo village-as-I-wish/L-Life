@@ -1,7 +1,9 @@
 package kosa.com.suntofu.L_LIFE.subscription.controller;
 
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
+import kosa.com.suntofu.L_LIFE.subscription.vo.PayKeysVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/subscription")
 public class SubscriptionController {
+
+    private final PayKeysVo payKeysVO;
 
     private final SubscriptionService subscriptionService;
 
@@ -44,6 +48,7 @@ public class SubscriptionController {
     public String loadStandardPaymentDetail(Model model){
         //List<StandardVO> standardList = standardService.getAllStandard();
         //  System.out.println(standardList);
+        model.addAttribute("payKeys", payKeysVO);
         return "pages/subscription/standard_payment_detail";
     }
 
@@ -57,6 +62,7 @@ public class SubscriptionController {
     public String loadPremiumPaymentDetail(Model model){
         //List<StandardVO> standardList = standardService.getAllStandard();
         //  System.out.println(standardList);
+        model.addAttribute("payKeys", payKeysVO);
         return "pages/subscription/premium_payment_detail";
     }
 

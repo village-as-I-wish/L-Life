@@ -178,32 +178,32 @@
             </div>
             <div class="payment-btn-group" role="group">
                 <!-- 네이버 페이 -->
-                <input type="radio" class="btn-check radio npay" name="btnradio2" id="pay-method-naver"
+                <input type="radio" class="btn-check radio npay" name="btnradio2" id="pay-method-naver" value="naver"
                        autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-naver">
                     <i class="icon-npay"></i>
                 </label>
 
                 <!-- 삼성페이 -->
-                <input type="radio" class="btn-check radio samsungpay" name="btnradio2" id="pay-method-samsung"
+                <input type="radio" class="btn-check radio samsungpay" name="btnradio2" id="pay-method-samsung" value="samsung"
                        autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-samsung">
                     <i class="icon-samsungpay"></i>
                 </label>
 
-                <input type="radio" class="btn-check radio kakaopay" name="btnradio2" id="pay-method-kakao"
+                <input type="radio" class="btn-check radio kakaopay" name="btnradio2" id="pay-method-kakao" value="kakao"
                        autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-kakao">
                     <i class="icon-kakaopay"></i>
                 </label>
 
-                <input type="radio" class="btn-check radio tosspay" name="btnradio2" id="pay-method-toss"
+                <input type="radio" class="btn-check radio tosspay" name="btnradio2" id="pay-method-toss" value="toss"
                        autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-toss">
                     <i class="icon-tosspay"></i>
                 </label>
 
-                <input type="radio" class="btn-check radio payco" name="btnradio2" id="pay-method-payco"
+                <input type="radio" class="btn-check radio payco" name="btnradio2" id="pay-method-payco" value="payco"
                        autocomplete="off">
                 <label class="btn btn-outline-dark st-payment-pay-method" for="pay-method-payco">
                     <i class="icon-payco"></i>
@@ -273,7 +273,7 @@
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
                     </span>
 
-                    <button class="payment-button" th:color="white">결제하기</button>
+                    <button class="payment-button" onclick="payment(${payKeys})" th:color="white">결제하기</button>
                 </div>
             </div>
 

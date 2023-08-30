@@ -1,20 +1,33 @@
 $(document).ready(function() {
-    $("#pay-method-kakao").change(function() {
-        if ($(this).is(":checked")) {
-            console.log("test")
+    let selectedPaymentMethod = "";
 
-            paymentKaKao();
+    $("input[name='payment-method']").click(function () {
+        if ($(this).is(":checked")) {
+            selectedPaymentMethod = $(this).val(); // 선택된 값 저장
         }
     });
 
-    $("#pay-method-toss").change(function() {
-        if ($(this).is(":checked")) {
-            paymentToss();
+    // 다른 곳에서 selectedPaymentMethod 사용 가능
+    $(".payment-button").click(function () {
+        if (selectedPaymentMethod === "") {
+            alert('결제 방식을 선택해주세요');
+            return;
+        }
+        // 여기에 결제 로직 추가
+        if (selectedPaymentMethod === "kakao") {
+            paymentKaKao(payKeys.kakaoPayKey);
+        } else if (selectedPaymentMethod === "toss") {
+            paymentToss(payKeys.tossPayKey);
+        } else if(selectedPaymentMethod==""){
+            alert("결제 방식을 선택해주세요. ");
+            return;
+        }else{
+            alert('다른 결제 방식을 선택해주세요.');
+            return;
         }
     });
 
 });
-
 /**
  * 결제 주문 번호 생성 함수
  * @returns {string}
@@ -35,9 +48,9 @@ function createOrderNum(){
 /**
  * 카카오 결제 함수
  */
-function paymentKaKao() {
+function paymentKaKao(kakaoPayKey) {
 
-    IMP.init(""); // imp 번호
+    IMP.init(kakaoPayKey); // imp 번호
     IMP.request_pay({
             pg: "kakaopay",
             pay_method: 'card',
@@ -69,8 +82,8 @@ function paymentKaKao() {
 /**
  * 토스 페이먼츠 결제 함수
  */
-function paymentToss(){
-    var clientKey = '' // 키값 숨겨야 함!
+function paymentToss(tossPayKey){
+    var clientKey = tossPayKey // 키값 숨겨야 함!
     var tossPayments = TossPayments(clientKey)
 
     tossPayments.requestPayment('카드', {
