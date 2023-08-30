@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,10 +22,27 @@ public class MemberController {
     public String loadLoginPage(){ return "pages/member/login"; }
 
     @PostMapping("/login")
-    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile){
+    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpSession session){
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
+
+        // 세션 저장
+        session.setAttribute("loggedInMemberInfo", existingMember);
+
         return "pages/main/main";
+    }
+
+    @GetMapping("/checkSession")
+    @ResponseBody
+    public String checkSession(HttpSession session) {
+        MemberVo loggedInMember = (MemberVo) session.getAttribute("loggedInMemberInfo");
+
+        if (loggedInMember != null) {
+            // 세션에 저장된 정보 출력 또는 활용
+            return "Logged in member's name: " + loggedInMember.getMName();
+        } else {
+            return "No user logged in.";
+        }
     }
   
     @GetMapping("/{memberId}/mypage")
