@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.member.controller;
 
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
+import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
 import kosa.com.suntofu.L_LIFE.member.vo.TestVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -99,7 +100,15 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}/mypage/cart")
-    public String loadCart(Model model){
+    public String loadCart(Model model, @PathVariable int memberId){
+        // 스탠다드 장바구니
+        List<CartVo> standardCarts  = memberService.getAllStandardCarts(memberId);
+
+        // 프리미엄 장바구니
+        List<CartVo> premiumCarts  = memberService.getAllPremiumCarts(memberId);
+
+        System.out.println("standard cart" + standardCarts);
+        System.out.println("premium cart" + premiumCarts);
 
         List<TestVo> products = new ArrayList<>();
         products.add(new TestVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", 28000,19970526, 12341234, 24));

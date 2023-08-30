@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.member.service;
 
 import kosa.com.suntofu.L_LIFE.member.dao.MemberDao;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
+import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,16 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberVo> getAllProducts() {
 
         return memberDao.findAllProducts();
+    }
+
+    @Override
+    public List<CartVo> getAllStandardCarts(int memberId) {
+        return memberDao.findAllStandardCarts(memberId);
+    }
+
+    @Override
+    public List<CartVo> getAllPremiumCarts(int memberId) {
+        return memberDao.findAllPremiumCarts(memberId);
     }
 }
 
