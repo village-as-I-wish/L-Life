@@ -93,16 +93,17 @@
 .lf-st-section-1{
     display: flex;
     flex-direction: column;
+    width: 30%;
 }
 .lf-st-section-1 span{
     display: block;
+    color: #5e5d49;
 }
 .lf-st-sec1-banner-img{
     width: 22rem;
     height: auto;
 }
 .lt-st-sec1-txt{
-    padding-left: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -126,62 +127,15 @@
     font-size: 1rem;
     color: #5e5d49;
 }
-/* 작은 화면 */
-@media (max-width: 576px) {
-    .lf-st-stname{
-        font-size: 50px;
-    }
-    .lf-st-stsubtxt{
-        font-size: 40px;
-        line-height: 50px;
-        margin-top: 10px;
-    }
-    .lf-st-stsubtxt2 {
-        font-size: 30px;
-        margin-bottom:30px;
-
-    }
-
-    .lf-st-sec2-maintxt{
-        font-size: 3rem;
-        line-height: 4rem;
-
-    }
+.lf-st-stsubtxt{
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #5e5d49;
 }
+.lf-st-stsubtxt2{
+    margin-top:13px;
+    font-family: 'Libre Baskerville', serif;
 
-/* 중간 화면 */
-@media (min-width: 577px) and (max-width: 991px) {
-    .lf-st-stname{
-        font-size: 50px;
-    }
-    .lf-st-stsubtxt{
-        font-size: 40px;
-        line-height: 50px;
-        margin-top: 10px;
-    }
-    .lf-st-stsubtxt2{
-        font-size: 30px;
-        margin-top:20px;
-        margin-bottom:30px;
-
-    }
-}
-
-/* 큰 화면 */
-@media (min-width: 992px) {
-    .lf-st-stname{
-        font-size: 36px;
-        margin-top: 25px;
-    }
-    .lf-st-stsubtxt{
-        font-size: 18px;
-        margin-top: 10px;
-    }
-    .lf-st-stsubtxt2 {
-        font-size: 16px;
-        margin-top:20px;
-        margin-bottom:30px;
-    }
 }
 .coin-img{
     margin: 3px 0px 30px 0px;
@@ -194,9 +148,12 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    width: 40%;
 }
 .lf-st-section-2 span{
     text-align: center;
+    font-family: 'Libre Baskerville', serif;
+
 }
 .lf-st-sec2-maintxt{
     margin-top:20px;
@@ -211,7 +168,7 @@
     color: white;
     font-weight: 100;
     line-height: 35px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .lf-st-sec2-subtxt2{
     line-height: 20px;
@@ -221,13 +178,12 @@
 }
 .lf-st-section-3{
     position: relative;
-    padding: 70px 0px 50px 0px;
+    padding: 50px 0px 50px 30px;
     min-height: 500px;
+    width: 30%;
 }
 .lf-st-sec3-maintxt{
-    position:absolute;
-    top: 30px;
-    left: 60px;
+    display: block;
     font-size: 65px;
     color: #5e5d49;
     line-height: 70px;
@@ -246,22 +202,118 @@
 }
 .sub-btn a{
     text-decoration: none;
-    color:black;
-}
-/*.sub-btn{*/
-/*    right: 80px;*/
-/*    position: absolute;*/
-/*    bottom: 20px;*/
-/*    font-size: 30px;*/
-/*    font-weight: 500;*/
-/*    color: #5e5d49;*/
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    color: #5e5d49;
+    font-weight: bold;
+    font-size: 17px;
 
-/*}*/
-/*.sub-btn-img{*/
-/*    right: 30px;*/
-/*    position: absolute;*/
-/*    bottom: 20px;*/
-/*    font-size: 40px;*/
-/*    font-weight: bold;*/
-/*    color: #5e5d49;*/
-/*}*/
+}
+.sub-btn-img{
+    width: 7%;
+    margin-left: 5px;
+    margin-bottom: 9px;
+}
+/* 애니메이션 */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lf-st-section-1 {
+    animation-duration: 3s;
+}
+.lf-st-section-3 {
+    animation-duration: 3s;
+}
+.lf-st-sec3-maintxt{
+ font-family: 'Libre Baskerville', serif !important;
+
+}
+.lf-st-stname{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 35px;
+}
+ .lf-st-section-3 .lf-st-stname{
+     display: block;
+     font-size: 35px;
+     text-align: right;
+     font-family: 'Libre Baskerville', serif;
+     color:#5e5d49;
+ }
+ .lf-st-sec2-maintxt,
+.lf-st-sec2-subtxt ,
+ .lf-st-stsubtxt{
+     font-family: 'Libre Baskerville', serif;
+ }
+ .contact-txt{
+     margin-top: 115px;
+     font-size: 42px;
+     line-height: 50px;
+     font-family: 'Libre Baskerville', serif;
+     color:white;
+ }
+ .contact-line{
+     width: 70%;
+     color: white;
+     margin-top: 2px;
+ }
+ .contact-box{
+     display: flex;
+     width: 35%;
+     justify-content: space-evenly;
+ }
+.icon-foot-sns-insta {
+    background-image: url(../../img/common/l_life_icons.png);    background-position: -589px -360px;
+    background-position: -589px -404px;
+    width: 34px;
+    height: 34px;
+}
+.icon-foot-sns-hinge {
+    background-image: url(../../img/common/l_life_icons.png);    background-position: -589px -360px;
+    width: 34px;
+    height: 34px;
+}
+.icon-foot-sns-facebook {
+    background-image: url(../../img/common/l_life_icons.png);    background-position: -589px -360px;
+    background-position: -589px -316px;
+    width: 34px;
+    height: 34px;
+}
+
+.coin-img.first-image {
+    float: right;
+}
+
+.coin-img.second-image {
+    float: right;
+    margin: 16px -50px;
+}
+.lf-st-section-3 > .lf-st-stsubtxt{
+    width: 100%;
+    float: right;
+    text-align: right;
+    line-height: 20px;
+}
+
+.sec3-sub-btn{
+    margin-top: 60px;
+}
+.sec3-sub-btn a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    color: #5e5d49;
+    font-weight: bold;
+    font-size: 17px;
+    justify-content: flex-end;
+}
