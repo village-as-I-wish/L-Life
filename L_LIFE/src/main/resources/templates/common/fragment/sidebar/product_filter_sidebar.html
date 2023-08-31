@@ -3,7 +3,10 @@
 <th:block th:fragment="productFilterSidebar()">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common/sidebar/product_filter_sidebar.css}"/>
 
+    <body>
+<!--
     <form th:action="@{/standard/search}" method="POST">
+-->
         <div class="pf-sidebar">
             <div class="pf-brand pf-cate-box">
                 <div class="pf-main-cate"> 검색 </div>
@@ -59,7 +62,7 @@
 
                 <div class="pf-main-list">
                     <div class="slidecontainer">
-                            <input type="range" min="1" max="5" value="3" class="slider" id="myRange"  name="maxCoin">
+                            <input type="range" min="1" max="5" value="3" class="slider" id="myRange" name="maxCoin">
                             <p> L-COIN :   0개 이상 -  <span id="demo"></span> 이하 </p>
                     </div>
                     <input type="hidden" id="minCoin" name="minCoin" value="1">
@@ -72,18 +75,92 @@
                 <button type="submit"> 적용하기 </button>
             </div>
         </div>
-    </form>
+    <!--</form>-->
 
     <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        var minCoin = document.getElementById("minCoin");
-        output.innerHTML = slider.value;
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded');
+            var submitButton = document.querySelector('.pf-submit-buttons button[type="submit"]');
+            submitButton.addEventListener('click', function(event) {
+                event.preventDefault();
 
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-            minCoin.value = 1;
-        }
+                var lfBrandIds = Array.from(document.querySelectorAll('input[name="lfBrandId"]:checked')).map(checkbox => checkbox.value);
+                var lfMoodIds = Array.from(document.querySelectorAll('input[name="lfMoodId"]:checked')).map(checkbox => checkbox.value);
+                var minCoin = 1;  // 최소 코인은 항상 1
+                var maxCoin = document.querySelector('#myRange').value;
+
+                var formData = new FormData();
+                lfBrandIds.forEach(brandId => formData.append('lfBrandId', brandId));
+                lfMoodIds.forEach(moodId => formData.append('lfMoodId', moodId));
+                formData.append('minCoin', minCoin);
+                formData.append('maxCoin', maxCoin);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/l-life/standard/search', true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var content = document.querySelector('#content');
+                        content.innerHTML = '';  // 기존 내용을 지운다.
+
+                        var standardList = JSON.parse(xhr.responseText);
+                        standardList.forEach(function(standard) {
+                            var productDiv = document.createElement('div');
+                            productDiv.className = 'sl-main-sub-product';
+
+                            var productA = document.createElement('a');
+                            productA.href = '/standard/' + standard.lfId + '/detail';
+
+                            var productImgDiv = document.createElement('div');
+                            productImgDiv.className = 'sl-main-sub-product-img col';
+
+                            var productImg = document.createElement('img');
+                            productImg.alt = '상품 이미지';
+                            productImg.src = standard.lfImgMain;
+                            productImgDiv.appendChild(productImg);
+
+                            var productTxtDiv = document.createElement('div');
+                            productTxtDiv.className = 'sl-main-sub-product-txt';
+
+                            var productNameP = document.createElement('p');
+                            productNameP.textContent = standard.lfName;
+                            productTxtDiv.appendChild(productNameP);
+
+                            var productHr = document.createElement('hr');
+                            productHr.style.margin = '3px 0px 10px 0px';
+                            productTxtDiv.appendChild(productHr);
+
+                            var productPriceDiv = document.createElement('div');
+                            productPriceDiv.className = 'd-flex sl-main-sub-product-price';
+
+                            var productBrandSpan = document.createElement('span');
+                            productBrandSpan.textContent = standard.lfBrandName;
+                            productPriceDiv.appendChild(productBrandSpan);
+
+                            var productCoinDiv = document.createElement('div');
+                            productCoinDiv.className = 'coin-img-box';
+
+                            for (var i = 0; i < standard.lfStCoin; i++) {
+                                var productCoinImg = document.createElement('img');
+                                productCoinImg.className = 'coin-img';
+                                productCoinImg.src = '/img/member/coin.png';
+                                productCoinDiv.appendChild(productCoinImg);
+                            }
+
+                            productPriceDiv.appendChild(productCoinDiv);
+                            productTxtDiv.appendChild(productPriceDiv);
+
+                            productA.appendChild(productImgDiv);
+                            productA.appendChild(productTxtDiv);
+                            productDiv.appendChild(productA);
+
+                            content.appendChild(productDiv);
+                        });
+                    }
+                };
+
+                xhr.send(formData);
+            });
+        });
     </script>
+    </body>
 </th:block>
-</html>

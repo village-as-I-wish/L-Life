@@ -77,26 +77,15 @@ public class StandardController {
 
     // 스탠다드 상품(브랜드, 분위기, 코인개수) 검색
     @PostMapping("/search")
-    public String getStandardProductByFilter(@RequestParam List<String> lfBrandId,
-                                             @RequestParam List<String> lfMoodId,
-                                             @RequestParam int minCoin,
-                                             @RequestParam int maxCoin,
-                                             Model model) {
+    public List<StandardVo> getStandardProductByFilter(@RequestParam List<String> lfBrandId,
+                                                       @RequestParam List<String> lfMoodId,
+                                                       @RequestParam int minCoin,
+                                                       @RequestParam int maxCoin) {
 
-        model.addAttribute("lfSubType", lfSubType);
-
-        List<StandardVo> stListBySearch = standardService.getStandardProductByFilter(lfBrandId, lfMoodId, minCoin, maxCoin);
-        model.addAttribute("standardList", stListBySearch);
-
-        List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
-        model.addAttribute("standardLiveList", standardLiveList);
-
-        LocalDateTime now = LocalDateTime.now();
-        model.addAttribute("now", LocalDateTime.now());
-
-        model.addAttribute("productCount", stListBySearch.size());
-        return "pages/standard/standard_main";
+        return standardService.getStandardProductByFilter(lfBrandId, lfMoodId, minCoin, maxCoin);
     }
+
+
 
 
     /**
