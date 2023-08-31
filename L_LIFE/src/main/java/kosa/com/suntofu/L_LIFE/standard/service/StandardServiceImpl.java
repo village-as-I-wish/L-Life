@@ -1,6 +1,7 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
+import kosa.com.suntofu.L_LIFE.standard.vo.SearchRequestVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
@@ -39,8 +40,8 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public List<StandardVo> getStandardProductByFilter(List<String> lfBrandId, List<String> lfMoodId, int minCoin, int maxCoin) {
+    public List<StandardVo> getStandardProductByFilter(SearchRequestVo requestVo) {
 
-        return standardDAO.searchStandardProductByFilter(lfBrandId, lfMoodId, minCoin, maxCoin);
+        return standardDAO.searchStandardProductByFilter(requestVo);
     }
 }

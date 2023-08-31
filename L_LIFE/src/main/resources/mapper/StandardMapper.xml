@@ -96,12 +96,12 @@
            lf.lf_sub_type = 0
         AND
             lfb.lf_brand_id IN
-            <foreach collection="lfBrandId" item="brandId" open="(" separator="," close=")">
+            <foreach collection="lfBrandIds" item="brandId" open="(" separator="," close=")">
                 #{brandId}
             </foreach>
         AND
             lfm.lf_mood_id IN
-            <foreach collection="lfMoodId" item="moodId" open="(" separator="," close=")">
+            <foreach collection="lfMoodIds" item="moodId" open="(" separator="," close=")">
                 #{moodId}
             </foreach>
         AND

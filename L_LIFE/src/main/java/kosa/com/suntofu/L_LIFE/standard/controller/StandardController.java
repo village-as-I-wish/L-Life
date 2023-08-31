@@ -75,17 +75,6 @@ public class StandardController {
         return "pages/standard/standard_main";
     }
 
-    // 스탠다드 상품(브랜드, 분위기, 코인개수) 검색
-    @PostMapping("/search")
-    public List<StandardVo> getStandardProductByFilter(@RequestParam List<String> lfBrandId,
-                                                       @RequestParam List<String> lfMoodId,
-                                                       @RequestParam int minCoin,
-                                                       @RequestParam int maxCoin) {
-
-        return standardService.getStandardProductByFilter(lfBrandId, lfMoodId, minCoin, maxCoin);
-    }
-
-
 
 
     /**

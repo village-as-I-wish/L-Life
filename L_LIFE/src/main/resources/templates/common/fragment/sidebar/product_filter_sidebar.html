@@ -2,165 +2,76 @@
 
 <th:block th:fragment="productFilterSidebar()">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common/sidebar/product_filter_sidebar.css}"/>
-
     <body>
-<!--
-    <form th:action="@{/standard/search}" method="POST">
--->
-        <div class="pf-sidebar">
-            <div class="pf-brand pf-cate-box">
-                <div class="pf-main-cate"> 검색 </div>
-                <hr>
-                <div class="pf-main-cate"> 브랜드</div>
 
-                <div class="pf-main-list checkbox-group">
-                    <input type="checkbox" id="checkbox1" name="lfBrandId" value="1">
-                    <label for="checkbox1">Global Livart Gallery</label>
-
-                    <input type="checkbox" id="checkbox2" name="lfBrandId" value="2">
-                    <label for="checkbox2">리바트 </label>
-
-                    <input type="checkbox" id="checkbox3" name="lfBrandId" value="3">
-                    <label for="checkbox3">리바트 H-몬도</label>
-
-                    <input type="checkbox" id="checkbox4" name="lfBrandId" value="4">
-                    <label for="checkbox4">FM 디자인</label>
-
-                    <input type="checkbox" id="checkbox5" name="lfBrandId" value="5">
-                    <label for="checkbox5">리바트 온라인 </label>
-                </div>
-
-            </div>
+    <div class="pf-sidebar">
+        <div class="pf-brand pf-cate-box">
+            <div class="pf-main-cate"> 검색</div>
             <hr>
-            <div class="pf-mode pf-cate-box">
-                <div class="pf-main-cate"> 분위기</div>
+            <div class="pf-main-cate"> 브랜드</div>
 
-                <div class="pf-main-list checkbox-group">
-                    <input type="checkbox" id="modetype1" name="lfMoodId" value="1">
-                    <label for="modetype1">모던</label>
+            <div class="pf-main-list checkbox-group">
+                <input type="checkbox" id="checkbox1" name="lfBrandId" value="1">
+                <label for="checkbox1">Global Livart Gallery</label>
 
-                    <input type="checkbox" id="modetype2" name="lfMoodId" value="2">
-                    <label for="modetype2">미니멀 & 심플 </label>
+                <input type="checkbox" id="checkbox2" name="lfBrandId" value="2">
+                <label for="checkbox2">리바트 </label>
 
-                    <input type="checkbox" id="modetype3" name="lfMoodId" value="3">
-                    <label for="modetype3">내추럴</label>
+                <input type="checkbox" id="checkbox3" name="lfBrandId" value="3">
+                <label for="checkbox3">리바트 H-몬도</label>
 
+                <input type="checkbox" id="checkbox4" name="lfBrandId" value="4">
+                <label for="checkbox4">FM 디자인</label>
 
-                    <input type="checkbox" id="modetype4" name="lfMoodId" value="4">
-                    <label for="modetype4">북유럽 </label>
-
-                    <input type="checkbox" id="modetype5" name="lfMoodId" value="5">
-                    <label for="modetype5">빈티지 & 레트로 </label>
-
-                </div>
-
+                <input type="checkbox" id="checkbox5" name="lfBrandId" value="5">
+                <label for="checkbox5">리바트 온라인 </label>
             </div>
-            <hr>
 
-            <div class="pf-price pf-cate-box">
-                <div class="pf-main-cate"> L-COIN </div>
-
-                <div class="pf-main-list">
-                    <div class="slidecontainer">
-                            <input type="range" min="1" max="5" value="3" class="slider" id="myRange" name="maxCoin">
-                            <p> L-COIN :   0개 이상 -  <span id="demo"></span> 이하 </p>
-                    </div>
-                    <input type="hidden" id="minCoin" name="minCoin" value="1">
-                </div>
-
-            </div>
-            <hr>
-            <div class="pf-submit-buttons d-flex mt-4">
-                <button type="reset"> 초기화 </button>
-                <button type="submit"> 적용하기 </button>
-            </div>
         </div>
-    <!--</form>-->
+        <hr>
+        <div class="pf-mode pf-cate-box">
+            <div class="pf-main-cate"> 분위기</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOMContentLoaded');
-            var submitButton = document.querySelector('.pf-submit-buttons button[type="submit"]');
-            submitButton.addEventListener('click', function(event) {
-                event.preventDefault();
+            <div class="pf-main-list checkbox-group">
+                <input type="checkbox" id="modetype1" name="lfMoodId" value="1">
+                <label for="modetype1">모던</label>
 
-                var lfBrandIds = Array.from(document.querySelectorAll('input[name="lfBrandId"]:checked')).map(checkbox => checkbox.value);
-                var lfMoodIds = Array.from(document.querySelectorAll('input[name="lfMoodId"]:checked')).map(checkbox => checkbox.value);
-                var minCoin = 1;  // 최소 코인은 항상 1
-                var maxCoin = document.querySelector('#myRange').value;
+                <input type="checkbox" id="modetype2" name="lfMoodId" value="2">
+                <label for="modetype2">미니멀 & 심플 </label>
 
-                var formData = new FormData();
-                lfBrandIds.forEach(brandId => formData.append('lfBrandId', brandId));
-                lfMoodIds.forEach(moodId => formData.append('lfMoodId', moodId));
-                formData.append('minCoin', minCoin);
-                formData.append('maxCoin', maxCoin);
+                <input type="checkbox" id="modetype3" name="lfMoodId" value="3">
+                <label for="modetype3">내추럴</label>
 
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/l-life/standard/search', true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        var content = document.querySelector('#content');
-                        content.innerHTML = '';  // 기존 내용을 지운다.
 
-                        var standardList = JSON.parse(xhr.responseText);
-                        standardList.forEach(function(standard) {
-                            var productDiv = document.createElement('div');
-                            productDiv.className = 'sl-main-sub-product';
+                <input type="checkbox" id="modetype4" name="lfMoodId" value="4">
+                <label for="modetype4">북유럽 </label>
 
-                            var productA = document.createElement('a');
-                            productA.href = '/standard/' + standard.lfId + '/detail';
+                <input type="checkbox" id="modetype5" name="lfMoodId" value="5">
+                <label for="modetype5">빈티지 & 레트로 </label>
 
-                            var productImgDiv = document.createElement('div');
-                            productImgDiv.className = 'sl-main-sub-product-img col';
+            </div>
 
-                            var productImg = document.createElement('img');
-                            productImg.alt = '상품 이미지';
-                            productImg.src = standard.lfImgMain;
-                            productImgDiv.appendChild(productImg);
+        </div>
+        <hr>
 
-                            var productTxtDiv = document.createElement('div');
-                            productTxtDiv.className = 'sl-main-sub-product-txt';
+        <div class="pf-price pf-cate-box">
+            <div class="pf-main-cate"> L-COIN</div>
 
-                            var productNameP = document.createElement('p');
-                            productNameP.textContent = standard.lfName;
-                            productTxtDiv.appendChild(productNameP);
+            <div class="pf-main-list">
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="myRange" name="maxCoin">
+                    <p> L-COIN : 0개 이상 - <span id="demo"></span> 이하 </p>
+                </div>
+                <input type="hidden" id="minCoin" name="minCoin" value="1">
+            </div>
 
-                            var productHr = document.createElement('hr');
-                            productHr.style.margin = '3px 0px 10px 0px';
-                            productTxtDiv.appendChild(productHr);
+        </div>
+        <hr>
+        <div class="pf-submit-buttons d-flex mt-4">
+            <button type="reset"> 초기화</button>
+            <button class="search-btn" onclick="search()"> 적용하기</button>
+        </div>
+    </div>
 
-                            var productPriceDiv = document.createElement('div');
-                            productPriceDiv.className = 'd-flex sl-main-sub-product-price';
-
-                            var productBrandSpan = document.createElement('span');
-                            productBrandSpan.textContent = standard.lfBrandName;
-                            productPriceDiv.appendChild(productBrandSpan);
-
-                            var productCoinDiv = document.createElement('div');
-                            productCoinDiv.className = 'coin-img-box';
-
-                            for (var i = 0; i < standard.lfStCoin; i++) {
-                                var productCoinImg = document.createElement('img');
-                                productCoinImg.className = 'coin-img';
-                                productCoinImg.src = '/img/member/coin.png';
-                                productCoinDiv.appendChild(productCoinImg);
-                            }
-
-                            productPriceDiv.appendChild(productCoinDiv);
-                            productTxtDiv.appendChild(productPriceDiv);
-
-                            productA.appendChild(productImgDiv);
-                            productA.appendChild(productTxtDiv);
-                            productDiv.appendChild(productA);
-
-                            content.appendChild(productDiv);
-                        });
-                    }
-                };
-
-                xhr.send(formData);
-            });
-        });
-    </script>
     </body>
 </th:block>
