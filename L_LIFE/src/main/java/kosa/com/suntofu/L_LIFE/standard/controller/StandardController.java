@@ -22,7 +22,7 @@ public class StandardController {
     private final StandardService standardService;
     private int lfSubType = 0;
 
-    @GetMapping("")
+    @GetMapping("/main")
     public String loadStandardMainPage(Model model) {
 
         model.addAttribute("lfSubType", lfSubType);
@@ -47,8 +47,8 @@ public class StandardController {
     }
 
     // 스탠다드 상품 카테고리별 필터링
-    @GetMapping("/category/{lfSubType}/{fCategoryId}")
-    public String getStandardByCategory(Model model, @PathVariable int fCategoryId, @PathVariable int lfSubType) {
+    @GetMapping("/category/{fCategoryId}")
+    public String getStandardByCategory(Model model, @PathVariable int fCategoryId) {
 
         model.addAttribute("lfSubType", lfSubType);
 

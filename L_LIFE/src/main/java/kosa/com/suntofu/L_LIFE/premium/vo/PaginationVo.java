@@ -14,4 +14,6 @@ public class PaginationVo {
     private int lfPrPrice; // 프리미엄 월 구독료
     private int offset; // 오프셋 수
     private int page; // 페이지 수
+    private int lfSubType; // 구독종류
+    private int lfCategoryId; // 카테고리 아이디
 }
