@@ -40,6 +40,9 @@ public class StandardController {
         // 현재 날짜와 시간 가져오기
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("now", LocalDateTime.now());
+
+        // 상품 개수 표현
+        model.addAttribute("productCount", standardList.size());
         return "pages/standard/standard_main";
     }
 
@@ -57,6 +60,8 @@ public class StandardController {
 
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("now", LocalDateTime.now());
+
+        model.addAttribute("productCount", standardList.size());
         return "pages/standard/standard_main";
     }
 
@@ -74,8 +79,9 @@ public class StandardController {
         model.addAttribute("now", LocalDateTime.now());
 
         List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
-        model.addAttribute("stkeyword", stkeyword);
+        model.addAttribute("standardList", stkeyword);
 
+        model.addAttribute("productCount", stkeyword.size());
         return "pages/standard/standard_main";
     }
 
