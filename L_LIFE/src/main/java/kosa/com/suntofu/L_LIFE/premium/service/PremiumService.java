@@ -11,4 +11,6 @@ public interface PremiumService {
     int selectProductCountPagination (PaginationVo paginationVo);
     PaginationVo calculateAndSetOffset(PaginationVo paginationVo);
     int calculatePaginationNum(int totalNum);
+    List<PremiumVo> selectProductByCategory(PaginationVo paginationVo);
+    int selectProductCountByCategoryByPagination (PaginationVo paginationVo);
 }

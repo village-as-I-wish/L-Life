@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -39,6 +40,23 @@ public class PremiumController {
         model.addAttribute("totalNum", totalNum);
         model.addAttribute("paginationNum", paginationNum);
         model.addAttribute("page", paginationVo.getPage());
+        model.addAttribute("lfSubType", paginationVo.getLfSubType());
+
+        return "pages/premium/premium_main";
+    }
+
+    @GetMapping("/category/{lfCategoryId}")
+    public String loadPremiumMainPageByCategory(@PathVariable int lfCategoryId, PaginationVo paginationVo, Model model){
+        paginationVo.setLfCategoryId(lfCategoryId);
+        List<PremiumVo> premiumProductListByCategory = premiumService.selectProductByCategory(paginationVo);
+        int totalNum = premiumService.selectProductCountByCategoryByPagination(paginationVo);
+        int paginationNum = premiumService.calculatePaginationNum(totalNum);
+
+        model.addAttribute("premiumProducts", premiumProductListByCategory);
+        model.addAttribute("totalNum", totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("page", paginationVo.getPage());
+        model.addAttribute("lfSubType", paginationVo.getLfSubType());
 
         return "pages/premium/premium_main";
     }
