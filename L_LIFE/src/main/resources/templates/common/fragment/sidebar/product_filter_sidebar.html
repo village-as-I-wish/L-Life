@@ -2,7 +2,6 @@
 
 <th:block th:fragment="productFilterSidebar()">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common/sidebar/product_filter_sidebar.css}"/>
-    <body>
 
     <div class="pf-sidebar">
         <div class="pf-brand pf-cate-box">
@@ -60,7 +59,7 @@
             <div class="pf-main-list">
                 <div class="slidecontainer">
                     <input type="range" min="1" max="5" value="3" class="slider" id="myRange" name="maxCoin">
-                    <p> L-COIN : 0개 이상 - <span id="demo"></span> 이하 </p>
+                    <p> L-COIN : 1개 이상 - <span id="demo">3</span> 이하 </p>
                 </div>
                 <input type="hidden" id="minCoin" name="minCoin" value="1">
             </div>
@@ -72,6 +71,13 @@
             <button class="search-btn" onclick="search()"> 적용하기</button>
         </div>
     </div>
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
 
-    </body>
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+    </script>
 </th:block>
