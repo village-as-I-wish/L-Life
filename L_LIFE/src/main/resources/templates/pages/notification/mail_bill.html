@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>결제 내역</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/notification/mail_bill.css}"/>
+
+</head>
+<body>
+    <div class="mail_container">
+        <img class="top-banner" alt="메일 상단배너" th:src="@{/img/notification/mail_bill_top_banner.png}"/>
+        <div class="mail-content">
+            <div class="mail-to-info">
+                <p> Invoice To</p>
+                <p> 김승주 </p>
+                <p> seoungjoo01@naver.com</p>
+            </div>
+            <div class="mail-date">
+                <p> 결제 내역</p>
+                <p> Invoice Date 01/09/23 </p>
+            </div>
+
+            <div class="invoice-content">
+                <table>
+                    <th>구독 상품 정보 </th>
+                    <th>가격 </th>
+                    <th>수량</th>
+                    <th>총 가격  </th>
+                    <tr>
+                        <td>첫번째 칸</td>
+                        <td>두번째 칸</td>
+                        <td>첫번째 칸</td>
+                        <td>두번째 칸</td>
+                    </tr>
+                    <tr>
+                        <td>첫번째 칸</td>
+                        <td>두번째 칸</td>
+                        <td>첫번째 칸</td>
+                        <td>두번째 칸</td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
