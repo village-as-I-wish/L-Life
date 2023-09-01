@@ -1,10 +1,7 @@
 package kosa.com.suntofu.L_LIFE.member.controller;
 
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
-import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
-import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
-import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
-import kosa.com.suntofu.L_LIFE.member.vo.TestVo;
+import kosa.com.suntofu.L_LIFE.member.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,9 +25,19 @@ public class MemberController {
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
         int currentCoin = memberService.getCurrentCoin(existingMember.getMId());
+
+        int orderCount = memberService.getOrderCount(existingMember.getMId());
+        List<DeliveryStatusVo> deliveryStatusList = memberService.getDeliveryStatus(existingMember.getMId());
+        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
+        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
+        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
         // 세션 저장
         session.setAttribute("loggedInMemberInfo", existingMember);
         session.setAttribute("currentCoin", currentCoin);
+        session.setAttribute("orderCount",orderCount);
+        session.setAttribute("deliveryProgress",deliveryProgress);        session.setAttribute("deliveryReady",deliveryReady);
+        session.setAttribute("deliveryComplete",deliveryComplete);
+
         return "pages/main/main";
     }
 
@@ -86,15 +93,10 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}/mypage/delivery")
-    public String loadMyPageDelivery(Model model){
+    public String loadMyPageDelivery(Model model, @PathVariable int memberId){
 
-        List<TestVo> products = new ArrayList<>();
-        products.add(new TestVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", 28000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", 54000,19970526, 12341234, 12));
-        products.add(new TestVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", 15000,19970526, 12341234, 6));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        model.addAttribute("products", products);
+        List<DeliveryListVo> deliveryList = memberService.getDeliveryList(memberId);
+        model.addAttribute("deliveryList",deliveryList);
         return "pages/member/mypage_delivery";
     }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kosa.com.suntofu.L_LIFE.member.dao.MemberDao">
+
+    <select id="getDeliveryList" parameterType="int" resultType="DeliveryListvo">
+        -- 배송조회
+        SELECT
+            SUB_LF.SUB_LF_ID,
+            S.SUBSCRIBE_START_DATE,
+            D.DELIVERY_CODE,
+            LF.LF_NAME,
+            LF.LF_IMG_MAIN,
+            LF.LF_SUB_TYPE,
+            LF.LF_ST_COIN,
+            LF.LF_PR_PRICE
+        FROM
+            DELIVERY D
+                JOIN
+            ACE.LFSUBSCRIPTIONLIST SUB_LF on D.SUB_LF_ID = SUB_LF.SUB_LF_ID
+                JOIN
+            ACE.SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
+                JOIN ACE.LLIFEFURNITURE LF on SUB_LF.LF_ID = LF.LF_ID
+        WHERE
+            S.M_ID = 1
+    </select>
+
+
+</mapper>

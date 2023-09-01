@@ -1,9 +1,7 @@
 package kosa.com.suntofu.L_LIFE.member.service;
 
 import kosa.com.suntofu.L_LIFE.member.dao.MemberDao;
-import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
-import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
-import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
+import kosa.com.suntofu.L_LIFE.member.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +61,21 @@ public class MemberServiceImpl implements MemberService {
         paramMap.put("startDate", startDate);
         paramMap.put("endDate", endDate);
         return memberDao.getRecentStandardScriptionList(paramMap);
+    }
+
+    @Override
+    public int getOrderCount(int mId) {
+        return memberDao.getOrderCount(mId);
+    }
+
+    @Override
+    public List<DeliveryStatusVo> getDeliveryStatus(int mId) {
+        return memberDao.getDeliveryStatus(mId);
+    }
+
+    @Override
+    public List<DeliveryListVo> getDeliveryList(int memberId) {
+        return memberDao.getDeliveryList(memberId);
     }
 }
 

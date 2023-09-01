@@ -1,8 +1,6 @@
 package kosa.com.suntofu.L_LIFE.member.service;
 
-import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
-import kosa.com.suntofu.L_LIFE.member.vo.CartVo;
-import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
+import kosa.com.suntofu.L_LIFE.member.vo.*;
 
 import java.util.List;
 
@@ -19,4 +17,10 @@ public interface MemberService {
     List<SubscriptionListVo> getAllStandardScriptionList(int memberId);
 
     List<SubscriptionListVo> getRecentStandardScriptionList(int memberId, String startDate, String endDate);
+
+    int getOrderCount(int mId);
+
+    List<DeliveryStatusVo> getDeliveryStatus(int mId);
+
+    List<DeliveryListVo> getDeliveryList(int memberId);
 }
