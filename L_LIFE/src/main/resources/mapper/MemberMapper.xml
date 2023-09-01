@@ -24,4 +24,34 @@
         subscribe.M_ID = 1
     </select>
 
+    <select id="getOrderCount" parameterType="int" resultType="int">
+        -- 주문내역 개수 --
+        SELECT
+            COUNT(*)
+        FROM
+            LFSUBSCRIPTIONLIST SUB_LF
+                JOIN
+            ACE.SUBSCRIPTION SUB on SUB_LF.SUBSCRIPTION_ID = SUB.SUBSCRIPTION_ID
+        WHERE
+            SUB.M_ID = 1
+    </select>
+
+
+    <select id="getDeliveryStatus" parameterType="int" resultType="DeliveryStatusVo">
+        -- 주문 배송 현황(배송준비중, 배송중, 배송완료) 개수 --
+        SELECT
+            D.DELIVERY_STATUS,
+            COUNT(*) AS STATUS_COUNT
+        FROM
+            DELIVERY D
+                JOIN
+            ACE.LFSUBSCRIPTIONLIST SUB_LF on D.SUB_LF_ID = SUB_LF.SUB_LF_ID
+                JOIN
+            ACE.SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
+        WHERE
+            S.M_ID = 1
+        GROUP BY
+            D.DELIVERY_STATUS
+
+    </select>
 </mapper>

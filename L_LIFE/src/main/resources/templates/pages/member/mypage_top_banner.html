@@ -5,11 +5,11 @@
 
     <section class="user-info">
             <div>
-                <p class="user-hello">안녕하세요 ${순두부}님</p>
+                <p class="user-hello">안녕하세요 <span th:text="${session.loggedInMemberInfo.mName}"></span>님</p>
             </div>
             <div class="user-info-box-list">
                 <div class="user-info-box">
-                    <span th:text="${hPoint}"></span>
+                    <span th:text="${session.loggedInMemberInfo.mPoint}"></span>
                     <span>H.Point</span>
                 </div>
                 <div class="user-info-box">
@@ -32,30 +32,30 @@
             </a>
         </div>
         <div>
-            <div>
-                <img th:src="@{/img/member/delivery1.png}" class="img-size2">
-                <div class="delivery-content">입금대기중</div>
-                <div><span class="num">0</span><span>건</span></div>
-            </div>
+<!--            <div>-->
+<!--                <img th:src="@{/img/member/delivery1.png}" class="img-size2">-->
+<!--                <div class="delivery-content">입금대기중</div>-->
+<!--                <div><span class="num">0</span><span>건</span></div>-->
+<!--            </div>-->
             <div>
                 <img th:src="@{/img/member/delivery2.png}" class="img-size2">
-                <div class="delivery-content">결제완료</div>
-                <div><span class="num">0</span><span>건</span></div>
+                <div class="delivery-content">주문건수</div>
+                <div><span class="num" th:text="${session.orderCount}"></span><span>건</span></div>
             </div>
             <div>
                 <img th:src="@{/img/member/delivery3.png}" class="img-size2">
                 <div class="delivery-content">배송준비중</div>
-                <div><span class="num">0</span><span>건</span></div>
+                <div><span class="num" th:text="${session.deliveryReady}"></span><span>건</span></div>
             </div>
             <div>
                 <img th:src="@{/img/member/delivery4.png}" class="img-size2">
                 <div class="delivery-content">배송중</div>
-                <div><span class="num">0</span><span>건</span></div>
+                <div><span class="num" th:text="${session.deliveryProgress}"></span><span>건</span></div>
             </div>
             <div>
                 <img th:src="@{/img/member/delivery5.png}" class="img-size2">
                 <div class="delivery-content">배송완료</div>
-                <div><span class="num">0</span><span>건</span></div>
+                <div><span class="num" th:text="${session.deliveryComplete}"></span><span>건</span></div>
             </div>
         </div>
     </section>

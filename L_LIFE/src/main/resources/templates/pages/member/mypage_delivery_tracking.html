@@ -21,26 +21,35 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product : ${products}">
+        <tr th:each="product : ${deliveryList}">
             <td>
-                <span th:text="${product.date}"></span>
+                <span th:text="${product.subscribeStartDate}"></span>
                 <br>
-                <span th:text="${product.orderNumber}"></span>
+                <span th:text="${product.deliveryCode}"></span>
             </td>
             <td>
                 <div class="product-info">
-                    <img class="product-img" th:src="@{'/img/member/' + ${product.image}}">
+                    <img class="product-img" th:src="${product.lfImgMain}">
                     <div class="product-details">
-                        <span th:text="${product.name}"></span>
+                        <span th:text="${product.lfName}"></span>
                     </div>
                 </div>
             </td>
             <td>
                 <div class="coins">
-                    <th:block th:each="coin, stat : ${#numbers.sequence(1, product.coins)}">
-                        <img th:src="@{/img/member/coin.png}" alt="Coin Image" width="20"/>
+                    <th:block th:if="${product.lfSubType == 0}">
+                        <!-- product.lfSubType이 0인 경우 -->
+                        <th:block th:each="coin, stat : ${#numbers.sequence(1, product.lfStCoin)}">
+                            <img th:src="@{/img/member/coin.png}" alt="Coin Image" width="20"/>
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${product.lfSubType == 1}">
+                        <div>
+                            <span th:text="${product.lfPrPrice}"></span><span>원</span>
+                        </div>
                     </th:block>
                 </div>
+
             </td>
             <td>
                 <form action="http://info.sweettracker.co.kr/tracking/4" method="post">

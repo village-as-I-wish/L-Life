@@ -19,6 +19,6 @@ public class MainController {
 
     @GetMapping("/mail")
     public String loadMail(Model model){
-        return "pages/notification/mail_bill";
+        return "pages/notification/mail_alert";
     }
 }
