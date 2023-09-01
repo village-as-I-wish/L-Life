@@ -10,7 +10,7 @@
 <body>
 <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
 <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
-<th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment()"></th:block>
+<th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment(1)"></th:block>
 
 
 <div class="sl-top-banner">
@@ -20,10 +20,17 @@
 <div class="pl-main-content">
     <th:block th:replace="common/fragment/sidebar/product_filter_sidebar :: productFilterSidebar()"></th:block>
     <div class="pl-main-products">
-        <div class="pl-search-box">
-            <input type="text" placeholder="상품명으로 검색">
-        </div>
         <div class="pl-main-sub">
+
+            <form th:action="@{/premium/search}" method="get">
+                <div class="pl-search-box">
+                    <input type="text" name="keyword" placeholder="상품명으로 검색">
+                    <button type="submit" class="search-button">
+                        <img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/search-small.png" alt="검색">
+                    </button>
+                </div>
+            </form>
+
             <span class="pl-main-sub-products-txt"> <span class="txt-pink" th:text="${totalNum}"> </span> 개의 상품이 있습니다. </span>
             <ul>
                 <li> 추천순</li>

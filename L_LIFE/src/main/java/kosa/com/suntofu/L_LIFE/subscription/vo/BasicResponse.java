@@ -16,6 +16,5 @@ public class BasicResponse {
 
     private Integer code;
     private String message;
-
     private Object result;
 }

@@ -4,73 +4,110 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO">
 
-
     <!-- 스탠다드 메인 (가구이미지, 가구명, 가구브랜드, 코인개수) -->
-    <select id = "selectAllStandard" resultType="StandardVo">
+    <select id = "selectAllStandard">
         SELECT
-        f.f_id,
-        f.f_name,
-        lf.lf_st_coin,
-        img.f_img_url,
-        brand.f_brand_name
+            lf.lf_img_main,
+            lfb.lf_brand_name,
+            lf.lf_name,
+            lf.lf_st_coin
         FROM
-        Furniture f
+            LLifeFurniture lf
         JOIN
-        LLifeFurniture lf ON f.f_id = lf.f_id
-        JOIN
-        FurnitureImage img ON f.f_id = img.f_id
-        JOIN
-        FurnitureBrand brand ON f.f_brand_id = brand.f_brand_id
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
         WHERE
-        lf.lf_sub_type = 0
-        AND
-        img.f_img_seq = 0
+            lf_sub_type = 0
     </select>
-
 
     <!-- 라이브 리스트 가져오기 -->
     <select id = "selectAllLiveStream" resultType="StandardLiveVo">
         SELECT
-        LS.l_stream_name,
-        LS.l_stream_time,
-        TO_CHAR(LS.l_stream_time, 'MM/DD') AS stream_date,
-        TO_CHAR(LS.l_stream_time, 'HH24:MI') AS stream_time,
-        LFP.lf_package_name,
-        LFP.lf_package_img,
-        LFP.lf_package_st_coin
+            LS.l_stream_name,
+            LS.l_stream_time,
+            TO_CHAR(LS.l_stream_time, 'MM/DD') AS stream_date,
+            TO_CHAR(LS.l_stream_time, 'HH24:MI') AS stream_time,
+            LFP.lf_package_name,
+            LFP.lf_package_img,
+            LFP.lf_package_st_coin
         FROM
-        LSProduct LSP
+            LSProduct LSP
         JOIN
-        LiveStream LS ON LSP.l_stream_id = LS.l_stream_id
+            LiveStream LS ON LSP.l_stream_id = LS.l_stream_id
         JOIN
-        LFPackage LFP ON LSP.lf_package_id = LFP.lf_package_id
+            LFPackage LFP ON LSP.lf_package_id = LFP.lf_package_id
         WHERE
-        LFP.lf_package_type = 0
+            LFP.lf_package_type = 0
     </select>
 
     <!-- 카테고리 필터 -->
     <select id="selectStandardCategory" resultType="StandardVo">
         SELECT
-            F.f_id,
-            F.f_name,
-            LF.lf_st_coin,
-            FI.f_img_url,
-            FB.f_brand_name,
-            FC.f_category_id
+            lf.lf_img_main,
+            lfb.lf_brand_name,
+            lf.lf_name,
+            lf.lf_st_coin,
+            lfc.lf_category_id
         FROM
-            Furniture F
+            LLifeFurniture lf
         JOIN
-            FurnitureCategory FC ON F.f_category_id = FC.f_category_id
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
         JOIN
-            LLifeFurniture LF ON F.f_id = LF.f_id
-        JOIN
-            FurnitureBrand FB ON F.f_brand_id = FB.f_brand_id
-        JOIN
-            FurnitureImage FI ON F.f_id = FI.f_id
+            LFurnitureCategory lfc ON lf.lf_category_id = lfc.lf_category_id
         WHERE
-            FC.f_category_id = #{fCategoryId}
+            lfc.lf_category_id = #{fCategoryId}
+        AND
+            lf_sub_type = 0
     </select>
 
+    <!-- 상품 검색(브랜드명, 상품명) -->
+    <select id="selectStandardProductByKeyword" resultType="StandardVo">
+        SELECT
+            lf.lf_img_main,
+            lfb.lf_brand_name,
+            lf.lf_name,
+            lf.lf_st_coin
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        WHERE
+            lf.lf_sub_type = 0
+        AND
+            (UPPER(lfb.lf_brand_name) LIKE '%' || UPPER(#{keyword}) || '%'
+             OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
+    </select>
+
+    <!-- 스탠다드 상품(브랜드, 분위기, 코인개수) 검색 -->
+    <select id="searchStandardProductByFilter" resultType="StandardVo">
+        SELECT
+            lf.lf_img_main,
+            lfb.lf_brand_name,
+            lf.lf_name,
+            lf.lf_st_coin,
+            lfb.lf_brand_id
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN
+            LFurnitureMood lfm ON lf.lf_mood_id = lfm.lf_mood_id
+        WHERE
+           lf.lf_sub_type = 0
+        AND
+            lfb.lf_brand_id IN
+            <foreach collection="lfBrandIds" item="brandId" open="(" separator="," close=")">
+                #{brandId}
+            </foreach>
+        AND
+            lfm.lf_mood_id IN
+            <foreach collection="lfMoodIds" item="moodId" open="(" separator="," close=")">
+                #{moodId}
+            </foreach>
+        AND
+           lf.lf_st_coin BETWEEN #{minCoin} AND #{maxCoin}
+    </select>
+
+   
     <!-- 상품(브랜드) 필터 -->
     <select id="selectStandardBrand" resultType="StandardVo">
         SELECT a.*, b.*, c.*

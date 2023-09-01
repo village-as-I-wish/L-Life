@@ -1,38 +1,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="subCateHeaderFragment()">
+<th:block th:fragment="subCateHeaderFragment(lfSubType)">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common/header/sub_cate_header.css}"/>
 
     <div class="sub-cate-header">
         <div class="sub-cate-header-main hd__inner1400">
             <ul>
                 <li>
-                    <a th:href="@{/standard/category/1}" th:if="${lfSubType == 0}">소파</a>
-                    <a th:href="@{/premium/category/1}" th:if="${lfSubType == 1}">소파</a>
+                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/1' : '/l-life/premium/category/1'">소파</a>
                 </li>
                 <li>
-                    <a th:href="@{/standard/category/2}" th:if="${lfSubType == 0}">테이블</a>
-                    <a th:href="@{/premium/category/2}" th:if="${lfSubType == 1}">테이블</a>
+                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/2' : '/l-life/premium/category/2'">테이블</a>
                 </li>
                 <li>
-                    <a th:href="@{/standard/category/3}" th:if="${lfSubType == 0}">조명</a>
-                    <a th:href="@{/premium/category/3}" th:if="${lfSubType == 1}">조명</a>
+                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/3' : '/l-life/premium/category/3'">조명</a>
                 </li>
                 <li>
-                    <a th:href="@{/standard/category/4}" th:if="${lfSubType == 0}">의자</a>
-                    <a th:href="@{/premium/category/4}" th:if="${lfSubType == 1}">의자</a>
+                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/4' : '/l-life/premium/category/4'">의자</a>
                 </li>
                 <li>
-                    <a th:href="@{/standard/category/5}" th:if="${lfSubType == 0}">침대</a>
-                    <a th:href="@{/premium/category/5}" th:if="${lfSubType == 1}">침대</a>
+                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/5' : '/l-life/premium/category/5'">침대</a>
                 </li>
                 <li>
-                    <a th:href="@{/standard/category/6}" th:if="${lfSubType == 0}">수납</a>
-                    <a th:href="@{/premium/category/6}" th:if="${lfSubType == 1}">수납</a>
+                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/6' : '/l-life/premium/category/6'">수납</a>
                 </li>
                 <li>
-                    <a th:href="@{/standard/category/7}" th:if="${lfSubType == 0}">패키지</a>
-                    <a th:href="@{/premium/category/7}" th:if="${lfSubType == 1}">패키지 </a>
+                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/7' : '/l-life/premium/category/7'">패키지</a>
                 </li>
             </ul>
         </div>
