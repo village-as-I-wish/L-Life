@@ -25,7 +25,7 @@
             <td>
                 <span th:text="${product.subscribeStartDate}"></span>
                 <br>
-                <span th:text="${product.deliveryCode}"></span>
+                <span th:text="${product.subLfId}"></span>
             </td>
             <td>
                 <div class="product-info">
@@ -54,14 +54,14 @@
             <td>
                 <form action="http://info.sweettracker.co.kr/tracking/4" method="post">
                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="t_key" name="t_key" placeholder="제공받은 APIKEY" value="DYBDMHvGGJHqOQQV7oFIwA">
+                        <input type="hidden" class="form-control" id="t_key" name="t_key" placeholder="제공받은 APIKEY" th:value="${deliveryKey}">
                     </div>
                     <div class="form-group">
                         <input type="hidden" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="05">
                     </div>
                     <div class="form-group">
                         <label for="t_invoice">CJ 대한통운</label>
-                        <input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" value="532006588341" th:disabled>
+                        <input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" th:value="${product.deliveryCode}"  th:disabled>
                     </div>
                     <button type="submit" class="btn custom-button">조회하기</button>
                 </form>

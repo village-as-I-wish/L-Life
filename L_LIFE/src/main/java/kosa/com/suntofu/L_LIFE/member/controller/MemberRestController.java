@@ -4,17 +4,20 @@ import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.beans.factory.annotation.Value;
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/member")
 public class MemberRestController {
     private final MemberService memberService;
+
 
     @GetMapping("/{memberId}/mypage/standard/recent")
     public String recentStandardSubscription(@PathVariable int memberId,
@@ -28,4 +31,10 @@ public class MemberRestController {
         return "pages/member/mypage_standard_recent_subscription_table :: standardRecentSubscriptionTable";
     }
 
+    @PostMapping("/return/{productId}")
+    public ResponseEntity<Integer> returnFurniture(@PathVariable int productId){
+        System.out.println("반납 컨트롤러");
+        memberService.updateSubcriptionStatus(productId);
+        return new ResponseEntity<>(1, HttpStatus.OK);
+    }
 }
