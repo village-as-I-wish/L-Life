@@ -9,6 +9,8 @@ import java.util.Date;
 @Data
 @Builder
 public class SubscriptionPlanVo {
+
+    private Integer memberId;
     private Integer subscriptionPlanType;
     private String subscriptionPlanName;
 

@@ -1,16 +1,3 @@
-// $(document).ready(function() {
-//     let selectedPaymentMethod = "";
-//
-//     $("input[name='payment-method']").click(function () {
-//         if ($(this).is(":checked")) {
-//             selectedPaymentMethod = $(this).val(); // 선택된 값 저장
-//         }
-//     });
-//
-//
-//
-// });
-
 /**
  * 결제 주문 번호 생성 함수
  * @returns {string}
@@ -31,8 +18,7 @@ function createOrderNum(){
 /**
  * 결제 함수
  */
-function payment(baseUrl){
-        console.log(baseUrl)
+function payment(memberId){
         var selectedPaymentMethod = $(".payment-btn-group input[type='radio']:checked").val();
         if (selectedPaymentMethod === "") {
             alert('결제 방식을 선택해주세요');
@@ -42,9 +28,9 @@ function payment(baseUrl){
 
         // 여기에 결제 로직 추가
         if (selectedPaymentMethod === "kakao") {
-            paymentKaKao(payKeys.kakaoPayKey);
+            paymentKaKao(payKeys.kakaoPayKey, memberId);
         } else if (selectedPaymentMethod === "toss") {
-            paymentToss(payKeys.tossPayKey, baseUrl);
+            paymentToss(payKeys.tossPayKey, memberId);
         } else if(selectedPaymentMethod==""){
             alert("결제 방식을 선택해주세요. ");
             return;
@@ -56,10 +42,9 @@ function payment(baseUrl){
 /**
  * 카카오 결제 함수
  */
-function paymentKaKao(kakaoPayKey) {
+function paymentKaKao(kakaoPayKey, memberId) {
     data = createPaymentData()
-    console.log(data)
-    IMP.init(kakaoPayKey); // imp 번호
+    IMP.init(kakaoPayKey);
     IMP.request_pay({
             pg: "kakaopay",
             pay_method: 'card',
@@ -68,9 +53,9 @@ function paymentKaKao(kakaoPayKey) {
             amount: data.amount,
             buyer_name: data.customerName,
         },
-        function (rsp) { // callback
+        function (rsp) {
             if (rsp.success) {
-               alert('결제에 성공하였습니다. ');
+               paymentSuccess(memberId);
                return ;
 
             } else {
@@ -83,29 +68,21 @@ function paymentKaKao(kakaoPayKey) {
 /**
  * 토스 페이먼츠 결제 함수
  */
-function paymentToss(tossPayKey, contextUrl){
+function paymentToss(tossPayKey, memberId){
     var tossPayments = TossPayments(tossPayKey)
     data = createPaymentData()
-    console.log(data)
-    var successUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 성공 시 이동할 페이지 -> 변경 필요
-    var failUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 실패 시 이동할 페이지 -> 변경 필요
+    var successUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 성공 시 이동할 페이지 -> 변경 필요 (memberId)
+    var failUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 실패 시 이동할 페이지 -> 변경 필요 (memberId)
     tossPayments.requestPayment('카드', {
         amount: data.amount,
         orderId:  data.orderId,
         orderName: data.orderName,
         customerName: data.customerName,
     }).then((res) =>{
-        $.ajax({
-            type : "POST",
-            url : baseUrl +"/l-life/api/v1/subscription",
-            // data : params,
-            success : function(res){
-                alert(res.code);
-            },
-            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                alert("통신 실패.")
-            }
-        });
+
+        paymentSuccess();
+
+
     }).catch(function (error) {
             if (error.code === 'USER_CANCEL') {
                 // 결제 고객이 결제창을 닫았을 때 에러 처리
@@ -118,6 +95,7 @@ function paymentToss(tossPayKey, contextUrl){
 
 /**
  * 결제 데이터 생성 함수
+ * @returns {data}
  */
 function createPaymentData(){
     var amount =  $('#final-price').text()
@@ -132,5 +110,30 @@ function createPaymentData(){
         customerName : customerName
     }
     return data
+
+}
+
+/**
+ * 결제 성공시 호출 알림
+ */
+function paymentSuccess(memberId){
+    data={
+        subscriptionPlanType:  1, // 스탠다드 라인
+    }
+    $.ajax({
+        type : "POST",
+        data : data,
+        url : baseUrl +"/l-life/api/v1/subscription",
+        success : function(res){
+            Swal.fire({
+                title: '구독이 시작되었습니다.',
+                text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+            })
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){
+            alert("통신 실패.")
+        }
+    });
 
 }

@@ -1,0 +1,39 @@
+.swal2-popup{
+    box-shadow: 8px 0 6px 4px rgba(0, 0, 0,0.3)!important;
+    position: absolute;
+    top: -100px;
+}
+.swal2-popup img{
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+}
+.swal2-title{
+    display: block;
+    color: #5D493F;
+    font-size: 22px;
+}
+.swal2-html-container{
+    color: #5D493F;
+    font-size: 16px;
+}
+.swal2-styled.swal2-confirm {
+    display: inline-block;
+    width: 100px;
+    background-color: #5D493F;
+    border-radius: 30px;
+    outline: none !important;
+}
+
+.swal2-styled.swal2-confirm:active {
+    outline: none !important;
+}
+
+.swal2-styled.swal2-confirm:focus{
+    display: inline-block;
+    width: 100px;
+    background-color: #5D493F;
+    border-radius: 30px;
+    outline: none !important;
+    box-shadow: none !important;
+}
