@@ -131,6 +131,21 @@
             lf_id = #{lfId}
     </select>
 
+    <select id="selectStandardOptionById" resultType="StandardOptionVo">
+        SELECT
+            lf.lf_id,
+            lfo.lf_opt_id,
+            lfo.lf_opt_name
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureOption lfo ON lf.lf_id = lfo.lf_id
+        WHERE
+            lf.lf_sub_type = 0
+        AND
+            lf.lf_id = #{lfId}
+    </select>
+
 
 
 </mapper>

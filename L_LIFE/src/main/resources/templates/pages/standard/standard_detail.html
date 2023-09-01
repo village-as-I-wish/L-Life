@@ -63,10 +63,7 @@
                       onclick="dropdown()">arrow_drop_down</span>
             </button>
             <div class="dropdown-content">
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 1</div>
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 2</div>
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 3</div>
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 4</div>
+                <div th:each="option : ${options}" th:text="${option.lfOptName}" onclick="showMenu(this.innerText)"></div>
             </div>
         </div>
 

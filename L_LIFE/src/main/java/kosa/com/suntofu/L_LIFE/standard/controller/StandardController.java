@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.standard.controller;
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardDetailVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardOptionVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -100,6 +101,11 @@ public class StandardController {
         // 기본적인 상세정보 가져오기
         StandardDetailVo detail = standardService.getStandardDetailById(lfId);
         model.addAttribute("standardDetail",  detail);
+
+        // 옵션 가져오기
+        List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
+        model.addAttribute("options", options);
+
         return "pages/standard/standard_detail";
     }
 
