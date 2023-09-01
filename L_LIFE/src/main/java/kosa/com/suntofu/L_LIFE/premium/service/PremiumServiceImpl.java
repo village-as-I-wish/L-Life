@@ -40,4 +40,15 @@ public class PremiumServiceImpl implements PremiumService{
     public int calculatePaginationNum(int totalNum) {
         return (int)Math.ceil((double)totalNum / 16);
     }
+
+    @Override
+    public List<PremiumVo> selectProductByCategory(PaginationVo paginationVo) {
+        paginationVo = calculateAndSetOffset(paginationVo);
+        return premiumDao.selectProductByCategory(paginationVo);
+    }
+
+    @Override
+    public int selectProductCountByCategoryByPagination(PaginationVo paginationVo) {
+        return premiumDao.selectProductCountByCategoryByPagination(paginationVo);
+    }
 }

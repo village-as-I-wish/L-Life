@@ -22,5 +22,27 @@
         WHERE lf_sub_type = 1
     </select>
 
-    <!-- pagination 카테고리별 상품 개수 구하기 -->
+    <!-- 프리미엄 상품 카테고리 필터링 -->
+    <select id="selectProductByCategory" parameterType="PaginationVo" resultType="PremiumVo">
+        SELECT lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
+        FROM LLifeFurniture lf
+        JOIN LFurnitureBrand lfb
+        ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN LFurnitureCategory lfc
+        ON lf.lf_category_id = lfc.lf_category_id
+        WHERE lf_sub_type = 1
+        AND lfc.lf_category_id = #{lfCategoryId}
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
+    </select>
+
+    <select id="selectProductCountByCategoryByPagination" parameterType="PaginationVo" resultType="_int">
+        SELECT count(*)
+        FROM LLifeFurniture lf
+        JOIN LFurnitureBrand lfb
+        ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN LFurnitureCategory lfc
+        ON lf.lf_category_id = lfc.lf_category_id
+        WHERE lf_sub_type = 1
+        AND lfc.lf_category_id = #{lfCategoryId}
+    </select>
 </mapper>

@@ -11,7 +11,7 @@
 <body>
 <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
 <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
-<th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment()"></th:block>
+<th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment(0)"></th:block>
 
 <div class="sl-top-banner">
     <img alt="베너 사진1 " th:src="@{/img/standard/list_top_banner.png}"/>
@@ -78,12 +78,13 @@
                 <form th:action="@{/standard/search}" method="get">
                     <div class="pl-search-box">
                         <input type="text" name="keyword" placeholder="상품명으로 검색">
-                        <button type="submit" th:text="검색">
-                            <img class="search-icon" th:src="@{img/common/search.png}" />
-                        </button>
+                        <input type="image" class="search-icon" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/search.png}">
                     </div>
                 </form>
-                <span class="sl-main-sub-products-txt"> <span class="txt-pink"> 15 </span> 개의 상품이 있습니다. </span>
+
+                <span class="sl-main-sub-products-txt">
+                    <span class="txt-pink" th:text="${productCount}"></span>개의 상품이 있습니다.
+                </span>
                 <ul>
                     <li>추천순</li>
                     <li>신상품순</li>

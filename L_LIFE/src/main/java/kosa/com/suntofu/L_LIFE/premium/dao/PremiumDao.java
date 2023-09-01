@@ -11,4 +11,6 @@ import java.util.List;
 public interface PremiumDao {
     List<PremiumVo> selectPremiumProductList(PaginationVo paginationVo);
     int selectProductCountPagination(PaginationVo paginationVo);
+    List<PremiumVo> selectProductByCategory(PaginationVo paginationVo);
+    int selectProductCountByCategoryByPagination(PaginationVo paginationVo);
 }

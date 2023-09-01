@@ -19,7 +19,7 @@ public class StandardController {
     private final StandardService standardService;
     private int lfSubType = 0;
 
-    @GetMapping("")
+    @GetMapping("/main")
     public String loadStandardMainPage(Model model) {
 
         model.addAttribute("lfSubType", lfSubType);
@@ -37,12 +37,15 @@ public class StandardController {
         // 현재 날짜와 시간 가져오기
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("now", LocalDateTime.now());
+
+        // 상품 개수 표현
+        model.addAttribute("productCount", standardList.size());
         return "pages/standard/standard_main";
     }
 
     // 스탠다드 상품 카테고리별 필터링
-    @GetMapping("/category/{lfSubType}/{fCategoryId}")
-    public String getStandardProductByCategory(Model model, @PathVariable int fCategoryId, @PathVariable int lfSubType) {
+    @GetMapping("/category/{fCategoryId}")
+    public String getStandardByCategory(Model model, @PathVariable int fCategoryId) {
 
         model.addAttribute("lfSubType", lfSubType);
 
@@ -54,6 +57,8 @@ public class StandardController {
 
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("now", LocalDateTime.now());
+
+        model.addAttribute("productCount", standardList.size());
         return "pages/standard/standard_main";
     }
 
@@ -72,7 +77,11 @@ public class StandardController {
 
         List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
         model.addAttribute("stkeyword", stkeyword);
-        return "pages/standard/standard_main";
+        model.addAttribute("standardList", stkeyword);
+
+        model.addAttribute("productCount", stkeyword.size());
+
+      return "pages/standard/standard_main";
     }
 
 
