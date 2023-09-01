@@ -13,4 +13,6 @@ public interface PremiumDao {
     int selectProductCountPagination(PaginationVo paginationVo);
     List<PremiumVo> selectProductByCategory(PaginationVo paginationVo);
     int selectProductCountByCategoryByPagination(PaginationVo paginationVo);
+    List<PremiumVo> selectProductByKeyword(PaginationVo paginationVo);
+    int selectProductByKeywordPagination(PaginationVo paginationVo);
 }
