@@ -16,4 +16,9 @@ public class MainController {
     public String loadLlifeMainPage(Model model){
         return "pages/main/main";
     }
+
+    @GetMapping("/mail")
+    public String loadMail(Model model){
+        return "pages/notification/mail_bill";
+    }
 }

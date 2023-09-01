@@ -1,0 +1,13 @@
+.mail_container{
+    width: 1000px;
+    margin: 0 auto;
+}
+.mail_container > img{
+    width: 100%;
+}
+.mail-content{
+    padding: 40px;
+}
+.invoice-content{
+    display: flex;
+}

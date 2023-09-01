@@ -26,11 +26,11 @@ public class NotificationController {
     public ResponseEntity sendMail() {
         String username = "dev-park";
         Context context = new Context();
-        context.setVariable("nickname",username);
+        context.setVariable("nickname", username);
 
         String message = templateEngine.process("pages/notification/mail", context);
 
-        NotificationMessageVo notificationMessageVo = new NotificationMessageVo("sskong777@gmail.com",username + "에게 ",message);
+        NotificationMessageVo notificationMessageVo = new NotificationMessageVo("sskong777@gmail.com", username + "에게 ", message);
         notificationService.sendMail(notificationMessageVo);
         return new ResponseEntity(HttpStatus.OK);
     }
