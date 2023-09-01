@@ -30,42 +30,29 @@
     </div>
 
     <!-- 테이블 부분 -->
-    <table class="recent-table">
-        <colgroup>
-            <col style="width: 25%">
-            <col style="width: 50%">
-            <col style="width: 25%">
-        </colgroup>
-        <thead>
-        <tr>
-            <th class="col-title">주문일</th>
-            <th class="col-title">구독항목</th>
-            <th class="col-title">구독상품</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.date}"></td> <!-- 주문일 -->
-            <td>
-                <div class="product-info">
-                    <img class="product-img" th:src="@{'/img/member/' + ${product.image}}">
-                    <div class="product-details">
-                        <span th:text="${product.name}"></span>
-                        <div class="coins">
-                            <th:block th:each="coin, stat : ${#numbers.sequence(1, product.coins)}">
-                                <img th:src="@{/img/member/coin.png}" alt="Coin Image" width="20"/>
-                            </th:block>
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td th:text="${product.subscriptionType} + '원'"></td>
-        </tr>
-        </tbody>
-    </table>
+            <th:block th:replace="pages/member/mypage_standard_recent_subscription_table::standardRecentSubscriptionTable()"
+                      id="standardRecentSubscriptionTable"></th:block>
+<!--        <th:block th:fragment="standardRecentSubscriptionTable">-->
+<!--        </th:block>-->
+
 
     <script src="https://unpkg.com/js-datepicker"></script>
+
+
     <script>
+
+        $(document).ready(function() {
+            // REST API 호출
+            $.ajax({
+                url: 'http://localhost:8080/l-life/api/v1/member/1/mypage/standard/recent', // API 엔드포인트
+                method: 'GET',
+                data: {startDate: '2023-07-31', endDate: '2023-08-31'}
+            })
+            .done(function(fragment) {
+                $('#standardRecentSubscriptionTable').replaceWith(fragment);
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             setDefaultDates();
             initDatepickers();
