@@ -16,5 +16,8 @@ public class SubscriptionListVo {
     private String lfImgMain;
     private String lfOptName;
     private String lfBrandName;
+    private String subscribeStartDate;
+    private String subscribeEndDate;
+    private String SubscriptionTypeName;
 
 }

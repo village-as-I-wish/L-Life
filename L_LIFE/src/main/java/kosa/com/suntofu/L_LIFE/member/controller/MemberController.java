@@ -67,9 +67,6 @@ public class MemberController {
 
         System.out.println("standardSubscriptionList" + standardSubscriptionList);
 
-        // 스탠다드 최근 구독 내역
-
-
         model.addAttribute("standardSubscriptionList", standardSubscriptionList);
 
         return "pages/member/mypage_standard";

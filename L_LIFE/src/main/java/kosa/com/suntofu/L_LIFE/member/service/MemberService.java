@@ -17,4 +17,6 @@ public interface MemberService {
     int getCurrentCoin(int mId);
 
     List<SubscriptionListVo> getAllStandardScriptionList(int memberId);
+
+    List<SubscriptionListVo> getRecentStandardScriptionList(int memberId, String startDate, String endDate);
 }

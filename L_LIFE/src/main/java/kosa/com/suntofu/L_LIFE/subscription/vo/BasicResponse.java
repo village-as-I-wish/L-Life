@@ -15,8 +15,6 @@ import java.util.List;
 public class BasicResponse {
 
     private Integer code;
-    private HttpStatus httpStatus;
     private String message;
-    private Integer count;
-    private List<Object> result;
+    private Object result;
 }

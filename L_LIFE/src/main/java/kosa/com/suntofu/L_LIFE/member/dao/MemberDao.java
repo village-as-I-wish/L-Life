@@ -7,6 +7,7 @@ import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface MemberDao {
@@ -22,4 +23,6 @@ public interface MemberDao {
     int getCurrentCoin(int memberId);
 
     List<SubscriptionListVo> getAllStandardScriptionList(int memberId);
+
+    List<SubscriptionListVo> getRecentStandardScriptionList(Map<String,Object> paramMap);
 }

@@ -7,7 +7,9 @@ import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -52,6 +54,15 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<SubscriptionListVo> getAllStandardScriptionList(int memberId) {
         return memberDao.getAllStandardScriptionList(memberId);
+    }
+
+    @Override
+    public List<SubscriptionListVo> getRecentStandardScriptionList(int memberId, String startDate, String endDate) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("memberId", memberId);
+        paramMap.put("startDate", startDate);
+        paramMap.put("endDate", endDate);
+        return memberDao.getRecentStandardScriptionList(paramMap);
     }
 }
 
