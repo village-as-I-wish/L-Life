@@ -23,9 +23,6 @@ public class StandardRestController {
     // 스탠다드 상품(브랜드, 분위기, 코인개수) 검색
     @GetMapping("/search")
     public ResponseEntity<List<StandardVo>>search(SearchRequestVo requestVo) {
-        log.info("testing filterrrrrrrr");
-
-        System.out.println("requestVo = " + requestVo);
 
         List<StandardVo> FilterProducts = standardService.getStandardProductByFilter(requestVo);
         return new ResponseEntity<>(FilterProducts, HttpStatus.OK);

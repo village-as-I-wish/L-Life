@@ -1,9 +1,13 @@
 function search() {
-    console.log("testing search filter")
 
     let lfBrandId = [];
     let lfMoodId = [];
 
+    output.innerHTML = slider.value;
+
+    slider.oninput = function () {
+        output.innerHTML = this.value;
+    }
 
     var lfBrandIds = $('input[name="lfBrandId"]:checked').map(function () {
         return this.value;
@@ -21,7 +25,6 @@ function search() {
         minCoin: minCoin,
         maxCoin: maxCoin
     }
-
 
     queryParams = '';
     if (lfBrandIds.length !== 0) {
@@ -42,16 +45,14 @@ function search() {
     var url = "http://localhost:8080/l-life/api/v1/standard/search?" + queryParams;
     console.log(url)
 
-
     $.ajax({
         type: "GET",
         url: url,
         success: function (response) {
             var data = response;
-            console.log("성공")
-            alert("통신 성공")
             var html = '';
-            data.forEach(function(item) {
+            $('.sl-main-sub-products-txt .txt-pink').text(data.length);
+            data.forEach(function (item) {
                 html += '<div class="sl-main-sub-product">';
                 html += '<a href="/standard/1/detail">';
                 html += '<div class="sl-main-sub-product-img col">';
