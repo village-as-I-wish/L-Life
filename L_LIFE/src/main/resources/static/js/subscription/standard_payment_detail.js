@@ -1,33 +1,3 @@
-$(document).ready(function() {
-    let selectedPaymentMethod = "";
-
-    $("input[name='payment-method']").click(function () {
-        if ($(this).is(":checked")) {
-            selectedPaymentMethod = $(this).val(); // 선택된 값 저장
-        }
-    });
-
-    // 다른 곳에서 selectedPaymentMethod 사용 가능
-    $(".payment-button").click(function () {
-        if (selectedPaymentMethod === "") {
-            alert('결제 방식을 선택해주세요');
-            return;
-        }
-        // 여기에 결제 로직 추가
-        if (selectedPaymentMethod === "kakao") {
-            paymentKaKao(payKeys.kakaoPayKey);
-        } else if (selectedPaymentMethod === "toss") {
-            paymentToss(payKeys.tossPayKey);
-        } else if(selectedPaymentMethod==""){
-            alert("결제 방식을 선택해주세요. ");
-            return;
-        }else{
-            alert('다른 결제 방식을 선택해주세요.');
-            return;
-        }
-    });
-
-});
 /**
  * 결제 주문 번호 생성 함수
  * @returns {string}
@@ -46,35 +16,51 @@ function createOrderNum(){
 }
 
 /**
+ * 결제 함수
+ */
+function payment(memberId){
+        var selectedPaymentMethod = $(".payment-btn-group input[type='radio']:checked").val();
+        if (selectedPaymentMethod === "") {
+            alert('결제 방식을 선택해주세요');
+            return;
+        }
+        // 선택되지 않았을 때 예외 처리 필요
+
+        // 여기에 결제 로직 추가
+        if (selectedPaymentMethod === "kakao") {
+            paymentKaKao(payKeys.kakaoPayKey, memberId);
+        } else if (selectedPaymentMethod === "toss") {
+            paymentToss(payKeys.tossPayKey, memberId);
+        } else if(selectedPaymentMethod==""){
+            alert("결제 방식을 선택해주세요. ");
+            return;
+        }else{
+            alert('다른 결제 방식을 선택해주세요.');
+            return;
+        }
+}
+/**
  * 카카오 결제 함수
  */
-function paymentKaKao(kakaoPayKey) {
-
-    IMP.init(kakaoPayKey); // imp 번호
+function paymentKaKao(kakaoPayKey, memberId) {
+    data = createPaymentData()
+    IMP.init(kakaoPayKey);
     IMP.request_pay({
             pg: "kakaopay",
             pay_method: 'card',
-            merchant_uid: createOrderNum(),
-            name: '정기 구독권 33',
-            amount: 100,
-            buyer_email: "",
-            buyer_name: "sj1" + new Date().getTime(),
-            buyer_tel: "010-1111-2222",
-            // buyer_addr: data.deleveryAddress2 + " " + data.deleveryAddress3,
-            // buyer_postcode: data.deleveryAddress1,
-            // m_redirect_url: m_redirect,
+            merchant_uid: data.orderId,
+            name: data.orderName,
+            amount: data.amount,
+            buyer_name: data.customerName,
         },
-        function (rsp) { // callback
+        function (rsp) {
             if (rsp.success) {
-                // 결제 성공 시 로직,
-                console.log("결제가 완료되었습니다. ")
-                // data.impUid = rsp.imp_uid;
-                // data.merchant_uid = rsp.merchant_uid;
-                // paymentComplete(data);
+               paymentSuccess(memberId);
+               return ;
 
             } else {
                 // 결제 실패 시 로직,
-                console.log("결제에 실패하였습니다. . ")
+                alert('결제에 실패하였습니다. ');
             }
         });
 }
@@ -82,26 +68,72 @@ function paymentKaKao(kakaoPayKey) {
 /**
  * 토스 페이먼츠 결제 함수
  */
-function paymentToss(tossPayKey){
-    var clientKey = tossPayKey // 키값 숨겨야 함!
-    var tossPayments = TossPayments(clientKey)
-
+function paymentToss(tossPayKey, memberId){
+    var tossPayments = TossPayments(tossPayKey)
+    data = createPaymentData()
+    var successUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 성공 시 이동할 페이지 -> 변경 필요 (memberId)
+    var failUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 실패 시 이동할 페이지 -> 변경 필요 (memberId)
     tossPayments.requestPayment('카드', {
-        amount: 100000, // 결제 금액
-        orderId:  createOrderNum(), // 주문 ID -> 변경 필요
-        orderName: '스탠다드 구독권 33', // 주문명
-        customerName: '김토스', // 구매자 이름
-        successUrl: 'https://docs.tosspayments.com/guides/payment/test-success', // 결제 성공 시 이동할 페이지 -> 변경 필요
-        failUrl: 'https://docs.tosspayments.com/guides/payment/test-fail', // 결제 실패 시 이동할 페이지 -> 변경 필요
-    })
-        // https://docs.tosspayments.com/reference/error-codes#결제창공통-sdk-에러
-        .catch(function (error) {
+        amount: data.amount,
+        orderId:  data.orderId,
+        orderName: data.orderName,
+        customerName: data.customerName,
+    }).then((res) =>{
+
+        paymentSuccess();
+
+
+    }).catch(function (error) {
             if (error.code === 'USER_CANCEL') {
                 // 결제 고객이 결제창을 닫았을 때 에러 처리
             } else if (error.code === 'INVALID_CARD_COMPANY') {
                 // 유효하지 않은 카드 코드에 대한 에러 처리
             }
         });
+
 }
 
+/**
+ * 결제 데이터 생성 함수
+ * @returns {data}
+ */
+function createPaymentData(){
+    var amount =  $('#final-price').text()
+    var orderId =  createOrderNum() // 주문 ID -> 변경 필요
+    var orderName = $('#product-name').text()
+    var customerName = '김승주'
 
+    data ={
+        amount : amount,
+        orderId : orderId,
+        orderName: orderName,
+        customerName : customerName
+    }
+    return data
+
+}
+
+/**
+ * 결제 성공시 호출 알림
+ */
+function paymentSuccess(memberId){
+    data={
+        subscriptionPlanType:  1, // 스탠다드 라인
+    }
+    $.ajax({
+        type : "POST",
+        data : data,
+        url : baseUrl +"/l-life/api/v1/subscription",
+        success : function(res){
+            Swal.fire({
+                title: '구독이 시작되었습니다.',
+                text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+            })
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){
+            alert("통신 실패.")
+        }
+    });
+
+}
