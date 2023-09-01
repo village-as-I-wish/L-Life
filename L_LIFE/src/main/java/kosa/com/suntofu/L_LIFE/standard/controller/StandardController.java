@@ -1,9 +1,11 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardDetailVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/standard")
@@ -85,7 +88,6 @@ public class StandardController {
     }
 
 
-
     /**
      * 스탠다드 구독관 제품 상세 페이지 로드
      *
@@ -93,9 +95,14 @@ public class StandardController {
      * @return String
      */
     @GetMapping("/{productId}/detail")
-    public String loadStandardDetailPage(Model model) {
+    public String getStandardDetailPage(@PathVariable("productId") int lfId, Model model) {
+
+        // 기본적인 상세정보 가져오기
+        StandardDetailVo detail = standardService.getStandardDetailById(lfId);
+        model.addAttribute("standardDetail",  detail);
         return "pages/standard/standard_detail";
     }
+
 
 
     @GetMapping("/review")

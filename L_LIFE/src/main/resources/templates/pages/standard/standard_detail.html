@@ -21,28 +21,31 @@
 
 <div class="lf-pr-summary-container hd__inner1100">
     <div class="lf-pr-summary-img-box">
-        <img alt="상품 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+        <img alt="상품 메인사진" th:src="${standardDetail.lfImgMain}"/>
     </div>
     <div class="lf-pr-summary-info">
-        <span class="light-gray text-xsm pt-4"> 리바트 > </span>
+        <span class="light-gray text-xsm pt-4" th:text="${standardDetail.lfBrandName} + ' >'"></span>
         <div class="lf-pr-summary-header">
-            <span class="lf-pr-name"> 오브니 패브릭 4인 소파 와이드 </span>
+            <span class="lf-pr-name" th:text="${standardDetail.lfName}"> 상품명 </span>
             <i class="fa-solid fa-heart fill-heart"></i>
         </div>
         <hr>
         <div class="lf-pr-summary-detail">
             <div class="lf-pr-point d-flex">
-                <span class="lf-pr-point-txt text-sm f-bold"> 포인트 3개 </span>
-                <img th:each="i : ${#numbers.sequence(1, 4)}" alt="코인 사진" th:src="@{/img/standard/coin.png}"/>
+                <span class="lf-pr-point-txt text-sm f-bold" th:text="'포인트 ' + ${standardDetail.lfStCoin} + '개'"></span>
+                <th:block
+                        th:each="coinNumber : ${#numbers.sequence(1, standardDetail.lfStCoin)}">
+                    <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                </th:block>
             </div>
             <div class="lf-pr-etc-infos">
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span>상품등급 <span>A+</span></span>
+                    <span> 상품등급 <span th:text="${standardDetail.lfStGrade}"></span></span>
                 </div>
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span> 리퍼 상품 이에요.</span>
+                    <span th:text="${standardDetail.lfSubComment} + ' 이에요'"></span>
                 </div>
                 <p class="lr-pr-etc-subtxt">
                     * 리퍼 상품이란 ? <br>

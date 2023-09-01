@@ -1,6 +1,7 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
 import kosa.com.suntofu.L_LIFE.standard.vo.SearchRequestVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardDetailVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 
@@ -12,4 +13,5 @@ public interface StandardService {
     List<StandardVo> getStandardByCategory(int fCategoryId);
     List<StandardVo> getStandardProductByKeyword(String keyword);
     List<StandardVo> getStandardProductByFilter(SearchRequestVo requestVo);
+    StandardDetailVo getStandardDetailById(int lfId);
 }
