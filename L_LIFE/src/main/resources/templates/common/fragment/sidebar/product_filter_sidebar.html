@@ -2,27 +2,28 @@
 
 <th:block th:fragment="productFilterSidebar()">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common/sidebar/product_filter_sidebar.css}"/>
+    <body>
 
     <div class="pf-sidebar">
         <div class="pf-brand pf-cate-box">
-            <div class="pf-main-cate"> 검색 </div>
+            <div class="pf-main-cate"> 검색</div>
             <hr>
             <div class="pf-main-cate"> 브랜드</div>
 
             <div class="pf-main-list checkbox-group">
-                <input type="checkbox" id="checkbox1">
+                <input type="checkbox" id="checkbox1" name="lfBrandId" value="1">
                 <label for="checkbox1">Global Livart Gallery</label>
 
-                <input type="checkbox" id="checkbox2">
+                <input type="checkbox" id="checkbox2" name="lfBrandId" value="2">
                 <label for="checkbox2">리바트 </label>
 
-                <input type="checkbox" id="checkbox3">
+                <input type="checkbox" id="checkbox3" name="lfBrandId" value="3">
                 <label for="checkbox3">리바트 H-몬도</label>
 
-                <input type="checkbox" id="checkbox4">
+                <input type="checkbox" id="checkbox4" name="lfBrandId" value="4">
                 <label for="checkbox4">FM 디자인</label>
 
-                <input type="checkbox" id="checkbox5">
+                <input type="checkbox" id="checkbox5" name="lfBrandId" value="5">
                 <label for="checkbox5">리바트 온라인 </label>
             </div>
 
@@ -32,21 +33,20 @@
             <div class="pf-main-cate"> 분위기</div>
 
             <div class="pf-main-list checkbox-group">
-                <input type="checkbox" id="modetype1">
+                <input type="checkbox" id="modetype1" name="lfMoodId" value="1">
                 <label for="modetype1">모던</label>
 
-
-                <input type="checkbox" id="modetype2">
+                <input type="checkbox" id="modetype2" name="lfMoodId" value="2">
                 <label for="modetype2">미니멀 & 심플 </label>
 
-                <input type="checkbox" id="modetype3">
+                <input type="checkbox" id="modetype3" name="lfMoodId" value="3">
                 <label for="modetype3">내추럴</label>
 
 
-                <input type="checkbox" id="modetype4">
+                <input type="checkbox" id="modetype4" name="lfMoodId" value="4">
                 <label for="modetype4">북유럽 </label>
 
-                <input type="checkbox" id="modetype5">
+                <input type="checkbox" id="modetype5" name="lfMoodId" value="5">
                 <label for="modetype5">빈티지 & 레트로 </label>
 
             </div>
@@ -55,34 +55,23 @@
         <hr>
 
         <div class="pf-price pf-cate-box">
-            <div class="pf-main-cate"> L-COIN </div>
+            <div class="pf-main-cate"> L-COIN</div>
 
             <div class="pf-main-list">
                 <div class="slidecontainer">
-                        <input type="range" min="1" max="5" value="3" class="slider" id="myRange">
-                        <p> L-COIN :   0개 이상 -  <span id="demo"></span> 이하 </p>
+                    <input type="range" min="1" max="5" value="3" class="slider" id="myRange" name="maxCoin">
+                    <p> L-COIN : 0개 이상 - <span id="demo"></span> 이하 </p>
                 </div>
+                <input type="hidden" id="minCoin" name="minCoin" value="1">
             </div>
 
         </div>
         <hr>
         <div class="pf-submit-buttons d-flex mt-4">
-            <button> 초기화 </button>
-            <button> 적용하기 </button>
-
+            <button type="reset"> 초기화</button>
+            <button class="search-btn" onclick="search()"> 적용하기</button>
         </div>
-
-
     </div>
 
-    <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-        }
-    </script>
+    </body>
 </th:block>
-</html>

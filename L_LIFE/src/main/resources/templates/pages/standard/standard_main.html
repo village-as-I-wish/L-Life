@@ -5,6 +5,7 @@
     <title>L-Life Standard</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/standard/standard_main.css}"/>
+    <script th:src="@{/js/sidebar/product_filter_sidebar.js}" type="text/javascript"></script>
 
 </head>
 <body>
@@ -95,7 +96,7 @@
                     <div class="sl-main-sub-product" th:each="standardList : ${standardList}">
                         <a th:href="@{/standard/1/detail}">
                             <div class="sl-main-sub-product-img col">
-                                <img alt="베너 사진1 " th:src="${standardList.lfImgMain}"/>
+                                <img alt="상품 메인사진 " th:src="${standardList.lfImgMain}"/>
                             </div>
                             <div class="sl-main-sub-product-txt">
                                 <p th:text="${standardList.lfName}">상품명</p>
@@ -116,6 +117,5 @@
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

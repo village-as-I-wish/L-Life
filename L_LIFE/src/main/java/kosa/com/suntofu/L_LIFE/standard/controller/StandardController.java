@@ -6,10 +6,7 @@ import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -79,25 +76,30 @@ public class StandardController {
         model.addAttribute("now", LocalDateTime.now());
 
         List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
+        model.addAttribute("stkeyword", stkeyword);
         model.addAttribute("standardList", stkeyword);
 
         model.addAttribute("productCount", stkeyword.size());
-        return "pages/standard/standard_main";
+
+      return "pages/standard/standard_main";
     }
+
+
 
     /**
      * 스탠다드 구독관 제품 상세 페이지 로드
+     *
      * @param model
      * @return String
      */
     @GetMapping("/{productId}/detail")
-    public String loadStandardDetailPage(Model model){
+    public String loadStandardDetailPage(Model model) {
         return "pages/standard/standard_detail";
     }
 
 
     @GetMapping("/review")
-    public String loadReviewCreatePage(){
+    public String loadReviewCreatePage() {
         return "pages/standard/review";
     }
 }
