@@ -3,47 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <title>결제 내역</title>
-    <th:block th:replace="common/fragment/commonHead"></th:block>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/notification/mail_bill.css}"/>
-
+    <style>
+        .mail-head-txt{
+            font-size: 20px;
+            font-weight: bold;
+            color:black;
+        }
+        .mail-date{
+            text-align: right;
+            display: inline-block;
+            width: 45%;
+        }
+        .mail-to-info{
+            text-align: left;
+            display: inline-block;
+            width: 50%;
+            color:black;
+        }
+        table{
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid;
+        }
+        tr{
+            height: 80px;
+            color: #745C50;
+        }
+        .mail-head-big-txt{
+            color: #745C50;
+            font-size: 30px;
+            padding: 0;
+            font-weight: bold;
+            margin: 0;
+        }
+        .invoice-content{
+            margin: 40px 0px 0px 0px;
+        }
+        .product-box{
+            margin: 0px 0px 0px 24px;
+        }
+        td{
+            padding:10px;
+        }
+        tr{
+            border-bottom: 2px solid #F1EADD;
+            font-size:16px;
+        }
+        .product-name{
+            color: black;
+            font-weight: bold;
+        }
+        .product-info{
+            text-align: left;
+        }
+        .total-price-box{
+            width: 185px;
+            background: #e1d6c4;
+            text-align: center;
+            float: right;
+            padding: 10px;
+            margin: 30px 0px 0px 0px;
+            font-size: 20px;
+            color: black;
+        }
+        .payment-information{
+            margin-top: 300px;
+            font-size: 15px;
+            color:black;
+        }
+</style>
 </head>
 <body>
-    <div class="mail_container">
-        <img class="top-banner" alt="메일 상단배너" th:src="@{/img/notification/mail_bill_top_banner.png}"/>
-        <div class="mail-content">
-            <div class="mail-to-info">
-                <p> Invoice To</p>
-                <p> 김승주 </p>
-                <p> seoungjoo01@naver.com</p>
-            </div>
-            <div class="mail-date">
-                <p> 결제 내역</p>
-                <p> Invoice Date 01/09/23 </p>
-            </div>
+    <div class="mail_container" style=" width: 800px; margin: 0 auto;">
+        <img style="width: 100%" class="top-banner" alt="메일 상단배너" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/mail_bill_top_banner.png"/>
+        <div class="mail-content" style="padding: 30px;">
+            <div style="display: flex">
+                <div class="mail-to-info" style="text-align: left;">
+                    <p style="margin:0;" class="mail-head-txt"> Invoice To</p>
+                    <p style="margin:20px 0px 0px 0px;"> 김승주 </p>
+                    <p style="margin:10px 0px 0px 0px; text-decoration: none; color:black;"> seoungjoo01@naver.com</p>
 
+                </div>
+                <div class="mail-date" style="text-align: right;">
+                    <p class="mail-head-big-txt"> 구독 내역</p>
+                    <p style="color:black"> Invoice Date 01/09/23 </p>
+                </div>
+            </div>
             <div class="invoice-content">
-                <table>
-                    <th>구독 상품 정보 </th>
-                    <th>가격 </th>
-                    <th>수량</th>
-                    <th>총 가격  </th>
+                <table style="border-collapse: collapse;">
+                    <th style="border-bottom: 1px solid black; text-align: left">구독 상품 정보 </th>
+                    <th style="border-bottom: 1px solid black;">가격 </th>
+                    <th style="border-bottom: 1px solid black;">수량</th>
+                    <th style="border-bottom: 1px solid black;">총 가격  </th>
                     <tr>
-                        <td>첫번째 칸</td>
-                        <td>두번째 칸</td>
-                        <td>첫번째 칸</td>
-                        <td>두번째 칸</td>
+                        <td style="display: flex">
+                            <img style="width: 80px" class="top-banner" alt="메일 상단배너" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/product.png"/>
+                            <div class="product-box">
+                                <p class="product-name">Bedrooms (35 sqm)</p>
+                                <p class="product-info">구독료 : 월 2000원</p>
+                            </div>
+                        </td>
+                        <td>20000원</td>
+                        <td>1</td>
+                        <td>20000원</td>
                     </tr>
                     <tr>
-                        <td>첫번째 칸</td>
-                        <td>두번째 칸</td>
-                        <td>첫번째 칸</td>
-                        <td>두번째 칸</td>
+                        <td style="display: flex">
+                            <img style="width: 80px" class="top-banner" alt="메일 상단배너" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/product.png"/>
+                            <div class="product-box">
+                                <p class="product-name">Bedrooms (35 sqm)</p>
+                                <p class="product-info">구독료 : 월 2000원</p>
+                            </div>
+                        </td>
+                        <td>20000원</td>
+                        <td>1</td>
+                        <td>20000원</td>
                     </tr>
                 </table>
 
-            </div>
+                <div class="total-price-box">
+                    <span style="font-weight: bold;margin-right: 20px;"> Total</span> <span> 40000원</span>
+                </div>
+                <div class="payment-information">
+                    <p style="font-weight: bold;">Payment Information</p>
+                    <p> Livart Life Inc.</p>
+                    <p> Livart Life Site : localhost:8080/life/</p>
+                </div>
 
+            </div>
         </div>
+
+
 
     </div>
 </body>
