@@ -96,7 +96,6 @@ public class StandardController {
         // 기본적인 상세정보 가져오기
         StandardDetailVo detail = standardService.getStandardDetailById(lfId);
         model.addAttribute("standardDetail",  detail);
-        System.out.println("detail함 보자 " + detail);
 
         // 옵션 가져오기
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
@@ -111,8 +110,14 @@ public class StandardController {
         List<StandardVo> recommendProducts = standardService.getStandardRecommendation(lfId);
         model.addAttribute("recommendProducts", recommendProducts);
 
-        System.out.println("함 보자 " + recommendProducts);
         return "pages/standard/standard_detail";
+    }
+
+    @GetMapping("/checkStock/{productId}")
+    @ResponseBody
+    public int getStockAmount(@PathVariable("productId") int lfId) {
+
+        return standardService.getStandardStockAmount(lfId);
     }
 
 

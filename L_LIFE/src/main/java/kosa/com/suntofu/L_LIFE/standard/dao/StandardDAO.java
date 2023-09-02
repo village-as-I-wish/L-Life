@@ -2,7 +2,6 @@ package kosa.com.suntofu.L_LIFE.standard.dao;
 
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,5 +16,6 @@ public interface StandardDAO {
     List<StandardOptionVo> selectStandardOptionById(int lfId);
     List<StandardRefurVo> selectStandardRefurById(int lfId);
     List<StandardVo> selectStandardRecommendation(int lfId);
+    List<StandardRestockVo> selectStandardStockAmount(int lfId);
 }
 

@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+    var productId = $('#productId').val();
+    $.ajax({
+        url: '/l-life/standard/checkStock/' + productId,
+        method: 'GET',
+        success: function(stockAmount) {
+            if (stockAmount <= 0) {
+                // 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
+                console.log(stockAmount)
+                console.log(productId)
+                $('.lf-pr-submit-btns form button').text('재입고 알림 신청');
+            }
+        }
+    });
+
     $('.lf-pr-main-content .main-tab li').click(function(){
         var tab_id = $(this).attr('data-tab');
 

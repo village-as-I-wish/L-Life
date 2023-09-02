@@ -192,6 +192,21 @@
         ORDER BY DBMS_RANDOM.VALUE
     </select>
 
+    <!--스탠다드 재입고 알림 신청-->
+    <select id="selectStandardStockAmount">
+        SELECT
+            lf.lf_id,
+            st.stock_id,
+            st.stock_amount
+        FROM
+            LLifeFurniture lf
+                JOIN
+            Stock st ON lf.lf_id = st.lf_id
+        WHERE
+            lf.lf_sub_type = 0
+          AND lf.lf_id = #{lfId}
+    </select>
+
 
 
 
