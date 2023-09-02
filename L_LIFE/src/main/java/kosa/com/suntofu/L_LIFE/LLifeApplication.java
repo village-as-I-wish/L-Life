@@ -7,7 +7,13 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 
 
-@SpringBootApplication
+@SpringBootApplication(
+		exclude = {
+				org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration.class,
+				org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration.class,
+				org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration.class
+		}
+)
 @EnableCaching
 public class LLifeApplication {
 

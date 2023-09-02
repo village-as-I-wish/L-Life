@@ -77,5 +77,13 @@ springdoc:
     path: /swagger-ui.html
     use-root-path: false
 
-
+cloud:
+  aws:
+    s3:
+      bucket: img-resource
+    stack.auto: false
+    region.static: ap-northeast-2
+    credentials:
+      accessKey: ${aws-access-key}
+      secretKey: ${aws-secret-key}
 
