@@ -17,13 +17,16 @@ function search() {
     }).get();
     var minCoin = 1;
     var maxCoin = document.querySelector('#myRange').value;
+    var lfId
     console.log(lfBrandIds, lfMoodIds)
+
 
     var data = {
         lfBrandIds: lfBrandIds,
         lfMoodIds: lfMoodIds,
         minCoin: minCoin,
-        maxCoin: maxCoin
+        maxCoin: maxCoin,
+        lfId: lfId,
     }
 
     queryParams = '';
@@ -53,8 +56,9 @@ function search() {
             var html = '';
             $('.sl-main-sub-products-txt .txt-pink').text(data.length);
             data.forEach(function (item) {
+                console.log(item)
                 html += '<div class="sl-main-sub-product">';
-                html += '<a href="/standard/1/detail">';
+                html += '<a href="/l-life/standard/' + item.lfId + '/detail">';
                 html += '<div class="sl-main-sub-product-img col">';
                 html += '<img alt="상품메인사진" src="' + item.lfImgMain + '"/>';
                 html += '</div>';
