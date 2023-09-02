@@ -208,11 +208,14 @@
                     <input type="checkbox" class="agreement-checkbox">
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
                 </span>
-                    <button class="payment-button" th:onclick="payment(1)">결제하기</button> <!-- userId -->
+                    <button class="payment-button" th:onclick="payment(1)">결제하기</button> <!-- memberId -->
             </div>
         </div>
 
     </div>
+        <div class="pay-info-summary hidden">
+            <span id="subscriptionPlanId" th:text="${billVo.subscriptionPlanVo.subscriptionPlanId}"></span>
+        </div>
     </div>
 
 </div>

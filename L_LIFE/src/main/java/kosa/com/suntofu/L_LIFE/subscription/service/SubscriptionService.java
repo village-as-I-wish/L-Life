@@ -5,6 +5,6 @@ import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionPlanVo;
 
 public interface SubscriptionService {
     BillVo getSubscriptionPayBill(Integer subscriptionPlanId);
-    Boolean subscribePlan(Integer subscriptionPlanId, Integer memberId);
+    int subscribePlan(Integer subscriptionPlanId, Integer memberId);
 
 }
