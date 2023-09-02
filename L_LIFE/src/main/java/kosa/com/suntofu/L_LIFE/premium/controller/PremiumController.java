@@ -21,12 +21,17 @@ public class PremiumController {
     private final PremiumService premiumService;
 
     @GetMapping()
-    public String loadPremiumPackageMainPage(){
+
+    public String loadPremiumPackageMainPage(Model model){
+
+        model.addAttribute("MDPickPackages", premiumService.getMDPickPackages());
+        model.addAttribute("PromotionPackages", premiumService.getPromotionPackages());
         return "pages/premium/premium_package_main";
     }
 
     @GetMapping("/package/{packageNum}/detail")
     public String loadPremiumPackageDetail(){
+
         return "pages/premium/premium_package_detail";
     }
 //-------------------------------------------------------------------------------------------------------

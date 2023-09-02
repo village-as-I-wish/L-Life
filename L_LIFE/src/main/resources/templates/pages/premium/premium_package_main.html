@@ -36,52 +36,12 @@
                 <i class="fas fa-chevron-left prev"></i>
                 <i class="fas fa-chevron-right next"></i>
                 <div class="lf-pr-slide-wrapper">
-                    <a th:href="@{/premium/package/1/detail}">
+                    <a th:href="@{'/premium/package/' + ${package.lfPackageId} + '/detail'}" th:each="package : ${MDPickPackages}">
                         <div class="lf-pr-slide-product-img">
-                            <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="@{/img/premium/premium_md_pick_sample1.png}"/>
+                            <img class="pr-real-img" alt="패키지 사진 "
+                                 th:src="@{${package.lfPackageImg}}"/>
                             <div class="img-overlay">
-                                <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a th:href="@{/premium/package/1/detail}">
-                        <div class="lf-pr-slide-product-img">
-                            <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="@{/img/premium/premium_md_pick_sample2.png}"/>
-                            <div class="img-overlay">
-                                <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a th:href="@{/premium/package/1/detail}">
-                        <div class="lf-pr-slide-product-img">
-                            <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="@{/img/premium/premium_md_pick_sample3.png}"/>
-                            <div class="img-overlay">
-                                <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a th:href="@{/premium/package/1/detail}">
-
-                        <div class="lf-pr-slide-product-img">
-                            <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="@{/img/premium/premium_md_pick_sample4.png}"/>
-
-                            <div class="img-overlay">
-                                <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a th:href="@{/premium/package/1/detail}">
-
-                        <div class="lf-pr-slide-product-img">
-                            <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="@{/img/premium/premium_md_pick_sample1.png}"/>
-
-                            <div class="img-overlay">
-                                <p>우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+                                <p th:text = "${package.lfPackageName}"></p>
                             </div>
                         </div>
                     </a>
@@ -97,9 +57,8 @@
                 <i class="fas fa-chevron-left prev"></i>
                 <i class="fas fa-chevron-right next"></i>
                 <div class="lf-pr-promotion-slide-wrapper">
-                    <div class="lf-pr-slide-product-img" th:each="i : ${#numbers.sequence(1, 5)}">
-                        <img class="pr-real-img" alt="상품 사진 "
-                             th:src="@{'/img/premium/premium_promotion_sample' + ${i} + '.png'}"/>
+                    <div class="lf-pr-slide-product-img" th:each="package : ${PromotionPackages}">
+                        <img class="pr-real-img" alt="패키지 사진 " th:src="@{${package.lfPackageImg}}"/>
                     </div>
                 </div>
             </div>
