@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.member.controller;
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,7 @@ public class MemberController {
         int deliveryReady = deliveryStatusList.get(0).getStatusCount();
         int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
         int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
+
         // 세션 저장
         session.setAttribute("loggedInMemberInfo", existingMember);
         session.setAttribute("currentCoin", currentCoin);
@@ -86,15 +88,12 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}/mypage/premium")
-    public String loadMyPagePremium(Model model){
+    public String loadMyPagePremium(Model model, @PathVariable int memberId){
 
-        List<TestVo> products = new ArrayList<>();
-        products.add(new TestVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", 28000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", 54000,19970526, 12341234, 12));
-        products.add(new TestVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", 15000,19970526, 12341234, 6));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        model.addAttribute("products", products);
+        List<SubscriptionListVo> premiumSubscriptionList = memberService.getAllpremiumScriptionList(memberId);
+        model.addAttribute("premiumSubscriptionList",premiumSubscriptionList);
+        model.addAttribute("baseUrl",baseUrl);
+        System.out.println("프리미엄" + premiumSubscriptionList);
         return "pages/member/mypage_premium";
     }
 
@@ -114,9 +113,6 @@ public class MemberController {
 
         // 프리미엄 장바구니
         List<CartVo> premiumCarts  = memberService.getAllPremiumCarts(memberId);
-
-//        System.out.println("standard cart" + standardCarts);
-//        System.out.println("premium cart" + premiumCarts);
 
         model.addAttribute("standardCarts", standardCarts);
         model.addAttribute("premiumCarts", premiumCarts);

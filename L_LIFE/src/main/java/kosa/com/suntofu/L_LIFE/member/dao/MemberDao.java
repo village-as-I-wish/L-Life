@@ -31,4 +31,8 @@ public interface MemberDao {
     List<DeliveryListVo> getDeliveryList(int memberId);
 
     void updateSubcriptionStatus(int productId);
+
+    List<SubscriptionListVo> getAllPremiumScriptionList(int memberId);
+
+    List<SubscriptionListVo> getRecentPremiumScriptionList(Map<String, Object> paramMap);
 }

@@ -42,24 +42,74 @@
             <th class="col-title">월구독가격</th>
         </tr>
         </thead>
-        <tbody>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.date}"></td>
-            <td>
-                <div class="product-info">
-                    <img class="product-img" th:src="@{'/img/member/' + ${product.image}}">
-                    <div class="product-details">
-                        <span th:text="${product.name}"></span>
-                    </div>
-                </div>
-            </td>
-            <td th:text="${product.price} + '원'"></td>
-        </tr>
+        <tbody id="table-body">
+
         </tbody>
     </table>
 
     <script src="https://unpkg.com/js-datepicker"></script>
     <script>
+
+        $(document).ready(function() {
+            // REST API 호출
+            $.ajax({
+                url: 'http://localhost:8080/l-life/api/v1/member/1/mypage/premium/recent', // API 엔드포인트
+                method: 'GET',
+                data: { startDate: '2023-07-31', endDate: '2023-08-31' },
+                dataType: 'json', // 데이터 타입 설정
+                success: function(data) {
+                    console.log(data)
+                    const tableBody = document.getElementById('table-body');
+
+                    data.forEach(product => {
+                        const row = document.createElement('tr');
+
+                        const productDateCell = document.createElement('td');
+                        productDateCell.className = 'product_date';
+                        productDateCell.textContent = product.subscribeStartDate;
+
+                        const productInfoCell = document.createElement('td');
+                        const productInfoDiv = document.createElement('div');
+                        productInfoDiv.className = 'product-info';
+
+                        const productImg = document.createElement('img');
+                        productImg.className = 'product-img';
+                        // 이미지 경로 설정
+                        productImg.src = product.lfImgMain;
+
+                        const productDetails = document.createElement('div');
+                        productDetails.className = 'product-details';
+
+                        const productName = document.createElement('span');
+                        productName.textContent = product.lfName;
+
+                        const productPriceCell = document.createElement('td');
+                        const productPriceeDiv = document.createElement('div');
+
+                        const productPrice = document.createElement('span');
+                        productPrice.textContent = product.lfPrPrice;
+
+
+                        productDetails.appendChild(productName);
+                        productInfoDiv.appendChild(productImg);
+                        productInfoDiv.appendChild(productDetails);
+                        productInfoCell.appendChild(productInfoDiv);
+                        productPriceeDiv.appendChild(productPrice)
+                        productPriceCell.appendChild(productPriceeDiv)
+
+                        row.appendChild(productDateCell);
+                        row.appendChild(productInfoCell);
+                        row.appendChild(productPriceCell)
+
+                        tableBody.appendChild(row);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // 에러 처리
+                }
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             setDefaultDates();
             initDatepickers();

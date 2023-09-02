@@ -6,10 +6,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Value;
 import java.util.List;
 
 @RestController
@@ -20,15 +18,25 @@ public class MemberRestController {
 
 
     @GetMapping("/{memberId}/mypage/standard/recent")
-    public String recentStandardSubscription(@PathVariable int memberId,
-                                             @RequestParam String startDate,
-                                             @RequestParam String endDate,
-                                             Model model){
+    public ResponseEntity<List<SubscriptionListVo>> recentStandardSubscription(
+            @PathVariable int memberId,
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
         // 최근 스탠다드 구독내역
         List<SubscriptionListVo> recentStandardSubscriptionList  = memberService.getRecentStandardScriptionList(memberId,startDate,endDate);
+        System.out.println(recentStandardSubscriptionList);
+        return new ResponseEntity<>(recentStandardSubscriptionList, HttpStatus.OK);
+    }
 
-        model.addAttribute("recentStandardSubscriptionList",recentStandardSubscriptionList);
-        return "pages/member/mypage_standard_recent_subscription_table :: standardRecentSubscriptionTable";
+    @GetMapping("/{memberId}/mypage/premium/recent")
+    public ResponseEntity<List<SubscriptionListVo>> recentPremiumSubscription(
+            @PathVariable int memberId,
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
+        // 최근 프리미엄 구독내역
+        List<SubscriptionListVo> recentPremiumSubscriptionList  = memberService.getRecentPremiumScriptionList(memberId,startDate,endDate);
+        System.out.println(recentPremiumSubscriptionList);
+        return new ResponseEntity<>(recentPremiumSubscriptionList, HttpStatus.OK);
     }
 
     @PostMapping("/return/{productId}")
