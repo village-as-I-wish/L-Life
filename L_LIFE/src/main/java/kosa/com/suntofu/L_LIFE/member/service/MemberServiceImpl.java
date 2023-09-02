@@ -77,5 +77,10 @@ public class MemberServiceImpl implements MemberService {
     public List<DeliveryListVo> getDeliveryList(int memberId) {
         return memberDao.getDeliveryList(memberId);
     }
+
+    @Override
+    public void updateSubcriptionStatus(int productId) {
+        memberDao.updateSubcriptionStatus(productId);
+    }
 }
 

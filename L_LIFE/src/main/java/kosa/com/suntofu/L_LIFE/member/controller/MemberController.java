@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Value;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
+    @Value("${delivery-key}")
+    private String deliveryKey;
+
+    @Value("${baseurl}")
+    private String baseUrl;
 
     @GetMapping("/login")
     public String loadLoginPage(){ return "pages/member/login"; }
@@ -72,9 +77,10 @@ public class MemberController {
         // 스탠다드 구독내역
         List<SubscriptionListVo> standardSubscriptionList  = memberService.getAllStandardScriptionList(memberId);
 
-        System.out.println("standardSubscriptionList" + standardSubscriptionList);
+//        System.out.println("standardSubscriptionList" + standardSubscriptionList);
 
         model.addAttribute("standardSubscriptionList", standardSubscriptionList);
+        model.addAttribute("baseUrl",baseUrl);
 
         return "pages/member/mypage_standard";
     }
@@ -97,6 +103,7 @@ public class MemberController {
 
         List<DeliveryListVo> deliveryList = memberService.getDeliveryList(memberId);
         model.addAttribute("deliveryList",deliveryList);
+        model.addAttribute("deliveryKey",deliveryKey);
         return "pages/member/mypage_delivery";
     }
 
@@ -108,8 +115,8 @@ public class MemberController {
         // 프리미엄 장바구니
         List<CartVo> premiumCarts  = memberService.getAllPremiumCarts(memberId);
 
-        System.out.println("standard cart" + standardCarts);
-        System.out.println("premium cart" + premiumCarts);
+//        System.out.println("standard cart" + standardCarts);
+//        System.out.println("premium cart" + premiumCarts);
 
         model.addAttribute("standardCarts", standardCarts);
         model.addAttribute("premiumCarts", premiumCarts);

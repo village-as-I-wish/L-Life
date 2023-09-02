@@ -29,4 +29,6 @@ public interface MemberDao {
     List<DeliveryStatusVo> getDeliveryStatus(int mId);
 
     List<DeliveryListVo> getDeliveryList(int memberId);
+
+    void updateSubcriptionStatus(int productId);
 }
