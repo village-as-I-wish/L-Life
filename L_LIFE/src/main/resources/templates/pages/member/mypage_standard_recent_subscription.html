@@ -25,7 +25,7 @@
                 <span class="date-text" id="endDate"></span>
                 <img th:src="@{/img/member/calender.png}" alt="calendar icon" class="calendar-icon" onclick="openDatePicker('endDate')">
             </div>
-            <button type="button" id="btnNewOrder" class="datepicker-search" onclick="getRecentData();">검색하기</button>
+            <button type="button" id="btnNewOrder" class="datepicker-search">검색하기</button>
         </div>
     </div>
 
@@ -52,64 +52,111 @@
     <script>
 
         $(document).ready(function() {
+            const startDate = $("#startDate").text();
+            const endDate = $("#endDate").text();
+
             // REST API 호출
             $.ajax({
                 url: 'http://localhost:8080/l-life/api/v1/member/1/mypage/standard/recent', // API 엔드포인트
                 method: 'GET',
-                data: { startDate: '2023-07-31', endDate: '2023-08-31' },
-                dataType: 'json', // 데이터 타입 설정
+                data: { startDate: startDate, endDate: endDate },
+                dataType: 'json',
                 success: function(data) {
                     console.log(data)
-                    const tableBody = document.getElementById('table-body');
+                    const tableBody = $('#table-body');
 
                     data.forEach(product => {
-                        const row = document.createElement('tr');
+                        const row = $("<tr>");
 
-                        const productDateCell = document.createElement('td');
-                        productDateCell.className = 'product_date';
-                        productDateCell.textContent = product.subscribeStartDate;
+                        const productDateCell = $("<td>").addClass('product_date').text(product.subscribeStartDate);
 
-                        const productInfoCell = document.createElement('td');
-                        const productInfoDiv = document.createElement('div');
-                        productInfoDiv.className = 'product-info';
+                        const productInfoCell = $("<td>");
+                        const productInfoDiv = $("<div>").addClass('product-info');
 
-                        const productImg = document.createElement('img');
-                        productImg.className = 'product-img';
-                        // 이미지 경로 설정
-                        productImg.src = product.lfImgMain;
+                        const productImg = $("<img>").addClass('product-img').attr('src', product.lfImgMain);
 
-                        const productDetails = document.createElement('div');
-                        productDetails.className = 'product-details';
+                        const productDetails = $("<div>").addClass('product-details');
+                        const productName = $("<span>").text(product.lfName);
 
-                        const productName = document.createElement('span');
-                        productName.textContent = product.lfName;
+                        const productScriptionTypeCell = $("<td>");
+                        const productScriptionTypeDiv = $("<div>");
 
-                        const productScriptionTypeCell = document.createElement('td');
-                        const productScriptionTypeDiv = document.createElement('div');
+                        const productScriptionTypeName = $("<span>").text(product.subscriptionTypeName);
 
-                        const productScriptionTypeName = document.createElement('span');
-                        productScriptionTypeName.textContent = product.subscriptionTypeName;
+                        productDetails.append(productName);
+                        productInfoDiv.append(productImg);
+                        productInfoDiv.append(productDetails);
+                        productInfoCell.append(productInfoDiv);
+                        productScriptionTypeDiv.append(productScriptionTypeName);
+                        productScriptionTypeCell.append(productScriptionTypeDiv);
 
+                        row.append(productDateCell);
+                        row.append(productInfoCell);
+                        row.append(productScriptionTypeCell);
 
-                        productDetails.appendChild(productName);
-                        productInfoDiv.appendChild(productImg);
-                        productInfoDiv.appendChild(productDetails);
-                        productInfoCell.appendChild(productInfoDiv);
-                        productScriptionTypeDiv.appendChild(productScriptionTypeName)
-                        productScriptionTypeCell.appendChild(productScriptionTypeDiv)
-
-                        row.appendChild(productDateCell);
-                        row.appendChild(productInfoCell);
-                        row.appendChild(productScriptionTypeCell)
-
-                        tableBody.appendChild(row);
+                        tableBody.append(row);
                     });
                 },
                 error: function(xhr, status, error) {
-                    console.error(error); // 에러 처리
+                    console.error(error);
                 }
             });
         });
+        $("#btnNewOrder").click(function() {
+            const startDate = $("#startDate").text();
+            const endDate = $("#endDate").text();
+
+            $.ajax({
+                url: 'http://localhost:8080/l-life/api/v1/member/1/mypage/standard/recent', // 실제 API 엔드포인트 URL 입력
+                type: 'GET',
+                data: {
+                    startDate: startDate,
+                    endDate: endDate
+                },
+                success: function(response) {
+                    console.log(response);
+
+                    const tableBody = $("#table-body");
+                    tableBody.empty();
+
+                    response.forEach(product => {
+                        const row = $("<tr>");
+
+                        const productDateCell = $("<td>").addClass('product_date').text(product.subscribeStartDate);
+
+                        const productInfoCell = $("<td>");
+                        const productInfoDiv = $("<div>").addClass('product-info');
+
+                        const productImg = $("<img>").addClass('product-img').attr('src', product.lfImgMain);
+
+                        const productDetails = $("<div>").addClass('product-details');
+                        const productName = $("<span>").text(product.lfName);
+
+                        const productScriptionTypeCell = $("<td>");
+                        const productScriptionTypeDiv = $("<div>");
+
+                        const productScriptionTypeName = $("<span>").text(product.subscriptionTypeName);
+
+                        productDetails.append(productName);
+                        productInfoDiv.append(productImg);
+                        productInfoDiv.append(productDetails);
+                        productInfoCell.append(productInfoDiv);
+                        productScriptionTypeDiv.append(productScriptionTypeName);
+                        productScriptionTypeCell.append(productScriptionTypeDiv);
+
+                        row.append(productDateCell);
+                        row.append(productInfoCell);
+                        row.append(productScriptionTypeCell);
+
+                        tableBody.append(row);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+
 
         document.addEventListener("DOMContentLoaded", function () {
             setDefaultDates();
