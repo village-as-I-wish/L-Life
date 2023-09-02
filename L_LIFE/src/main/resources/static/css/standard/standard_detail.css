@@ -355,14 +355,23 @@ ul.tabs li.current{
     font-size: 14px;
     padding: 5px;
     width: 45%;
-    border: 1px solid black;
     text-align: center;
     margin: 0px 0px 10px 0px !important;
 }
 .lf-recommendation-slide-product-img > p {
     font-size: 14px;
+    padding: 5px;
 }
+
+.coin-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 3px;
+}
+
 .coin-img{
+    display: inline-block;
     width:20px !important;
     height: auto;
 }

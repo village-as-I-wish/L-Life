@@ -186,13 +186,15 @@
                     <div class="lf-recommendation-page-wrapper">
                         <div class="lf-recommendation-slide">
                             <div class="lf-recommendation-slide-wrapper">
-                                <a class="lf-recommendation-slide-product-img" th:each="i : ${#numbers.sequence(1, 8)}">
-                                    <img class="pr-real-img" alt="상품 사진 "
-                                         th:src="@{/img/standard/product_detail_main_sample.png}"/>
-                                    <span> 리바트 라이프 </span>
-                                    <p> 한정수량 ★ 리프트업 테이블 </p>
-                                    <img class="coin-img" alt="상품 사진 "
-                                         th:src="@{/img/standard/coin.png}"/>
+                                <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}">
+                                    <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
+                                    <span th:text="${product.lfBrandName}"></span>
+                                    <p th:text="${product.lfName}"></p>
+                                    <div class="coin-wrap">
+                                        <th:block th:each="coins : ${#numbers.sequence(1, product.lfStCoin)}">
+                                            <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                                        </th:block>
+                                    </div>
                                 </a>
                             </div>
                         </div>
