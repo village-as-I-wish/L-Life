@@ -186,7 +186,7 @@
                     <div class="lf-recommendation-page-wrapper">
                         <div class="lf-recommendation-slide">
                             <div class="lf-recommendation-slide-wrapper">
-                                <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}">
+                                <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}" th:href="@{'/standard/' + ${product.lfId} + '/detail'}">
                                     <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
                                     <span th:text="${product.lfBrandName}"></span>
                                     <p th:text="${product.lfName}"></p>

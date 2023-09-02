@@ -184,11 +184,12 @@
             lf.lf_sub_type = 0
         AND
             recommend.lf_id IN (
-                SELECT 1
+                SELECT #{lfId}
                 FROM LLifeFurniture
                 WHERE lf_category_id = lf.lf_category_id
                 AND lf_sub_issub = 0
         )
+        ORDER BY DBMS_RANDOM.VALUE
     </select>
 
 

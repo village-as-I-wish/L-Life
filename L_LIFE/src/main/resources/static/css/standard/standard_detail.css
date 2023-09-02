@@ -357,10 +357,12 @@ ul.tabs li.current{
     width: 45%;
     text-align: center;
     margin: 0px 0px 10px 0px !important;
+    color: #333333;
 }
 .lf-recommendation-slide-product-img > p {
     font-size: 14px;
     padding: 5px;
+    color: #333333;
 }
 
 .coin-wrap {
