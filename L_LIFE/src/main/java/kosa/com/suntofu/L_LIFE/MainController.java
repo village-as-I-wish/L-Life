@@ -21,4 +21,10 @@ public class MainController {
     public String loadMail(Model model){
         return "pages/notification/mail_alert";
     }
+
+
+    @GetMapping("/book")
+    public String loadBook(Model model){
+        return "pages/main/book";
+    }
 }
