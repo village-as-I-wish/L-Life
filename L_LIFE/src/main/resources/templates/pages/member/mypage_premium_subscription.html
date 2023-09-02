@@ -5,13 +5,13 @@
 
     <div class="subscribe-title">프리미엄 구독 제품</div>
     <ul>
-        <li th:each="product : ${products}" class="list-item">
+        <li th:each="product : ${premiumSubscriptionList}" class="list-item">
             <div class="product-item">
                 <a th:href="@{'#'}" class="product-link">
-                    <img class="product-image" th:src="@{'/img/member/' + ${product.image}}" />
+                    <img class="product-image" th:src="${product.lfImgMain}" />
                     <div class="product-details">
-                        <span class="product-name" th:text="${product.name}"></span>
-                        <span class="product-price" th:text="${product.price}"></span>
+                        <span class="product-name" th:text="${product.lfName}"></span>
+                        <span class="product-price" th:text="${product.lfPrPrice} + '원'"></span>
                     </div>
                 </a>
             </div>
@@ -20,7 +20,8 @@
                 <div class="subscribe-info">구독 만료일 ${23/10/23(수)}</div>
                 <div class="buttons">
                     <a href="#" class="custom-button">구독연장</a>
-                    <a href="#" class="custom-button">반납</a>
+                    <button class="custom-button return-button"
+                            th:attr="data-product-id=${product.subLfId}">반납</button>
                     <a href="#" class="custom-button">케어신청</a>
                     <a href="#" class="custom-button">배송조회</a>
                 </div>

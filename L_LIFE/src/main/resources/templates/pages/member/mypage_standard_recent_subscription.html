@@ -25,20 +25,30 @@
                 <span class="date-text" id="endDate"></span>
                 <img th:src="@{/img/member/calender.png}" alt="calendar icon" class="calendar-icon" onclick="openDatePicker('endDate')">
             </div>
-            <button type="button" id="btnNewOrder" class="datepicker-search" onclick="goNewPage(1);">검색하기</button>
+            <button type="button" id="btnNewOrder" class="datepicker-search" onclick="getRecentData();">검색하기</button>
         </div>
     </div>
 
     <!-- 테이블 부분 -->
-            <th:block th:replace="pages/member/mypage_standard_recent_subscription_table::standardRecentSubscriptionTable()"
-                      id="standardRecentSubscriptionTable"></th:block>
-<!--        <th:block th:fragment="standardRecentSubscriptionTable">-->
-<!--        </th:block>-->
+    <table class="recent-table">
+        <colgroup>
+            <col style="width: 25%">
+            <col style="width: 50%">
+            <col style="width: 25%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="col-title">주문일</th>
+            <th class="col-title">구독항목</th>
+            <th class="col-title">구독상품</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
 
+        </tbody>
+    </table>
 
     <script src="https://unpkg.com/js-datepicker"></script>
-
-
     <script>
 
         $(document).ready(function() {
@@ -46,10 +56,58 @@
             $.ajax({
                 url: 'http://localhost:8080/l-life/api/v1/member/1/mypage/standard/recent', // API 엔드포인트
                 method: 'GET',
-                data: {startDate: '2023-07-31', endDate: '2023-08-31'}
-            })
-            .done(function(fragment) {
-                $('#standardRecentSubscriptionTable').replaceWith(fragment);
+                data: { startDate: '2023-07-31', endDate: '2023-08-31' },
+                dataType: 'json', // 데이터 타입 설정
+                success: function(data) {
+                    console.log(data)
+                    const tableBody = document.getElementById('table-body');
+
+                    data.forEach(product => {
+                        const row = document.createElement('tr');
+
+                        const productDateCell = document.createElement('td');
+                        productDateCell.className = 'product_date';
+                        productDateCell.textContent = product.subscribeStartDate;
+
+                        const productInfoCell = document.createElement('td');
+                        const productInfoDiv = document.createElement('div');
+                        productInfoDiv.className = 'product-info';
+
+                        const productImg = document.createElement('img');
+                        productImg.className = 'product-img';
+                        // 이미지 경로 설정
+                        productImg.src = product.lfImgMain;
+
+                        const productDetails = document.createElement('div');
+                        productDetails.className = 'product-details';
+
+                        const productName = document.createElement('span');
+                        productName.textContent = product.lfName;
+
+                        const productScriptionTypeCell = document.createElement('td');
+                        const productScriptionTypeDiv = document.createElement('div');
+
+                        const productScriptionTypeName = document.createElement('span');
+                        productScriptionTypeName.textContent = product.subscriptionTypeName;
+
+
+                        productDetails.appendChild(productName);
+                        productInfoDiv.appendChild(productImg);
+                        productInfoDiv.appendChild(productDetails);
+                        productInfoCell.appendChild(productInfoDiv);
+                        productScriptionTypeDiv.appendChild(productScriptionTypeName)
+                        productScriptionTypeCell.appendChild(productScriptionTypeDiv)
+
+                        row.appendChild(productDateCell);
+                        row.appendChild(productInfoCell);
+                        row.appendChild(productScriptionTypeCell)
+
+                        tableBody.appendChild(row);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // 에러 처리
+                }
             });
         });
 

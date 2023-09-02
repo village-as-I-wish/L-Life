@@ -59,8 +59,18 @@
 
         where
             subscribe.M_ID = 1
-        and
-            subscribe.SUBSCRIBE_START_DATE < #{endDate}
+          and
+            lf.LF_SUB_TYPE = 0
+          and
+            (
+            (#{startDate} <= subscribe.SUBSCRIBE_START_DATE
+                and
+             subscribe.SUBSCRIBE_START_DATE<= #{endDate})
+            or
+            (#{startDate} <= subscribe.SUBSCRIBE_END_DATE
+                and
+             subscribe.SUBSCRIBE_END_DATE  <= #{endDate})
+            )
         ]]>
 
     </select>
@@ -75,5 +85,78 @@
         where
             SUB_LF.SUB_LF_ID = #{productId}
     </update>
+
+
+    <select id="getAllPremiumScriptionList" parameterType="int" resultType="SubscriptionListVo">
+        -- 프리미엄 구독 내역 조회 --
+        select
+            sub_lf.SUB_LF_ID,
+            lf.LF_NAME,
+            lf.LF_PR_PRICE,
+            lf.LF_IMG_MAIN,
+            lf_opt.LF_OPT_NAME,
+            lf_brand.LF_BRAND_NAME
+        from
+            SUBSCRIPTION subscribe
+                join
+            LFSUBSCRIPTIONLIST sub_lf on sub_lf.SUBSCRIPTION_ID = subscribe.SUBSCRIPTION_ID
+                join
+            LLIFEFURNITURE lf on lf.lf_id = sub_lf.LF_ID
+                join
+            LFURNITUREOPTION lf_opt on lf_opt.LF_OPT_ID = sub_lf.LF_OPT_ID
+                join
+            LFURNITUREBRAND lf_brand on lf.LF_BRAND_ID = lf_brand.LF_BRAND_ID
+        where
+            subscribe.M_ID =1
+          and
+            lf.LF_SUB_TYPE = 1
+          and
+            subscribe.SUBSCRIBE_STATUS = 1
+          and
+            sub_lf.SUB_LF_RETURN_STATUS = 0
+    </select>
+
+    <select id="getRecentPremiumScriptionList" parameterType="map" resultType="SubscriptionListVo">
+        <![CDATA[
+        -- 프리미엄 최근 구독 내역 조회 --
+        select
+            sub_lf.SUB_LF_ID,
+            lf.LF_NAME,
+            lf.LF_PR_PRICE,
+            lf.LF_IMG_MAIN,
+            lf_opt.LF_OPT_NAME,
+            lf_brand.LF_BRAND_NAME,
+            subscribe.SUBSCRIBE_START_DATE,
+            subscribe.SUBSCRIBE_END_DATE
+        from
+            SUBSCRIPTION subscribe
+                join
+            LFSUBSCRIPTIONLIST sub_lf on sub_lf.SUBSCRIPTION_ID = subscribe.SUBSCRIPTION_ID
+                join
+            LLIFEFURNITURE lf on lf.lf_id = sub_lf.LF_ID
+                join
+            LFURNITUREOPTION lf_opt on lf_opt.LF_OPT_ID = sub_lf.LF_OPT_ID
+                join
+            LFURNITUREBRAND lf_brand on lf.LF_BRAND_ID = lf_brand.LF_BRAND_ID
+                left join
+            SUBSCRIPTIONTYPE subscription_type on subscription_type.SUBSCRIPTION_TYPE_ID = subscribe.SUBSCRIBE_TYPE_ID
+        where
+            subscribe.M_ID = 1
+          and
+            lf.LF_SUB_TYPE = 1
+          and
+            (
+            (#{startDate} <= subscribe.SUBSCRIBE_START_DATE
+          and
+             subscribe.SUBSCRIBE_START_DATE<= #{endDate})
+          or
+            (#{startDate} <= subscribe.SUBSCRIBE_END_DATE
+            and
+             subscribe.SUBSCRIBE_END_DATE  <= #{endDate})
+                )
+        ]]>
+
+    </select>
+
 
 </mapper>

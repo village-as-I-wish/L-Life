@@ -82,5 +82,19 @@ public class MemberServiceImpl implements MemberService {
     public void updateSubcriptionStatus(int productId) {
         memberDao.updateSubcriptionStatus(productId);
     }
+
+    @Override
+    public List<SubscriptionListVo> getAllpremiumScriptionList(int memberId) {
+        return memberDao.getAllPremiumScriptionList(memberId);
+    }
+
+    @Override
+    public List<SubscriptionListVo> getRecentPremiumScriptionList(int memberId, String startDate, String endDate) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("memberId", memberId);
+        paramMap.put("startDate", startDate);
+        paramMap.put("endDate", endDate);
+        return memberDao.getRecentPremiumScriptionList(paramMap);
+    }
 }
 

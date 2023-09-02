@@ -25,4 +25,8 @@ public interface MemberService {
     List<DeliveryListVo> getDeliveryList(int memberId);
 
     void updateSubcriptionStatus(int productId);
+
+    List<SubscriptionListVo> getAllpremiumScriptionList(int memberId);
+
+    List<SubscriptionListVo> getRecentPremiumScriptionList(int memberId, String startDate, String endDate);
 }
