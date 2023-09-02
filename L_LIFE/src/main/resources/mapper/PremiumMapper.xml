@@ -68,4 +68,17 @@
         (UPPER(lfb.lf_brand_name) LIKE '%' || UPPER(#{keyword}) || '%'
         OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
     </select>
+
+    <!-- 프리미엄 패키지 라인 -->
+    <select id="selectMDPickPackages" resultType="PackageVo">
+        select *
+        from LFPACKAGE
+        where LF_PACKAGE_TYPE =1 and IS_MD_PICK=1
+    </select>
+
+    <select id="selectPromotionPackages" resultType="PackageVo">
+        select *
+        from LFPACKAGE
+        where LF_PACKAGE_TYPE =1 and IS_PROMOTION=1
+    </select>
 </mapper>

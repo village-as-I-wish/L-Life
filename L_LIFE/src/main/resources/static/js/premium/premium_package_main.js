@@ -38,19 +38,19 @@ $(document).ready(function(){
     });
 
 
-    $('.lf-pr-slide-product-img').each(function(index) {
-        const $overlay = $(this).find('.img-overlay');
-        const $overlayText = $overlay.find('p');
-
-        $overlayText.text(`우드 & 화이트 감성 ${index + 1}`); // 원하는 텍스트 설정
-
-        // $(this).mouseenter(function() {
-        //     $overlay.css('opacity', 1);
-        // });
-        //
-        // $(this).mouseleave(function() {
-        //     $overlay.css('opacity', 0);
-        // });
-    });
+    // $('.lf-pr-slide-product-img').each(function(index) {
+    //     const $overlay = $(this).find('.img-overlay');
+    //     const $overlayText = $overlay.find('p');
+    //
+    //     $overlayText.text(`우드 & 화이트 감성 ${index + 1}`); // 원하는 텍스트 설정
+    //
+    //     // $(this).mouseenter(function() {
+    //     //     $overlay.css('opacity', 1);
+    //     // });
+    //     //
+    //     // $(this).mouseleave(function() {
+    //     //     $overlay.css('opacity', 0);
+    //     // });
+    // });
 })
 
