@@ -81,4 +81,34 @@
         from LFPACKAGE
         where LF_PACKAGE_TYPE =1 and IS_PROMOTION=1
     </select>
+
+
+    <resultMap id="packageDetail" type="PackageDetailVo">
+    <id property="lfPackageId" column="LF_PACKAGE_ID"/>
+    <result property="lfPackageName" column="LF_PACKAGE_NAME"/>
+    <result property="lfPackageType" column="LF_PACKAGE_TYPE"/>
+    <result property="lfPackageImg" column="LF_PACKAGE_IMG"/>
+    <collection property="lfPackageProducts" ofType="PremiumVo">
+        <id property="lfId" column="lf_id"/>
+        <result property="lfName" column="lf_name"/>
+        <result property="lfSubType" column="lf_sub_type"/>
+        <result property="lfBrandName" column="lf_brand_name"/>
+        <result property="lfName" column="lf_name"/>
+        <result property="lfImgMain" column="lf_img_main"/>
+        <result property="lfPrPrice" column="lf_pr_price"/>
+        <result property="lfPrMinPeriod" column="lf_pr_min_peroid"/>
+    </collection>
+</resultMap>
+
+    <select id="selectPackageDetail" parameterType="int" resultMap="packageDetail">
+        select *
+        from LFPACKAGE lfp
+                 join LFPACKAGECATALOG lfc
+                      on lfp.LF_PACKAGE_ID = lfc.LF_PACKAGE_ID
+                 Join LLIFEFURNITURE f
+                      on lfc.LF_ID = f.LF_ID
+        where lfc.LF_PACKAGE_ID = #{lfPackageId}
+    </select>
+
+
 </mapper>
