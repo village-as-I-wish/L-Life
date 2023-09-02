@@ -21,28 +21,31 @@
 
 <div class="lf-pr-summary-container hd__inner1100">
     <div class="lf-pr-summary-img-box">
-        <img alt="상품 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+        <img alt="상품 메인사진" th:src="${standardDetail.lfImgMain}"/>
     </div>
     <div class="lf-pr-summary-info">
-        <span class="light-gray text-xsm pt-4"> 리바트 > </span>
+        <span class="light-gray text-xsm pt-4" th:text="${standardDetail.lfBrandName} + ' >'"></span>
         <div class="lf-pr-summary-header">
-            <span class="lf-pr-name"> 오브니 패브릭 4인 소파 와이드 </span>
+            <span class="lf-pr-name" th:text="${standardDetail.lfName}"> 상품명 </span>
             <i class="fa-solid fa-heart fill-heart"></i>
         </div>
         <hr>
         <div class="lf-pr-summary-detail">
             <div class="lf-pr-point d-flex">
-                <span class="lf-pr-point-txt text-sm f-bold"> 포인트 3개 </span>
-                <img th:each="i : ${#numbers.sequence(1, 4)}" alt="코인 사진" th:src="@{/img/standard/coin.png}"/>
+                <span class="lf-pr-point-txt text-sm f-bold" th:text="'포인트 ' + ${standardDetail.lfStCoin} + '개'"></span>
+                <th:block
+                        th:each="coinNumber : ${#numbers.sequence(1, standardDetail.lfStCoin)}">
+                    <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                </th:block>
             </div>
             <div class="lf-pr-etc-infos">
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span>상품등급 <span>A+</span></span>
+                    <span> 상품등급 <span class="detail-pont" th:text="${standardDetail.lfStGrade}"></span></span>
                 </div>
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span> 리퍼 상품 이에요.</span>
+                    <span class="detail-pont" th:text="${standardDetail.lfSubComment}"></span><span style="color: black"> 이에요.</span>
                 </div>
                 <p class="lr-pr-etc-subtxt">
                     * 리퍼 상품이란 ? <br>
@@ -60,15 +63,16 @@
                       onclick="dropdown()">arrow_drop_down</span>
             </button>
             <div class="dropdown-content">
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 1</div>
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 2</div>
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 3</div>
-                <div class="" onclick="showMenu(this.innerText)">상품 옵션 4</div>
+                <div th:each="option : ${options}" th:text="${option.lfOptName}" th:data-option-text="${option.lfOptName}" th:data-lf-opt-id="${option.lfOptId}" onclick="showMenu(this.dataset.optionText)"></div>
             </div>
+
         </div>
 
         <div class="lf-pr-submit-btns">
-            <button class="lf-btn-brown text-white"> 장바구니 담기</button>
+            <form method="post" action="/l-life/member/{memberId}/mypage/cart">
+                <input type="hidden" name="memberId" value="{memberId}">
+                <button type="submit" class="lf-btn-brown text-white">장바구니 담기</button>
+            </form>
             <button class="lf-btn-light-brown text-white">
                 <img alt="카드 사진 " th:src="@{/img/standard/card_logo.png}"/>
                 할인 쿠폰 받기
@@ -90,19 +94,20 @@
             <span> * 리퍼 상품이란 ?   </span>
             <span> 소비자의 단순 변심 등으로 인해 반품된 제품을 재입고 하여 재 점검한 후 현재 판매되고 있는 제품보다 저렴한 가격에 공급하는 상품입니다.</span>
             <span> 본 제품의 기능과 성능은 새 제품과 동일하며 리퍼 상품 특성상 외관에 약간의 흠집이 있을 수 있습니다. </span>
-            <span class="pr-grade">이 상품은 “S” 등급 상품입니다.</span>
+            <span class="pr-grade">이 상품은 “<span class="pr-grade" th:text="${refurInfos[0].lfStGrade}"></span>” 등급 상품입니다.</span>
             <div class="page-wrapper">
                 <div class="lf-pr-slider">
                     <h1 class="lf-pr-slider-title"> 실제 상품 사진 </h1>
                     <i class="fas fa-chevron-left prev"></i>
                     <i class="fas fa-chevron-right next"></i>
                     <div class="lf-pr-slide-wrapper">
-                        <div class="lf-pr-slide-product-img" th:each="i : ${#numbers.sequence(1, 8)}">
+                        <div class="lf-pr-slide-product-img" th:each="refurInfo : ${refurInfos}">
                             <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="@{/img/standard/product_detail_main_sample.png}"/>
+                                 th:src="${refurInfo.refurImgUrl}"/>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
             <div class="lf-pr-info">

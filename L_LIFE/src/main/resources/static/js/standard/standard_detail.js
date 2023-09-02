@@ -44,15 +44,10 @@ window.onload=()=>{
     }
 
     showMenu=(value)=>{
-        var dropbtn_icon = document.querySelector('.dropbtn_icon');
         var dropbtn_content = document.querySelector('.dropbtn_content');
-        var dropbtn_click = document.querySelector('.dropbtn_click');
-        var dropbtn = document.querySelector('.dropbtn');
 
-        dropbtn_icon.innerText = '';
         dropbtn_content.innerText = value;
-        dropbtn_content.style.color = '#252525';
-        dropbtn.style.borderColor = '#3992a8';
+        console.log(value);
     }
 }
 window.onclick= (e)=>{

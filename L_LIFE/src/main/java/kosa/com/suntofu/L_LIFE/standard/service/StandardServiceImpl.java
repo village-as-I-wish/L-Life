@@ -1,9 +1,7 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
-import kosa.com.suntofu.L_LIFE.standard.vo.SearchRequestVo;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,4 +42,25 @@ public class StandardServiceImpl implements StandardService {
 
         return standardDAO.searchStandardProductByFilter(requestVo);
     }
+
+    @Override
+    public StandardDetailVo getStandardDetailById(int lfId) {
+
+        return standardDAO.selectStandardDetailById(lfId);
+    }
+
+    @Override
+    public List<StandardOptionVo> getStandardOptionById(int lfId) {
+
+        return standardDAO.selectStandardOptionById(lfId);
+    }
+
+    @Override
+    public List<StandardRefurVo> getStandardRefurById(int lfId) {
+
+        return standardDAO.selectStandardRefurById(lfId);
+    }
 }
+
+
+

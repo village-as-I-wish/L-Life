@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SearchRequestVo {
 
+    private int lfId;
     private List<Integer> lfBrandIds;
     private List<Integer> lfMoodIds;
     private int minCoin;
