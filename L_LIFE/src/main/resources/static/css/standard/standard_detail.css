@@ -202,12 +202,19 @@ ul.tabs li.current{
     font-size: 13px;
     color: gray;
 }
-.tab-pr-maininfo-content span:first-child{
+.tab-pr-maininfo-content span:first-child {
     margin-top:50px;
 }
 .pr-grade{
     margin-top:45px !important;
     font-size: 18px !important;
+    display: inline-flex !important;
+    align-items: baseline !important;
+}
+
+.detail-pont {
+    color: #B38D74;
+    font-weight: bold;
 }
 
 /* slider css */

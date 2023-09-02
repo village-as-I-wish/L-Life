@@ -41,11 +41,11 @@
             <div class="lf-pr-etc-infos">
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span> 상품등급 <span th:text="${standardDetail.lfStGrade}"></span></span>
+                    <span> 상품등급 <span class="detail-pont" th:text="${standardDetail.lfStGrade}"></span></span>
                 </div>
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span th:text="${standardDetail.lfSubComment} + ' 이에요'"></span>
+                    <span class="detail-pont" th:text="${standardDetail.lfSubComment}"></span><span style="color: black"> 이에요.</span>
                 </div>
                 <p class="lr-pr-etc-subtxt">
                     * 리퍼 상품이란 ? <br>
@@ -90,16 +90,16 @@
             <span> * 리퍼 상품이란 ?   </span>
             <span> 소비자의 단순 변심 등으로 인해 반품된 제품을 재입고 하여 재 점검한 후 현재 판매되고 있는 제품보다 저렴한 가격에 공급하는 상품입니다.</span>
             <span> 본 제품의 기능과 성능은 새 제품과 동일하며 리퍼 상품 특성상 외관에 약간의 흠집이 있을 수 있습니다. </span>
-            <span class="pr-grade">이 상품은 “S” 등급 상품입니다.</span>
+            <span class="pr-grade">이 상품은 “<span class="pr-grade" th:text="${refurInfos[0].lfStGrade}"></span>” 등급 상품입니다.</span>
             <div class="page-wrapper">
                 <div class="lf-pr-slider">
                     <h1 class="lf-pr-slider-title"> 실제 상품 사진 </h1>
                     <i class="fas fa-chevron-left prev"></i>
                     <i class="fas fa-chevron-right next"></i>
                     <div class="lf-pr-slide-wrapper">
-                        <div class="lf-pr-slide-product-img" th:each="i : ${#numbers.sequence(1, 8)}">
+                        <div class="lf-pr-slide-product-img" th:each="refurInfo : ${refurInfos}">
                             <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="@{/img/standard/product_detail_main_sample.png}"/>
+                                 th:src="${refurInfo.refurImgUrl}"/>
                         </div>
                     </div>
                 </div>

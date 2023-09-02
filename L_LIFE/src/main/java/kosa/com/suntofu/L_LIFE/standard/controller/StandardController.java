@@ -1,10 +1,7 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardDetailVo;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardLiveVo;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardOptionVo;
-import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -106,6 +103,10 @@ public class StandardController {
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
         model.addAttribute("options", options);
 
+        // 리퍼 정보 가져오기
+        List<StandardRefurVo> refurinfo = standardService.getStandardRefurById(lfId);
+        model.addAttribute("refurInfos", refurinfo);
+        model.addAttribute("lfId", lfId);
         return "pages/standard/standard_detail";
     }
 

@@ -12,4 +12,5 @@ public interface StandardService {
     List<StandardVo> getStandardProductByFilter(SearchRequestVo requestVo);
     StandardDetailVo getStandardDetailById(int lfId);
     List<StandardOptionVo> getStandardOptionById(int lfId);
+    List<StandardRefurVo> getStandardRefurById(int lfId);
 }

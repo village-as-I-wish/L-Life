@@ -146,6 +146,21 @@
             lf.lf_id = #{lfId}
     </select>
 
+    <select id="selectStandardRefurById" resultType="StandardRefurVo">
+        SELECT
+            lf.lf_id,
+            lf.lf_st_grade,
+            rfi.refur_img_id,
+            rfi.refur_img_url
+        FROM
+            LLifeFurniture lf
+        JOIN
+            RefurbishImage rfi ON lf.lf_id = rfi.lf_id
+        WHERE
+            lf.lf_sub_type = 0
+        AND
+            lf.lf_id = #{lfId}
+    </select>
 
 
 </mapper>
