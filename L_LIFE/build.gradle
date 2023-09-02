@@ -55,6 +55,13 @@ dependencies {
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+	// swagger
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+
+	// redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	// implementation 'it.ozimov:embedded-redis:0.7.2'
+
 }
 
 tasks.named('test') {
