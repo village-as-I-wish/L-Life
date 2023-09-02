@@ -41,7 +41,7 @@
     </select>
 
     <!-- 카테고리 필터 -->
-    <select id="selectStandardCategory" resultType="StandardVo">
+    <select id="selectStandardProductByCategory" resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
@@ -161,6 +161,9 @@
         AND
             lf.lf_id = #{lfId}
     </select>
+
+    <!-- 스탠다드 추천 -->
+
 
 
 </mapper>
