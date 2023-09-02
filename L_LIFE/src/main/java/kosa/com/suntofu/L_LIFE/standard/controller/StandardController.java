@@ -28,12 +28,10 @@ public class StandardController {
         // 메인 상품 리스트 가져오기
         List<StandardVo> standardList = standardService.getAllStandard();
         model.addAttribute("standardList", standardList);
-        System.out.println(standardList);
 
         // 라이브 리스트 가져오기
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
         model.addAttribute("standardLiveList", standardLiveList);
-        System.out.println(standardLiveList);
 
         // 현재 날짜와 시간 가져오기
         LocalDateTime now = LocalDateTime.now();
@@ -98,15 +96,22 @@ public class StandardController {
         // 기본적인 상세정보 가져오기
         StandardDetailVo detail = standardService.getStandardDetailById(lfId);
         model.addAttribute("standardDetail",  detail);
+        System.out.println("detail함 보자 " + detail);
 
         // 옵션 가져오기
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
         model.addAttribute("options", options);
 
         // 리퍼 정보 가져오기
-        List<StandardRefurVo> refurinfo = standardService.getStandardRefurById(lfId);
-        model.addAttribute("refurInfos", refurinfo);
+        List<StandardRefurVo> refurinfos = standardService.getStandardRefurById(lfId);
+        model.addAttribute("refurInfos", refurinfos);
         model.addAttribute("lfId", lfId);
+
+        // 카테고리 BEST
+        List<StandardVo> recommendProducts = standardService.getStandardRecommendation(lfId);
+        model.addAttribute("recommendProducts", recommendProducts);
+
+        System.out.println("함 보자 " + recommendProducts);
         return "pages/standard/standard_detail";
     }
 

@@ -13,4 +13,5 @@ public interface StandardService {
     StandardDetailVo getStandardDetailById(int lfId);
     List<StandardOptionVo> getStandardOptionById(int lfId);
     List<StandardRefurVo> getStandardRefurById(int lfId);
+    List<StandardVo> getStandardRecommendation(int lfId);
 }

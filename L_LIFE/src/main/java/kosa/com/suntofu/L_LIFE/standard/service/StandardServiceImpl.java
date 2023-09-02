@@ -60,6 +60,13 @@ public class StandardServiceImpl implements StandardService {
 
         return standardDAO.selectStandardRefurById(lfId);
     }
+
+
+    @Override
+    public List<StandardVo> getStandardRecommendation(int lfId) {
+
+        return standardDAO.selectStandardRecommendation(lfId);
+    }
 }
 
 

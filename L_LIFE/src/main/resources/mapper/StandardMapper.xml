@@ -41,7 +41,7 @@
     </select>
 
     <!-- 카테고리 필터 -->
-    <select id="selectStandardCategory" resultType="StandardVo">
+    <select id="selectStandardProductByCategory" resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
@@ -161,6 +161,38 @@
         AND
             lf.lf_id = #{lfId}
     </select>
+
+    <!-- 스탠다드 추천 -->
+    <select id="selectStandardRecommendation" resultType="StandardVo">
+        SELECT
+            lf.lf_id,
+            lf.lf_img_main,
+            lfb.lf_brand_name,
+            lf.lf_name,
+            lf.lf_st_coin
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureCategory lfc ON lf.lf_category_id = lfc.lf_category_id
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN
+            LLifeFurniture recommend ON lf.lf_category_id = recommend.lf_category_id
+        WHERE
+            recommend.lf_sub_issub = 0
+        AND
+            lf.lf_sub_type = 0
+        AND
+            recommend.lf_id IN (
+                SELECT #{lfId}
+                FROM LLifeFurniture
+                WHERE lf_category_id = lf.lf_category_id
+                AND lf_sub_issub = 0
+        )
+        ORDER BY DBMS_RANDOM.VALUE
+    </select>
+
+
 
 
 </mapper>

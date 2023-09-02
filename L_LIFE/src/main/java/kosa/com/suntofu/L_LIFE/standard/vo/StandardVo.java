@@ -18,6 +18,6 @@ public class StandardVo {
     private String lfBrandName; //브랜드이름
     private Integer lfMoodId; // 가구 분위기 아이디 (필터링)
     private Integer lfBrandId; // 가구 브랜드 아이디 (필터링)
-    private Integer lfCategroyId; // 가구 카테고리 아이디 (필터링)
+    private int lfCategroyId; // 가구 카테고리 아이디 (필터링)
 }
 
