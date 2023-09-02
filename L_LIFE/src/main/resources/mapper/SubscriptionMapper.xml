@@ -5,9 +5,46 @@
 <mapper namespace="kosa.com.suntofu.L_LIFE.subscription.dao.SubscriptionDao">
 
 
-    <select id="selectMemberByEmail" parameterType="String" resultType="MemberVo">
-        select * from member
-        where m_email = #{mEmail}
-    </select>
+
+    <insert id="insertSubscription" parameterType="SubscriptionVo">
+        {CALL
+            DECLARE
+                v_today DATE := TRUNC(SYSDATE);
+                v_member_id NUMBER := #{mId};
+                v_subscription_count NUMBER := 0;
+
+            BEGIN
+                SELECT COUNT(*)
+                INTO v_subscription_count
+                FROM SUBSCRIPTION
+                WHERE M_ID = v_member_id AND SUBSCRIBE_END_DATE >= v_today;
+
+                IF v_subscription_count > 0 THEN
+                        RAISE_APPLICATION_ERROR(-20001, 'Subscription already exists');
+                ELSE
+                    INSERT INTO SUBSCRIPTION (
+                        SUBSCRIBE_TYPE,
+                        M_ID,
+                        SUBSCRIBE_START_DATE,
+                        SUBSCRIBE_END_DATE,
+                        SUBSCRIPTION_PLAN_ID,
+                        SUBSCRIBE_POINT,
+                        SUBSCRIBE_STATUS
+                    )
+                    VALUES (
+                        #{subscriptionType},
+                        v_member_id,
+                        v_today,
+                        ADD_MONTHS(SYSDATE, 1),
+                        #{subscriptionPlanId},
+                        #{subscriptionPoint},
+                        #{subscriptionStatus}
+                    );
+            END IF;
+            END
+        }
+    </insert>
+
+
 
 </mapper>

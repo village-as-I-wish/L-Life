@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface SubscriptionDao {
 
-    Integer insertSubscription(SubscriptionVo subscriptionVo) throws Exception;
+    int insertSubscription(SubscriptionVo subscriptionVo);
 
 }

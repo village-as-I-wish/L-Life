@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.subscription.controller;
 
 
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
+import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
 import kosa.com.suntofu.L_LIFE.subscription.vo.BasicResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,13 +19,16 @@ public class SubscriptionRestController {
     private final SubscriptionService subscriptionService;
 
     @PostMapping("")
-    public ResponseEntity<BasicResponse> subscribePlan(int subscriptionPlanId, @SessionAttribute int memberId){
-        log.info("[구독 가입 ] 구독 플랜 타입 번호 :  {} ", subscriptionPlanId);
-        subscriptionService.subscribePlan(subscriptionPlanId, memberId);
-        log.info("[구독 가입 ] 구독 플랜 가입 완료");
-
-        ResponseEntity responseEntity = new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("fdkdf").build(), HttpStatus.ACCEPTED);
-        return responseEntity;
+    public ResponseEntity<BasicResponse> subscribePlan(int subscriptionPlanId){ //세션에서 memberId 가져올 예정
+        int memberId = 1; // MemerId 변경 필요
+        int result = subscriptionService.subscribePlan(subscriptionPlanId, memberId);
+        if(result == SubscriptionReturn.SUBSCRIPTION_SUCCESS){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
+        }else if(result == SubscriptionReturn.SUBSCRIPTION_ALREADY_EXISTS){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("이미 구독중인 상태입니다.").result(-1).build(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("[구독 플랜 ] - 데이터 처리 서버 오류 발생 ").build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

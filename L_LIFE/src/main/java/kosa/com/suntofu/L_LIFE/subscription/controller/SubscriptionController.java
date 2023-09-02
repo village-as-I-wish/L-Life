@@ -52,11 +52,11 @@ public class SubscriptionController {
      * @return String
      */
     @GetMapping(value="/standard/payment_detail")
-    public String loadStandardPaymentDetail(Model model, @RequestParam int subscriptionPlanType){
+    public String loadStandardPaymentDetail(Model model, @RequestParam int subscriptionPlanId){
         model.addAttribute("baseUrl", baseUrl);
         model.addAttribute("payKeys", payKeysVO);
-        log.info("SubscriptionType {}", subscriptionPlanType);
-        BillVo billVo = subscriptionService.getSubscriptionPayBill(subscriptionPlanType);
+        log.info("SubscriptionType {}", subscriptionPlanId);
+        BillVo billVo = subscriptionService.getSubscriptionPayBill(subscriptionPlanId);
         model.addAttribute("billVo", billVo);
         return "pages/subscription/standard_payment_detail";
     }
