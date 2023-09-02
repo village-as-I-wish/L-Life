@@ -63,13 +63,16 @@
                       onclick="dropdown()">arrow_drop_down</span>
             </button>
             <div class="dropdown-content">
-                <div th:each="option : ${options}" th:text="${option.lfOptName}" th:data-option-text="${option.lfOptName}" onclick="showMenu(this.dataset.optionText)"></div>
+                <div th:each="option : ${options}" th:text="${option.lfOptName}" th:data-option-text="${option.lfOptName}" th:data-lf-opt-id="${option.lfOptId}" onclick="showMenu(this.dataset.optionText)"></div>
             </div>
 
         </div>
 
         <div class="lf-pr-submit-btns">
-            <button class="lf-btn-brown text-white"> 장바구니 담기</button>
+            <form method="post" action="/l-life/member/{memberId}/mypage/cart">
+                <input type="hidden" name="memberId" value="{memberId}">
+                <button type="submit" class="lf-btn-brown text-white">장바구니 담기</button>
+            </form>
             <button class="lf-btn-light-brown text-white">
                 <img alt="카드 사진 " th:src="@{/img/standard/card_logo.png}"/>
                 할인 쿠폰 받기

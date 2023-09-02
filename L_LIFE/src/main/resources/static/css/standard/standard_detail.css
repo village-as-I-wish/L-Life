@@ -129,19 +129,18 @@
     width:100%;
     height: 40px;
 }
-.lf-pr-submit-btns button{
+
+.lf-pr-submit-btns form, .lf-pr-submit-btns button:last-child {
     width: 100%;
     height: 50px;
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     position: absolute;
     left: 0;
 }
 
-
-.lf-pr-submit-btns button:first-child {
-    bottom: 95px;
+.lf-pr-submit-btns form {
+    bottom: 60px;
 }
 
 .lf-pr-submit-btns button:last-child {
@@ -150,9 +149,11 @@
     justify-content: center;
     bottom: 35px;
 }
-.lf-pr-submit-btns button:last-child > img{
+
+.lf-pr-submit-btns button:last-child > img {
     margin-right: 10px;
 }
+
     /* tab content css */
 ul.tabs{
     margin: 0px;
