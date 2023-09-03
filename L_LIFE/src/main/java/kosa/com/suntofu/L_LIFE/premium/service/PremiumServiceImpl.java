@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.premium.service;
 
 import kosa.com.suntofu.L_LIFE.constant.CacheKey;
 import kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao;
+import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
@@ -73,6 +74,7 @@ public class PremiumServiceImpl implements PremiumService{
         return premiumDao.selectProductByKeywordPagination(paginationVo);
     }
 
+
     @Override
     public PremiumVo selectPremiumProductDetailById(int lfId) {
         return premiumDao.selectPremiumProductDetailById(lfId);
@@ -92,9 +94,18 @@ public class PremiumServiceImpl implements PremiumService{
         }
     }
 
+    /**
+     * Package List - Promotion Package load 메서드
+     * @return List<PackageVo>
+     */
     @Override
     public List<PackageVo> getPromotionPackages() {
         return premiumDao.selectPromotionPackages();
+    }
+
+    @Override
+    public PackageDetailVo getPremiumPackageDetail(int lfPackageId) {
+        return premiumDao.selectPackageDetail(lfPackageId);
     }
 
     private List<PackageVo> getCachedSearchResult(String cacheKey) {
@@ -102,6 +113,7 @@ public class PremiumServiceImpl implements PremiumService{
         List<PackageVo> cachedData = (List<PackageVo>) redisTemplate.opsForValue().get(cacheKey);
         return cachedData;
     }
+
 
     private void cachePackages(String cacheKey, List<PackageVo> cachingData) {
         redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);

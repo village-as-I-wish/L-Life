@@ -1,6 +1,7 @@
 package kosa.com.suntofu.L_LIFE.premium.dao;
 
 
+import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
@@ -21,4 +22,6 @@ public interface PremiumDao {
 
     List<PackageVo> selectMDPickPackages();
     List<PackageVo> selectPromotionPackages();
+
+    PackageDetailVo selectPackageDetail(int lfPackageId);
 }

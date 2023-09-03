@@ -24,47 +24,21 @@
 
     <div class="hd__inner1100 pd-container">
         <div class="pd-detail-container">
-            <p class="pd-main-package-name"> 우드 & 화이트 감성 <br> 리빙 인테리어 </p>
+            <p class="pd-main-package-name" th:text="${packageDetail.lfPackageName}"> 우드 & 화이트 감성 <br> 리빙 인테리어 </p>
             <hr>
             <div class="pd-detail-box">
                 <div class="pd-detail-img">
-                    <img alt="상품 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+                    <img alt="상품 사진 "  th:src="@{${packageDetail.lfPackageImg}}"/>
                 </div>
                 <div class="pd-detail-product-list">
-                    <div class="pd-detail-product">
-                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample1.png}"/>
+                    <div class="pd-detail-product"  th:each="packageProduct : ${packageDetail.lfPackageProducts}">
+                        <img alt="상품 사진 " th:src="@{${packageProduct.lfImgMain}}"/>
                         <div class="pd-detail-product-info">
-                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
+                            <span th:text="${packageProduct.lfName}">[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
                             <i class="fa-solid fa-heart fill-heart"></i>
-                            <p> 58000원 / 월</p>
+                            <p th:text="${packageProduct.lfPrPrice != null} ? ${packageProduct.lfPrPrice} + '원 / 월' : '0원 / 월'"></p>
                         </div>
                     </div>
-
-                    <div class="pd-detail-product">
-                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample2.png}"/>
-                        <div class="pd-detail-product-info">
-                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
-                            <i class="fa-solid fa-heart fill-heart"></i>
-                            <p> 58000원 / 월</p>
-                        </div>
-                    </div>
-                    <div class="pd-detail-product">
-                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample3.png}"/>
-                        <div class="pd-detail-product-info">
-                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
-                            <i class="fa-solid fa-heart fill-heart"></i>
-                            <p> 58000원 / 월</p>
-                        </div>
-                    </div>
-                    <div class="pd-detail-product">
-                        <img alt="상품 사진 " th:src="@{/img/premium/premium_detail_product_sample4.png}"/>
-                        <div class="pd-detail-product-info">
-                            <span>[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
-                            <i class="fa-solid fa-heart fill-heart"></i>
-                            <p> 40000원 / 월</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
