@@ -54,6 +54,44 @@ $(document).ready(function(){
         });
     });
 
+    $('.lf-pr-submit-btns form').on('submit', function(event) {
+        event.preventDefault();
+        Swal.fire({
+            title: '장바구니에 추가되었습니다.',
+            text: '장바구니로 이동하시겠습니까?',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log(optionId)
+                console.log(productId)
+                // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
+                const data = {
+                    option: optionId,
+                    productId: productId
+                };
+                $.ajax({
+                    url: '#',
+                    method: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        console.log("장바구니에 담기 완료");
+                        console.log(response);
+                        // 확인 -> 장바구니 페이지로 이동
+                        window.location.href = "/l-life/member/mypage/cart";
+                    },
+                    error: function(error) {
+                        window.location.href = "/l-life/member/mypage/cart";
+                        console.log("장바구니에 담기 실패");
+                        console.log(error);
+                    }
+                });
+            }
+        });
+    });
+
 
     $('.lf-pr-main-content .main-tab li').click(function(){
         var tab_id = $(this).attr('data-tab');
