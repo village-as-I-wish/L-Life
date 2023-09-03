@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.member.controller;
 
+import kosa.com.suntofu.L_LIFE.member.SessionConst;
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.ArrayList;
@@ -27,39 +29,43 @@ public class MemberController {
     public String loadLoginPage(){ return "pages/member/login"; }
 
     @PostMapping("/login")
-    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpSession session){
+    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpServletRequest request, Model model){
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
         int currentCoin = memberService.getCurrentCoin(existingMember.getMId());
 
         int orderCount = memberService.getOrderCount(existingMember.getMId());
         List<DeliveryStatusVo> deliveryStatusList = memberService.getDeliveryStatus(existingMember.getMId());
-        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
-        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
-        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
+//        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
+//        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
+//        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
+
+        System.out.println(existingMember);
+        // 로그인 성공
+        HttpSession session = request.getSession();
 
         // 세션 저장
-        session.setAttribute("loggedInMemberInfo", existingMember);
+        session.setAttribute(SessionConst.LOGIN_MEMBER, existingMember);
         session.setAttribute("currentCoin", currentCoin);
         session.setAttribute("orderCount",orderCount);
-        session.setAttribute("deliveryProgress",deliveryProgress);        session.setAttribute("deliveryReady",deliveryReady);
-        session.setAttribute("deliveryComplete",deliveryComplete);
+//        session.setAttribute("deliveryProgress",deliveryProgress);        session.setAttribute("deliveryReady",deliveryReady);
+//        session.setAttribute("deliveryComplete",deliveryComplete);
 
         return "pages/main/main";
     }
 
-    @GetMapping("/checkSession")
-    @ResponseBody
-    public String checkSession(HttpSession session) {
-        MemberVo loggedInMember = (MemberVo) session.getAttribute("loggedInMemberInfo");
-
-        if (loggedInMember != null) {
-            // 세션에 저장된 정보 출력 또는 활용
-            return "Logged in member's name: " + loggedInMember.getMName();
-        } else {
-            return "No user logged in.";
-        }
-    }
+//    @GetMapping("/checkSession")
+//    @ResponseBody
+//    public String checkSession(HttpSession session) {
+//        MemberVo loggedInMember = (MemberVo) session.getAttribute("loggedInMemberInfo");
+//
+//        if (loggedInMember != null) {
+//            // 세션에 저장된 정보 출력 또는 활용
+//            return "Logged in member's name: " + loggedInMember.getMName();
+//        } else {
+//            return "No user logged in.";
+//        }
+//    }
   
     @GetMapping("/{memberId}/mypage")
     public String loadMyPage(Model model){

@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
+import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class StandardController {
     private int lfSubType = 0;
 
     @GetMapping("/main")
-    public String loadStandardMainPage(Model model) {
+    public String loadStandardMainPage(Model model, @SessionAttribute("existingMember") MemberVo member) {
 
         model.addAttribute("lfSubType", lfSubType);
 
