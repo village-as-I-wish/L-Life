@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.premium.service;
 
+import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
@@ -19,4 +20,6 @@ public interface PremiumService {
 
     List<PackageVo> getMDPickPackages();
     List<PackageVo> getPromotionPackages();
+
+    PackageDetailVo getPremiumPackageDetail(int lfPackageId);
 }
