@@ -111,7 +111,7 @@
            lf.lf_st_coin BETWEEN #{minCoin} AND #{maxCoin}
     </select>
 
-    <!-- 스탠다드 디테일 페이지 -->
+    <!-- 스탠다드 상세페이지 -->
     <select id = "selectStandardDetailById">
         SELECT
             lf.lf_id,
@@ -131,6 +131,7 @@
             lf_id = #{lfId}
     </select>
 
+    <!-- 스탠다드 상세페이지 옵션 -->
     <select id="selectStandardOptionById" resultType="StandardOptionVo">
         SELECT
             lf.lf_id,
@@ -146,6 +147,7 @@
             lf.lf_id = #{lfId}
     </select>
 
+    <!-- 스탠다드 상세페이지 리퍼 정보 -->
     <select id="selectStandardRefurById" resultType="StandardRefurVo">
         SELECT
             lf.lf_id,
@@ -162,7 +164,7 @@
             lf.lf_id = #{lfId}
     </select>
 
-    <!-- 스탠다드 추천 -->
+    <!-- 스탠다드 추천(구독가능한 제품 + 해당 카테고리 제품을 랜덤으로 추천) -->
     <select id="selectStandardRecommendation" resultType="StandardVo">
         SELECT
             lf.lf_id,
@@ -200,11 +202,12 @@
             st.stock_amount
         FROM
             LLifeFurniture lf
-                JOIN
+        JOIN
             Stock st ON lf.lf_id = st.lf_id
         WHERE
             lf.lf_sub_type = 0
-          AND lf.lf_id = #{lfId}
+        AND
+            lf.lf_id = #{lfId}
     </select>
 
 
