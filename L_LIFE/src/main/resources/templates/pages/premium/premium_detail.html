@@ -11,31 +11,42 @@
     <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
     <div class="lf-pr-summary-container hd__inner1100">
         <div class="lf-pr-summary-img-box">
-            <img alt="상품 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+            <img alt="상품 사진 " th:src="${premiumDetail.lfImgMain}"/>
         </div>
         <div class="lf-pr-summary-info">
-            <span class="light-gray text-xsm pt-4"> 리바트 > </span>
+            <span class="light-gray text-xsm pt-4" th:text="${premiumDetail.lfBrandName}"></span>
             <div class="lf-pr-summary-header">
-                <span class="lf-pr-name"> 오브니 패브릭 4인 소파 와이드 </span>
-                <i> 하트 </i>
+                <span class="lf-pr-name" th:text="${premiumDetail.lfName}"></span>
+                <i class="fa-solid fa-heart fill-heart"></i>
             </div>
             <hr>
             <div class="lf-pr-summary-detail">
                 <div class="lf-pr-point d-flex">
-                    <span class="lf-pr-point-txt text-sm f-bold"> 포인트 3개 </span>
-                    <img th:each="i : ${#numbers.sequence(1, 4)}" alt="코인 사진" th:src="@{/img/standard/coin.png}"/>
+                    <span class="lf-pr-point-txt text-sm f-bold"> 월 <span th:text="${premiumDetail.lfPrPrice}"></span>원~ </span>
                 </div>
-                <div class="lf-pr-etc-info">
-                    <span class="material-symbols-outlined">
-                    check_circle
-                    </span>
+                <div class="lr-pr-etc-info">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span><span class="detail-pont" th:text="${premiumDetail.lfPrMinPeriod}">개월 사용 후 구매/반납/연장 할 수 있어요.</span></span>
+                </div>
+                <div class="lr-pr-etc-info">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span class="detail-pont">한 번도 사용되지 않은 새 제품 이에요.</span>
+                </div>
 
 
                 </div>
             </div>
 
             <div class="lf-pr-options">
-                <input type="text" value="옵션 커멘트" readonly>
+                <button class="dropbtn">
+                    <span class="dropbtn_content"> [필수] 옵션을 선택하세요. </span>
+                    <span class="dropbtn_click"
+                          style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"
+                          onclick="dropdown()">arrow_drop_down</span>
+                </button>
+<!--                <div class="dropdown-content">-->
+<!--                    <div th:each="option : ${options}" th:text="${option.lfOptName}" th:data-option-text="${option.lfOptName}" th:data-lf-opt-id="${option.lfOptId}" onclick="showMenu(this.dataset.optionText)"></div>-->
+<!--                </div>-->
             </div>
 
             <div class="lf-pr-submit-btns">

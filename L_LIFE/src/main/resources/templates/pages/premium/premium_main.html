@@ -41,7 +41,7 @@
             </ul>
             <div class="pl-main-sub-products">
                 <div class="pl-main-sub-product" th:each="product : ${premiumProducts}">
-                    <a th:href="@{/premium/1/detail}">
+                    <a th:href="@{'/premium/' + ${product.lfId} + '/detail'}">
                         <div class="pl-main-sub-product-img col">
                             <img alt="베너 사진1 " th:src="${product.lfImgMain}"/>
                         </div>

@@ -5,7 +5,7 @@
 <mapper namespace="kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao">
     <!-- 프리미엄 상품 리스트 -->
     <select id="selectPremiumProductList">
-        SELECT lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
+        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb
         ON lf.lf_brand_id = lfb.lf_brand_id
@@ -24,7 +24,7 @@
 
     <!-- 프리미엄 상품 카테고리 필터링 -->
     <select id="selectProductByCategory" parameterType="PaginationVo" resultType="PremiumVo">
-        SELECT lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
+        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb
         ON lf.lf_brand_id = lfb.lf_brand_id
@@ -48,7 +48,7 @@
 
     <!-- 프리미엄 상품 검색 -->
     <select id="selectProductByKeyword" parameterType="PaginationVo">
-        SELECT lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
+        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb
         ON lf.lf_brand_id = lfb.lf_brand_id
@@ -69,6 +69,16 @@
         OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
     </select>
 
+    <!-- 프리미엄 상품 상세 -->
+    <select id="selectPremiumProductDetailById" parameterType="PremiumVo">
+        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price, lf.lf_pr_min_period
+        FROM LLifeFurniture lf
+        JOIN LFurnitureBrand lfb
+        ON lf.lf_brand_id = lfb.lf_brand_id
+        WHERE lf_sub_type = 1
+        AND lf_id = #{lfId}
+    </select>
+
     <!-- 프리미엄 패키지 라인 -->
     <select id="selectMDPickPackages" resultType="PackageVo">
         select *
@@ -81,7 +91,6 @@
         from LFPACKAGE
         where LF_PACKAGE_TYPE =1 and IS_PROMOTION=1
     </select>
-
 
     <resultMap id="packageDetail" type="PackageDetailVo">
     <id property="lfPackageId" column="LF_PACKAGE_ID"/>
@@ -109,6 +118,5 @@
                       on lfc.LF_ID = f.LF_ID
         where lfc.LF_PACKAGE_ID = #{lfPackageId}
     </select>
-
 
 </mapper>

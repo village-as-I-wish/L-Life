@@ -6,6 +6,7 @@ import kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao;
 import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -73,6 +74,11 @@ public class PremiumServiceImpl implements PremiumService{
         return premiumDao.selectProductByKeywordPagination(paginationVo);
     }
 
+
+    @Override
+    public PremiumVo selectPremiumProductDetailById(int lfId) {
+        return premiumDao.selectPremiumProductDetailById(lfId);
+    }
 
     @Override
     public List<PackageVo> getMDPickPackages() {
