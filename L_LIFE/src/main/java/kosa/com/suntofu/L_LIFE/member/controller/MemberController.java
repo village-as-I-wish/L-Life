@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.member.controller;
 
+import kosa.com.suntofu.L_LIFE.member.SessionConst;
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.ArrayList;
@@ -27,9 +29,10 @@ public class MemberController {
     public String loadLoginPage(){ return "pages/member/login"; }
 
     @PostMapping("/login")
-    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpSession session){
+    public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpServletRequest request, Model model){
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
+
 //        int currentCoin = memberService.getCurrentCoin(existingMember.getMId());
 //
 //        int orderCount = memberService.getOrderCount(existingMember.getMId());
@@ -49,18 +52,18 @@ public class MemberController {
         return "pages/main/main";
     }
 
-    @GetMapping("/checkSession")
-    @ResponseBody
-    public String checkSession(HttpSession session) {
-        MemberVo loggedInMember = (MemberVo) session.getAttribute("loggedInMemberInfo");
-
-        if (loggedInMember != null) {
-            // 세션에 저장된 정보 출력 또는 활용
-            return "Logged in member's name: " + loggedInMember.getMName();
-        } else {
-            return "No user logged in.";
-        }
-    }
+//    @GetMapping("/checkSession")
+//    @ResponseBody
+//    public String checkSession(HttpSession session) {
+//        MemberVo loggedInMember = (MemberVo) session.getAttribute("loggedInMemberInfo");
+//
+//        if (loggedInMember != null) {
+//            // 세션에 저장된 정보 출력 또는 활용
+//            return "Logged in member's name: " + loggedInMember.getMName();
+//        } else {
+//            return "No user logged in.";
+//        }
+//    }
   
     @GetMapping("/{memberId}/mypage")
     public String loadMyPage(Model model){
