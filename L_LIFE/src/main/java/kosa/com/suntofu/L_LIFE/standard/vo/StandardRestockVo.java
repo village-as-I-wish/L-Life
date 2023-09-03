@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StandardOptionVo {
+public class StandardRestockVo {
 
     private int lfId;
-    private int stockAmount;
+    private int stockId;
     private int lfOptId;
-    private String lfOptName;
+    private int stockAmount;
 }

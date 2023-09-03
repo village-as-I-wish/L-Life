@@ -53,34 +53,38 @@ function search() {
         url: url,
         success: function (response) {
             var data = response;
-            var html = '';
             $('.sl-main-sub-products-txt .txt-pink').text(data.length);
+            var $subProducts = $('.sl-main-sub-products');
+            $subProducts.empty();
             data.forEach(function (item) {
-                console.log(item)
-                html += '<div class="sl-main-sub-product">';
-                html += '<a href="/l-life/standard/' + item.lfId + '/detail">';
-                html += '<div class="sl-main-sub-product-img col">';
-                html += '<img alt="상품메인사진" src="' + item.lfImgMain + '"/>';
-                html += '</div>';
-                html += '<div class="sl-main-sub-product-txt">';
-                html += '<p>' + item.lfName + '</p>';
-                html += '<hr style="margin: 3px 0px 10px 0px">';
-                html += '<div class="d-flex sl-main-sub-product-price">';
-                html += '<span>' + item.lfBrandName + '</span>';
-                html += '<div class="coin-img-box">';
+                var $subProduct = $('<div>').addClass('sl-main-sub-product');
+                var $link = $('<a>').attr('href', '/l-life/standard/' + item.lfId + '/detail');
+                var $imgCol = $('<div>').addClass('sl-main-sub-product-img col');
+                var $img = $('<img>').attr('src', item.lfImgMain).attr('alt', '상품메인사진');
+                $imgCol.append($img);
+                var $txtDiv = $('<div>').addClass('sl-main-sub-product-txt');
+                var $p = $('<p>').text(item.lfName);
+                $txtDiv.append($p);
+                var $hr = $('<hr>').css('margin', '3px 0px 10px 0px');
+                $txtDiv.append($hr);
+                var $priceDiv = $('<div>').addClass('d-flex sl-main-sub-product-price');
+                var $span = $('<span>').text(item.lfBrandName);
+                $priceDiv.append($span);
+                var $coinBox = $('<div>').addClass('coin-img-box');
                 for (var i = 0; i < item.lfStCoin; i++) {
-                    html += '<img class="coin-img" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png"/>';
+                    var $coinImg = $('<img>').addClass('coin-img').attr('src', 'https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png');
+                    $coinBox.append($coinImg);
                 }
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</a>';
-                html += '</div>';
+                $priceDiv.append($coinBox);
+                $txtDiv.append($priceDiv);
+                $link.append($imgCol).append($txtDiv);
+                $subProduct.append($link);
+                $subProducts.append($subProduct);
             });
-            $('.sl-main-sub-products').html(html);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("통신 실패.")
         }
     });
+
 }
