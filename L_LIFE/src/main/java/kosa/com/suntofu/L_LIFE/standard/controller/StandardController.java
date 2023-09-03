@@ -113,11 +113,11 @@ public class StandardController {
         return "pages/standard/standard_detail";
     }
 
-    @GetMapping("/checkStock/{productId}")
+    @GetMapping("/checkStock/{optionId}")
     @ResponseBody
-    public int getStockAmount(@PathVariable("productId") int lfId) {
+    public int getStockAmount(@PathVariable("optionId") int lfOptId) {
 
-        return standardService.getStandardStockAmount(lfId);
+        return standardService.getStandardStockAmount(lfOptId);
     }
 
 

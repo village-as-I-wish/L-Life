@@ -16,6 +16,6 @@ public interface StandardDAO {
     List<StandardOptionVo> selectStandardOptionById(int lfId);
     List<StandardRefurVo> selectStandardRefurById(int lfId);
     List<StandardVo> selectStandardRecommendation(int lfId);
-    List<StandardRestockVo> selectStandardStockAmount(int lfId);
+    List<StandardRestockVo> selectStandardStockAmount(int lfOptId);
 }
 

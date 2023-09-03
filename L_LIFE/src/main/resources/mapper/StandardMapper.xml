@@ -195,19 +195,16 @@
     </select>
 
     <!--스탠다드 재입고 알림 신청-->
-    <select id="selectStandardStockAmount">
+    <select id="selectStandardStockAmount" resultType="StandardRestockVo">
         SELECT
-            lf.lf_id,
-            st.stock_id,
-            st.stock_amount
+            s.stock_id,
+            s.lf_opt_id,
+            s.lf_id,
+            s.stock_amount
         FROM
-            LLifeFurniture lf
-        JOIN
-            Stock st ON lf.lf_id = st.lf_id
+            Stock s
         WHERE
-            lf.lf_sub_type = 0
-        AND
-            lf.lf_id = #{lfId}
+            s.lf_opt_id = #{lfOptId}
     </select>
 
 

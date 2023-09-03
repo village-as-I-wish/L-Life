@@ -69,11 +69,11 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public int getStandardStockAmount(int lfId) {
+    public int getStandardStockAmount(int lfOptId) {
 
-        List<StandardRestockVo> productRestocks = standardDAO.selectStandardStockAmount(lfId);
-        for (StandardRestockVo restock : productRestocks) {
-            if (restock.getLfId() == lfId) {
+        List<StandardRestockVo> optionRestocks = standardDAO.selectStandardStockAmount(lfOptId);
+        for (StandardRestockVo restock : optionRestocks) {
+            if (restock.getLfOptId() == lfOptId) {
                 return restock.getStockAmount();
             }
         }

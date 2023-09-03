@@ -1,48 +1,55 @@
 var optionId;
 $(document).ready(function(){
-    var productId = $('#productId').val();
-    $.ajax({
-        url: '/l-life/standard/checkStock/' + productId,
-        method: 'GET',
-        success: function(stockAmount) {
-            if (stockAmount <= 0) {
-                // 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
+    var productId = $('#productId').val();// 추가
+    $(".dropdown-content div").click(function() {
+        var selectedOptionId = $(this).data('lf-opt-id');
+
+        $.ajax({
+            url: '/l-life/standard/checkStock/' + selectedOptionId,
+            method: 'GET',
+            success: function (stockAmount) {
                 var button = $('.lf-pr-submit-btns form button');
-                button.text('재입고 알림 신청');
-                button.click(function(event) {
-                    event.preventDefault();
-                    Swal.fire({
-                        title: '재고가 없습니다.',
-                        text: '재입고 알림을 신청하시겠습니까?',
-                        confirmButtonText: '신청하기',
-                        cancelButtonText: '취소',
-                        showCancelButton: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // TODO : 재입고알림신청 버튼 클릭시 관련 API 호출
-                            data={
-                                option: optionId, // 스탠다드 라인
-                                productId: productId
-                            }
-                            $.ajax({
-                                url: 'TODO',
-                                method: 'POST',
-                                data: data,
-                                contentType: 'application/json',
-                                success: function(response) {
-                                    console.log("재입고 알림 신청 완료")
-                                    console.log(response)
-                                },
-                                error: function(error) {
-                                    console.log("재입고 알림 신청 실패")
-                                    console.log(error)
+                if (stockAmount <= 0) {
+                    // 옵션의 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
+                    button.text('재입고 알림 신청');
+                    //button.click(function (event)
+                    button.off('click').click(function() {
+                        Swal.fire({
+                            title: '재고가 없습니다.',
+                            text: '재입고 알림을 신청하시겠습니까?',
+                            confirmButtonText: '신청하기',
+                            cancelButtonText: '취소',
+                            showCancelButton: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // TODO : 재입고알림신청 버튼 클릭시 관련 API 호출
+                                data = {
+                                    option: optionId,
+                                    productId: productId
                                 }
-                            });
-                        }
+                                $.ajax({
+                                    url: 'TODO',
+                                    method: 'POST',
+                                    data: data,
+                                    contentType: 'application/json',
+                                    success: function (response) {
+                                        console.log("재입고 알림 신청 완료")
+                                        console.log(response)
+                                    },
+                                    error: function (error) {
+                                        console.log("재입고 알림 신청 실패")
+                                        console.log(error)
+                                    }
+                                });
+                            }
+                        });
                     });
-                });
+                } else {
+                    button.text('장바구니 담기');
+                    button.off('click');
+                }
             }
-        }
+        });
     });
 
 
@@ -54,7 +61,7 @@ $(document).ready(function(){
 
         $(this).addClass('current');
         $("#"+tab_id).addClass('current');
-    }),
+    });
 
     $('.lf-pr-slide-wrapper').slick({
         slidesToShow: 4,
