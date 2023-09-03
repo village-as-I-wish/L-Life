@@ -100,6 +100,7 @@ public class StandardController {
         // 옵션 가져오기
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
         model.addAttribute("options", options);
+        System.out.println(options);
 
         // 리퍼 정보 가져오기
         List<StandardRefurVo> refurinfos = standardService.getStandardRefurById(lfId);
@@ -113,11 +114,11 @@ public class StandardController {
         return "pages/standard/standard_detail";
     }
 
-    @GetMapping("/checkStock/{optionId}")
+    @GetMapping("/checkStock/{productId}/{optionId}")
     @ResponseBody
-    public int getStockAmount(@PathVariable("optionId") int lfOptId) {
+    public int getStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
 
-        return standardService.getStandardStockAmount(lfOptId);
+        return standardService.getStandardStockAmount(lfOptId, lfId);
     }
 
 

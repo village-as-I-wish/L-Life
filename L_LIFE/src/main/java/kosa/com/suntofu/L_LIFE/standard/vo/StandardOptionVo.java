@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class StandardOptionVo {
 
     private int lfId;
+    private int stockAmount;
     private int lfOptId;
     private String lfOptName;
 }

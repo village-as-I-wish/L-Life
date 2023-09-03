@@ -1,19 +1,20 @@
 var optionId;
 $(document).ready(function(){
-    var productId = $('#productId').val();// 추가
+    var productId = $('#productId').val();
     $(".dropdown-content div").click(function() {
         var selectedOptionId = $(this).data('lf-opt-id');
 
         $.ajax({
-            url: '/l-life/standard/checkStock/' + selectedOptionId,
+            url: '/l-life/standard/checkStock/' + productId + '/' + selectedOptionId,
             method: 'GET',
             success: function (stockAmount) {
                 var button = $('.lf-pr-submit-btns form button');
+                console.log(stockAmount);
                 if (stockAmount <= 0) {
                     // 옵션의 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
                     button.text('재입고 알림 신청');
-                    //button.click(function (event)
                     button.off('click').click(function() {
+                        event.preventDefault();
                         Swal.fire({
                             title: '재고가 없습니다.',
                             text: '재입고 알림을 신청하시겠습니까?',
@@ -27,6 +28,7 @@ $(document).ready(function(){
                                     option: optionId,
                                     productId: productId
                                 }
+                                console.log(data);
                                 $.ajax({
                                     url: 'TODO',
                                     method: 'POST',

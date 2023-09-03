@@ -134,17 +134,16 @@
     <!-- 스탠다드 상세페이지 옵션 -->
     <select id="selectStandardOptionById" resultType="StandardOptionVo">
         SELECT
-            lf.lf_id,
+            s.lf_id,
+            s.stock_amount,
             lfo.lf_opt_id,
             lfo.lf_opt_name
         FROM
-            LLifeFurniture lf
+            Stock s
         JOIN
-            LFurnitureOption lfo ON lf.lf_id = lfo.lf_id
+            LFurnitureOption lfo ON s.lf_opt_id = lfo.lf_opt_id
         WHERE
-            lf.lf_sub_type = 0
-        AND
-            lf.lf_id = #{lfId}
+            s.lf_id = #{lfId}
     </select>
 
     <!-- 스탠다드 상세페이지 리퍼 정보 -->
@@ -197,7 +196,6 @@
     <!--스탠다드 재입고 알림 신청-->
     <select id="selectStandardStockAmount" resultType="StandardRestockVo">
         SELECT
-            s.stock_id,
             s.lf_opt_id,
             s.lf_id,
             s.stock_amount
@@ -205,7 +203,10 @@
             Stock s
         WHERE
             s.lf_opt_id = #{lfOptId}
+        AND
+            s.lf_id = #{lfId}
     </select>
+
 
 
 
