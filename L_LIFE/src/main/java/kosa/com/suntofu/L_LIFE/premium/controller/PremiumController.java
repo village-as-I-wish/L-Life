@@ -1,17 +1,19 @@
 package kosa.com.suntofu.L_LIFE.premium.controller;
 
 import kosa.com.suntofu.L_LIFE.premium.service.PremiumService;
+import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@Slf4j
 
 @Controller
 @RequiredArgsConstructor
@@ -21,12 +23,19 @@ public class PremiumController {
     private final PremiumService premiumService;
 
     @GetMapping()
-    public String loadPremiumPackageMainPage(){
+    public String loadPremiumPackageMainPage(Model model){
+
+        model.addAttribute("MDPickPackages", premiumService.getMDPickPackages());
+        model.addAttribute("PromotionPackages", premiumService.getPromotionPackages());
         return "pages/premium/premium_package_main";
     }
 
-    @GetMapping("/package/{packageNum}/detail")
-    public String loadPremiumPackageDetail(){
+    @GetMapping("/package/{lfPackageId}/detail")
+    public String loadPremiumPackageDetail(@PathVariable int lfPackageId, Model model){
+        PackageDetailVo packageDetail = premiumService.getPremiumPackageDetail(lfPackageId);
+        log.info("packageDetail {}", packageDetail);
+
+        model.addAttribute("packageDetail", packageDetail);
         return "pages/premium/premium_package_detail";
     }
 //-------------------------------------------------------------------------------------------------------
@@ -78,7 +87,10 @@ public class PremiumController {
     }
 
     @GetMapping("/{productId}/detail")
-    public String loadPremiumDetailPage(){
+    public String loadPremiumDetailPage(@PathVariable("productId") int lfId, Model model){
+        PremiumVo premiumDetailById = premiumService.selectPremiumProductDetailById(lfId);
+        model.addAttribute("premiumDetail", premiumDetailById);
+
         return "pages/premium/premium_detail";
     }
 }

@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
+import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class StandardController {
     private int lfSubType = 0;
 
     @GetMapping("/main")
-    public String loadStandardMainPage(Model model) {
+    public String loadStandardMainPage(Model model, @SessionAttribute("existingMember") MemberVo member) {
 
         model.addAttribute("lfSubType", lfSubType);
 
@@ -100,6 +101,7 @@ public class StandardController {
         // 옵션 가져오기
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
         model.addAttribute("options", options);
+        System.out.println(options);
 
         // 리퍼 정보 가져오기
         List<StandardRefurVo> refurinfos = standardService.getStandardRefurById(lfId);
@@ -113,11 +115,11 @@ public class StandardController {
         return "pages/standard/standard_detail";
     }
 
-    @GetMapping("/checkStock/{productId}")
+    @GetMapping("/checkStock/{productId}/{optionId}")
     @ResponseBody
-    public int getStockAmount(@PathVariable("productId") int lfId) {
+    public int getStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
 
-        return standardService.getStandardStockAmount(lfId);
+        return standardService.getStandardStockAmount(lfOptId, lfId);
     }
 
 

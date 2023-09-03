@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.standard.service;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -69,13 +70,12 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public int getStandardStockAmount(int lfId) {
+    public int getStandardStockAmount(int lfOptId, int lfId) {
 
-        List<StandardRestockVo> productRestocks = standardDAO.selectStandardStockAmount(lfId);
-        for (StandardRestockVo restock : productRestocks) {
-            if (restock.getLfId() == lfId) {
-                return restock.getStockAmount();
-            }
+        StandardRestockVo restock = standardDAO.selectStandardStockAmount(lfOptId, lfId);
+        if (restock != null) {
+            int stockAmount = restock.getStockAmount();
+            return stockAmount;
         }
         return -1;
     }

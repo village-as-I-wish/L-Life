@@ -12,7 +12,7 @@ public class SubscriptionVo {
     private Integer subscriptionId;
     private Integer subscriptionType;
 
-    private Integer memberId;
+    private Integer mId;
 
     private Date subscriptionStartDate;
 
@@ -23,4 +23,5 @@ public class SubscriptionVo {
     private Integer subscriptionPoint;
 
     private Integer subscriptionStatus;
+
 }

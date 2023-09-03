@@ -11,5 +11,6 @@ public class StandardRestockVo {
 
     private int lfId;
     private int stockId;
+    private int lfOptId;
     private int stockAmount;
 }

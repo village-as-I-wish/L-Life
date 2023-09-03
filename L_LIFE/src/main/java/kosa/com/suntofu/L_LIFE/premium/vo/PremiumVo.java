@@ -14,6 +14,7 @@ public class PremiumVo {
     private String lfBrandName; // 가구 브랜드 이름
     private String lfName; // 가구 이름
     private int lfPrPrice; // 프리미엄 월 구독료
+    private int lfPrMinPeriod; // 프리미엄 최소 구독 개월수
     private Integer lfMoodId; // 가구 분위기 아이디 (필터링)
     private Integer lfBrandId; // 가구 브랜드 아이디 (필터링)
     private Integer lfCategroyId; // 가구 카테고리 아이디 (필터링)

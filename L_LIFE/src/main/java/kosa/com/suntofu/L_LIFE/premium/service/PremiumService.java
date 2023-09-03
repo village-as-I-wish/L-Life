@@ -1,6 +1,9 @@
 package kosa.com.suntofu.L_LIFE.premium.service;
 
+import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 
 import java.util.List;
@@ -15,4 +18,10 @@ public interface PremiumService {
     int selectProductCountByCategoryByPagination (PaginationVo paginationVo);
     List<PremiumVo> selectProductByKeyword(PaginationVo paginationVo);
     int selectProductByKeywordPagination(PaginationVo paginationVo);
+    PremiumVo selectPremiumProductDetailById(int lfId);
+
+    List<PackageVo> getMDPickPackages();
+    List<PackageVo> getPromotionPackages();
+
+    PackageDetailVo getPremiumPackageDetail(int lfPackageId);
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class PaginationVo {
+    private int lfId;
     private String lfImgMain; // 가구 이미지 URL
     private String lfBrandName; // 가구 브랜드 이름
     private String lfName; // 가구 이름
