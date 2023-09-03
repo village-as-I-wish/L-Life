@@ -1,5 +1,5 @@
+var optionId;
 $(document).ready(function(){
-
     var productId = $('#productId').val();
     $.ajax({
         url: '/l-life/standard/checkStock/' + productId,
@@ -7,12 +7,44 @@ $(document).ready(function(){
         success: function(stockAmount) {
             if (stockAmount <= 0) {
                 // 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
-                console.log(stockAmount)
-                console.log(productId)
-                $('.lf-pr-submit-btns form button').text('재입고 알림 신청');
+                var button = $('.lf-pr-submit-btns form button');
+                button.text('재입고 알림 신청');
+                button.click(function(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: '재고가 없습니다.',
+                        text: '재입고 알림을 신청하시겠습니까?',
+                        confirmButtonText: '신청하기',
+                        cancelButtonText: '취소',
+                        showCancelButton: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // TODO : 재입고알림신청 버튼 클릭시 관련 API 호출
+                            data={
+                                option: optionId, // 스탠다드 라인
+                                productId: productId
+                            }
+                            $.ajax({
+                                url: 'TODO',
+                                method: 'POST',
+                                data: data,
+                                contentType: 'application/json',
+                                success: function(response) {
+                                    console.log("재입고 알림 신청 완료")
+                                    console.log(response)
+                                },
+                                error: function(error) {
+                                    console.log("재입고 알림 신청 실패")
+                                    console.log(error)
+                                }
+                            });
+                        }
+                    });
+                });
             }
         }
     });
+
 
     $('.lf-pr-main-content .main-tab li').click(function(){
         var tab_id = $(this).attr('data-tab');
@@ -59,9 +91,15 @@ window.onload=()=>{
 
     showMenu=(value)=>{
         var dropbtn_content = document.querySelector('.dropbtn_content');
-
         dropbtn_content.innerText = value;
         console.log(value);
+
+        var dropdownContents = document.querySelectorAll('.dropdown-content div');
+        dropdownContents.forEach((content) => {
+            if (content.getAttribute('data-option-text') === value) {
+                optionId = content.getAttribute('data-lf-opt-id');
+            }
+        });
     }
 }
 window.onclick= (e)=>{
