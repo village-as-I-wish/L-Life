@@ -23,7 +23,7 @@
             SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
                 JOIN ACE.LLIFEFURNITURE LF on SUB_LF.LF_ID = LF.LF_ID
         WHERE
-            S.M_ID = 1
+            S.M_ID = #{memberId}
     </select>
 
 

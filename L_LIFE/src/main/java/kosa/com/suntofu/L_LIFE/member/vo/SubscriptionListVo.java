@@ -18,6 +18,6 @@ public class SubscriptionListVo {
     private String lfBrandName;
     private String subscribeStartDate;
     private String subscribeEndDate;
-    private String subscriptionTypeName;
+    private String subscriptionPlanName;
 
 }

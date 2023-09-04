@@ -33,22 +33,21 @@ public class MemberController {
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
 
-//        int currentCoin = memberService.getCurrentCoin(existingMember.getMId());
-//
-//        int orderCount = memberService.getOrderCount(existingMember.getMId());
-//        List<DeliveryStatusVo> deliveryStatusList = memberService.getDeliveryStatus(existingMember.getMId());
-//        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
-//        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
-//        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
+        Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
+        int orderCount = memberService.getOrderCount(existingMember.getMId());
+        List<DeliveryStatusVo> deliveryStatusList = memberService.getDeliveryStatus(existingMember.getMId());
+        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
+        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
+        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
 
         HttpSession session = request.getSession();
         // 세션 저장
         session.setAttribute("existingMember", existingMember);
-//        session.setAttribute("currentCoin", currentCoin);
-//        session.setAttribute("orderCount",orderCount);
-//        session.setAttribute("deliveryProgress",deliveryProgress);
-//        session.setAttribute("deliveryReady",deliveryReady);
-//        session.setAttribute("deliveryComplete",deliveryComplete);
+        session.setAttribute("currentCoin", currentCoin);
+        session.setAttribute("orderCount",orderCount);
+        session.setAttribute("deliveryProgress",deliveryProgress);
+        session.setAttribute("deliveryReady",deliveryReady);
+        session.setAttribute("deliveryComplete",deliveryComplete);
 
         return "pages/main/main";
     }
