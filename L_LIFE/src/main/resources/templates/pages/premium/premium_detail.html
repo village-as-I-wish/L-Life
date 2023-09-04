@@ -40,7 +40,7 @@
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
                     <span><span class="detail-pont"
-                                th:text="${premiumDetail.lfPrMinPeriod}">개월 사용 후 구매/반납/연장 할 수 있어요.</span></span>
+                                th:text="${premiumDetail.lfPrMinPeriod}"></span><span>개월 사용 후 구매/반납/연장 할 수 있어요.</span></span>
                 </div>
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
@@ -61,10 +61,10 @@
                       style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"
                       onclick="dropdown()">arrow_drop_down</span>
             </button>
-            <!--                <div class="dropdown-content">-->
-            <!--                    <input type="hidden" id="options" th:value="${options}" />-->
-            <!--                    <div th:each="option : ${options}" th:text="${option.lfOptName}" th:data-lf-opt-id="${option.lfOptId}" onclick="showMenu(this.innerText)"></div>-->
-            <!--                </div>-->
+            <div class="dropdown-content">
+                <input type="hidden" id="options" th:value="${premiumOption}" />
+                <div th:each="option : ${premiumOption}" th:text="${option.lfOptName}" th:data-lf-opt-id="${option.lfOptId}" onclick="showMenu(this.innerText)"></div>
+            </div>
 
         </div>
 
