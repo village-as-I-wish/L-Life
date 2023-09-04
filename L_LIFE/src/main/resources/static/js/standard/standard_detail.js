@@ -7,7 +7,7 @@ $(document).ready(function(){
         var memberId = parseInt($('#memberId').val());
         console.log("memberId는 바로" + memberId);
         $.ajax({
-            url: '/l-life/standard/checkStock/' + productId + '/' + selectedOptionId,
+            url: '/l-life/api/v1/standard/checkStock/' + productId + '/' + selectedOptionId,
             method: 'GET',
             success: function (stockAmount) {
                 var button = $('.lf-pr-submit-btns form button');
@@ -33,7 +33,7 @@ $(document).ready(function(){
                                 }
                                 console.log(data);
                                 $.ajax({
-                                    url: '/l-life/standard/reservation',
+                                    url: '/l-life/api/v1/standard/reservation',
                                     method: 'POST',
                                     data: data,
                                     success: function (response) {
