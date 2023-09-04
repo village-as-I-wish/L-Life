@@ -41,7 +41,7 @@ public class MemberController {
 //        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
 //        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         // 세션 저장
         session.setAttribute("existingMember", existingMember);
 //        session.setAttribute("currentCoin", currentCoin);

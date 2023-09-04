@@ -5,11 +5,11 @@
 
     <section class="user-info">
             <div>
-                <p class="user-hello">안녕하세요 <span th:text="${session.loggedInMemberInfo.mName}"></span>님</p>
+                <p class="user-hello">안녕하세요 <span th:text="${session.existingMember.mName}"></span>님</p>
             </div>
             <div class="user-info-box-list">
                 <div class="user-info-box">
-                    <span th:text="${session.loggedInMemberInfo.mPoint}"></span>
+                    <span th:text="${session.existingMember.mPoint}"></span>
                     <span>H.Point</span>
                 </div>
                 <div class="user-info-box">

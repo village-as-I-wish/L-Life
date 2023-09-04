@@ -31,7 +31,7 @@
         FROM
             LFSUBSCRIPTIONLIST SUB_LF
                 JOIN
-            ACE.SUBSCRIPTION SUB on SUB_LF.SUBSCRIPTION_ID = SUB.SUBSCRIPTION_ID
+            SUBSCRIPTION SUB on SUB_LF.SUBSCRIPTION_ID = SUB.SUBSCRIPTION_ID
         WHERE
             SUB.M_ID = 1
     </select>
@@ -45,9 +45,9 @@
         FROM
             DELIVERY D
                 JOIN
-            ACE.LFSUBSCRIPTIONLIST SUB_LF on D.SUB_LF_ID = SUB_LF.SUB_LF_ID
+            LFSUBSCRIPTIONLIST SUB_LF on D.SUB_LF_ID = SUB_LF.SUB_LF_ID
                 JOIN
-            ACE.SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
+            SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
         WHERE
             S.M_ID = 1
         GROUP BY

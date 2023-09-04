@@ -4,7 +4,7 @@
     <link rel="stylesheet" th:href="@{/css/common/sidebar/mypage_side.css}">
 
     <div>
-        <div class="username"><span th:text="${session.loggedInMemberInfo.mName}"></span>님</div>
+        <div class="username"><span th:text="${session.existingMember.mName}"></span>님</div>
 
         <ul class="mypage-menu">
             <li class = "mypage-text"><a href="#">마이페이지</a></li>
