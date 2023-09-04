@@ -11,5 +11,9 @@ public class PayFurnitureVo {
 
     private int lfId;
     private int lfOptId;
+    private String lfName;
+    private String lfImgMain;
+    private int lfPrPrice;
     private int quantity;
+    private String lfBrandName;
 }

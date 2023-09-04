@@ -78,12 +78,14 @@
                         <input type="hidden" th:id="'lfId_' + ${iterStat.index}" th:value="${product.lfId}">
                         <input type="hidden" th:id="'lfOptId_' + ${iterStat.index}" th:value="${product.lfOptId}">
                         <input type="hidden" th:id="'stockAmount_' + ${iterStat.index}" th:value="${product.stockAmount}">
+                        <input type="hidden" th:id="'lfBrandName_' + ${iterStat.index}" th:value="${product.lfBrandName}">
+
                         <input type="checkbox" class="premium-checkbox" th:id="'premium-subscription_' + ${iterStat.index}">
                         <a class="product-link" th:href="@{'#'}">
-                            <img class="product-image" th:src="${product.lfImgMain}"/>
+                            <img class="product-image" th:id="'lfImgMain_' + ${iterStat.index}" th:src="${product.lfImgMain}" th:value="${product.lfImgMain}"/>
                             <div class="product-details">
-                                <span class="product-name" th:text="${product.lfName}"></span>
-                                <div class="product-coins" th:text="${product.lfPrPrice}" style="display: none;"></div>
+                                <span class="product-name" th:id="'lfName_' + ${iterStat.index}" th:text="${product.lfName}"></span>
+                                <div class="product-coins" th:id="'lfPrPrice_' + ${iterStat.index}" th:value="${product.lfPrPrice}" style="display: none;"></div>
                             </div>
                         </a>
 
@@ -115,17 +117,24 @@
                 var selectedProducts = [];
                 // 각 상품 요소를 순회하면서 선택 여부 확인
                 $('.premium-checkbox:checked').each(function () {
-                    var id = $(this).attr('id').split('_')[1]; // ID에서 인덱스 추출
+                    var id = $(this).attr('id').split('_')[1];
                     var lfId = $('#lfId_' + id).val();
                     var lfOptId = $('#lfOptId_' + id).val();
-                    var quantity = $('#quantity_' + id).val();
-
+                    var lfName = $('#lfName_' + id).text();
+                    var lfImgMain = $('#lfImgMain_' + id).val();
+                    var lfPrPrice = $('#lfPrPrice_' + id).val();
+                    var quantity = $('#quantity_' + id).text();
+                    var lfBrandName = $('#lfBrandName_' + id).val();
                     // 선택된 상품 정보를 객체로 생성하여 배열에 추가
                     selectedProducts.push(
                         {
-                        lfId: lfId,
-                        lfOptId: lfOptId,
-                        quantity: quantity
+                            lfId: lfId,
+                            lfOptId: lfOptId,
+                            lfName: lfName,
+                            lfImgMain: lfImgMain,
+                            lfPrPrice: lfPrPrice,
+                            quantity: quantity,
+                            lfBrandName : lfBrandName
                     });
                     console.log(selectedProducts)
                 });
@@ -137,8 +146,12 @@
                     dataType: "json",
                     contentType: 'application/json',
                     success: function (response) {
-                        // 서버에서의 응답 처리
                         console.log('Data sent successfully:', response);
+
+                        var redirectUrl = response.redirectUrl;
+                        if (redirectUrl) {
+                            window.location.href = redirectUrl;
+                        }
                     },
                     error: function (error) {
                         // 오류 처리
