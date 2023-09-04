@@ -1,12 +1,16 @@
-.lf-pr-summary-container{
+.lf-pr-summary-container {
     display: flex;
+    height: 540px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    justify-content: space-around;
 }
 
 .lf-pr-summary-img-box{
-    width: 50%;
-    height: 370px;
+    width: 40%;
+    height: 100%;
     display: inline-block;
-    padding:10px;
+    padding: 10px;
 }
 .lf-pr-summary-img-box > img{
     width : 100%;
@@ -14,14 +18,15 @@
 }
 .lf-pr-summary-info{
     display: inline-block;
-    min-width: 50%;
+    width: 50%;
     padding:10px;
     position: relative;
 }
 .lf-pr-summary-header{
-    margin-top:10px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
 .lf-pr-name{
     padding: 10px 0px 10px 0px;
@@ -57,11 +62,26 @@
 }
 
 .lf-pr-submit-btns button:first-child {
-    bottom: 70px;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    left: 0;
+    bottom: 90px;
 }
 
 .lf-pr-submit-btns button:last-child {
-    bottom: 25px;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 35px;
 }
 
 /* tab content css */
@@ -174,4 +194,157 @@ ul.tabs li.current{
 .lf-pr-info img{
     width: 100%;
     height: auto;
+}
+
+.dropbtn {
+    display: block;
+    border: 2px solid rgb(94, 94, 94);
+    border-radius: 4px;
+    background-color: #fcfcfc;
+    font-weight: 400;
+    color: rgb(124, 124, 124);
+    padding: 12px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 12px;
+    z-index: 1;
+    position: relative;
+}
+
+.lr-pr-etc-subtxt {
+    color: gray;
+    line-height: 22px;
+    margin: 10px 0px 10px 0px;
+    font-size: 10px;
+    width: 100%;
+}
+.lf-pr-etc-infos {
+    margin-top: 20px;
+}
+.lr-pr-etc-info{
+    height: 30px;
+    font-size: 18px;
+}
+
+.dropdown-content {
+    display: none;
+    font-weight: 400;
+    background-color: #fcfcfc;
+    width: 95%;
+    border-radius: 8px;
+    height: 160px;
+    overflow: scroll;
+    box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
+}
+.lf-pr-summary-header > i {
+    font-size: 30px;
+}
+.fill-heart {
+    color: #ED2650;
+}
+
+ul.tabs {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+}
+.lf-pr-delivery li {
+    width: 50% !important;
+}
+ul.tabs li {
+    background: none;
+    color: #222;
+    padding: 10px 0px 10px 0px;
+    cursor: pointer;
+    width: 25%;
+    margin: 0px;
+    border: 1px solid lightgray;
+    text-align: center;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.table-dl-wrap {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-dl-row__dd {
+    color: gray;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.table-dl-row__dt, .table-dl-row__dd {
+    display: table-cell;
+    padding: 0.9em 1.3em;
+    border: 1px solid #eee;
+    font-size: 16px;
+    color: #333;
+}
+.table-dl-row__dt {
+    width: 250px;
+    background-color: #f9f9f9;
+}
+.lf-pr-delivery > p {
+    font-size: 30px !important;
+}
+.table-dl-row {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+.lf-pr-delivery {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.lf-recommendation-product {
+    width: 100%;
+    margin-top: 60px;
+    font-size: 30px;
+    color: #333;
+}
+
+.lf-recommendation-page-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.lf-recommendation-slide-product-img {
+    padding: 17px;
+    color: black;
+    text-decoration: none;
+}
+.slick-slide img {
+    display: block;
+}
+
+.lf-recommendation-slide-product-img > img {
+    width: 100%;
+}
+
+.lf-recommendation-slide-product-img > span {
+    font-size: 14px;
+    padding: 5px;
+    width: 100%;
+    margin: 0px 0px 10px 0px !important;
+    color: #333333;
+}
+
+.lf-recommendation-slide-product-img > p {
+    font-size: 14px;
+    padding: 5px;
+    color: #333333;
+}
+
+.lf-recommendation-slide-product-img {
+    padding: 17px;
+    color: black;
+    width: 268px;
+    text-decoration: none;
 }
