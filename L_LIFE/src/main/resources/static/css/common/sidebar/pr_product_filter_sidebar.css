@@ -1,0 +1,88 @@
+.pf-sidebar{
+    padding: 20px;
+    width: 220px;
+    min-height: 500px;
+}
+.pf-main-cate{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top:20px;
+}
+.pf-cate-box{
+    margin-top: 50px;
+}
+.pf-main-list{
+    margin-top: 20px;
+}
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.pf-main-list > input[type="checkbox"] {
+    display: none;
+}
+
+.pf-main-list > label {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.pf-main-list >  input[type="checkbox"] + label::before {
+    content: "\2610"; /* Unicode character for an empty checkbox */
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 20px;
+}
+
+.pf-main-list > input[type="checkbox"]:checked + label::before {
+    content: "\2611"; /* Unicode character for a checked checkbox */
+    background-color: #5D493F;
+    color: white;
+}
+
+
+.slider {
+    width: 100%;
+    height: 4px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    background-color: blue; /* 원하는 색상으로 변경 */
+    width: 20px; /* 원하는 크기로 변경 */
+    height: 20px; /* 원하는 크기로 변경 */
+    border-radius: 50%; /* 동그라미 모양으로 변경 */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+    cursor: pointer;
+}
+.slidecontainer > p{
+    margin: 10px 0px 0px 0px;
+}
+.pf-submit-buttons > button{
+    width: 50%;
+    padding: 8px;
+    background: none;
+    border: 1px solid #5D493E;
+}
+.pf-submit-buttons > button:last-child {
+    background: #5D493E;
+    color: white;
+}
