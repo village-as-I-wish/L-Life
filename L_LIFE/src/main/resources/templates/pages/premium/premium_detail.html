@@ -167,10 +167,11 @@
                     <div class="lf-recommendation-page-wrapper">
                         <div class="lf-recommendation-slide">
                             <div class="lf-recommendation-slide-wrapper">
-                                <a class="lf-recommendation-slide-product-img">
-                                    <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample1.png}">
-                                    <span> 테스트 상품 브랜드명</span>
-                                    <p> 상품명  </p>
+                                <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}" th:href="@{'/premium/' + ${product.lfId} + '/detail'}">
+                                    <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
+                                    <span th:text="${product.lfBrandName}"></span>
+                                    <p th:text="${product.lfName}"></p>
+                                    <div><span> 월 <span th:text="${product.lfPrPrice}"></span>원~ </span></div>
                                 </a>
                             </div>
                         </div>

@@ -97,6 +97,9 @@ public class PremiumController {
         List<PremiumVo> images = premiumService.selectProductImgById(lfId);
         model.addAttribute("premiumImg", images);
 
+        List<PremiumVo> recommendProducts = premiumService.selectPremiumRecommendation(premiumDetailById.getLfPrPrice());
+        model.addAttribute("recommendProducts", recommendProducts);
+        log.info("result{}", recommendProducts);
         return "pages/premium/premium_detail";
     }
 
