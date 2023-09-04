@@ -111,7 +111,7 @@
     </select>
 
     <!-- 프리미엄 상품 옵션 -->
-    <select id="selectPremiumOptionById" parameterType="int" resultType="PremiumOptionVo">
+    <select id="selectPremiumOptionById" resultType="PremiumOptionVo">
         SELECT s.lf_id, s.stock_amount, lfo.lf_opt_id, lfo.lf_opt_name
         FROM Stock s
         JOIN LFurnitureOption lfo
@@ -120,7 +120,7 @@
     </select>
 
     <!-- 프리미엄 상품 재입고 알림 신청 -->
-    <select id="selectPremiumStockAmount" parameterType="PremiumOptionVo">
+    <select id="selectPremiumStockAmount" resultType="PremiumOptionVo">
         SELECT s.lf_opt_id, s.lf_id, s.stock_amount
         FROM Stock s
         WHERE s.lf_opt_id = #{lfOptId}
@@ -130,10 +130,18 @@
     <!-- 재입고 알림 신청 시 예약 테이블에 insert -->
     <insert id="insertOptionToReservation" parameterType="PremiumOptionVo">
         INSERT INTO reservation (m_id, lf_id, lf_opt_id)
-        VALUES (#{mId}, #{lfId}, #{lfOptId});
+        VALUES (#{mId}, #{lfId}, #{lfOptId})
     </insert>
 
-    <!-- 프리미엄 추천 -->
+    <!-- 장바구니에 상품 넣기 -->
+    <insert id="insertPremiumProductToCart">
+
+    </insert>
+
+    <!-- 프리미엄 비슷한 가격대의 상품 추천 -->
+    <select id="selectPremiumRecommendation">
+
+    </select>
 
     <!-- 프리미엄 패키지 라인 -->
     <select id="selectMDPickPackages" resultType="PackageVo">

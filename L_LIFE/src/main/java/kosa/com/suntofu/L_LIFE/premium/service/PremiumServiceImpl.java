@@ -107,8 +107,8 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
-    public void insertOptionToReservation(PremiumOptionVo premiumOptionVo) {
-        premiumDao.insertOptionToReservation(premiumOptionVo);
+    public int insertOptionToReservation(PremiumOptionVo premiumOptionVo) {
+        return premiumDao.insertOptionToReservation(premiumOptionVo);
     }
 
     @Override

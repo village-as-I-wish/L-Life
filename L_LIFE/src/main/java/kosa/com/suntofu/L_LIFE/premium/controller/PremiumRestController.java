@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.premium.controller;
 
 import kosa.com.suntofu.L_LIFE.premium.service.PremiumService;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PremiumOptionVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,5 +30,16 @@ public class PremiumRestController {
     @ResponseBody
     public int loadStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
         return premiumService.selectPremiumStockAmount(lfOptId, lfId);
+    }
+
+    @PostMapping("/reservation")
+    @ResponseBody
+    public int insertOptionToReservation(@RequestParam int lfId,
+                                      @RequestParam int lfOptId,
+                                         @RequestParam int memberId) {
+        PremiumOptionVo option = new PremiumOptionVo(lfId, 0, 0, lfOptId, "", memberId);
+        int result = premiumService.insertOptionToReservation(option);
+
+        return result;
     }
 }
