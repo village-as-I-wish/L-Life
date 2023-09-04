@@ -233,6 +233,9 @@
     </div>
     <div id="tab-3" class="tab-content">tab content3</div>
     <div id="tab-4" class="tab-content">tab content4</div>
+
+<input id="memberId" type="hidden" th:value="${session.existingMember.mId}">
+
 </div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 

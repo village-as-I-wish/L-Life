@@ -15,4 +15,5 @@ public interface StandardService {
     List<StandardRefurVo> getStandardRefurById(int lfId);
     List<StandardVo> getStandardRecommendation(int lfId);
     int getStandardStockAmount(int lfOptId, int lfId);
+    int putOptionToReservation(StandardOptionVo standardOptionVo);
 }

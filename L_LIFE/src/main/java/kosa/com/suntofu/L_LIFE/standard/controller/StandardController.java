@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -120,6 +121,18 @@ public class StandardController {
     public int getStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
 
         return standardService.getStandardStockAmount(lfOptId, lfId);
+    }
+
+    // 상품 옵션 예약 테이블에 넣기
+    @PostMapping("/reservation")
+    @ResponseBody
+    public int putOptionToReservation(@RequestParam int lfOptId,
+                                      @RequestParam int lfId,
+                                      @RequestParam int memberId) {
+        StandardOptionVo option = new StandardOptionVo(lfOptId,0,lfId,"",memberId);
+        int result = standardService.putOptionToReservation(option);
+        log.info("result{}", result);
+        return 1;
     }
 
 
