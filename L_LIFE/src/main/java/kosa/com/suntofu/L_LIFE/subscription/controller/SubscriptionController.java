@@ -80,10 +80,6 @@ public class SubscriptionController {
                                                         HttpServletRequest request){
         HttpSession session = request.getSession();
         session.setAttribute("paymentProduct",selectedProducts);
-//        System.out.println(selectedProducts);
-//        model.addAttribute("paymentProduct", selectedProducts);
-//        model.addAttribute("baseUrl", baseUrl);
-//        model.addAttribute("payKeys", payKeysVO);
         Map<String, String> response = new HashMap<>();
         response.put("redirectUrl", "http://localhost:8080/l-life/subscription/premium/payment_detail");
 

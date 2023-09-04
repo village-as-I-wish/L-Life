@@ -121,11 +121,10 @@
                     var lfId = $('#lfId_' + id).val();
                     var lfOptId = $('#lfOptId_' + id).val();
                     var lfName = $('#lfName_' + id).text();
-                    var lfImgMain = $('#lfImgMain_' + id).val();
-                    var lfPrPrice = $('#lfPrPrice_' + id).val();
-                    var quantity = $('#quantity_' + id).text();
+                    var lfImgMain = $('#lfImgMain_' + id).attr('src');
+                    var lfPrPrice = $('#lfPrPrice_' + id).text();
+                    var quantity = $('#quantity_' + id).val();
                     var lfBrandName = $('#lfBrandName_' + id).val();
-                    // 선택된 상품 정보를 객체로 생성하여 배열에 추가
                     selectedProducts.push(
                         {
                             lfId: lfId,
