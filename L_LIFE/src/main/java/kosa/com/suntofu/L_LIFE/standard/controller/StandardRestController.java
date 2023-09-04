@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.standard.controller;
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
 import kosa.com.suntofu.L_LIFE.standard.vo.SearchRequestVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardOptionVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardSubscriptionVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,17 @@ public class StandardRestController {
         StandardOptionVo option = new StandardOptionVo(lfOptId, 0, lfId, "", memberId);
         int result = standardService.putOptionToReservation(option);
         log.info("result{}", result);
+        return result;
+    }
+
+    @PostMapping("/insertcart")
+    @ResponseBody
+    public int putProductToCart(@RequestParam int lfOptId,
+                                @RequestParam int lfId,
+                                @RequestParam int memberId) {
+
+        StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfOptId, lfId, memberId);
+        int result = standardService.putProductToCart(tocart);
         return result;
     }
 }

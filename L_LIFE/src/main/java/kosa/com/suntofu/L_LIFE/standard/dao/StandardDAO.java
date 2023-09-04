@@ -19,5 +19,6 @@ public interface StandardDAO {
     List<StandardVo> selectStandardRecommendation(int lfId);
     StandardRestockVo selectStandardStockAmount(@Param("lfOptId") int lfOptId, @Param("lfId") int lfId);
     int insertOptionToReservation(StandardOptionVo standardOptionVo);
+    int insertProductToCart(StandardSubscriptionVo standardSubscriptionVo);
 }
 

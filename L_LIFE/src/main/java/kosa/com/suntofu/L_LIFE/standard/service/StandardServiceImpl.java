@@ -85,6 +85,11 @@ public class StandardServiceImpl implements StandardService {
     public int putOptionToReservation(StandardOptionVo standardOptionVo) {
 
         return standardDAO.insertOptionToReservation(standardOptionVo);
+    }
 
+    @Override
+    public int putProductToCart(StandardSubscriptionVo standardSubscriptionVo) {
+
+        return standardDAO.insertProductToCart(standardSubscriptionVo);
     }
 }
