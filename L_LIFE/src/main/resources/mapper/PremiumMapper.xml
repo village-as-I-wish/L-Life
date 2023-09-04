@@ -100,6 +100,16 @@
         AND lf_id = #{lfId}
     </select>
 
+    <!-- 상품 상세 이미지 목록 -->
+    <select id="selectProductImgById" parameterType="PremiumVo">
+        SELECT lf.LF_ID, lfi.LF_IMG_URL, lfi.IMG_COMMENT
+        FROM LLIFEFURNITURE lf
+        JOIN LFURNITUREIMAGE lfi
+        ON lf.LF_ID = lfi.LF_ID
+        WHERE lf_sub_type = 1
+        AND lf.lf_id = #{lfId}
+    </select>
+
     <!-- 프리미엄 상품 옵션 -->
     <select id="selectPremiumOptionById" parameterType="int" resultType="PremiumOptionVo">
         SELECT s.lf_id, s.stock_amount, lfo.lf_opt_id, lfo.lf_opt_name
