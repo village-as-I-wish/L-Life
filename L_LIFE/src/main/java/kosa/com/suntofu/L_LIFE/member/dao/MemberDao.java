@@ -18,13 +18,13 @@ public interface MemberDao {
 
     List<CartVo> findAllPremiumCarts(int memberId);
 
-    int getCurrentCoin(int memberId);
+    Integer getCurrentCoin(int memberId);
 
     List<SubscriptionListVo> getAllStandardScriptionList(int memberId);
 
     List<SubscriptionListVo> getRecentStandardScriptionList(Map<String,Object> paramMap);
 
-    int getOrderCount(int mId);
+    Integer getOrderCount(int mId);
 
     List<DeliveryStatusVo> getDeliveryStatus(int mId);
 

@@ -12,15 +12,15 @@ public interface MemberService {
 
     List<CartVo> getAllPremiumCarts(int memberId);
 
-    int getCurrentCoin(int mId);
+    Integer getCurrentCoin(int memberId);
 
     List<SubscriptionListVo> getAllStandardScriptionList(int memberId);
 
     List<SubscriptionListVo> getRecentStandardScriptionList(int memberId, String startDate, String endDate);
 
-    int getOrderCount(int mId);
+    Integer getOrderCount(int memberId);
 
-    List<DeliveryStatusVo> getDeliveryStatus(int mId);
+    List<DeliveryStatusVo> getDeliveryStatus(int memberId);
 
     List<DeliveryListVo> getDeliveryList(int memberId);
 

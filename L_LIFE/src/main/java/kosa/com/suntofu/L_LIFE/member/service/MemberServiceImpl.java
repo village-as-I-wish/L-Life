@@ -5,6 +5,7 @@ import kosa.com.suntofu.L_LIFE.member.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +46,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int getCurrentCoin(int memberId) {
-        return memberDao.getCurrentCoin(memberId);
+    public Integer getCurrentCoin(int memberId) {
+        Integer currentCoin = memberDao.getCurrentCoin(memberId);
+
+        if (currentCoin == null){
+            return 0;
+        }
+        return currentCoin;
     }
 
     @Override
@@ -64,13 +70,29 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int getOrderCount(int mId) {
-        return memberDao.getOrderCount(mId);
+    public Integer getOrderCount(int memberId) {
+        Integer orderCount = memberDao.getOrderCount(memberId);
+        if (orderCount == null){
+            return 0;
+        }else{
+            return orderCount;
+        }
     }
 
     @Override
-    public List<DeliveryStatusVo> getDeliveryStatus(int mId) {
-        return memberDao.getDeliveryStatus(mId);
+    public List<DeliveryStatusVo> getDeliveryStatus(int memberId) {
+        List<DeliveryStatusVo> deliveryStatus = memberDao.getDeliveryStatus(memberId);
+        if (deliveryStatus.size() == 0){
+            List<DeliveryStatusVo> defaultDeliveryStatus = new ArrayList<>();
+            defaultDeliveryStatus.add(new DeliveryStatusVo(0,0));
+            defaultDeliveryStatus.add(new DeliveryStatusVo(1,0));
+            defaultDeliveryStatus.add(new DeliveryStatusVo(2,0));
+            return defaultDeliveryStatus;
+        }
+        else{
+
+            return deliveryStatus;
+        }
     }
 
     @Override

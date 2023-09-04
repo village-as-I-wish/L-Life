@@ -14,17 +14,17 @@
         where m_email = #{mEmail}
     </select>
 
-    <select id="getCurrentCoin" parameterType="int" resultType="int">
+    <select id="getCurrentCoin" parameterType="int" resultType="java.lang.Integer">
         -- 스탠다드 회원 보유 코인 조회 --
         select
         subscribe.SUBSCRIBE_POINT
         from
         SUBSCRIPTION subscribe
         where
-        subscribe.M_ID = 1
+        subscribe.M_ID = #{memberId}
     </select>
 
-    <select id="getOrderCount" parameterType="int" resultType="int">
+    <select id="getOrderCount" parameterType="int" resultType="java.lang.Integer">
         -- 주문내역 개수 --
         SELECT
             COUNT(*)
@@ -33,7 +33,7 @@
                 JOIN
             SUBSCRIPTION SUB on SUB_LF.SUBSCRIPTION_ID = SUB.SUBSCRIPTION_ID
         WHERE
-            SUB.M_ID = 1
+            SUB.M_ID = #{memberId}
     </select>
 
 
@@ -49,7 +49,7 @@
                 JOIN
             SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
         WHERE
-            S.M_ID = 1
+            S.M_ID = #{memberId}
         GROUP BY
             D.DELIVERY_STATUS
 
