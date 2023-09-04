@@ -5,12 +5,16 @@
 <mapper namespace="kosa.com.suntofu.L_LIFE.member.dao.MemberDao">
 
     <select id="findAllStandardCarts" parameterType="int" resultType="CartVo">
+        -- 스탠다드 장바구니 --
         select
+            lf.LF_ID,
             lf.LF_NAME,
             lf.LF_ST_COIN,
             lf.LF_IMG_MAIN,
+            lf_opt.LF_OPT_ID,
             lf_opt.LF_OPT_NAME,
-            lf_brand.LF_BRAND_NAME
+            lf_brand.LF_BRAND_NAME,
+            s.STOCK_AMOUNT
         from
             cart c
                 join
@@ -19,10 +23,12 @@
             LFURNITUREOPTION lf_opt on c.LF_OPT_ID = lf_opt.LF_OPT_ID
                 join
             LFURNITUREBRAND lf_brand on lf.LF_BRAND_ID = lf_brand.LF_BRAND_ID
+                join
+            STOCK s on lf.LF_ID = s.LF_ID and lf_opt.LF_OPT_ID = s.LF_OPT_ID
 
         where
             c.M_ID = #{memberId}
-        and
+          and
             lf.LF_SUB_TYPE = 0
     </select>
 
@@ -30,12 +36,14 @@
     <select id="findAllPremiumCarts" parameterType="int" resultType="cartVo">
         -- 프리미엄 장바구니 --
         select
+            lf.LF_ID,
             lf.LF_NAME,
             lf.LF_PR_PRICE,
             lf.LF_IMG_MAIN,
+            lf_opt.LF_OPT_ID,
             lf_opt.LF_OPT_NAME,
-            lf_brand.LF_BRAND_NAME
-
+            lf_brand.LF_BRAND_NAME,
+            s.STOCK_AMOUNT
         from
             cart c
                 join
@@ -44,7 +52,8 @@
             LFURNITUREOPTION lf_opt on c.LF_OPT_ID = lf_opt.LF_OPT_ID
                 join
             LFURNITUREBRAND lf_brand on lf.LF_BRAND_ID = lf_brand.LF_BRAND_ID
-
+                join
+            STOCK s on lf.LF_ID = s.LF_ID and lf_opt.LF_OPT_ID = s.LF_OPT_ID
         where
             c.M_ID = #{memberId}
           and

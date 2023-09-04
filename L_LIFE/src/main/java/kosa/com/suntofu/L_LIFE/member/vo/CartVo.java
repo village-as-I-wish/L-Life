@@ -10,13 +10,15 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class CartVo {
 
+    private String lfId;
     private String lfName;
     private int lfStCoin;
-
     private int lfPrPrice;
     private String lfImgMain;
+    private int lfOptId;
     private String lfOptName;
     private String lfBrandName;
+    private int stockAmount;
 
 }
 
