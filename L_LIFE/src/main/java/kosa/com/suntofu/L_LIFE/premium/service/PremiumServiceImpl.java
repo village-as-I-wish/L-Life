@@ -69,6 +69,17 @@ public class PremiumServiceImpl implements PremiumService{
         return premiumDao.selectProductByKeywordPagination(paginationVo);
     }
 
+    @Override
+    public List<PremiumVo> selectProductByFilter(PaginationVo paginationVo) {
+        paginationVo = calculateAndSetOffset(paginationVo);
+        return premiumDao.selectProductByFilter(paginationVo);
+    }
+
+    @Override
+    public int selectProductByFilterByPagination(PaginationVo paginationVo) {
+        return premiumDao.selectProductByFilterByPagination(paginationVo);
+    }
+
 
     @Override
     public PremiumVo selectPremiumProductDetailById(int lfId) {

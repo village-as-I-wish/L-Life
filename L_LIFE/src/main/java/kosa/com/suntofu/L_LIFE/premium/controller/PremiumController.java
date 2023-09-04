@@ -97,9 +97,4 @@ public class PremiumController {
         return "pages/premium/premium_detail";
     }
 
-    @GetMapping("/checkStock/{productId}/{optionId}")
-    @ResponseBody
-    public int loadStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
-        return premiumService.selectPremiumStockAmount(lfOptId, lfId);
-    }
 }
