@@ -21,7 +21,7 @@ public interface PremiumService {
     List<PremiumOptionVo> selectPremiumOptionById(int lfId);
     int selectPremiumStockAmount(int lfOptId, int lfId);
     int insertOptionToReservation(PremiumOptionVo premiumOptionVo);
-
+    List<PremiumVo> selectPremiumRecommendation(int lfId);
     List<PackageVo> getMDPickPackages();
     List<PackageVo> getPromotionPackages();
 

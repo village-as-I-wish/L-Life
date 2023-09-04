@@ -112,6 +112,11 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
+    public List<PremiumVo> selectPremiumRecommendation(int lfId) {
+        return premiumDao.selectPremiumRecommendation(lfId);
+    }
+
+    @Override
     public List<PackageVo> getMDPickPackages() {
         List<PackageVo> packages = getCachedSearchResult(CacheKey.MDPICK_LLIFE_PACKAGES);
         if (packages != null){
