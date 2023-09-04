@@ -87,6 +87,11 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
+    public List<PremiumVo> selectProductImgById(int lfId) {
+        return premiumDao.selectProductImgById(lfId);
+    }
+
+    @Override
     public List<PremiumOptionVo> selectPremiumOptionById(int lfId) {
         return premiumDao.selectPremiumOptionById(lfId);
     }

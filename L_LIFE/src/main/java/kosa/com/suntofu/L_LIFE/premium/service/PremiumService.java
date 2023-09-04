@@ -17,6 +17,7 @@ public interface PremiumService {
     List<PremiumVo> selectProductByFilter(PaginationVo paginationVo);
     int selectProductByFilterByPagination(PaginationVo paginationVo);
     PremiumVo selectPremiumProductDetailById(int lfId);
+    List<PremiumVo> selectProductImgById(int lfId);
     List<PremiumOptionVo> selectPremiumOptionById(int lfId);
     int selectPremiumStockAmount(int lfOptId, int lfId);
     void insertOptionToReservation(PremiumOptionVo premiumOptionVo);
