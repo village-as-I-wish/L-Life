@@ -5,6 +5,7 @@ import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/standard")
 public class StandardController {
-
+    @Value("${baseurl}")
+    private String baseUrl;
     private final StandardService standardService;
     private int lfSubType = 0;
 
@@ -95,6 +97,7 @@ public class StandardController {
     @GetMapping("/{productId}/detail")
     public String getStandardDetailPage(@PathVariable("productId") int lfId, Model model) {
 
+        model.addAttribute("baseUrl", baseUrl);
         // 기본적인 상세정보 가져오기
         StandardDetailVo detail = standardService.getStandardDetailById(lfId);
         model.addAttribute("standardDetail",  detail);

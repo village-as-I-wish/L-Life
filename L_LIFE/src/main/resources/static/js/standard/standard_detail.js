@@ -1,4 +1,7 @@
 let optionId;
+
+let selectedFiles = [];
+
 $(document).ready(function(){
     var productId = parseInt($('#productId').val());
 
@@ -92,6 +95,7 @@ $(document).ready(function(){
                 });
             }
         });
+
     });
 
 
@@ -123,6 +127,35 @@ $(document).ready(function(){
         prevArrow:$('.prev'),
     });
 
+    $('#photoRegist').on('change', function(event) {
+        const files = event.target.files;
+        if (files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // 파일 데이터와 이미지 URL을 객체에 저장
+                    const fileData = {
+                        file: file,
+                        imageUrl: e.target.result
+                    };
+                    selectedFiles.push(fileData);
+
+                    // 선택한 이미지를 리스트에 추가
+                    const listItem = `
+                    <li id="upload-img">
+                        <img src="${fileData.imageUrl}" alt="리뷰 사진"/>
+                        <button class="btn-del" onclick="removeImage(this, ${i})"></button>
+                    </li>
+                `;
+                    $('#imageList').append(listItem);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    });
 });
 window.onload=()=>{
     document.querySelector('.dropbtn_click').onclick = ()=>{
@@ -168,4 +201,91 @@ window.onclick= (e)=>{
             }
         }
     }
+}
+
+function removeImage(button, index) {
+    $(button).parent().remove();
+    selectedFiles.splice(index, 1);
+
+}
+
+
+/* 첨부파일 검증 */
+function validation(obj){
+    const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+    if (obj.name.length > 100) {
+        alert("파일명이 100자 이상인 파일은 제외되었습니다.");
+        return false;
+    } else if (obj.size > (100 * 1024 * 1024)) {
+        alert("최대 파일 용량인 100MB를 초과한 파일은 제외되었습니다.");
+        return false;
+    } else if (obj.name.lastIndexOf('.') == -1) {
+        alert("확장자가 없는 파일은 제외되었습니다.");
+        return false;
+    } else if (!fileTypes.includes(obj.type)) {
+        alert("첨부가 불가능한 파일은 제외되었습니다.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
+function submitReview(memberId){
+    console.log("memberId", memberId);
+
+    console.log(selectedFiles)
+    const formData = new FormData();
+
+    let lfId = parseInt($('#modal-lf-id').text())
+    let title = $('#reviewTitle').val()
+    let content = $('#reviewContents').val()
+    let delratingValue = parseInt($("input[name='delivery-rating']:checked").val()) || 0;
+    let totalratingValue = parseInt($("input[name='rating']:checked").val()) || 0;
+    let serratingValue = parseInt($("input[name='service-rating']:checked").val()) || 0;
+
+    formData.append('mId', memberId);
+    formData.append('lfId', lfId);
+    formData.append('lfReviewTitle', title);
+    formData.append('lfReviewContent', content);
+    formData.append('lfReviewType', 0);
+    formData.append('lfReviewDelRating',delratingValue)
+    formData.append('lfReviewSerRating',serratingValue)
+    formData.append('lfReviewRating',totalratingValue)
+
+    var files = $('#photoRegist')[0].files;
+    for (var i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+    }
+
+    $.ajax({
+        type : "POST",
+        data : formData,
+        contentType: false,
+        processData: false,
+        url : baseUrl +"/l-life/api/v1/standard/review",
+        success : function(res){
+                Swal.fire({
+                    title: '리뷰 등록이 완료되었습니다.',
+                    text: '소중한 의견 감사드립니다.',
+                    imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                })
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+            Swal.fire({
+                title: '리뷰 등록에 실패하였습니다.',
+                text: '잠시 후 다시 작성 부탁드립니다.',
+                imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                }
+            });
+        }
+    });
+
+
 }

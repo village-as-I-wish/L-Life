@@ -215,4 +215,27 @@
 
 
 
+    <insert id="insertReview" useGeneratedKeys="false" parameterType="ReviewVo" >
+        insert into review(lf_review_title, lf_review_content, m_id, lf_id, lf_review_rating, lf_review_ser_rating, lf_review_del_rating)
+        values(#{lfReviewTitle}, #{lfReviewContent}, #{mId}, #{lfId}, #{lfReviewRating},#{lfReviewSerRating},#{lfReviewDelRating})
+
+        <selectKey keyProperty="lfReviewId" resultType="int" order="AFTER">
+            SELECT lf_review_id FROM review WHERE m_id = #{mId} and lf_id = #{lfId}
+        </selectKey>
+
+    </insert>
+
+    <insert id="insertReviewImg">
+        <selectKey keyProperty="maxSeq" resultType="int" order="BEFORE">
+            SELECT NVL(MAX(r_img_id), 0) FROM reviewImage
+        </selectKey>
+        INSERT INTO reviewImage (r_img_id, r_img_url, lf_review_id)
+        <foreach collection="list" item="item" index="idx" separator="UNION ALL">
+            SELECT #{maxSeq} + #{idx}, #{item.rImgUrl}, #{item.lfReviewId} FROM DUAL
+        </foreach>
+    </insert>
+
+
+
+
 </mapper>
