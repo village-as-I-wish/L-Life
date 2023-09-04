@@ -43,7 +43,7 @@
             lf_brand.LF_BRAND_NAME,
             subscribe.SUBSCRIBE_START_DATE,
             subscribe.SUBSCRIBE_END_DATE,
-            subscription_type.SUBSCRIPTION_TYPE_NAME
+            subscription_plan.SUBSCRIPTION_plan_NAME
         from
             SUBSCRIPTION subscribe
                 join
@@ -55,7 +55,7 @@
                 join
             LFURNITUREBRAND lf_brand on lf.LF_BRAND_ID = lf_brand.LF_BRAND_ID
                 join
-            SUBSCRIPTIONTYPE subscription_type on subscription_type.SUBSCRIPTION_TYPE_ID = subscribe.SUBSCRIBE_TYPE_ID
+            SUBSCRIPTIONPLAN subscription_plan on subscription_plan.SUBSCRIPTION_PLAN_ID = subscribe.SUBSCRIPTION_PLAN_ID
 
         where
             subscribe.M_ID = 1
@@ -139,7 +139,7 @@
                 join
             LFURNITUREBRAND lf_brand on lf.LF_BRAND_ID = lf_brand.LF_BRAND_ID
                 left join
-            SUBSCRIPTIONTYPE subscription_type on subscription_type.SUBSCRIPTION_TYPE_ID = subscribe.SUBSCRIBE_TYPE_ID
+            SUBSCRIPTIONPlAN subscription_plan on subscription_plan.SUBSCRIPTION_PlAN_ID = subscribe.SUBSCRIPTION_PlAN_ID
         where
             subscribe.M_ID = 1
           and
