@@ -41,7 +41,7 @@ public class HomeController {
         }
 
         // loginHome : 로그인에 성공한 사람만이 볼 수 있는 화면
-        model.addAttribute("member", existingMember);
+        model.addAttribute("existingMember", existingMember);
         return "pages/main/main";
     }
 }
