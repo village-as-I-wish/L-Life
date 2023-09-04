@@ -90,14 +90,13 @@ public class PremiumController {
     public String loadPremiumDetailPage(@PathVariable("productId") int lfId, Model model){
         PremiumVo premiumDetailById = premiumService.selectPremiumProductDetailById(lfId);
         model.addAttribute("premiumDetail", premiumDetailById);
-        log.info("test{}", premiumDetailById);
 
         List<PremiumOptionVo> options = premiumService.selectPremiumOptionById(lfId);
         model.addAttribute("premiumOption", options);
-        log.info("test{}", options);
 
         List<PremiumVo> images = premiumService.selectProductImgById(lfId);
         model.addAttribute("premiumImg", images);
+
         return "pages/premium/premium_detail";
     }
 
