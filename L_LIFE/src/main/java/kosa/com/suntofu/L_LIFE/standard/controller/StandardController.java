@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -114,14 +115,6 @@ public class StandardController {
 
         return "pages/standard/standard_detail";
     }
-
-    @GetMapping("/checkStock/{productId}/{optionId}")
-    @ResponseBody
-    public int getStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
-
-        return standardService.getStandardStockAmount(lfOptId, lfId);
-    }
-
 
 
     @GetMapping("/review")

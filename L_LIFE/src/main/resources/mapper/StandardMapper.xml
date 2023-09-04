@@ -173,7 +173,7 @@
             lf.lf_st_coin
         FROM
             LLifeFurniture lf
-        JOIN
+        INNER JOIN
             LFurnitureCategory lfc ON lf.lf_category_id = lfc.lf_category_id
         JOIN
             LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
@@ -207,7 +207,11 @@
             s.lf_id = #{lfId}
     </select>
 
-
+    <!-- 재입고 알림 신청 시 예약 테이블에 insert -->
+    <insert id="insertOptionToReservation" parameterType="StandardOptionVo">
+        INSERT INTO reservation (m_id, lf_id, lf_opt_id)
+        VALUES (#{mId}, #{lfId}, #{lfOptId})
+    </insert>
 
 
 

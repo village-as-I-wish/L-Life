@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
+import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -80,7 +81,10 @@ public class StandardServiceImpl implements StandardService {
         return -1;
     }
 
+    @Override
+    public int putOptionToReservation(StandardOptionVo standardOptionVo) {
+
+        return standardDAO.insertOptionToReservation(standardOptionVo);
+
+    }
 }
-
-
-

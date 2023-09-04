@@ -13,4 +13,5 @@ public class StandardOptionVo {
     private int stockAmount;
     private int lfOptId;
     private String lfOptName;
+    private int mId;
 }

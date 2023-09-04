@@ -1,11 +1,13 @@
-var optionId;
+let optionId;
 $(document).ready(function(){
-    var productId = $('#productId').val();
-    $(".dropdown-content div").click(function() {
-        var selectedOptionId = $(this).data('lf-opt-id');
+    var productId = parseInt($('#productId').val());
 
+    $(".dropdown-content div").click(function() {
+        var selectedOptionId = parseInt($(this).data('lf-opt-id'));
+        var memberId = parseInt($('#memberId').val());
+        console.log("memberId는 바로" + memberId);
         $.ajax({
-            url: '/l-life/standard/checkStock/' + productId + '/' + selectedOptionId,
+            url: '/l-life/api/v1/standard/checkStock/' + productId + '/' + selectedOptionId,
             method: 'GET',
             success: function (stockAmount) {
                 var button = $('.lf-pr-submit-btns form button');
@@ -25,15 +27,15 @@ $(document).ready(function(){
                             if (result.isConfirmed) {
                                 // TODO : 재입고알림신청 버튼 클릭시 관련 API 호출
                                 data = {
-                                    option: optionId,
-                                    productId: productId
+                                    lfOptId: selectedOptionId,
+                                    lfId: productId,
+                                    memberId: memberId,
                                 }
                                 console.log(data);
                                 $.ajax({
-                                    url: 'TODO',
+                                    url: '/l-life/api/v1/standard/reservation',
                                     method: 'POST',
                                     data: data,
-                                    contentType: 'application/json',
                                     success: function (response) {
                                         console.log("재입고 알림 신청 완료")
                                         console.log(response)
@@ -68,8 +70,8 @@ $(document).ready(function(){
                 console.log(productId)
                 // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
                 const data = {
-                    option: optionId,
-                    productId: productId
+                    lfOptId: optionId,
+                    lfId: productId,
                 };
                 $.ajax({
                     url: '#',
