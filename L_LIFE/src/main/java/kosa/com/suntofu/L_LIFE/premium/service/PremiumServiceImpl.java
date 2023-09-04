@@ -3,14 +3,9 @@ package kosa.com.suntofu.L_LIFE.premium.service;
 
 import kosa.com.suntofu.L_LIFE.constant.CacheKey;
 import kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao;
-import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.cache.Cache;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -78,6 +73,26 @@ public class PremiumServiceImpl implements PremiumService{
     @Override
     public PremiumVo selectPremiumProductDetailById(int lfId) {
         return premiumDao.selectPremiumProductDetailById(lfId);
+    }
+
+    @Override
+    public List<PremiumOptionVo> selectPremiumOptionById(int lfId) {
+        return premiumDao.selectPremiumOptionById(lfId);
+    }
+
+    @Override
+    public int selectPremiumStockAmount(int lfOptId, int lfId) {
+        PremiumOptionVo restock = premiumDao.selectPremiumStockAmount(lfOptId, lfId);
+        if (restock != null) {
+            int stockAmount = restock.getStockAmount();
+            return stockAmount;
+        }
+        return -1;
+    }
+
+    @Override
+    public void insertOptionToReservation(PremiumOptionVo premiumOptionVo) {
+        premiumDao.insertOptionToReservation(premiumOptionVo);
     }
 
     @Override

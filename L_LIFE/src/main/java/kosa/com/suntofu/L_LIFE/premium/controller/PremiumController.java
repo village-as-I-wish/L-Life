@@ -3,7 +3,7 @@ package kosa.com.suntofu.L_LIFE.premium.controller;
 import kosa.com.suntofu.L_LIFE.premium.service.PremiumService;
 import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PremiumOptionVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -90,7 +90,16 @@ public class PremiumController {
     public String loadPremiumDetailPage(@PathVariable("productId") int lfId, Model model){
         PremiumVo premiumDetailById = premiumService.selectPremiumProductDetailById(lfId);
         model.addAttribute("premiumDetail", premiumDetailById);
-
+        log.info("test{}", premiumDetailById);
+        List<PremiumOptionVo> options = premiumService.selectPremiumOptionById(lfId);
+        model.addAttribute("premiumOption", options);
+        log.info("test{}", options);
         return "pages/premium/premium_detail";
+    }
+
+    @GetMapping("/checkStock/{productId}/{optionId}")
+    @ResponseBody
+    public int loadStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
+        return premiumService.selectPremiumStockAmount(lfOptId, lfId);
     }
 }

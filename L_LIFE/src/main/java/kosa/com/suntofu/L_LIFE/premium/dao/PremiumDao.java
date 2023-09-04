@@ -1,12 +1,9 @@
 package kosa.com.suntofu.L_LIFE.premium.dao;
 
 
-import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PremiumDetailVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,6 +16,9 @@ public interface PremiumDao {
     List<PremiumVo> selectProductByKeyword(PaginationVo paginationVo);
     int selectProductByKeywordPagination(PaginationVo paginationVo);
     PremiumVo selectPremiumProductDetailById(int lfId);
+    List<PremiumOptionVo> selectPremiumOptionById(int lfId);
+    PremiumOptionVo selectPremiumStockAmount(@Param("lfOptId") int lfOptId, @Param("lfId") int lfId);
+    int insertOptionToReservation(PremiumOptionVo premiumOptionVo);
 
     List<PackageVo> selectMDPickPackages();
     List<PackageVo> selectPromotionPackages();

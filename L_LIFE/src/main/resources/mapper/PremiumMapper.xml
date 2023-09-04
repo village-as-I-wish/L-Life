@@ -79,6 +79,31 @@
         AND lf_id = #{lfId}
     </select>
 
+    <!-- 프리미엄 상품 옵션 -->
+    <select id="selectPremiumOptionById" parameterType="int" resultType="PremiumOptionVo">
+        SELECT s.lf_id, s.stock_amount, lfo.lf_opt_id, lfo.lf_opt_name
+        FROM Stock s
+        JOIN LFurnitureOption lfo
+        ON s.lf_opt_id = lfo.lf_opt_id
+        WHERE s.lf_id = #{lfId}
+    </select>
+
+    <!-- 프리미엄 상품 재입고 알림 신청 -->
+    <select id="selectPremiumStockAmount" parameterType="PremiumOptionVo">
+        SELECT s.lf_opt_id, s.lf_id, s.stock_amount
+        FROM Stock s
+        WHERE s.lf_opt_id = #{lfOptId}
+        AND s.lf_id = #{lfId}
+    </select>
+
+    <!-- 재입고 알림 신청 시 예약 테이블에 insert -->
+    <insert id="insertOptionToReservation" parameterType="PremiumOptionVo">
+        INSERT INTO reservation (m_id, lf_id, lf_opt_id)
+        VALUES (#{m_id}, #{lf_id}, #{lf_opt_id});
+    </insert>
+
+    <!-- 프리미엄 추천 -->
+
     <!-- 프리미엄 패키지 라인 -->
     <select id="selectMDPickPackages" resultType="PackageVo">
         select *
