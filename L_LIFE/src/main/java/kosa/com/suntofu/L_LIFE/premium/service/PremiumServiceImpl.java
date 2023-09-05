@@ -44,7 +44,7 @@ public class PremiumServiceImpl implements PremiumService{
 
     @Override
     public int calculatePaginationNum(int totalNum) {
-        return (int)Math.ceil((double)totalNum / 16);
+        return (int)Math.ceil((double)totalNum / 20);
     }
 
     @Override
@@ -107,8 +107,18 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
-    public void insertOptionToReservation(PremiumOptionVo premiumOptionVo) {
-        premiumDao.insertOptionToReservation(premiumOptionVo);
+    public int insertOptionToReservation(PremiumOptionVo premiumOptionVo) {
+        return premiumDao.insertOptionToReservation(premiumOptionVo);
+    }
+
+    @Override
+    public List<PremiumVo> selectPremiumRecommendation(int lfId) {
+        return premiumDao.selectPremiumRecommendation(lfId);
+    }
+
+    @Override
+    public int insertPremiumProductToCart(PremiumOptionVo premiumOptionVo) {
+        return premiumDao.insertPremiumProductToCart(premiumOptionVo);
     }
 
     @Override

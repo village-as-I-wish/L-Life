@@ -5,10 +5,15 @@ import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import java.util.List;
 
 public interface StandardService {
-    List<StandardVo> getAllStandard();
+    StandardPaginationVo calculateAndSetOffset(StandardPaginationVo standardPaginationVo);
+    int calculatePaginationNum(int totalNum);
+    List<StandardVo> getAllStandard(StandardPaginationVo standardPaginationVo);
+    int getAllStandardPagination(StandardPaginationVo standardPaginationVo);
     List<StandardLiveVo> getAllLiveStream();
-    List<StandardVo> getStandardByCategory(int fCategoryId);
-    List<StandardVo> getStandardProductByKeyword(String keyword);
+    List<StandardVo> getStandardProductByCategory(StandardPaginationVo standardPaginationVo);
+    int getStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo);
+    List<StandardVo> getStandardProductByKeyword(StandardPaginationVo standardPaginationVo);
+    int getStandardProductByKeywordByPagination(StandardPaginationVo standardPaginationVo);
     List<StandardVo> getStandardProductByFilter(SearchRequestVo requestVo);
     StandardDetailVo getStandardDetailById(int lfId);
     List<StandardOptionVo> getStandardOptionById(int lfId);
@@ -16,6 +21,7 @@ public interface StandardService {
     List<StandardVo> getStandardRecommendation(int lfId);
     int getStandardStockAmount(int lfOptId, int lfId);
     int putOptionToReservation(StandardOptionVo standardOptionVo);
+    int putProductToCart(StandardSubscriptionVo standardSubscriptionVo);
 
     int createReview(ReviewRequestVo reviewRequestVo);
 

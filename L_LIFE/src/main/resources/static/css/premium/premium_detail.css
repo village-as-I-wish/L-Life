@@ -342,9 +342,51 @@ ul.tabs li {
     color: #333333;
 }
 
+.lf-pr-options input{
+    width:100%;
+    height: 40px;
+}
+
+.lf-pr-submit-btns form, .lf-pr-submit-btns button:last-child {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    left: 0;
+}
+
+.lf-pr-submit-btns form {
+    bottom: 60px;
+}
+
+.lf-pr-submit-btns button:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 35px;
+}
+
+.lf-pr-submit-btns button:last-child > img {
+    margin-right: 10px;
+}
+
+.dropdown-content div {
+    display: block;
+    text-decoration: none;
+    color: rgb(37, 37, 37);
+    font-size: 12px;
+    padding: 12px 20px;
+}
 .lf-recommendation-slide-product-img {
     padding: 17px;
     color: black;
     width: 268px;
     text-decoration: none;
+}
+
+.dropdown-content.show{
+    display: block;
+    position: absolute;
+    z-index: 5 !important;
 }

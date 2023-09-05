@@ -130,7 +130,7 @@
     height: 40px;
 }
 
-.lf-pr-submit-btns form, .lf-pr-submit-btns button:last-child {
+.lf-pr-submit-btns button, .lf-pr-submit-btns button:last-child {
     width: 100%;
     height: 50px;
     border-radius: 5px;
@@ -139,8 +139,8 @@
     left: 0;
 }
 
-.lf-pr-submit-btns form {
-    bottom: 60px;
+#cartBtn{
+    bottom: 90px;
 }
 
 .lf-pr-submit-btns button:last-child {

@@ -4,6 +4,7 @@ import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
 import kosa.com.suntofu.L_LIFE.standard.vo.ReviewRequestVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.SearchRequestVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardOptionVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.StandardSubscriptionVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.BasicResponse;
 import lombok.RequiredArgsConstructor;
@@ -42,12 +43,22 @@ public class StandardRestController {
     public int putOptionToReservation(@RequestParam int lfOptId,
                                       @RequestParam int lfId,
                                       @RequestParam int memberId) {
-        StandardOptionVo option = new StandardOptionVo(lfOptId, 0, lfId, "", memberId);
+        StandardOptionVo option = new StandardOptionVo(lfId, 0, lfOptId, "", memberId);
         int result = standardService.putOptionToReservation(option);
         log.info("result{}", result);
         return result;
     }
 
+    @PostMapping("/insertcart")
+    @ResponseBody
+    public ResponseEntity<String> putProductToCart(@RequestParam int lfOptId,
+                                @RequestParam int lfId,
+                                @RequestParam int memberId) {
+
+        StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfId, memberId, lfOptId);
+        int result = standardService.putProductToCart(tocart);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
 
     @PostMapping("/review")
     @ResponseBody
