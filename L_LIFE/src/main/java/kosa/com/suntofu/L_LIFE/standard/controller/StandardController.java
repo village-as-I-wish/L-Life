@@ -27,11 +27,11 @@ public class StandardController {
     @GetMapping("/main")
     public String loadStandardMainPage(Model model, StandardPaginationVo standardPaginationVo) {
 
-        int totalNum = standardService.selectAllStandardPagination(standardPaginationVo);
+        int totalNum = standardService.getAllStandardPagination(standardPaginationVo);
         int paginationNum = standardService.calculatePaginationNum(totalNum);
 
         // 메인 상품 리스트 가져오기
-        List<StandardVo> standardList = standardService.selectAllStandard(standardPaginationVo);
+        List<StandardVo> standardList = standardService.getAllStandard(standardPaginationVo);
         model.addAttribute("standardList", standardList);
         model.addAttribute("totalNum", totalNum);
         model.addAttribute("paginationNum", paginationNum);
@@ -55,8 +55,8 @@ public class StandardController {
     public String selectStandardProductByCategory(Model model, @PathVariable int lfCategoryId,  StandardPaginationVo standardPaginationVo) {
 
         standardPaginationVo.setLfCategoryId(lfCategoryId);
-        List<StandardVo> standardList = standardService.selectStandardProductByCategory(standardPaginationVo);
-        int totalNum = standardService.selectStandardProductByCategoryByPagination(standardPaginationVo);
+        List<StandardVo> standardList = standardService.getStandardProductByCategory(standardPaginationVo);
+        int totalNum = standardService.getStandardProductByCategoryByPagination(standardPaginationVo);
         int paginationNum = standardService.calculatePaginationNum(totalNum);
 
         model.addAttribute("standardList", standardList);
@@ -81,8 +81,8 @@ public class StandardController {
     public String selectStandardProductByKeyword(@RequestParam String keyword, Model model, StandardPaginationVo standardPaginationVo) {
 
         standardPaginationVo.setKeyword(keyword);
-        List<StandardVo> stProductListByKeyword = standardService.selectStandardProductByKeyword(standardPaginationVo);
-        int totalNum = standardService.selectStandardProductByKeywordByPagination(standardPaginationVo);
+        List<StandardVo> stProductListByKeyword = standardService.getStandardProductByKeyword(standardPaginationVo);
+        int totalNum = standardService.getStandardProductByKeywordByPagination(standardPaginationVo);
         int paginationNum = standardService.calculatePaginationNum(totalNum);
         model.addAttribute("paginationNum", paginationNum);
         model.addAttribute("stkeyword", stProductListByKeyword);
@@ -116,7 +116,6 @@ public class StandardController {
         // 옵션 가져오기
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
         model.addAttribute("options", options);
-        System.out.println(options);
 
         // 리퍼 정보 가져오기
         List<StandardRefurVo> refurinfos = standardService.getStandardRefurById(lfId);

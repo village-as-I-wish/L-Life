@@ -77,7 +77,7 @@
 
         <div class="lf-pr-submit-btns">
                 <input type="hidden" name="productId" id="productId" th:value="${productId}">
-                <button type="submit" id="cartBtn" class="lf-btn-brown text-white">장바구니 담기</button>
+                <button id="cartBtn" class="lf-btn-brown text-white">장바구니 담기</button>
                 <span class="hidden" id="memberId" th:text="${session.existingMember.mId}"></span>
             <button class="lf-btn-light-brown text-white">
                 <img alt="카드 사진 " th:src="@{/img/standard/card_logo.png}"/>

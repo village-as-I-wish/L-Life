@@ -21,7 +21,6 @@
         OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
-
     <!-- pagination 전체 상품 개수 구하기 -->
     <select id="selectAllStandardPagination" resultType="_int">
         SELECT
@@ -33,7 +32,6 @@
         WHERE
             lf_sub_type = 0
     </select>
-
 
     <!-- 라이브 리스트 가져오기 -->
     <select id = "selectAllLiveStream" resultType="StandardLiveVo">
@@ -255,8 +253,10 @@
 
     <!-- 재입고 알림 신청 시 예약 테이블에 insert -->
     <insert id="insertOptionToReservation" parameterType="StandardOptionVo">
-        INSERT INTO reservation (m_id, lf_id, lf_opt_id)
-        VALUES (#{mId}, #{lfId}, #{lfOptId})
+        INSERT INTO
+            reservation (m_id, lf_id, lf_opt_id)
+        VALUES
+            (#{mId}, #{lfId}, #{lfOptId})
     </insert>
 
     <!-- 장바구니 테이블에 insert -->
@@ -267,15 +267,16 @@
             BEGIN
                 SELECT count(SUBSCRIPTION.m_id)
                 INTO v_member_id
-                FROM SUBSCRIPTION where m_id = #{mId};
+                FROM SUBSCRIPTION
+                where m_id = #{mId};
 
-                IF v_member_id > 0 THEN
-                    INSERT INTO CART (lf_id, m_id, lf_opt_id)
-                    VALUES (#{lfId}, #{mId}, #{lfOptId});
-                ELSE
-                    RAISE_APPLICATION_ERROR(-20002, 'No subscription found for the user');
-            END IF;
-            END
+            IF v_member_id > 0 THEN
+                INSERT INTO CART (lf_id, m_id, lf_opt_id)
+                VALUES (#{lfId}, #{mId}, #{lfOptId});
+            ELSE
+                RAISE_APPLICATION_ERROR(-20002, 'No subscription found for the user');
+        END IF;
+        END
         }
     </insert>
 

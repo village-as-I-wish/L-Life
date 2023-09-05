@@ -45,71 +45,64 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public List<StandardVo> selectAllStandard(StandardPaginationVo standardPaginationVo) {
+    public List<StandardVo> getAllStandard(StandardPaginationVo standardPaginationVo) {
         standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
         return standardDAO.selectAllStandard(standardPaginationVo);
     }
 
     @Override
-    public int selectAllStandardPagination(StandardPaginationVo standardPaginationVo) {
+    public int getAllStandardPagination(StandardPaginationVo standardPaginationVo) {
         return standardDAO.selectAllStandardPagination(standardPaginationVo);
     }
 
     @Override
     public List<StandardLiveVo> getAllLiveStream() {
-
         return standardDAO.selectAllLiveStream();
     }
 
     @Override
-    public List<StandardVo> selectStandardProductByCategory(StandardPaginationVo standardPaginationVo) {
+    public List<StandardVo> getStandardProductByCategory(StandardPaginationVo standardPaginationVo) {
         standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
         return standardDAO.selectStandardProductByCategory(standardPaginationVo);
     }
 
     @Override
-    public int selectStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo) {
+    public int getStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo) {
         return standardDAO.selectStandardProductByCategoryByPagination(standardPaginationVo);
     }
 
     @Override
-    public List<StandardVo> selectStandardProductByKeyword(StandardPaginationVo standardPaginationVo) {
+    public List<StandardVo> getStandardProductByKeyword(StandardPaginationVo standardPaginationVo) {
         standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
         return standardDAO.selectStandardProductByKeyword(standardPaginationVo);
     }
     @Override
-    public int selectStandardProductByKeywordByPagination(StandardPaginationVo standardPaginationVo) {
+    public int getStandardProductByKeywordByPagination(StandardPaginationVo standardPaginationVo) {
         return standardDAO.selectStandardProductByKeywordByPagination(standardPaginationVo);
     }
 
     @Override
     public List<StandardVo> getStandardProductByFilter(SearchRequestVo requestVo) {
-
         return standardDAO.searchStandardProductByFilter(requestVo);
     }
 
     @Override
     public StandardDetailVo getStandardDetailById(int lfId) {
-
         return standardDAO.selectStandardDetailById(lfId);
     }
 
     @Override
     public List<StandardOptionVo> getStandardOptionById(int lfId) {
-
         return standardDAO.selectStandardOptionById(lfId);
     }
 
     @Override
     public List<StandardRefurVo> getStandardRefurById(int lfId) {
-
         return standardDAO.selectStandardRefurById(lfId);
     }
 
-
     @Override
     public List<StandardVo> getStandardRecommendation(int lfId) {
-
         return standardDAO.selectStandardRecommendation(lfId);
     }
 
@@ -126,13 +119,11 @@ public class StandardServiceImpl implements StandardService {
 
     @Override
     public int putOptionToReservation(StandardOptionVo standardOptionVo) {
-
         return standardDAO.insertOptionToReservation(standardOptionVo);
     }
 
     @Override
     public int putProductToCart(StandardSubscriptionVo standardSubscriptionVo) {
-
         return standardDAO.insertProductToCart(standardSubscriptionVo);
     }
 
