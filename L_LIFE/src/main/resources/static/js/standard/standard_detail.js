@@ -60,10 +60,9 @@ $(document).ready(function(){
     });
 
 
-    $('#cardBtn').on('submit', function(event) {
+    $('#cartBtn').click(function() {
         var selectedOptionId = parseInt($('.selected-option').text());
         var memberId = parseInt($('#memberId').text());
-        event.preventDefault();
         data = {
             lfOptId: selectedOptionId,
             lfId: productId,
