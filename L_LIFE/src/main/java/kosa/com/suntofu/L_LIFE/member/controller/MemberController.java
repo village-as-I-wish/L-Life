@@ -118,6 +118,7 @@ public class MemberController {
         // 프리미엄 장바구니
         List<CartVo> premiumCarts  = memberService.getAllPremiumCarts(memberId);
 
+        System.out.println(premiumCarts);
         model.addAttribute("standardCarts", standardCarts);
         model.addAttribute("premiumCarts", premiumCarts);
         return "pages/member/mypage_cart";

@@ -1,5 +1,17 @@
 $(document).ready(function() {
     calendarInit();
+
+    var totalPrice = 0;
+    $('.sum-price').each(function () {
+        var rowTotal = parseInt($(this).text());
+        totalPrice += rowTotal;
+    });
+
+    // 누적된 총 합계를 결과 요소에 표시합니다.
+    $('.sum-price-num').text(totalPrice.toLocaleString() + '원');
+    $('.price-num').text(totalPrice.toLocaleString() + '원');
+    $('.final-price-num').text(totalPrice.toLocaleString() + '원');
+
 });
 
 function formatDate(date) {

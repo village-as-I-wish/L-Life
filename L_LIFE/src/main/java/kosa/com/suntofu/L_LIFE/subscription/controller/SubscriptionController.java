@@ -2,15 +2,22 @@ package kosa.com.suntofu.L_LIFE.subscription.controller;
 
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
 import kosa.com.suntofu.L_LIFE.subscription.vo.BillVo;
+import kosa.com.suntofu.L_LIFE.subscription.vo.PayFurnitureVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.PayKeysVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Slf4j
@@ -66,17 +73,29 @@ public class SubscriptionController {
      * @param model
      * @return String
      */
-    @GetMapping(value="/premium/payment_detail")
+    @PostMapping(value="/premium/payment_detail")
+    @ResponseBody
+    public Map<String, String> loadPremiumPaymentDetail(Model model,
+                                                        @RequestBody List<PayFurnitureVo> selectedProducts,
+                                                        HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("paymentProduct",selectedProducts);
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", "http://localhost:8080/l-life/subscription/premium/payment_detail");
 
-    public String loadPremiumPaymentDetail(Model model){
-        //List<StandardVO> standardList = standardService.getAllStandard();
-        //  System.out.println(standardList);
+        return response;
+    }
+
+
+    @GetMapping(value="/premium/payment_detail")
+    public String postPremiumPaymentDetail(Model model,
+                                           HttpServletRequest request){
+        HttpSession session = request.getSession();
+        System.out.println(session.getAttribute("paymentProduct"));
+        model.addAttribute("paymentProduct",session.getAttribute("paymentProduct"));
+        model.addAttribute("baseUrl", baseUrl);
         model.addAttribute("payKeys", payKeysVO);
         return "pages/subscription/premium_payment_detail";
     }
 
-
-//    public String loadPaymentSuccessPage(){
-//
-//    }
 }
