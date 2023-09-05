@@ -221,7 +221,7 @@
             BEGIN
                 SELECT count(SUBSCRIPTION.m_id)
                 INTO v_member_id
-                FROM SUBSCRIPTION;
+                FROM SUBSCRIPTION where m_id = #{mId};
 
                 IF v_member_id > 0 THEN
                     INSERT INTO CART (lf_id, m_id, lf_opt_id)
@@ -232,6 +232,7 @@
             END
         }
     </insert>
+
 
     <insert id="insertReview" useGeneratedKeys="false" parameterType="ReviewVo" >
         insert into review(lf_review_title, lf_review_content, m_id, lf_id, lf_review_rating, lf_review_ser_rating, lf_review_del_rating)

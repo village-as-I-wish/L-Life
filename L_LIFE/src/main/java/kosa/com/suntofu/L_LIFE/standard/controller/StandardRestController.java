@@ -44,7 +44,7 @@ public class StandardRestController {
     public int putOptionToReservation(@RequestParam int lfOptId,
                                       @RequestParam int lfId,
                                       @RequestParam int memberId) {
-        StandardOptionVo option = new StandardOptionVo(lfOptId, 0, lfId, "", memberId);
+        StandardOptionVo option = new StandardOptionVo(lfId, 0, lfOptId, "", memberId);
         int result = standardService.putOptionToReservation(option);
         log.info("result{}", result);
         return result;
@@ -56,7 +56,7 @@ public class StandardRestController {
                                 @RequestParam int lfId,
                                 @RequestParam int memberId) {
 
-        StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfOptId, lfId, memberId);
+        StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfId, memberId, lfOptId);
         int result = standardService.putProductToCart(tocart);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }

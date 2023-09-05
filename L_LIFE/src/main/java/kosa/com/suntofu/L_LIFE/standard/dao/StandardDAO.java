@@ -22,6 +22,7 @@ public interface StandardDAO {
   
   
     int insertProductToCart(StandardSubscriptionVo standardSubscriptionVo);
+
     void insertReview(ReviewVo reviewVo);
 
     int insertReviewImg(List<ReviewImgVo> list);

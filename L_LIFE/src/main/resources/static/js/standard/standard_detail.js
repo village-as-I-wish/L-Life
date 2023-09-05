@@ -95,9 +95,12 @@ $(document).ready(function(){
                 });
             },
             error: function(error) {
-                console.log("장바구니에 담기 실패");
-                console.log(error);
-
+                if (error.responseText === "Product-Option already in cart") {
+                    Swal.fire('오류', '이 상품-옵션은 이미 장바구니에 있습니다.', 'error');
+                } else {
+                    console.log("장바구니에 담기 실패");
+                    console.log(error);
+                }
             }
         });
 
