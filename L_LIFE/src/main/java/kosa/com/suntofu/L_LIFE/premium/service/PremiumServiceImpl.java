@@ -44,7 +44,7 @@ public class PremiumServiceImpl implements PremiumService{
 
     @Override
     public int calculatePaginationNum(int totalNum) {
-        return (int)Math.ceil((double)totalNum / 16);
+        return (int)Math.ceil((double)totalNum / 20);
     }
 
     @Override
