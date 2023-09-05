@@ -19,4 +19,10 @@ public class LiveStreamController {
     public String loadLiveStreamPage(){
         return "pages/livestream/livestream";
     }
+
+
+    @GetMapping("test")
+    public String testLiveStream(){
+        return "pages/livestream/open_vidu_test";
+    }
 }
