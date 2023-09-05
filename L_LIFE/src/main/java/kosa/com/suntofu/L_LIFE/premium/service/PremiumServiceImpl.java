@@ -69,10 +69,26 @@ public class PremiumServiceImpl implements PremiumService{
         return premiumDao.selectProductByKeywordPagination(paginationVo);
     }
 
+    @Override
+    public List<PremiumVo> selectProductByFilter(PaginationVo paginationVo) {
+        paginationVo = calculateAndSetOffset(paginationVo);
+        return premiumDao.selectProductByFilter(paginationVo);
+    }
+
+    @Override
+    public int selectProductByFilterByPagination(PaginationVo paginationVo) {
+        return premiumDao.selectProductByFilterByPagination(paginationVo);
+    }
+
 
     @Override
     public PremiumVo selectPremiumProductDetailById(int lfId) {
         return premiumDao.selectPremiumProductDetailById(lfId);
+    }
+
+    @Override
+    public List<PremiumVo> selectProductImgById(int lfId) {
+        return premiumDao.selectProductImgById(lfId);
     }
 
     @Override
@@ -91,8 +107,18 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
-    public void insertOptionToReservation(PremiumOptionVo premiumOptionVo) {
-        premiumDao.insertOptionToReservation(premiumOptionVo);
+    public int insertOptionToReservation(PremiumOptionVo premiumOptionVo) {
+        return premiumDao.insertOptionToReservation(premiumOptionVo);
+    }
+
+    @Override
+    public List<PremiumVo> selectPremiumRecommendation(int lfId) {
+        return premiumDao.selectPremiumRecommendation(lfId);
+    }
+
+    @Override
+    public int insertPremiumProductToCart(PremiumOptionVo premiumOptionVo) {
+        return premiumDao.insertPremiumProductToCart(premiumOptionVo);
     }
 
     @Override

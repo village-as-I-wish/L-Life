@@ -90,16 +90,17 @@ public class PremiumController {
     public String loadPremiumDetailPage(@PathVariable("productId") int lfId, Model model){
         PremiumVo premiumDetailById = premiumService.selectPremiumProductDetailById(lfId);
         model.addAttribute("premiumDetail", premiumDetailById);
-        log.info("test{}", premiumDetailById);
+
         List<PremiumOptionVo> options = premiumService.selectPremiumOptionById(lfId);
         model.addAttribute("premiumOption", options);
-        log.info("test{}", options);
+
+        List<PremiumVo> images = premiumService.selectProductImgById(lfId);
+        model.addAttribute("premiumImg", images);
+
+        List<PremiumVo> recommendProducts = premiumService.selectPremiumRecommendation(premiumDetailById.getLfPrPrice());
+        model.addAttribute("recommendProducts", recommendProducts);
+        log.info("result{}", recommendProducts);
         return "pages/premium/premium_detail";
     }
 
-    @GetMapping("/checkStock/{productId}/{optionId}")
-    @ResponseBody
-    public int loadStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
-        return premiumService.selectPremiumStockAmount(lfOptId, lfId);
-    }
 }

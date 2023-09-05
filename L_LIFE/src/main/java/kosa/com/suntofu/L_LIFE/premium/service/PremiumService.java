@@ -14,11 +14,15 @@ public interface PremiumService {
     int selectProductCountByCategoryByPagination (PaginationVo paginationVo);
     List<PremiumVo> selectProductByKeyword(PaginationVo paginationVo);
     int selectProductByKeywordPagination(PaginationVo paginationVo);
+    List<PremiumVo> selectProductByFilter(PaginationVo paginationVo);
+    int selectProductByFilterByPagination(PaginationVo paginationVo);
     PremiumVo selectPremiumProductDetailById(int lfId);
+    List<PremiumVo> selectProductImgById(int lfId);
     List<PremiumOptionVo> selectPremiumOptionById(int lfId);
     int selectPremiumStockAmount(int lfOptId, int lfId);
-    void insertOptionToReservation(PremiumOptionVo premiumOptionVo);
-
+    int insertOptionToReservation(PremiumOptionVo premiumOptionVo);
+    List<PremiumVo> selectPremiumRecommendation(int lfId);
+    int insertPremiumProductToCart(PremiumOptionVo premiumOptionVo);
     List<PackageVo> getMDPickPackages();
     List<PackageVo> getPromotionPackages();
 

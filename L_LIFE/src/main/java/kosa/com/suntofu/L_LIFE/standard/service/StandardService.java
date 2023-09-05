@@ -17,4 +17,6 @@ public interface StandardService {
     int getStandardStockAmount(int lfOptId, int lfId);
     int putOptionToReservation(StandardOptionVo standardOptionVo);
     int putProductToCart(StandardSubscriptionVo standardSubscriptionVo);
+
+    int createReview(ReviewVo reviewVo);
 }

@@ -57,6 +57,7 @@
         <div class="lf-pr-options">
             <button class="dropbtn">
                 <span class="dropbtn_content"> [필수] 옵션을 선택하세요. </span>
+                <span class="hidden selected-option"></span>
                 <span class="dropbtn_click"
                       style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"
                       onclick="dropdown()">arrow_drop_down</span>
@@ -69,8 +70,14 @@
         </div>
 
         <div class="lf-pr-submit-btns">
-            <button class="lf-btn-brown text-white"> 장바구니 담기</button>
-            <button class="lf-btn-light-brown text-white"> 할인 쿠폰 받기</button>
+            <form>
+                <input type="hidden" name="productId" id="productId" th:value="${productId}">
+                <button type="submit" class="lf-btn-brown text-white">장바구니 담기</button>
+            </form>
+            <button class="lf-btn-light-brown text-white">
+                <img alt="카드 사진 " th:src="@{/img/standard/card_logo.png}"/>
+                할인 쿠폰 받기
+            </button>
         </div>
     </div>
 
@@ -85,12 +92,10 @@
 
     <div id="tab-1" class="tab-content current">
         <div class="tab-pr-maininfo-content">
-            <div class="lf-pr-info">
+            <div class="lf-pr-info" th:each="img : ${premiumImg}">
 
-                <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample1.png}">
-                <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample2.png}">
-                <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample3.png}">
-                <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample4.png}">
+                <img class="pr-real-img" alt="상품 사진" th:src="${img.lfImgUrl}">
+                <span th:text="${img.imgComment}"></span>
 
 
             </div>
@@ -163,10 +168,11 @@
                     <div class="lf-recommendation-page-wrapper">
                         <div class="lf-recommendation-slide">
                             <div class="lf-recommendation-slide-wrapper">
-                                <a class="lf-recommendation-slide-product-img">
-                                    <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample1.png}">
-                                    <span> 테스트 상품 브랜드명</span>
-                                    <p> 상품명  </p>
+                                <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}" th:href="@{'/premium/' + ${product.lfId} + '/detail'}">
+                                    <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
+                                    <span th:text="${product.lfBrandName}"></span>
+                                    <p th:text="${product.lfName}"></p>
+                                    <div><span> 월 <span th:text="${product.lfPrPrice}"></span>원~ </span></div>
                                 </a>
                             </div>
                         </div>
@@ -180,6 +186,8 @@
     <div id="tab-2" class="tab-content">tab content2</div>
     <div id="tab-3" class="tab-content">tab content3</div>
     <div id="tab-4" class="tab-content">tab content4</div>
+
+    <input id="memberId" type="hidden" th:value="${session.existingMember.mId}">
 </div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 

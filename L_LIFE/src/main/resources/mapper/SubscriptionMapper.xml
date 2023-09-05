@@ -4,8 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.com.suntofu.L_LIFE.subscription.dao.SubscriptionDao">
 
-
-
     <insert id="insertSubscription" parameterType="SubscriptionVo">
         {CALL
             DECLARE
@@ -17,7 +15,7 @@
                 SELECT COUNT(*)
                 INTO v_subscription_count
                 FROM SUBSCRIPTION
-                WHERE M_ID = v_member_id AND SUBSCRIBE_END_DATE >= v_today;
+                WHERE M_ID = v_member_id AND SUBSCRIBE_END_DATE >= v_today and subscribe_status = 1;
 
                 IF v_subscription_count > 0 THEN
                         RAISE_APPLICATION_ERROR(-20001, 'Subscription already exists');

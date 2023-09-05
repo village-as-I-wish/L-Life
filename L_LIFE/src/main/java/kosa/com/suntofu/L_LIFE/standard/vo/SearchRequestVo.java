@@ -20,4 +20,6 @@ public class SearchRequestVo {
     private List<Integer> lfMoodIds;
     private int minCoin;
     private int maxCoin;
+    private int minPrice;
+    private int maxPrice;
 }

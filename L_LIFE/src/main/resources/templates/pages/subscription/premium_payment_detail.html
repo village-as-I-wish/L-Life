@@ -63,24 +63,23 @@
                     <th class="bold-text">상품명 / 옵션정보</th>
                     <th class="bold-text">수량</th>
                     <th class="bold-text">판매가</th>
-                    <th class="bold-text">구독기간</th>
+                    <th class="bold-text">최소 구독 기간</th>
                     <th class="bold-text">최종구매가</th>
                 </tr>
-                <tr>
+                <tr th:each="product : ${paymentProduct}">
                     <td class="table-td tb-prodcut-info-box">
                         <div class="table-td-product-info">
-                            <img alt="스탠다드 33" th:src="@{/img/subscription/standard_33.png}"/>
+                            <img alt="" th:src="${product.lfImgMain}"/>
                             <div class="table-td-product-info-txt">
-                                <span> 리바트 라이프</span>
-                                <span> L-Life 스탠다드 33 구독권</span>
+                                <span th:text="${product.lfBrandName}"></span>
+                                <span th:text="${product.lfName}"></span>
                             </div>
                         </div>
                     </td>
-                    <td class="table-td">1</td>
-                    <td class="table-td"> 33000원</td>
-                    <td class="table-td"> 2023.08.14 - 2023.09.13</td>
-                    <td class="table-td"> 33000원</td>
-
+                    <td class="table-td" th:text="${product.quantity}"></td>
+                    <td class="table-td" th:text="${product.lfPrPrice}"></td>
+                    <td class="table-td" th:text="${product.lfPrMinPeriod}"></td>
+                    <td class="table-td sum-price" th:text="${product.quantity} * ${product.lfPrPrice}"></td>
                 </tr>
             </table>
         </div>
@@ -240,7 +239,6 @@
                             총 판매가
                         </div>
                         <div class="sum-price-num">
-                            33,000원
                         </div>
                     </div>
                     <hr class="hr price-hr">
@@ -249,7 +247,6 @@
                             판매가
                         </div>
                         <div class="price-num">
-                            33,000원
                         </div>
                     </div>
                 </div>
@@ -259,7 +256,6 @@
                         최종결제금액
                     </div>
                     <div class="final-price-num text-lg bold-text">
-                        33,000원
                     </div>
                     <hr>
                     <div class="final-point">

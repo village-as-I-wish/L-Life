@@ -69,6 +69,27 @@
         OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
     </select>
 
+    <!-- 프리미엄 상품 사이드 필터 (브랜드, 분위기, 가격) -->
+    <select id="selectProductByFilter" parameterType="PaginationVo">
+        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price, lfb.lf_brand_id
+        FROM LLifeFurniture lf
+        JOIN LFurnitureBrand lfb
+        ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN LFurnitureMood lfm
+        ON lf.lf_mood_id = lfm.lf_mood_id
+        WHERE lf.lf_sub_type = 1
+        AND lfb.lf_brand_id IN
+        <foreach collection="lfBrandIds" item="brandId" open="(" separator="," close=")">
+            #{brandId}
+        </foreach>
+        AND lfm.lf_mood_id IN
+        <foreach collection="lfMoodIds" item="moodId" open="(" separator="," close=")">
+            #{moodId}
+        </foreach>
+        AND lf.lf_pr_price BETWEEN #{minPrice} AND #{maxPrice}
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
+    </select>
+
     <!-- 프리미엄 상품 상세 -->
     <select id="selectPremiumProductDetailById" parameterType="PremiumVo">
         SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price, lf.lf_pr_min_period
@@ -79,8 +100,18 @@
         AND lf_id = #{lfId}
     </select>
 
+    <!-- 상품 상세 이미지 목록 -->
+    <select id="selectProductImgById" parameterType="PremiumVo">
+        SELECT lf.LF_ID, lfi.LF_IMG_URL, lfi.IMG_COMMENT
+        FROM LLIFEFURNITURE lf
+        JOIN LFURNITUREIMAGE lfi
+        ON lf.LF_ID = lfi.LF_ID
+        WHERE lf_sub_type = 1
+        AND lf.lf_id = #{lfId}
+    </select>
+
     <!-- 프리미엄 상품 옵션 -->
-    <select id="selectPremiumOptionById" parameterType="int" resultType="PremiumOptionVo">
+    <select id="selectPremiumOptionById" resultType="PremiumOptionVo">
         SELECT s.lf_id, s.stock_amount, lfo.lf_opt_id, lfo.lf_opt_name
         FROM Stock s
         JOIN LFurnitureOption lfo
@@ -89,7 +120,7 @@
     </select>
 
     <!-- 프리미엄 상품 재입고 알림 신청 -->
-    <select id="selectPremiumStockAmount" parameterType="PremiumOptionVo">
+    <select id="selectPremiumStockAmount" resultType="PremiumOptionVo">
         SELECT s.lf_opt_id, s.lf_id, s.stock_amount
         FROM Stock s
         WHERE s.lf_opt_id = #{lfOptId}
@@ -99,10 +130,27 @@
     <!-- 재입고 알림 신청 시 예약 테이블에 insert -->
     <insert id="insertOptionToReservation" parameterType="PremiumOptionVo">
         INSERT INTO reservation (m_id, lf_id, lf_opt_id)
-        VALUES (#{m_id}, #{lf_id}, #{lf_opt_id});
+        VALUES (#{mId}, #{lfId}, #{lfOptId})
     </insert>
 
-    <!-- 프리미엄 추천 -->
+    <!-- 장바구니에 상품 넣기 -->
+    <insert id="insertPremiumProductToCart" parameterType="PremiumOptionVo">
+        INSERT INTO cart (m_id, lf_id, lf_opt_id)
+        VALUES (#{mId}, #{lfId}, #{lfOptId})
+    </insert>
+
+    <!-- 프리미엄 비슷한 가격대의 상품 추천 -->
+    <select id="selectPremiumRecommendation" parameterType="PremiumVo">
+        <![CDATA[
+        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
+        FROM LLIFEFURNITURE lf
+        JOIN LFURNITUREBRAND lfb
+        ON lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+        WHERE lf.lf_pr_price >= #{lfPrPrice}*0.8
+        AND lf.lf_pr_price <= #{lfPrPrice}*1.2
+        AND lf.lf_id != #{lfId}
+        ]]>
+    </select>
 
     <!-- 프리미엄 패키지 라인 -->
     <select id="selectMDPickPackages" resultType="PackageVo">

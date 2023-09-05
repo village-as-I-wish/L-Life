@@ -18,4 +18,6 @@ public class PremiumVo {
     private Integer lfMoodId; // 가구 분위기 아이디 (필터링)
     private Integer lfBrandId; // 가구 브랜드 아이디 (필터링)
     private Integer lfCategroyId; // 가구 카테고리 아이디 (필터링)
+    private String lfImgUrl; // 가구 이미지 url
+    private String imgComment; // 가구 이미지 코멘트
 }

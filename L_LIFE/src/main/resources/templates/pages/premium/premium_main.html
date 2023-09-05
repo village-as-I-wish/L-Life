@@ -5,6 +5,7 @@
     <title>L-Life Premium</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/premium/premium_main.css}"/>
+    <script th:src="@{/js/premium/pr_product_filter_sidebar.js}" type="text/javascript"></script>
 
 </head>
 <body>
@@ -50,7 +51,6 @@
                             <hr style="margin: 3px 0px 10px 0px">
                             <div class="d-flex pl-main-sub-product-price">
                                 <span th:text="${product.lfBrandName}"></span>
-
                                 <div class="coin-img-box">
                                     월
                                     <span th:text="${product.lfPrPrice}"></span>
