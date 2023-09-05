@@ -117,6 +117,11 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
+    public int insertPremiumProductToCart(PremiumOptionVo premiumOptionVo) {
+        return premiumDao.insertPremiumProductToCart(premiumOptionVo);
+    }
+
+    @Override
     public List<PackageVo> getMDPickPackages() {
         List<PackageVo> packages = getCachedSearchResult(CacheKey.MDPICK_LLIFE_PACKAGES);
         if (packages != null){

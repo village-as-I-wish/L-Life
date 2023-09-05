@@ -134,8 +134,9 @@
     </insert>
 
     <!-- 장바구니에 상품 넣기 -->
-    <insert id="insertPremiumProductToCart">
-
+    <insert id="insertPremiumProductToCart" parameterType="PremiumOptionVo">
+        INSERT INTO cart (m_id, lf_id, lf_opt_id)
+        VALUES (#{mId}, #{lfId}, #{lfOptId})
     </insert>
 
     <!-- 프리미엄 비슷한 가격대의 상품 추천 -->
