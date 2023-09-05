@@ -8,13 +8,13 @@ $(document).ready(function(){
     $(".dropdown-content div").click(function() {
         var selectedOptionId = parseInt($(this).data('lf-opt-id'));
         var memberId = parseInt($('#memberId').val());
-        console.log("memberId는 바로" + memberId);
+
         $.ajax({
             url: '/l-life/api/v1/standard/checkStock/' + productId + '/' + selectedOptionId,
             method: 'GET',
             success: function (stockAmount) {
                 var button = $('.lf-pr-submit-btns form button');
-                console.log(stockAmount);
+                console.log("stockAmount " + stockAmount);
                 if (stockAmount <= 0) {
                     // 옵션의 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
                     button.text('재입고 알림 신청');
@@ -59,44 +59,57 @@ $(document).ready(function(){
         });
     });
 
+
     $('.lf-pr-submit-btns form').on('submit', function(event) {
+        var selectedOptionId = parseInt($('.selected-option').text());
+        var memberId = parseInt($('#memberId').val());
         event.preventDefault();
-        Swal.fire({
-            title: '장바구니에 추가되었습니다.',
-            text: '장바구니로 이동하시겠습니까?',
-            confirmButtonText: '확인',
-            cancelButtonText: '취소',
-            showCancelButton: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                console.log(optionId)
-                console.log(productId)
-                // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
-                const data = {
-                    lfOptId: optionId,
-                    lfId: productId,
-                };
-                $.ajax({
-                    url: '#',
-                    method: 'POST',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json',
-                    success: function(response) {
+        data = {
+            lfOptId: selectedOptionId,
+            lfId: productId,
+            memberId: memberId,
+        }
+        console.log("optionId: " + selectedOptionId);
+        console.log("productId: " + productId);
+        console.log("memberId: " + memberId);
+
+        // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
+        $.ajax({
+            url: '/l-life/api/v1/standard/insertcart',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                Swal.fire({
+                    title: '장바구니에 추가되었습니다.',
+                    text: '장바구니로 이동하시겠습니까?',
+                    confirmButtonText: '확인',
+                    cancelButtonText: '취소',
+                    showCancelButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         console.log("장바구니에 담기 완료");
+                        console.log(optionId)
+                        console.log(productId)
                         console.log(response);
-                        // 확인 -> 장바구니 페이지로 이동
-                        window.location.href = "/l-life/member/mypage/cart";
-                    },
-                    error: function(error) {
-                        window.location.href = "/l-life/member/mypage/cart";
-                        console.log("장바구니에 담기 실패");
-                        console.log(error);
+                        window.location.href = "/l-life/member/" + memberId + "/mypage/cart";
                     }
                 });
+            },
+            error: function(error) {
+                console.log("장바구니에 담기 실패");
+                console.log(error);
+
             }
         });
 
     });
+
+
+
+
+
+
+
 
 
     $('.lf-pr-main-content .main-tab li').click(function(){
@@ -173,8 +186,10 @@ window.onload=()=>{
 
     showMenu=(value)=>{
         var dropbtn_content = document.querySelector('.dropbtn_content');
+        var selectedTxt = document.querySelector('.selected-option');
         dropbtn_content.innerText = value;
-        console.log(value);
+        selectedTxt.innerText =  $(event.target).data('lf-opt-id');
+        console.log(value,$(event.target).data('lf-opt-id') );
 
         var dropdownContents = document.querySelectorAll('.dropdown-content div');
         dropdownContents.forEach((content) => {
