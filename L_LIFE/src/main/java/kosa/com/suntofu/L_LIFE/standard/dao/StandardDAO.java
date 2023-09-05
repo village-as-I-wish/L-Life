@@ -11,7 +11,8 @@ public interface StandardDAO {
     List<StandardVo> selectAllStandard(StandardPaginationVo standardPaginationVo);
     int selectAllStandardPagination(StandardPaginationVo standardPaginationVo);
     List<StandardLiveVo> selectAllLiveStream();
-    List<StandardVo> selectStandardProductByCategory(int fCategoryId);
+    List<StandardVo> selectStandardProductByCategory(StandardPaginationVo standardPaginationVo);
+    int selectStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo);
     List<StandardVo> selectStandardProductByKeyword(String keyword);
     List<StandardVo> searchStandardProductByFilter(SearchRequestVo requestVo);
     StandardDetailVo selectStandardDetailById(int lfId);

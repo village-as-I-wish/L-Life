@@ -51,13 +51,19 @@ public class StandardController {
     }
 
     // 스탠다드 상품 카테고리별 필터링
-    @GetMapping("/category/{fCategoryId}")
-    public String getStandardByCategory(Model model, @PathVariable int fCategoryId) {
+    @GetMapping("/category/{lfCategoryId}")
+    public String selectStandardProductByCategory(Model model, @PathVariable int lfCategoryId,  StandardPaginationVo standardPaginationVo) {
 
-        model.addAttribute("lfSubType", lfSubType);
+        standardPaginationVo.setLfCategoryId(lfCategoryId);
+        List<StandardVo> standardList = standardService.selectStandardProductByCategory(standardPaginationVo);
+        int totalNum = standardService.selectStandardProductByCategoryByPagination(standardPaginationVo);
+        int paginationNum = standardService.calculatePaginationNum(totalNum);
 
-        List<StandardVo> standardList = standardService.getStandardByCategory(fCategoryId);
         model.addAttribute("standardList", standardList);
+        model.addAttribute("totalNum", totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("page", standardPaginationVo.getPage());
+        model.addAttribute("lfSubType", standardPaginationVo.getLfSubType());
 
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
         model.addAttribute("standardLiveList", standardLiveList);

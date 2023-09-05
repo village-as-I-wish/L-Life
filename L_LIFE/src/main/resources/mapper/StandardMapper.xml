@@ -56,7 +56,7 @@
     </select>
 
     <!-- 스탠다드 상품 카테고리 필터링 -->
-    <select id="selectStandardProductByCategory" resultType="StandardVo">
+    <select id="selectStandardProductByCategory" parameterType="PaginationVo"  resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
@@ -71,7 +71,23 @@
         JOIN
             LFurnitureCategory lfc ON lf.lf_category_id = lfc.lf_category_id
         WHERE
-            lfc.lf_category_id = #{fCategoryId}
+            lfc.lf_category_id = #{lfCategoryId}
+        AND
+            lf_sub_type = 0
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
+    </select>
+
+    <select id="selectStandardProductByCategoryByPagination" parameterType="StandardPaginationVo" resultType="_int">
+        SELECT
+            count(*)
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN
+            LFurnitureCategory lfc ON lf.lf_category_id = lfc.lf_category_id
+        WHERE
+            lfc.lf_category_id = #{lfCategoryId}
         AND
             lf_sub_type = 0
     </select>

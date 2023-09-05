@@ -69,10 +69,16 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public List<StandardVo> getStandardByCategory(int fCategoryId) {
-
-        return standardDAO.selectStandardProductByCategory(fCategoryId);
+    public List<StandardVo> selectStandardProductByCategory(StandardPaginationVo standardPaginationVo) {
+        standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
+        return standardDAO.selectStandardProductByCategory(standardPaginationVo);
     }
+
+    @Override
+    public int selectStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo) {
+        return standardDAO.selectStandardProductByCategoryByPagination(standardPaginationVo);
+    }
+
 
     @Override
     public List<StandardVo> getStandardProductByKeyword(String keyword) {

@@ -11,7 +11,8 @@ public interface StandardService {
     List<StandardVo> selectAllStandard(StandardPaginationVo standardPaginationVo);
     int selectAllStandardPagination(StandardPaginationVo standardPaginationVo);
     List<StandardLiveVo> getAllLiveStream();
-    List<StandardVo> getStandardByCategory(int fCategoryId);
+    List<StandardVo> selectStandardProductByCategory(StandardPaginationVo standardPaginationVo);
+    int selectStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo);
     List<StandardVo> getStandardProductByKeyword(String keyword);
     List<StandardVo> getStandardProductByFilter(SearchRequestVo requestVo);
     StandardDetailVo getStandardDetailById(int lfId);
