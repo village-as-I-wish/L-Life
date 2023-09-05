@@ -217,8 +217,6 @@
     <insert id="insertProductToCart" parameterType="StandardSubscriptionVo">
         {CALL
             DECLARE
-                p_lf_id NUMBER;
-                p_lf_opt_id NUMBER;
                 v_member_id NUMBER :=0;
             BEGIN
                 SELECT count(SUBSCRIPTION.m_id)

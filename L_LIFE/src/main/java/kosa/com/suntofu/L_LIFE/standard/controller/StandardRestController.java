@@ -50,12 +50,12 @@ public class StandardRestController {
 
     @PostMapping("/insertcart")
     @ResponseBody
-    public int putProductToCart(@RequestParam int lfOptId,
+    public ResponseEntity<String> putProductToCart(@RequestParam int lfOptId,
                                 @RequestParam int lfId,
                                 @RequestParam int memberId) {
 
         StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfOptId, lfId, memberId);
         int result = standardService.putProductToCart(tocart);
-        return result;
+        return new ResponseEntity<>("success",HttpStatus.OK);
     }
 }

@@ -88,7 +88,7 @@ $(document).ready(function(){
                         console.log(optionId)
                         console.log(productId)
                         console.log(response);
-                        window.location.href = "/l-life/member/mypage/cart";
+                        window.location.href = "/l-life/member/" + memberId + "/mypage/cart";
                     }
                 });
             },
