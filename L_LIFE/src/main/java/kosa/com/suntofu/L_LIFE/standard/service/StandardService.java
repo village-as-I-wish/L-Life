@@ -26,4 +26,7 @@ public interface StandardService {
     int createReview(ReviewRequestVo reviewRequestVo);
 
     List<ReviewVo> getReviews(int lfId);
+
+    int deleteReview(int lfReviewId);
+
 }
