@@ -1,28 +1,29 @@
-function alterPageUrl(pageType, page, lfSubType) {
-    var subType = lfSubType === 0 ? 'standard' : 'premium';
-    return `/l-life/${pageType}/main?page=${page}`;
-}
-
 var paginationNum = [[${paginationNum}]];
 var currentPage = [[${page}]];
-var lfSubType = [[${lfSubType}]];
 
-document.getElementById('startBtn').onclick = function() {
-    window.location.href = alterPageUrl('premium', 1, lfSubType);
-};
+// 현재 URL 가져오기
+var currentUrl = window.location.href;
 
-document.getElementById('prev').onclick = function() {
-    if (currentPage > 1) {
-        window.location.href = alterPageUrl('premium', currentPage - 1, lfSubType);
-    }
-};
+$(document).ready(function() {
+    $('#startBtn').on('click', function() {
+        window.location.href = currentUrl.replace(/page=\d+/, 'page=1');
+    });
 
-document.getElementById('next').onclick = function() {
-    if (currentPage < paginationNum) {
-        window.location.href = alterPageUrl('premium', currentPage + 1, lfSubType)
-    }
-};
+    $('#prev').on('click', function() {
+        if (currentPage > 1) {
+            var prevPage = currentPage - 1;
+            window.location.href = currentUrl.replace(/page=\d+/, 'page=' + prevPage);
+        }
+    });
 
-document.getElementById('endBtn').onclick = function() {
-    window.location.href = alterPageUrl('premium', paginationNum, lfSubType)
-};
+    $('#next').on('click', function() {
+        if (currentPage < paginationNum) {
+            var nextPage = currentPage + 1;
+            window.location.href = currentUrl.replace(/page=\d+/, 'page=' + nextPage);
+        }
+    });
+
+    $('#endBtn').on('click', function() {
+        window.location.href = currentUrl.replace(/page=\d+/, 'page=' + paginationNum);
+    });
+});
