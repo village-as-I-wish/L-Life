@@ -4,22 +4,19 @@ let selectedFiles = [];
 
 $(document).ready(function(){
     var productId = parseInt($('#productId').val());
-
+    var memberId = parseInt($('#memberId').text());
     $(".dropdown-content div").click(function() {
         var selectedOptionId = parseInt($(this).data('lf-opt-id'));
-        var memberId = parseInt($('#memberId').val());
 
         $.ajax({
             url: '/l-life/api/v1/standard/checkStock/' + productId + '/' + selectedOptionId,
             method: 'GET',
             success: function (stockAmount) {
-                var button = $('#cardBtn');
-                console.log("stockAmount " + stockAmount);
+                var button = $('#cartBtn');
                 if (stockAmount <= 0) {
                     // 옵션의 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
                     button.text('재입고 알림 신청');
                     button.off('click').click(function() {
-                        event.preventDefault();
                         Swal.fire({
                             title: '재고가 없습니다.',
                             text: '재입고 알림을 신청하시겠습니까?',
@@ -34,7 +31,7 @@ $(document).ready(function(){
                                     lfId: productId,
                                     memberId: memberId,
                                 }
-                                console.log(data);
+                                console.log(data)
                                 $.ajax({
                                     url: '/l-life/api/v1/standard/reservation',
                                     method: 'POST',
@@ -53,55 +50,50 @@ $(document).ready(function(){
                     });
                 } else {
                     button.text('장바구니 담기');
-                    button.off('click');
                 }
             }
         });
-    });
 
 
-    $('#cartBtn').click(function() {
-        var selectedOptionId = parseInt($('.selected-option').text());
-        var memberId = parseInt($('#memberId').text());
-        data = {
-            lfOptId: selectedOptionId,
-            lfId: productId,
-            memberId: memberId,
-        }
-        console.log("optionId: " + selectedOptionId);
-        console.log("productId: " + productId);
-        console.log("memberId: " + memberId);
-
-        // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
-        $.ajax({
-            url: '/l-life/api/v1/standard/insertcart',
-            method: 'POST',
-            data: data,
-            success: function(response) {
-                Swal.fire({
-                    title: '장바구니에 추가되었습니다.',
-                    text: '장바구니로 이동하시겠습니까?',
-                    confirmButtonText: '확인',
-                    cancelButtonText: '취소',
-                    showCancelButton: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        console.log("장바구니에 담기 완료");
-                        console.log(optionId)
-                        console.log(productId)
-                        console.log(response);
-                        window.location.href = "/l-life/member/" + memberId + "/mypage/cart";
-                    }
-                });
-            },
-            error: function(error) {
-                if (error.responseText === "Product-Option already in cart") {
-                    Swal.fire('오류', '이 상품-옵션은 이미 장바구니에 있습니다.', 'error');
-                } else {
-                    console.log("장바구니에 담기 실패");
-                    console.log(error);
-                }
+        $('#cartBtn').click(function() {
+            var selectedOptionId = parseInt($('.selected-option').text());
+            var memberId = parseInt($('#memberId').text());
+            console.log("click" + memberId)
+            data = {
+                lfOptId: selectedOptionId,
+                lfId: productId,
+                memberId: memberId,
             }
+            // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
+            $.ajax({
+                url: '/l-life/api/v1/standard/insertcart',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    Swal.fire({
+                        title: '장바구니에 추가되었습니다.',
+                        text: '장바구니로 이동하시겠습니까?',
+                        confirmButtonText: '확인',
+                        cancelButtonText: '취소',
+                        showCancelButton: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            console.log("장바구니에 담기 완료");
+                            console.log(response);
+                            window.location.href = "/l-life/member/" + memberId + "/mypage/cart";
+                        }
+                    });
+                },
+                error: function(error) {
+                    if (error.responseText === "Product-Option already in cart") {
+                        Swal.fire('오류', '이 상품-옵션은 이미 장바구니에 있습니다.', 'error');
+                    } else {
+                        console.log("장바구니에 담기 실패");
+                        console.log(error);
+                    }
+                }
+            });
+
         });
 
     });
@@ -191,7 +183,6 @@ window.onload=()=>{
         var selectedTxt = document.querySelector('.selected-option');
         dropbtn_content.innerText = value;
         selectedTxt.innerText =  $(event.target).data('lf-opt-id');
-        console.log(value,$(event.target).data('lf-opt-id') );
 
         var dropdownContents = document.querySelectorAll('.dropdown-content div');
         dropdownContents.forEach((content) => {
@@ -249,8 +240,6 @@ function validation(obj){
 
 
 function submitReview(memberId){
-    console.log("memberId", memberId);
-
     console.log(selectedFiles)
     const formData = new FormData();
 

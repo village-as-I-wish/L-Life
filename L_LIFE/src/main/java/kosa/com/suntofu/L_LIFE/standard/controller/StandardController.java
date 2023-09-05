@@ -25,13 +25,17 @@ public class StandardController {
     private int lfSubType = 0;
 
     @GetMapping("/main")
-    public String loadStandardMainPage(Model model, @SessionAttribute("existingMember") MemberVo member) {
+    public String loadStandardMainPage(Model model, StandardPaginationVo standardPaginationVo) {
 
-        model.addAttribute("lfSubType", lfSubType);
+        int totalNum = standardService.getAllStandardPagination(standardPaginationVo);
+        int paginationNum = standardService.calculatePaginationNum(totalNum);
 
         // 메인 상품 리스트 가져오기
-        List<StandardVo> standardList = standardService.getAllStandard();
+        List<StandardVo> standardList = standardService.getAllStandard(standardPaginationVo);
         model.addAttribute("standardList", standardList);
+        model.addAttribute("totalNum", totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("page", standardPaginationVo.getPage());
 
         // 라이브 리스트 가져오기
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
@@ -47,13 +51,19 @@ public class StandardController {
     }
 
     // 스탠다드 상품 카테고리별 필터링
-    @GetMapping("/category/{fCategoryId}")
-    public String getStandardByCategory(Model model, @PathVariable int fCategoryId) {
+    @GetMapping("/category/{lfCategoryId}")
+    public String selectStandardProductByCategory(Model model, @PathVariable int lfCategoryId,  StandardPaginationVo standardPaginationVo) {
 
-        model.addAttribute("lfSubType", lfSubType);
+        standardPaginationVo.setLfCategoryId(lfCategoryId);
+        List<StandardVo> standardList = standardService.getStandardProductByCategory(standardPaginationVo);
+        int totalNum = standardService.getStandardProductByCategoryByPagination(standardPaginationVo);
+        int paginationNum = standardService.calculatePaginationNum(totalNum);
 
-        List<StandardVo> standardList = standardService.getStandardByCategory(fCategoryId);
         model.addAttribute("standardList", standardList);
+        model.addAttribute("totalNum", totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("page", standardPaginationVo.getPage());
+        model.addAttribute("lfSubType", standardPaginationVo.getLfSubType());
 
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
         model.addAttribute("standardLiveList", standardLiveList);
@@ -68,21 +78,22 @@ public class StandardController {
 
     // 스탠다드 상품 검색
     @GetMapping("/search")
-    public String getStandardProductByKeyword(@RequestParam String keyword, Model model) {
+    public String selectStandardProductByKeyword(@RequestParam String keyword, Model model, StandardPaginationVo standardPaginationVo) {
 
-        model.addAttribute("lfSubType", lfSubType);
+        standardPaginationVo.setKeyword(keyword);
+        List<StandardVo> stProductListByKeyword = standardService.getStandardProductByKeyword(standardPaginationVo);
+        int totalNum = standardService.getStandardProductByKeywordByPagination(standardPaginationVo);
+        int paginationNum = standardService.calculatePaginationNum(totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("stkeyword", stProductListByKeyword);
+        model.addAttribute("standardList", stProductListByKeyword);
+        model.addAttribute("productCount", stProductListByKeyword.size());
 
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
         model.addAttribute("standardLiveList", standardLiveList);
 
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("now", LocalDateTime.now());
-
-        List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
-        model.addAttribute("stkeyword", stkeyword);
-        model.addAttribute("standardList", stkeyword);
-
-        model.addAttribute("productCount", stkeyword.size());
 
       return "pages/standard/standard_main";
     }
@@ -105,7 +116,6 @@ public class StandardController {
         // 옵션 가져오기
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
         model.addAttribute("options", options);
-        System.out.println(options);
 
         // 리퍼 정보 가져오기
         List<StandardRefurVo> refurinfos = standardService.getStandardRefurById(lfId);

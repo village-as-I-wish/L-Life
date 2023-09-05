@@ -5,13 +5,11 @@ $(document).ready(function(){
     $(".dropdown-content div").click(function() {
         var selectedOptionId = parseInt($(this).data('lf-opt-id'));
         var memberId = parseInt($('#memberId').val());
-        console.log("memberId : " + memberId);
         $.ajax({
             url: '/l-life/api/v1/premium/checkStock/' + productId + '/' + selectedOptionId,
             method: 'GET',
             success: function (stockAmount) {
                 var button = $('.lf-pr-submit-btns form button');
-                console.log(stockAmount);
                 if (stockAmount <= 0) {
                     // 옵션의 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
                     button.text('재입고 알림 신청');
@@ -31,7 +29,6 @@ $(document).ready(function(){
                                     lfId: productId,
                                     memberId: memberId
                                 }
-                                console.log(data);
                                 $.ajax({
                                     url: '/l-life/api/v1/premium/reservation',
                                     method: 'POST',
@@ -65,7 +62,6 @@ $(document).ready(function(){
                     lfId: productId,
                     memberId: memberId
                 };
-                console.log(data);
                 $.ajax({
                     url: '/l-life/api/v1/premium/cart',
                     method: 'POST',
@@ -87,7 +83,6 @@ $(document).ready(function(){
                     error: function(error) {
                         console.log("장바구니에 담기 실패");
                         console.log(error);
-
                     }
                 });
     });

@@ -1,16 +1,10 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -36,57 +30,79 @@ public class StandardServiceImpl implements StandardService {
     private final StandardDAO standardDAO;
 
     @Override
-    public List<StandardVo> getAllStandard() {
+    public StandardPaginationVo calculateAndSetOffset(StandardPaginationVo standardPaginationVo) {
+        if(standardPaginationVo.getPage() == 0) {
+            standardPaginationVo.setPage(1);
+        }
+        int offset = 20 * (standardPaginationVo.getPage() - 1);
+        standardPaginationVo.setOffset(offset);
+        return standardPaginationVo;
+    }
 
-        return standardDAO.selectAllStandard();
+    @Override
+    public int calculatePaginationNum(int totalNum) {
+        return (int)Math.ceil((double)totalNum / 20);
+    }
+
+    @Override
+    public List<StandardVo> getAllStandard(StandardPaginationVo standardPaginationVo) {
+        standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
+        return standardDAO.selectAllStandard(standardPaginationVo);
+    }
+
+    @Override
+    public int getAllStandardPagination(StandardPaginationVo standardPaginationVo) {
+        return standardDAO.selectAllStandardPagination(standardPaginationVo);
     }
 
     @Override
     public List<StandardLiveVo> getAllLiveStream() {
-
         return standardDAO.selectAllLiveStream();
     }
 
     @Override
-    public List<StandardVo> getStandardByCategory(int fCategoryId) {
-
-        return standardDAO.selectStandardProductByCategory(fCategoryId);
+    public List<StandardVo> getStandardProductByCategory(StandardPaginationVo standardPaginationVo) {
+        standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
+        return standardDAO.selectStandardProductByCategory(standardPaginationVo);
     }
 
     @Override
-    public List<StandardVo> getStandardProductByKeyword(String keyword) {
+    public int getStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo) {
+        return standardDAO.selectStandardProductByCategoryByPagination(standardPaginationVo);
+    }
 
-        return standardDAO.selectStandardProductByKeyword(keyword);
+    @Override
+    public List<StandardVo> getStandardProductByKeyword(StandardPaginationVo standardPaginationVo) {
+        standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
+        return standardDAO.selectStandardProductByKeyword(standardPaginationVo);
+    }
+    @Override
+    public int getStandardProductByKeywordByPagination(StandardPaginationVo standardPaginationVo) {
+        return standardDAO.selectStandardProductByKeywordByPagination(standardPaginationVo);
     }
 
     @Override
     public List<StandardVo> getStandardProductByFilter(SearchRequestVo requestVo) {
-
         return standardDAO.searchStandardProductByFilter(requestVo);
     }
 
     @Override
     public StandardDetailVo getStandardDetailById(int lfId) {
-
         return standardDAO.selectStandardDetailById(lfId);
     }
 
     @Override
     public List<StandardOptionVo> getStandardOptionById(int lfId) {
-
         return standardDAO.selectStandardOptionById(lfId);
     }
 
     @Override
     public List<StandardRefurVo> getStandardRefurById(int lfId) {
-
         return standardDAO.selectStandardRefurById(lfId);
     }
 
-
     @Override
     public List<StandardVo> getStandardRecommendation(int lfId) {
-
         return standardDAO.selectStandardRecommendation(lfId);
     }
 
@@ -103,13 +119,11 @@ public class StandardServiceImpl implements StandardService {
 
     @Override
     public int putOptionToReservation(StandardOptionVo standardOptionVo) {
-
         return standardDAO.insertOptionToReservation(standardOptionVo);
     }
 
     @Override
     public int putProductToCart(StandardSubscriptionVo standardSubscriptionVo) {
-
         return standardDAO.insertProductToCart(standardSubscriptionVo);
     }
 

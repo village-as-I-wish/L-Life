@@ -18,7 +18,6 @@ function search() {
     var minCoin = 1;
     var maxCoin = document.querySelector('#myRange').value;
     var lfId
-    console.log(lfBrandIds, lfMoodIds)
 
 
     var data = {
@@ -43,10 +42,8 @@ function search() {
         queryParams += "maxCoin=" + encodeURIComponent(maxCoin) + "&";
     }
     queryParams = queryParams.slice(0, -1);
-    console.log(queryParams)
 
     var url = "http://localhost:8080/l-life/api/v1/standard/search?" + queryParams;
-    console.log(url)
 
     $.ajax({
         type: "GET",
