@@ -4,6 +4,16 @@
     <th:block th:replace="common/fragment/commonHead"></th:block>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/subscription/premium_payment_detail.css}"/>
+    <!-- iamport 결제 -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+    <!-- Toss payments -->
+    <script type="text/javascript" src="https://js.tosspayments.com/v1"></script>
+
+    <script th:inline="javascript">
+        var payKeys = /*[[${payKeys}]]*/ null;
+        var baseUrl = /*[[${baseUrl}]]*/ null;
+    </script>
     <script th:src="@{/js/subscription/premium_payment_detail.js}" type="text/javascript"></script>
 
 </head>
@@ -256,6 +266,7 @@
                         최종결제금액
                     </div>
                     <div class="final-price-num text-lg bold-text">
+                        <span id="final-price">0</span> <span>원</span>
                     </div>
                     <hr>
                     <div class="final-point">
@@ -269,7 +280,7 @@
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
                     </span>
 
-                    <button class="payment-button" onclick="payment(${payKeys})" th:color="white">결제하기</button>
+                    <button class="payment-button" th:onclick="payment(1)">결제하기</button> <!-- memberId -->
                 </div>
             </div>
 
