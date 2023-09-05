@@ -57,41 +57,39 @@ $(document).ready(function(){
     });
 
     $('.lf-pr-submit-btns form').on('submit', function(event) {
+        var selectedOptionId = parseInt($('.selected-option').text());
+        var memberId = parseInt($('#memberId').val());
         event.preventDefault();
-        Swal.fire({
-            title: '장바구니에 추가되었습니다.',
-            text: '장바구니로 이동하시겠습니까?',
-            confirmButtonText: '확인',
-            cancelButtonText: '취소',
-            showCancelButton: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                console.log(optionId)
-                console.log(productId)
-                // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
-                const data = {
-                    lfOptId: optionId,
+                data = {
+                    lfOptId: selectedOptionId,
                     lfId: productId,
+                    memberId: memberId
                 };
+                console.log(data);
                 $.ajax({
-                    url: '#',
+                    url: '/l-life/api/v1/premium/cart',
                     method: 'POST',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json',
+                    data: data,
                     success: function(response) {
-                        console.log("장바구니에 담기 완료");
-                        console.log(response);
-                        // 확인 -> 장바구니 페이지로 이동
-                        window.location.href = "/l-life/member/mypage/cart";
+                        Swal.fire({
+                            title: '장바구니에 추가되었습니다.',
+                            text: '장바구니로 이동하시겠습니까?',
+                            confirmButtonText: '확인',
+                            cancelButtonText: '취소',
+                            showCancelButton: true,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                console.log("장바구니에 담기 완료");
+                                window.location.href = "/l-life/member/" + memberId + "/mypage/cart";
+                            }
+                        });
                     },
                     error: function(error) {
-                        window.location.href = "/l-life/member/mypage/cart";
                         console.log("장바구니에 담기 실패");
                         console.log(error);
+
                     }
                 });
-            }
-        });
     });
 
 
@@ -132,8 +130,9 @@ window.onload=()=>{
 
     showMenu=(value)=>{
         var dropbtn_content = document.querySelector('.dropbtn_content');
+        var selectedTxt = document.querySelector('.selected-option');
         dropbtn_content.innerText = value;
-        console.log(value);
+        selectedTxt.innerText =  $(event.target).data('lf-opt-id');
 
         var dropdownContents = document.querySelectorAll('.dropdown-content div');
         dropdownContents.forEach((content) => {
@@ -143,6 +142,7 @@ window.onload=()=>{
         });
     }
 }
+
 window.onclick= (e)=>{
     if(!e.target.matches('.dropbtn_click')){
         var dropdowns = document.getElementsByClassName("dropdown-content");
