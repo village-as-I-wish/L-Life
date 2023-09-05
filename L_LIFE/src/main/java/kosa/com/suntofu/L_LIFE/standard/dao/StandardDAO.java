@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.standard.dao;
 
+import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,7 +14,8 @@ public interface StandardDAO {
     List<StandardLiveVo> selectAllLiveStream();
     List<StandardVo> selectStandardProductByCategory(StandardPaginationVo standardPaginationVo);
     int selectStandardProductByCategoryByPagination(StandardPaginationVo standardPaginationVo);
-    List<StandardVo> selectStandardProductByKeyword(String keyword);
+    List<StandardVo> selectStandardProductByKeyword(StandardPaginationVo standardPaginationVo);
+    int selectStandardProductByKeywordByPagination(StandardPaginationVo standardPaginationVo);
     List<StandardVo> searchStandardProductByFilter(SearchRequestVo requestVo);
     StandardDetailVo selectStandardDetailById(int lfId);
     List<StandardOptionVo> selectStandardOptionById(int lfId);

@@ -78,21 +78,22 @@ public class StandardController {
 
     // 스탠다드 상품 검색
     @GetMapping("/search")
-    public String getStandardProductByKeyword(@RequestParam String keyword, Model model) {
+    public String selectStandardProductByKeyword(@RequestParam String keyword, Model model, StandardPaginationVo standardPaginationVo) {
 
-        model.addAttribute("lfSubType", lfSubType);
+        standardPaginationVo.setKeyword(keyword);
+        List<StandardVo> stProductListByKeyword = standardService.selectStandardProductByKeyword(standardPaginationVo);
+        int totalNum = standardService.selectStandardProductByKeywordByPagination(standardPaginationVo);
+        int paginationNum = standardService.calculatePaginationNum(totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("stkeyword", stProductListByKeyword);
+        model.addAttribute("standardList", stProductListByKeyword);
+        model.addAttribute("productCount", stProductListByKeyword.size());
 
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
         model.addAttribute("standardLiveList", standardLiveList);
 
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("now", LocalDateTime.now());
-
-        List<StandardVo> stkeyword = standardService.getStandardProductByKeyword(keyword);
-        model.addAttribute("stkeyword", stkeyword);
-        model.addAttribute("standardList", stkeyword);
-
-        model.addAttribute("productCount", stkeyword.size());
 
       return "pages/standard/standard_main";
     }

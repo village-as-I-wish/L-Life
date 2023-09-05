@@ -78,7 +78,9 @@
                 <form th:action="@{/standard/search}" method="get">
                     <div class="pl-search-box">
                         <input type="text" name="keyword" placeholder="상품명으로 검색">
-                        <input type="image" class="search-icon" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/search.png}">
+                        <button type="submit" class="search-button">
+                            <img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/search-small.png" alt="검색">
+                        </button>
                     </div>
                 </form>
 

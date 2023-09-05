@@ -1,17 +1,10 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
-import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -79,11 +72,14 @@ public class StandardServiceImpl implements StandardService {
         return standardDAO.selectStandardProductByCategoryByPagination(standardPaginationVo);
     }
 
-
     @Override
-    public List<StandardVo> getStandardProductByKeyword(String keyword) {
-
-        return standardDAO.selectStandardProductByKeyword(keyword);
+    public List<StandardVo> selectStandardProductByKeyword(StandardPaginationVo standardPaginationVo) {
+        standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
+        return standardDAO.selectStandardProductByKeyword(standardPaginationVo);
+    }
+    @Override
+    public int selectStandardProductByKeywordByPagination(StandardPaginationVo standardPaginationVo) {
+        return standardDAO.selectStandardProductByKeywordByPagination(standardPaginationVo);
     }
 
     @Override

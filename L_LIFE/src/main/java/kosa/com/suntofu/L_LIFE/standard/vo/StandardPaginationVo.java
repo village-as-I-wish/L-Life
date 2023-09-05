@@ -21,6 +21,7 @@ public class StandardPaginationVo {
     private Integer lfMoodId; // 가구 분위기 아이디 (필터링)
     private Integer lfBrandId; // 가구 브랜드 아이디 (필터링)
     private int lfCategoryId; // 가구 카테고리 아이디 (필터링)
+    private String keyword; // 검색 키워드
     private int offset; // 오프셋 수
     private int page; // 페이지 수
 }
