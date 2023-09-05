@@ -25,13 +25,17 @@ public class StandardController {
     private int lfSubType = 0;
 
     @GetMapping("/main")
-    public String loadStandardMainPage(Model model, @SessionAttribute("existingMember") MemberVo member) {
+    public String loadStandardMainPage(Model model, StandardPaginationVo standardPaginationVo) {
 
-        model.addAttribute("lfSubType", lfSubType);
+        int totalNum = standardService.selectAllStandardPagination(standardPaginationVo);
+        int paginationNum = standardService.calculatePaginationNum(totalNum);
 
         // 메인 상품 리스트 가져오기
-        List<StandardVo> standardList = standardService.getAllStandard();
+        List<StandardVo> standardList = standardService.selectAllStandard(standardPaginationVo);
         model.addAttribute("standardList", standardList);
+        model.addAttribute("totalNum", totalNum);
+        model.addAttribute("paginationNum", paginationNum);
+        model.addAttribute("page", standardPaginationVo.getPage());
 
         // 라이브 리스트 가져오기
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();

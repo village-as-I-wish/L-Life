@@ -1,11 +1,15 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
+import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 
 import java.util.List;
 
 public interface StandardService {
-    List<StandardVo> getAllStandard();
+    StandardPaginationVo calculateAndSetOffset(StandardPaginationVo standardPaginationVo);
+    int calculatePaginationNum(int totalNum);
+    List<StandardVo> selectAllStandard(StandardPaginationVo standardPaginationVo);
+    int selectAllStandardPagination(StandardPaginationVo standardPaginationVo);
     List<StandardLiveVo> getAllLiveStream();
     List<StandardVo> getStandardByCategory(int fCategoryId);
     List<StandardVo> getStandardProductByKeyword(String keyword);

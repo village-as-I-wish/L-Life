@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
+import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,29 @@ public class StandardServiceImpl implements StandardService {
     private final StandardDAO standardDAO;
 
     @Override
-    public List<StandardVo> getAllStandard() {
+    public StandardPaginationVo calculateAndSetOffset(StandardPaginationVo standardPaginationVo) {
+        if(standardPaginationVo.getPage() == 0) {
+            standardPaginationVo.setPage(1);
+        }
+        int offset = 20 * (standardPaginationVo.getPage() - 1);
+        standardPaginationVo.setOffset(offset);
+        return standardPaginationVo;
+    }
 
-        return standardDAO.selectAllStandard();
+    @Override
+    public int calculatePaginationNum(int totalNum) {
+        return (int)Math.ceil((double)totalNum / 20);
+    }
+
+    @Override
+    public List<StandardVo> selectAllStandard(StandardPaginationVo standardPaginationVo) {
+        standardPaginationVo = calculateAndSetOffset(standardPaginationVo);
+        return standardDAO.selectAllStandard(standardPaginationVo);
+    }
+
+    @Override
+    public int selectAllStandardPagination(StandardPaginationVo standardPaginationVo) {
+        return standardDAO.selectAllStandardPagination(standardPaginationVo);
     }
 
     @Override

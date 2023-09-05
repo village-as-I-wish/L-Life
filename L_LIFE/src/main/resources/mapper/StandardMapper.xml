@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO">
 
-    <!-- 스탠다드 메인 (가구이미지, 가구명, 가구브랜드, 코인개수) -->
+    <!-- 스탠다드 상품 리스트 메인 -->
     <select id = "selectAllStandard">
         SELECT
             lf.lf_id,
@@ -18,7 +18,22 @@
             LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
         WHERE
             lf_sub_type = 0
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
+
+
+    <!-- pagination 전체 상품 개수 구하기 -->
+    <select id="selectAllStandardPagination" resultType="_int">
+        SELECT
+            count(*)
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        WHERE
+            lf_sub_type = 0
+    </select>
+
 
     <!-- 라이브 리스트 가져오기 -->
     <select id = "selectAllLiveStream" resultType="StandardLiveVo">
@@ -40,7 +55,7 @@
             LFP.lf_package_type = 0
     </select>
 
-    <!-- 카테고리 필터 -->
+    <!-- 스탠다드 상품 카테고리 필터링 -->
     <select id="selectStandardProductByCategory" resultType="StandardVo">
         SELECT
             lf.lf_id,
@@ -60,6 +75,9 @@
         AND
             lf_sub_type = 0
     </select>
+
+
+
 
     <!-- 상품 검색(브랜드명, 상품명) -->
     <select id="selectStandardProductByKeyword" resultType="StandardVo">

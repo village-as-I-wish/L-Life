@@ -8,7 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface StandardDAO {
-    List<StandardVo> selectAllStandard();
+    List<StandardVo> selectAllStandard(StandardPaginationVo standardPaginationVo);
+    int selectAllStandardPagination(StandardPaginationVo standardPaginationVo);
     List<StandardLiveVo> selectAllLiveStream();
     List<StandardVo> selectStandardProductByCategory(int fCategoryId);
     List<StandardVo> selectStandardProductByKeyword(String keyword);

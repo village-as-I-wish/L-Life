@@ -114,9 +114,11 @@
                         </a>
                     </div>
                 </div>
+                <div th:replace="common/fragment/pagination/pagination :: paginationFragment"></div>
             </div>
         </div>
     </div>
 </div>
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 </body>
 </html>
