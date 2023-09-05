@@ -43,7 +43,8 @@
             lf_opt.LF_OPT_ID,
             lf_opt.LF_OPT_NAME,
             lf_brand.LF_BRAND_NAME,
-            s.STOCK_AMOUNT
+            s.STOCK_AMOUNT,
+            lf.LF_PR_MIN_PERIOD
         from
             cart c
                 join

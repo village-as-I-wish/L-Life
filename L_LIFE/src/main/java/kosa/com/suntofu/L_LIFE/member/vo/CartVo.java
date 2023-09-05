@@ -20,6 +20,8 @@ public class CartVo {
     private String lfBrandName;
     private int stockAmount;
 
+    private String lfPrMinPeriod;
+
 }
 
 
