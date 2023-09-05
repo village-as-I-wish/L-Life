@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReviewImgVo {
 
+    private int rImgId;
     private String rImgUrl;
     private int lfReviewId;
 

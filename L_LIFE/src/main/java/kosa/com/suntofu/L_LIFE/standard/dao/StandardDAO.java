@@ -24,5 +24,6 @@ public interface StandardDAO {
 
     int insertReviewImg(List<ReviewImgVo> list);
 
+    List<ReviewVo> selectAllReviews(int lfId);
 }
 

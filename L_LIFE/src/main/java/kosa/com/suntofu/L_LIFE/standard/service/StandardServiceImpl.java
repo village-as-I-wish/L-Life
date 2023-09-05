@@ -142,6 +142,11 @@ public class StandardServiceImpl implements StandardService {
         }
     }
 
+    @Override
+    public List<ReviewVo> getReviews(int lfId) {
+        return standardDAO.selectAllReviews(lfId);
+    }
+
     private String createFileName(String fileName) {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));
     }

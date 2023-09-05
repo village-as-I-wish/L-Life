@@ -18,4 +18,6 @@ public interface StandardService {
     int putOptionToReservation(StandardOptionVo standardOptionVo);
 
     int createReview(ReviewRequestVo reviewRequestVo);
+
+    List<ReviewVo> getReviews(int lfId);
 }

@@ -117,7 +117,8 @@ public class StandardController {
         model.addAttribute("recommendProducts", recommendProducts);
 
         // Review 정보 가져오기
-        //List<ReviewVo> reviewList = standardService.getReviews(lfId);
+        List<ReviewVo> reviewList = standardService.getReviews(lfId);
+        model.addAttribute("reviewList", reviewList);
         return "pages/standard/standard_detail";
     }
 

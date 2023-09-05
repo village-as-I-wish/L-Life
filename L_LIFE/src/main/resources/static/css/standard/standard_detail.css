@@ -416,18 +416,22 @@ ul.tabs li.current{
     width: 15%;
 }
 .review-writer{
-    float:right
+    margin-right: 10px;
 }
 
 .review-card-img > img{
+    width: 100%;
+    height: 100%;
+}
+.review-card-sub-img > img{
     width: 80px;
     height: 80px;
-
 }
 
 .review-card{
     border: 1px solid lightgray;
     padding: 15px;
+    margin-bottom: 18px;
 }
 .review-card-body{
     width: 100%;
@@ -438,7 +442,8 @@ ul.tabs li.current{
     margin-left: 15px;
 }
 .review-card-img{
-    width:50%;
+    width: 15%;
+    height: initial;
 }
 .review-card-body-top{
     width: 100%;
@@ -477,4 +482,31 @@ ul.tabs li.current{
 }
 .review-body-content{
     line-height: 20px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+.review-card-sub-imgs{
+    display: flex;
+}
+.review-card-sub-img{
+    margin-right: 10px;
+}
+.review-body-content-title{
+    padding-left: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #5D493F;
+    margin-top: 6px;
+}
+
+.review-writer-box{
+    display: inline-block;
+    float: right;
+}
+
+.fa-trash:before {
+    content: "\f1f8";
+    font-size: 20px;
+    color: gray;
+    margin-left: 0px;
 }

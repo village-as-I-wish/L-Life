@@ -367,29 +367,44 @@
 
     <span class="review-sub-header"> 상품리뷰 (15)</span>
     <hr>
-    <div class="review-card">
-        <span class="review-logo">리바트 라이프 </span><span> 로에프 원목다리 티테이블 </span> | <span> 스탠다드 구독 </span> | <span>리바트 라이브 고객 후기</span>
-        <span class="review-writer"> 김승주 님 | 2023.08.14</span>
+    <div th:each="review : ${reviewList}" th:class="'review-card review-card-' + ${review.lfReviewId}">
+        <span class="review-logo">리바트 라이프 </span><span th:text="${standardDetail.lfName}"> </span> |
+        <span> 스탠다드 구독 </span> | <span>리바트 라이브 고객 후기</span>
+        <div class="review-writer-box">
+            <span class="review-writer" th:text="${' ' + review.mName + ' | ' + review.lfReviewDate}"></span>
+            <span th:if="${ session.existingMember.mId == review.mId}">
+             <i class="fa-solid fa-trash" style="cursor: pointer;" onclick="deleteReview([[ ${review.lfReviewId} ]])"></i>
+            </span>
+        </div>
         <div class="review-card-content">
-            <img alt="리뷰 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+            <div class="review-card-img">
+                <img alt="리뷰 사진" th:src="@{/img/standard/review_main_logo.png}"
+                     th:if="${#lists.isEmpty(review.lfReviewImgs)}"/>
+                <img alt="리뷰 사진" th:src="${review.lfReviewImgs.get(0).rImgUrl}"
+                     th:if="${not #lists.isEmpty(review.lfReviewImgs)}"/>
+            </div>
             <div class="review-card-body">
                 <div class="review-card-body-top">
-                    <div class="review-card-img">
-                        <img alt="리뷰 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
-                        <img alt="리뷰 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
-                        <img alt="리뷰 사진 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+                    <div class="review-card-sub-imgs">
+                        <div class="review-card-sub-img" th:if="${not #lists.isEmpty(review.lfReviewImgs)}"
+                             th:each="image, iterStat : ${review.lfReviewImgs}">
+                            <img alt="리뷰 사진" th:src="${image.rImgUrl}" th:if="${iterStat.index > 0}"/>
+                        </div>
                     </div>
                     <div class="review-ratings">
-                        <p class="total-review-rating">총 점 : <span><i th:each="i : ${#numbers.sequence(1, 5)}" class="fa-solid fa-star"></i></span></p>
-                        <p> 구독 서비스 : <span><i th:each="i : ${#numbers.sequence(1, 4)}" class="fa-solid fa-star"></i></span></p>
-                        <p> 배송 서비스 : <span><i th:each="i : ${#numbers.sequence(1, 2)}" class="fa-solid fa-star"></i></span></p>
+                        <p class="total-review-rating">총 점 : <span><i
+                                th:each="i : ${#numbers.sequence(1, review.lfReviewRating)}"
+                                class="fa-solid fa-star"></i></span></p>
+                        <p> 구독 서비스 : <span><i th:each="i : ${#numbers.sequence(1, review.lfReviewSerRating)}"
+                                              class="fa-solid fa-star"></i></span></p>
+                        <p> 배송 서비스 : <span><i th:each="i : ${#numbers.sequence(1, review.lfReviewDelRating)}"
+                                              class="fa-solid fa-star"></i></span></p>
                     </div>
                 </div>
-                <p class="review-body-content"> 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용
-                </p>
+                <p class="review-body-content-title" th:text="${review.lfReviewTitle}"></p>
+                <p class="review-body-content" th:text="${review.lfReviewContent}"></p>
             </div>
         </div>
-
     </div>
 
 </div>
