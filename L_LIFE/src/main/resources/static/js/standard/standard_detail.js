@@ -240,7 +240,7 @@ function validation(obj){
 
 
 function submitReview(memberId){
-    console.log(selectedFiles)
+
     const formData = new FormData();
 
     let lfId = parseInt($('#modal-lf-id').text())
@@ -293,5 +293,48 @@ function submitReview(memberId){
         }
     });
 
+
+}
+function deleteReview(reviewId){
+    console.log("[ 리뷰 삭제 ] : ", reviewId);
+    Swal.fire({
+        title: '리뷰를 삭제하시겠습니까?',
+        text: '삭제 시 해당 리뷰는 더 이상 볼 수 없습니다.',
+        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            data ={
+                lf
+            }
+            $.ajax({
+                type : "POST",
+                data : formData,
+                contentType: false,
+                processData: false,
+                url : baseUrl +"/l-life/api/v1/standard/review",
+                success : function(res){
+                    Swal.fire({
+                        title: '리뷰 등록이 완료되었습니다.',
+                        text: '소중한 의견 감사드립니다.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        }
+                    })
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        title: '리뷰 등록에 실패하였습니다.',
+                        text: '잠시 후 다시 작성 부탁드립니다.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                        }
+                    });
+                }
+            });
+        }
+    });
 
 }

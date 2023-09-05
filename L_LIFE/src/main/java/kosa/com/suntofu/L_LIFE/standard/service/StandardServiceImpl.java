@@ -129,10 +129,10 @@ public class StandardServiceImpl implements StandardService {
 
     @Transactional
     @Override
-    public int createReview(ReviewVo reviewVo) {
+    public int createReview(ReviewRequestVo reviewRequestVo) {
         List<String> fileNameList = new ArrayList<>();
 
-        reviewVo.getFiles().forEach(file -> {
+        reviewRequestVo.getFiles().forEach(file -> {
             String fileName = "review/" +createFileName(file.getOriginalFilename());
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentLength(file.getSize());
@@ -147,8 +147,8 @@ public class StandardServiceImpl implements StandardService {
         });
 
         try{
-            standardDAO.insertReview(reviewVo);
-            int insertedReviewId = reviewVo.getLfReviewId();
+            standardDAO.insertReview(reviewRequestVo);
+            int insertedReviewId = reviewRequestVo.getLfReviewId();
 
             log.info("[리뷰 등록 ] 데이터 삽입 성공 {}", insertedReviewId);
 
@@ -165,6 +165,11 @@ public class StandardServiceImpl implements StandardService {
             log.info("[리뷰 등록 ] 데이터 삽입 오류 {} ", e.getStackTrace().toString());
             return -1;
         }
+    }
+
+    @Override
+    public List<ReviewVo> getReviews(int lfId) {
+        return standardDAO.selectAllReviews(lfId);
     }
 
     private String createFileName(String fileName) {

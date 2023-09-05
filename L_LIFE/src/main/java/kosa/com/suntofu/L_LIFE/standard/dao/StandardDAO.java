@@ -23,8 +23,14 @@ public interface StandardDAO {
     List<StandardVo> selectStandardRecommendation(int lfId);
     StandardRestockVo selectStandardStockAmount(@Param("lfOptId") int lfOptId, @Param("lfId") int lfId);
     int insertOptionToReservation(StandardOptionVo standardOptionVo);
+  
     int insertProductToCart(StandardSubscriptionVo standardSubscriptionVo);
-    void insertReview(ReviewVo reviewVo);
+
+    void insertReview(ReviewRequestVo reviewRequestVo);
+
     int insertReviewImg(List<ReviewImgVo> list);
+
+    List<ReviewVo> selectAllReviews(int lfId);
+
 }
 

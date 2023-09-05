@@ -281,7 +281,7 @@
     </insert>
 
 
-    <insert id="insertReview" useGeneratedKeys="false" parameterType="ReviewVo" >
+    <insert id="insertReview" useGeneratedKeys="false" parameterType="ReviewRequestVo" >
         insert into review(lf_review_title, lf_review_content, m_id, lf_id, lf_review_rating, lf_review_ser_rating, lf_review_del_rating)
         values(#{lfReviewTitle}, #{lfReviewContent}, #{mId}, #{lfId}, #{lfReviewRating},#{lfReviewSerRating},#{lfReviewDelRating})
 
@@ -297,9 +297,51 @@
         </selectKey>
         INSERT INTO reviewImage (r_img_id, r_img_url, lf_review_id)
         <foreach collection="list" item="item" index="idx" separator="UNION ALL">
-            SELECT #{maxSeq} + #{idx}, #{item.rImgUrl}, #{item.lfReviewId} FROM DUAL
+            SELECT #{maxSeq} + #{idx} +1, #{item.rImgUrl}, #{item.lfReviewId} FROM DUAL
         </foreach>
     </insert>
 
+
+    <!-- 리뷰 정보 -->
+    <select id="selectAllReviews" resultMap="ReviewWithImages">
+        SELECT
+            r.LF_REVIEW_ID,
+            r.LF_REVIEW_TITLE,
+            r.LF_REVIEW_CONTENT,
+            r.M_ID,
+            m.M_NAME,
+            r.LF_REVIEW_TYPE,
+            r.LF_REVIEW_DATE,
+            r.LF_ID,
+            r.LF_REVIEW_RATING,
+            r.LF_REVIEW_SER_RATING,
+            r.LF_REVIEW_DEL_RATING,
+            i.R_IMG_ID,
+            i.R_IMG_URL
+        FROM REVIEW r
+                 LEFT JOIN REVIEWIMAGE i ON r.LF_REVIEW_ID = i.LF_REVIEW_ID
+                 LEFT JOIN MEMBER m ON r.M_ID = m.M_ID
+        WHERE r.LF_ID = 1
+        ORDER BY r.LF_REVIEW_DATE DESC
+    </select>
+
+    <!-- 리뷰와 이미지를 매핑하는 resultMap -->
+    <resultMap id="ReviewWithImages" type="ReviewVo">
+        <id property="lfReviewId" column="LF_REVIEW_ID" />
+        <result property="lfReviewTitle" column="LF_REVIEW_TITLE" />
+        <result property="lfReviewContent" column="LF_REVIEW_CONTENT" />
+        <result property="mId" column="M_ID" />
+        <result property="mName" column="M_NAME" />
+        <result property="lfReviewType" column="LF_REVIEW_TYPE" />
+        <result property="lfReviewDate" column="LF_REVIEW_DATE" />
+        <result property="lfId" column="LF_ID" />
+        <result property="lfReviewRating" column="LF_REVIEW_RATING" />
+        <result property="lfReviewSerRating" column="LF_REVIEW_SER_RATING" />
+        <result property="lfReviewDelRating" column="LF_REVIEW_DEL_RATING" />
+        <collection property="lfReviewImgs" ofType="ReviewImgVo">
+            <id property="rImgId" column="R_IMG_ID" />
+            <result property="rImgUrl" column="R_IMG_URL" />
+        </collection>
+    </resultMap>
 
 </mapper>

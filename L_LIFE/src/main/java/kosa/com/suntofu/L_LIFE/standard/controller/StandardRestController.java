@@ -1,7 +1,7 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
-import kosa.com.suntofu.L_LIFE.standard.vo.ReviewVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.ReviewRequestVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.SearchRequestVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardOptionVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardSubscriptionVo;
@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Slf4j
@@ -63,10 +62,10 @@ public class StandardRestController {
 
     @PostMapping("/review")
     @ResponseBody
-    public ResponseEntity<BasicResponse> createReview(ReviewVo reviewVo){
+    public ResponseEntity<BasicResponse> createReview(ReviewRequestVo reviewRequestVo){
 
-        log.info("reviews {} ", reviewVo);
-        int result  = standardService.createReview(reviewVo);
+        log.info("reviews {} ", reviewRequestVo);
+        int result  = standardService.createReview(reviewRequestVo);
         if(result < 1){
             return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("리뷰 등록 실패").build(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
