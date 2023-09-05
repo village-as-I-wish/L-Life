@@ -99,6 +99,16 @@ function dayChecked(i){
     $('.checkedDay').text(dateString);
 
 }
+function timeChecked(button){
+    $('.time-btn').removeClass('time-selected');
+    $(button).addClass('time-selected');
+
+    var time = $(button).attr('data-value');
+    console.log('data-value:', time);
+
+    $('.checkedTime').text(time);
+
+}
 $(document).ready(function() {
         calendarInit();
 

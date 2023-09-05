@@ -244,15 +244,19 @@ select.delivery-reservation-tel-input{
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    justify-content: center;
 }
 
 .delivery-reservation-time-select-content-boxcontent{
     margin: 30px 15px;
+    flex: 5;
 }
 
 .btn-group{
     display: flex;
 }
+
 
 .select-box{
     margin: 15px !important;
@@ -318,7 +322,9 @@ input[type="radio"]:checked + label.select-box {
 
 .delivery-reservation-time-select-content-ul{
     list-style: disc !important;
-    margin-left: 40px;
+    margin-top: 30px;
+    line-height: 25px;
+    margin-left: 30px;
 }
 
 .delivery-reservation-time-select-content-ul > li{
@@ -419,4 +425,51 @@ input[type="radio"]:checked + label.select-box {
 }
 .selected {
     border:1px solid #5D493E !important;
+}
+
+/*예약일 선택 */
+.delivery-content{
+    display: flex;
+    flex-display: column;
+}
+.time-select-box{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+.time-btn{
+    width:50%;
+    padding: 35px;
+    background: none;
+    border: 1px solid black;
+}
+.time-btn-group{
+   width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.time-selected{
+    background: #5D493E !important;
+    color: white !important;
+}
+.time-select-box-header-txt{
+    margin-bottom: 25px;
+    margin-top: -60px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.delivery-notice-title {
+    margin-bottom: 12px;
+    display: block;
+    font-size: 18px;
+    margin-top: 24px;
+}
+
+.delivery-notice > .dot-list>li {
+    margin-top: 0.5em;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 300;
 }
