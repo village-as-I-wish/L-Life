@@ -234,6 +234,7 @@ select.delivery-reservation-tel-input{
     border: 0.5px solid #ccc;
     height: 600px;
     display: flex;
+    justify-content: center;
 }
 
 
@@ -322,4 +323,100 @@ input[type="radio"]:checked + label.select-box {
 
 .delivery-reservation-time-select-content-ul > li{
     margin-bottom: 5px;
+}
+
+
+/*calendar*/
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid lightgray;
+    margin-top: 8px;
+    text-align: center;
+
+}
+
+.calendar table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar th, .calendar td {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.calendar .year-month {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.calendar .day {
+    width: 12%;
+    margin: 0% 1% 0% 1%;
+    height: 60px;
+    line-height: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar .prev {
+    color: lightgray;
+}
+
+.calendar .current {
+}
+
+.calendar .next {
+    color: lightgray;
+}
+
+.calendar .today {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+.calendar-box{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
+
+}
+.calendar-header{
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    color: gray;
+    height: 40px;
+    font-size: 22px;
+    align-items: center;
+}
+.weekdays{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    border-bottom: 1px solid gray;
+    height: 65px;
+    align-items: center;
+}
+.days{
+    display: flex;
+    flex-wrap: wrap;
+}
+.modal-inner{
+    display: flex;
+    margin-bottom: 25px;
+    margin-top: 30px;
+
+}
+.selected {
+    border:1px solid #5D493E !important;
 }
