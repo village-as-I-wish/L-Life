@@ -16,10 +16,15 @@
                     <img th:src="@{/img/header/logo_l_life_b.png}"/>
                 </a>
             </div>
-            <div class="header-user">
-                <li><a th:href="@{/member/login}"> 로그인 </a></li>
-                <li><a th:href="@{/member/1/mypage}"> 회원가입 </a></li>
-                <li> 고객센터</li>
+            <div class="header-user" th:if="${session.existingMember == null}">
+                <li><a th:href="@{/member/login}">로그인</a></li>
+                <li><a th:href="@{/member/1/mypage}">회원가입</a></li>
+                <li>고객센터</li>
+            </div>
+            <div class="header-user" th:if="${session.existingMember != null}">
+                <li><span th:text="${session.existingMember.getMName()}"/> 님</li>
+                <li><a th:href="@{'/member/' + ${session.existingMember.getMId()} + '/mypage'}">마이페이지</a></li>
+                <li>고객센터</li>
             </div>
         </div>
     </header>
