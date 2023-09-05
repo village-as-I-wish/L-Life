@@ -58,8 +58,8 @@ public class StandardRestController {
 
         StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfOptId, lfId, memberId);
         int result = standardService.putProductToCart(tocart);
-        return new ResponseEntity<>("success",HttpStatus.OK);
-
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
 
     @PostMapping("/review")
     @ResponseBody

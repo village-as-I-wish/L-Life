@@ -76,10 +76,9 @@
 
 
         <div class="lf-pr-submit-btns">
-            <form>
                 <input type="hidden" name="productId" id="productId" th:value="${productId}">
-                <button type="submit" class="lf-btn-brown text-white">장바구니 담기</button>
-            </form>
+                <button type="submit" id="cardBtn" class="lf-btn-brown text-white">장바구니 담기</button>
+                <span class="hidden" id="memberId" th:text="${session.existingMember.mId}"></span>
             <button class="lf-btn-light-brown text-white">
                 <img alt="카드 사진 " th:src="@{/img/standard/card_logo.png}"/>
                 할인 쿠폰 받기

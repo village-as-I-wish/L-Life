@@ -13,7 +13,7 @@ $(document).ready(function(){
             url: '/l-life/api/v1/standard/checkStock/' + productId + '/' + selectedOptionId,
             method: 'GET',
             success: function (stockAmount) {
-                var button = $('.lf-pr-submit-btns form button');
+                var button = $('#cardBtn');
                 console.log("stockAmount " + stockAmount);
                 if (stockAmount <= 0) {
                     // 옵션의 재고가 없다면 '장바구니 담기' 버튼을 '재입고 알림' 버튼으로 변경
@@ -60,9 +60,9 @@ $(document).ready(function(){
     });
 
 
-    $('.lf-pr-submit-btns form').on('submit', function(event) {
+    $('#cardBtn').on('submit', function(event) {
         var selectedOptionId = parseInt($('.selected-option').text());
-        var memberId = parseInt($('#memberId').val());
+        var memberId = parseInt($('#memberId').text());
         event.preventDefault();
         data = {
             lfOptId: selectedOptionId,

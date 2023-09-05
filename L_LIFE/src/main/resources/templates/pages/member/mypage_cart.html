@@ -63,7 +63,7 @@
                 <a href="#" class="standard-add-link">스탠다드상품 추가하기</a>
                 <div class="reminder">L-lile Coin이 <span class="coinAmount" th:text="${session.currentCoin}"></span>개 남았어요!</div>
                 <a th:href="@{/member/1/delivery_reservation}" class="custom-button-link">
-                    <button class="custom-button">
+                    <button class="custom-button standard-payment">
                         구독 시작하기
                     </button>
                 </a>
@@ -109,13 +109,13 @@
             <div class="premium-start">
                 <a href="#" class="premium-add-link">프리미엄상품 추가하기</a>
                 <div class="total-premium-price">구독상품금액: </div>
-                <a class="custom-button-link"><button class="custom-button">결제하기</button></a>
+                <a class="custom-button-link"><button class="custom-button premium-payment">결제하기</button></a>
             </div>
         </section>
 
         <script>
 
-            $('.custom-button').click(function () {
+            $('.premium-payment').click(function () {
                 // 선택된 상품들을 담을 배열
                 var selectedProducts = [];
                 // 각 상품 요소를 순회하면서 선택 여부 확인
