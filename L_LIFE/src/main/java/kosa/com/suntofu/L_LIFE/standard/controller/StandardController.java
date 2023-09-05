@@ -116,6 +116,8 @@ public class StandardController {
         List<StandardVo> recommendProducts = standardService.getStandardRecommendation(lfId);
         model.addAttribute("recommendProducts", recommendProducts);
 
+        // Review 정보 가져오기
+        //List<ReviewVo> reviewList = standardService.getReviews(lfId);
         return "pages/standard/standard_detail";
     }
 

@@ -17,5 +17,5 @@ public interface StandardService {
     int getStandardStockAmount(int lfOptId, int lfId);
     int putOptionToReservation(StandardOptionVo standardOptionVo);
 
-    int createReview(ReviewVo reviewVo);
+    int createReview(ReviewRequestVo reviewRequestVo);
 }

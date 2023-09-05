@@ -1,16 +1,10 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -110,10 +104,10 @@ public class StandardServiceImpl implements StandardService {
 
     @Transactional
     @Override
-    public int createReview(ReviewVo reviewVo) {
+    public int createReview(ReviewRequestVo reviewRequestVo) {
         List<String> fileNameList = new ArrayList<>();
 
-        reviewVo.getFiles().forEach(file -> {
+        reviewRequestVo.getFiles().forEach(file -> {
             String fileName = "review/" +createFileName(file.getOriginalFilename());
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentLength(file.getSize());
@@ -128,8 +122,8 @@ public class StandardServiceImpl implements StandardService {
         });
 
         try{
-            standardDAO.insertReview(reviewVo);
-            int insertedReviewId = reviewVo.getLfReviewId();
+            standardDAO.insertReview(reviewRequestVo);
+            int insertedReviewId = reviewRequestVo.getLfReviewId();
 
             log.info("[리뷰 등록 ] 데이터 삽입 성공 {}", insertedReviewId);
 

@@ -20,7 +20,7 @@ public interface StandardDAO {
     StandardRestockVo selectStandardStockAmount(@Param("lfOptId") int lfOptId, @Param("lfId") int lfId);
     int insertOptionToReservation(StandardOptionVo standardOptionVo);
 
-    void insertReview(ReviewVo reviewVo);
+    void insertReview(ReviewRequestVo reviewRequestVo);
 
     int insertReviewImg(List<ReviewImgVo> list);
 

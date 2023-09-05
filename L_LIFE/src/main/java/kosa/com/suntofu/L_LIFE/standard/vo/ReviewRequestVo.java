@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewVo {
+public class ReviewRequestVo {
 
     int lfReviewId;
 
