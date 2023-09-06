@@ -1,7 +1,7 @@
 .lf-pr-summary-container{
     display: flex;
     height: 540px;
-    margin-top: 40px;
+    margin-top: 200px;
     margin-bottom: 25px;
     justify-content: space-around;
 }
