@@ -1,0 +1,67 @@
+<th:block th:fragment="standardCartModal()">
+    <link rel="stylesheet" th:href="@{/css/member/mypage_standard_cart_modal.css}">
+
+    <!-- Modal -->
+    <div class="modal fade" id="standardCartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="standardCartModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="standardCartModalLabel">L-Life.구독 신청서</h5>
+                    <img alt="베너 사진1 " th:src="@{/img/member/modal_logo.png}"/>
+                </div>
+                <div class="modal-body">
+                    <p class="user-name"> 김승주 구독자님, </p>
+                    <p> 구독 신청일 : <span> 2023.08.04 </span></p>
+                    <p> 구독 사용 예정 포인트 : <span> 5개 </span></p>
+
+                    <div class="modal-product-list">
+                        <p> 구독 예정 상품</p>
+
+                        <div class="modal-product-card">
+                            <img alt="베너 사진1 " th:src="@{/img/standard/main_bottom_card1.png}"/>
+                            <div class="modal-product-card-txt">
+                                <p> [리바트] 뉴 카렌 3000 옷장 ( 10.5 자 ) </p>
+                                <p class="modal-product-option-txt"> 옵션 : 레드 L - Size </p>
+                                <p class="modal-product-coin-box">
+                                    <span style="margin-right: 10px;">소요 L - POINT : </span>
+                                    <th:block th:each="coins, stat : ${#numbers.sequence(1, 4)}">
+                                        <img class="modal-product-coin" th:src="@{/img/member/coin.png}"/>
+                                    </th:block>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="modal-product-card">
+                            <img alt="베너 사진1 " th:src="@{/img/standard/main_bottom_card1.png}"/>
+                            <div class="modal-product-card-txt">
+                                <p> [리바트] 뉴 카렌 3000 옷장 ( 10.5 자 ) </p>
+                                <p class="modal-product-option-txt"> 옵션 : 레드 L - Size </p>
+                                <p class="modal-product-coin-box">
+                                    <span style="margin-right: 10px;">소요 L - POINT : </span>
+                                    <th:block th:each="coins, stat : ${#numbers.sequence(1, 4)}">
+                                        <img class="modal-product-coin" th:src="@{/img/member/coin.png}"/>
+                                    </th:block>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-sub-content">
+                        <p class="modal-sub-content-header"> 총 차감 L - POINT : 5 개 </p>
+                        <p class="modal-sub-content-subtxt"> * 스탠다드 구독 서비스는 결제 후 남은 코인은 사용 불가하니 신중히 결정해 주세요 * </p>
+                        <p class="modal-sub-content-subtxt"> * 구독 상품은 한달 간 사용 가능하며 추후 연장 가능합니다. * </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p> 구독을 신청하시겠습니까 ? </p>
+                    <div class="modal-btns">
+                        <button type="button" class="btn" data-bs-dismiss="modal">돌아가기</button>
+                        <a th:href="@{'/member/' + ${session.existingMember.mId} + '/delivery_reservation'}" type="button" class="btn sub-btn" > 구독신청 </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>

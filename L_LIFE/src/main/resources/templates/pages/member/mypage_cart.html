@@ -62,12 +62,13 @@
             <div class="standard-start">
                 <a href="#" class="standard-add-link">스탠다드상품 추가하기</a>
                 <div class="reminder">L-lile Coin이 <span class="coinAmount" th:text="${session.currentCoin}"></span>개 남았어요!</div>
-                <a th:href="@{/member/1/delivery_reservation}" class="custom-button-link">
-                    <button class="custom-button standard-payment">
+                <a class="custom-button-link">
+                    <button class="custom-button standard-payment" data-bs-toggle="modal" data-bs-target="#standardCartModal">
                         구독 시작하기
                     </button>
                 </a>
             </div>
+            <th:block th:replace="pages/member/mypage_standard_cart_modal::standardCartModal()"></th:block>
 
             <!-- 프리미엄 장바구니 부분 -->
 
