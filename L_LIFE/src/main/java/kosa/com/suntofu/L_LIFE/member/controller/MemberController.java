@@ -40,6 +40,9 @@ public class MemberController {
         int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
         int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
 
+        Integer standardSubscriptionId = memberService.getStandardSubscriptionId(existingMember.getMId());
+        Integer premiumSubscriptionId = memberService.getPremiumSubscriptionId(existingMember.getMId());
+
         HttpSession session = request.getSession();
         // 세션 저장
         session.setAttribute("existingMember", existingMember);
@@ -48,6 +51,8 @@ public class MemberController {
         session.setAttribute("deliveryProgress",deliveryProgress);
         session.setAttribute("deliveryReady",deliveryReady);
         session.setAttribute("deliveryComplete",deliveryComplete);
+        session.setAttribute("stSubId",standardSubscriptionId);
+        session.setAttribute("prSubId",premiumSubscriptionId);
 
         return "pages/main/main";
     }

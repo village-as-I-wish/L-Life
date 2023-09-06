@@ -12,13 +12,13 @@ spring:
     include: config
   datasource:
     url: ${db-url}
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     username: ${db-username}
     password: ${db-password}
 #  profiles:
 #    include:
 #      - dev
-    
+
 
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
@@ -77,6 +77,9 @@ logging:
   level:
     root: info
     kosa.com.suntofu: debug
+    sql: off
+    jdbc: off
+    jdbc.sqlonly: debug
 
   servlet:
     multipart:

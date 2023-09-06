@@ -17,11 +17,13 @@
     <select id="getCurrentCoin" parameterType="int" resultType="java.lang.Integer">
         -- 스탠다드 회원 보유 코인 조회 --
         select
-        subscribe.SUBSCRIBE_POINT
+            subscribe.SUBSCRIBE_POINT
         from
-        SUBSCRIPTION subscribe
+            SUBSCRIPTION subscribe
         where
-        subscribe.M_ID = #{memberId}
+            subscribe.M_ID = #{memberId}
+        and
+            subscribe.SUBSCRIBE_TYPE = 0
     </select>
 
     <select id="getOrderCount" parameterType="int" resultType="java.lang.Integer">
@@ -54,4 +56,29 @@
             D.DELIVERY_STATUS
 
     </select>
+
+    <select id="getStSubId" parameterType="int" resultType="int">
+        -- 스탠다드 구독 id 조회
+        select
+            sub.SUBSCRIPTION_ID
+        from
+            SUBSCRIPTION sub
+        where
+            sub.M_ID = #{memberId}
+          and
+            sub.SUBSCRIBE_TYPE = 0
+    </select>
+
+    <select id="getPrSubId" parameterType="int" resultType="int">
+        -- 프리미엄 구독 id 조회
+        select
+            sub.SUBSCRIPTION_ID
+        from
+            SUBSCRIPTION sub
+        where
+            sub.M_ID = #{memberId}
+          and
+            sub.SUBSCRIBE_TYPE = 1
+    </select>
+
 </mapper>

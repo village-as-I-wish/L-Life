@@ -280,13 +280,13 @@
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
                     </span>
 
-                    <button class="payment-button" th:onclick="payment(1)">결제하기</button> <!-- memberId -->
+                    <button class="payment-button" th:onclick="paymentSuccess(1)">결제하기</button> <!-- memberId -->
                 </div>
             </div>
 
         </div>
     </div>
-
+    <input type="hidden" id="memberName" th:value="${session.existingMember.mName}">
 </div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 

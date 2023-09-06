@@ -29,4 +29,8 @@ public interface MemberService {
     List<SubscriptionListVo> getAllpremiumScriptionList(int memberId);
 
     List<SubscriptionListVo> getRecentPremiumScriptionList(int memberId, String startDate, String endDate);
+
+    Integer getStandardSubscriptionId(int mId);
+
+    Integer getPremiumSubscriptionId(int mId);
 }
