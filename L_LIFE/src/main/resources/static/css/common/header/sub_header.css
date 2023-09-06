@@ -1,10 +1,14 @@
 .sub-header{
-    min-height: 30px;
+    width: 100%;
+    position: absolute;
+    top: 125px;
     display: flex;
+    padding: 0px 20px 0px 20px;
     flex-direction: column;
     font-size: 20px;
     margin-bottom: 10px;
     justify-content: center;
+    z-index: 3;
 }
 .sub-header-main li{
     list-style: none;

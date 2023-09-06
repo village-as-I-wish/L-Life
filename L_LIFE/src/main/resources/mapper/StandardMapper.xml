@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO">
 
-    <!-- 스탠다드 메인 (가구이미지, 가구명, 가구브랜드, 코인개수) -->
+    <!-- 스탠다드 상품 리스트 메인 -->
     <select id = "selectAllStandard">
         SELECT
             lf.lf_id,
@@ -12,6 +12,19 @@
             lfb.lf_brand_name,
             lf.lf_name,
             lf.lf_st_coin
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        WHERE
+            lf_sub_type = 0
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
+    </select>
+
+    <!-- pagination 전체 상품 개수 구하기 -->
+    <select id="selectAllStandardPagination" resultType="_int">
+        SELECT
+            count(*)
         FROM
             LLifeFurniture lf
         JOIN
@@ -40,8 +53,8 @@
             LFP.lf_package_type = 0
     </select>
 
-    <!-- 카테고리 필터 -->
-    <select id="selectStandardProductByCategory" resultType="StandardVo">
+    <!-- 스탠다드 상품 카테고리 필터링 -->
+    <select id="selectStandardProductByCategory" parameterType="PaginationVo"  resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
@@ -56,13 +69,29 @@
         JOIN
             LFurnitureCategory lfc ON lf.lf_category_id = lfc.lf_category_id
         WHERE
-            lfc.lf_category_id = #{fCategoryId}
+            lfc.lf_category_id = #{lfCategoryId}
+        AND
+            lf_sub_type = 0
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
+    </select>
+
+    <select id="selectStandardProductByCategoryByPagination" parameterType="StandardPaginationVo" resultType="_int">
+        SELECT
+            count(*)
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN
+            LFurnitureCategory lfc ON lf.lf_category_id = lfc.lf_category_id
+        WHERE
+            lfc.lf_category_id = #{lfCategoryId}
         AND
             lf_sub_type = 0
     </select>
 
-    <!-- 상품 검색(브랜드명, 상품명) -->
-    <select id="selectStandardProductByKeyword" resultType="StandardVo">
+    <!-- 스탠다드 상품 검색 -->
+    <select id="selectStandardProductByKeyword" parameterType="StandardPaginationVo" resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
@@ -78,9 +107,24 @@
         AND
             (UPPER(lfb.lf_brand_name) LIKE '%' || UPPER(#{keyword}) || '%'
              OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
-    <!-- 스탠다드 상품(브랜드, 분위기, 코인개수) 검색 -->
+    <select id="selectStandardProductByKeywordByPagination" parameterType="StandardPaginationVo" resultType="_int">
+        SELECT
+            count(*)
+        FROM
+            LLifeFurniture lf
+        JOIN
+            LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        WHERE
+            lf.lf_sub_type = 0
+        AND
+            (UPPER(lfb.lf_brand_name) LIKE '%' || UPPER(#{keyword}) || '%'
+            OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
+    </select>
+
+    <!-- 스탠다드 사이드 필터링 (브랜드, 분위기, 코인개수) 검색 -->
     <select id="searchStandardProductByFilter" resultType="StandardVo">
         SELECT
             lf.lf_id,
@@ -209,8 +253,10 @@
 
     <!-- 재입고 알림 신청 시 예약 테이블에 insert -->
     <insert id="insertOptionToReservation" parameterType="StandardOptionVo">
-        INSERT INTO reservation (m_id, lf_id, lf_opt_id)
-        VALUES (#{mId}, #{lfId}, #{lfOptId})
+        INSERT INTO
+            reservation (m_id, lf_id, lf_opt_id)
+        VALUES
+            (#{mId}, #{lfId}, #{lfOptId})
     </insert>
 
     <!-- 장바구니 테이블에 insert -->
@@ -221,20 +267,21 @@
             BEGIN
                 SELECT count(SUBSCRIPTION.m_id)
                 INTO v_member_id
-                FROM SUBSCRIPTION where m_id = #{mId};
+                FROM SUBSCRIPTION
+                where m_id = #{mId};
 
-                IF v_member_id > 0 THEN
-                    INSERT INTO CART (lf_id, m_id, lf_opt_id)
-                    VALUES (#{lfId}, #{mId}, #{lfOptId});
-                ELSE
-                    RAISE_APPLICATION_ERROR(-20002, 'No subscription found for the user');
-            END IF;
-            END
+            IF v_member_id > 0 THEN
+                INSERT INTO CART (lf_id, m_id, lf_opt_id)
+                VALUES (#{lfId}, #{mId}, #{lfOptId});
+            ELSE
+                RAISE_APPLICATION_ERROR(-20002, 'No subscription found for the user');
+        END IF;
+        END
         }
     </insert>
 
 
-    <insert id="insertReview" useGeneratedKeys="false" parameterType="ReviewVo" >
+    <insert id="insertReview" useGeneratedKeys="false" parameterType="ReviewRequestVo" >
         insert into review(lf_review_title, lf_review_content, m_id, lf_id, lf_review_rating, lf_review_ser_rating, lf_review_del_rating)
         values(#{lfReviewTitle}, #{lfReviewContent}, #{mId}, #{lfId}, #{lfReviewRating},#{lfReviewSerRating},#{lfReviewDelRating})
 
@@ -250,9 +297,57 @@
         </selectKey>
         INSERT INTO reviewImage (r_img_id, r_img_url, lf_review_id)
         <foreach collection="list" item="item" index="idx" separator="UNION ALL">
-            SELECT #{maxSeq} + #{idx}, #{item.rImgUrl}, #{item.lfReviewId} FROM DUAL
+            SELECT #{maxSeq} + #{idx} +1, #{item.rImgUrl}, #{item.lfReviewId} FROM DUAL
         </foreach>
     </insert>
 
+
+    <!-- 리뷰 정보 -->
+    <select id="selectAllReviews" resultMap="ReviewWithImages">
+        SELECT
+            r.LF_REVIEW_ID,
+            r.LF_REVIEW_TITLE,
+            r.LF_REVIEW_CONTENT,
+            r.M_ID,
+            m.M_NAME,
+            r.LF_REVIEW_TYPE,
+            r.LF_REVIEW_DATE,
+            r.LF_ID,
+            r.LF_REVIEW_RATING,
+            r.LF_REVIEW_SER_RATING,
+            r.LF_REVIEW_DEL_RATING,
+            i.R_IMG_ID,
+            i.R_IMG_URL
+        FROM REVIEW r
+                 LEFT JOIN REVIEWIMAGE i ON r.LF_REVIEW_ID = i.LF_REVIEW_ID
+                 LEFT JOIN MEMBER m ON r.M_ID = m.M_ID
+        WHERE r.LF_ID = 1
+        ORDER BY r.LF_REVIEW_DATE DESC
+    </select>
+
+    <!-- 리뷰와 이미지를 매핑하는 resultMap -->
+    <resultMap id="ReviewWithImages" type="ReviewVo">
+        <id property="lfReviewId" column="LF_REVIEW_ID" />
+        <result property="lfReviewTitle" column="LF_REVIEW_TITLE" />
+        <result property="lfReviewContent" column="LF_REVIEW_CONTENT" />
+        <result property="mId" column="M_ID" />
+        <result property="mName" column="M_NAME" />
+        <result property="lfReviewType" column="LF_REVIEW_TYPE" />
+        <result property="lfReviewDate" column="LF_REVIEW_DATE" />
+        <result property="lfId" column="LF_ID" />
+        <result property="lfReviewRating" column="LF_REVIEW_RATING" />
+        <result property="lfReviewSerRating" column="LF_REVIEW_SER_RATING" />
+        <result property="lfReviewDelRating" column="LF_REVIEW_DEL_RATING" />
+        <collection property="lfReviewImgs" ofType="ReviewImgVo">
+            <id property="rImgId" column="R_IMG_ID" />
+            <result property="rImgUrl" column="R_IMG_URL" />
+        </collection>
+    </resultMap>
+
+
+    <!-- 리뷰 삭제 -->
+    <delete id="deleteReview" parameterType="int">
+        delete from REVIEW where lf_review_id =#{lfReviewId}
+    </delete>
 
 </mapper>

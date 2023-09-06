@@ -3,7 +3,7 @@
     height: 300px;
     position: relative;
     margin-bottom: 70px;
-
+    margin-top: 205px;
 }
 
 .sl-top-banner > img {
@@ -266,6 +266,17 @@
 }
 
 .pl-search-box > input[type="image"] {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 22px;
+    width: auto;
+    border: none;
+    background: none;
+}
+
+.search-button {
     position: absolute;
     right: 15px;
     top: 50%;

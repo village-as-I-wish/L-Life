@@ -1,37 +1,41 @@
 package kosa.com.suntofu.L_LIFE.standard.vo;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Date;
 import java.util.List;
 
+
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ReviewVo {
 
-    int lfReviewId;
+    private int lfReviewId;
+    private String lfReviewTitle;
+    private String lfReviewContent;
 
-    int mId;
-    int lfId;
+    private int mId;
 
-    String lfReviewTitle;
+    private String mName;
 
-    String lfReviewContent;
+    private int lfReviewType;
 
-    int lfReviewType;
+    private Date lfReviewDate;
 
-    int lfReviewRating;
+    private int lfId;
 
-    int lfReviewSerRating;
+    private int lfReviewRating;
 
-    int lfReviewDelRating;
+    private int lfReviewSerRating;
 
-    List<MultipartFile> files;
+    private int lfReviewDelRating;
+
+
+    private List<ReviewImgVo> lfReviewImgs;
 
 }

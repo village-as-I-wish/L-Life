@@ -5,29 +5,32 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main/main.css}"/>
 </head>
 <body>
+
+
+    <th:block th:replace="common/fragment/header/header :: headerFragment(1)"></th:block>
+    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(1)"></th:block>
     <div class="main-top-slide ">
-        <th:block th:replace="common/fragment/header/header :: headerFragment(1)"></th:block>
-        <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(1)"></th:block>
+
 
     </div>
-
     <div class="main-content hd__inner1100">
         <div class="main-content-info d-flex justify-content-center">
+                <p class="site-txt">LIVART LIFE </p>
                 <span> Livart Life 는 프리미엄 가구 구독 서비스 !</span>
         </div>
         <div class="main-content-imgbox row row-cols-2">
-            <div class="main-content-img col">
+            <div class="main-content-img col img-1">
                 <img alt="메인 사진1 " th:src="@{/img/standard/main_content_img1.png}"/>
             </div>
-            <div class="main-content-img col">
+            <div class="main-content-img col img-2">
                 <img alt="메인 사진1 " th:src="@{/img/standard/main_content_img3.png}"/>
 
             </div>
-            <div class="main-content-img col">
+            <div class="main-content-img col img-2">
                 <img alt="메인 사진3 " th:src="@{/img/standard/main_content_img3.png}"/>
 
             </div>
-            <div class="main-content-img col">
+            <div class="main-content-img col img-4">
                 <img alt="메인 사진1 " th:src="@{/img/standard/main_content_img1.png}"/>
 
             </div>
@@ -58,6 +61,8 @@
         </div>
     </div>
     <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+    <script>
 
+    </script>
 </body>
 </html>
