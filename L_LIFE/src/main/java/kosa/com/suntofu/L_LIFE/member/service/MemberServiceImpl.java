@@ -118,5 +118,25 @@ public class MemberServiceImpl implements MemberService {
         paramMap.put("endDate", endDate);
         return memberDao.getRecentPremiumScriptionList(paramMap);
     }
+
+    @Override
+    public Integer getStandardSubscriptionId(int mId) {
+        Integer stSubId = memberDao.getStSubId(mId);
+        if (stSubId == null){
+            return 0;
+        }else{
+            return stSubId;
+        }
+    }
+
+    @Override
+    public Integer getPremiumSubscriptionId(int mId) {
+        Integer prSubId = memberDao.getPrSubId(mId);
+        if (prSubId == null){
+            return 0;
+        }else{
+            return prSubId;
+        }
+    }
 }
 

@@ -35,4 +35,8 @@ public interface MemberDao {
     List<SubscriptionListVo> getAllPremiumScriptionList(int memberId);
 
     List<SubscriptionListVo> getRecentPremiumScriptionList(Map<String, Object> paramMap);
+
+    Integer getStSubId(int mId);
+
+    Integer getPrSubId(int mId);
 }

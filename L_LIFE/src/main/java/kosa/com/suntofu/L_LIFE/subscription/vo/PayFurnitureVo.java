@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PayFurnitureVo {
-
+    private int subLfId;
+    private int subscriptionId;
     private int lfId;
     private int lfOptId;
     private String lfName;
@@ -17,4 +18,5 @@ public class PayFurnitureVo {
     private int quantity;
     private String lfBrandName;
     private int lfPrMinPeriod;
+    private int memberId;
 }

@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.subscription.dao;
 
 
 import kosa.com.suntofu.L_LIFE.standard.vo.StandardVo;
+import kosa.com.suntofu.L_LIFE.subscription.vo.PayFurnitureVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +13,9 @@ public interface SubscriptionDao {
 
     int insertSubscription(SubscriptionVo subscriptionVo);
 
+    int updateStock(PayFurnitureVo payFurniture);
+    int insertPrLFSubscription(PayFurnitureVo payFurniture);
+    int insertdelivery(PayFurnitureVo payFurniture);
+
+    int deleteCart(PayFurnitureVo payFurniture);
 }

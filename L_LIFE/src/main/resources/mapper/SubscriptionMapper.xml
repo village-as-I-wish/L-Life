@@ -43,6 +43,78 @@
         }
     </insert>
 
+        <!--  재고 업데이트-->
+        <update id="updateStock" parameterType="PayFurnitureVo">
+                UPDATE STOCK
+                SET
+                    STOCK_AMOUNT = STOCK_AMOUNT - #{quantity}
+                WHERE
+                    LF_OPT_ID = #{lfOptId} AND LF_ID = #{lfId}
+        </update>
+
+        <!--    장바구니삭제-->
+        <delete id="deleteCart" parameterType="PayFurnitureVo">
+            DELETE FROM CART
+            WHERE
+                LF_OPT_ID = #{lfOptId}
+              AND
+                LF_ID = #{lfId}
+              AND
+                M_ID = #{memberId}
+        </delete>
+
+    <!--     구독 내역 데이터 삽입 -->
+    <insert id="insertPrLFSubscription" parameterType="PayFurnitureVo">
+
+        INSERT INTO LFSUBSCRIPTIONLIST
+        (LF_OPT_ID, LF_ID, SUBSCRIPTION_ID, M_ID, SUB_LF_START_DATE, SUB_LF_END_DATE)
+        VALUES
+            (#{lfOptId}, #{lfId}, #{subscriptionId}, #{memberId}, sysdate, add_months(sysdate, #{lfPrMinPeriod}))
+    </insert>
+
+        <!--    배송내역 추가-->
+    <insert id="insertdelivery" parameterType="PayFurnitureVo">
+        <selectKey keyProperty="subLfId" resultType="int" order="BEFORE">
+            SELECT NVL(MAX(sub_lf_id), 0) FROM LFSUBSCRIPTIONLIST
+        </selectKey>
+        INSERT INTO DELIVERY (SUB_LF_ID, M_ID)
+        VALUES ( #{subLfId}, #{memberId})
+    </insert>
+
+<!--    <update id="updateStock" parameterType="java.util.List">-->
+<!--        <foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">-->
+<!--            UPDATE STOCK-->
+<!--            SET STOCK_AMOUNT = STOCK_AMOUNT - #{item.quantity}-->
+<!--            <where>-->
+<!--                LF_OPT_ID = #{item.lfOptId} AND LF_ID = #{item.lfId}-->
+<!--            </where>-->
+<!--        </foreach>-->
+<!--    </update>-->
+
+<!--    <delete id="deleteCart" parameterType="java.util.List">-->
+<!--        DELETE FROM CART-->
+<!--        WHERE-->
+<!--        <foreach collection="list" item="item" separator="OR">-->
+<!--            (LF_OPT_ID = #{item.lfOptId} AND LF_ID = #{item.lfId} AND M_ID = #{item.memberId})-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+<!--&lt;!&ndash;     구독 내역 데이터 삽입 &ndash;&gt;-->
+<!--    <insert id="insertPrLFSubscription" parameterType="java.util.List">-->
+<!--        INSERT INTO LFSUBSCRIPTIONLIST (LF_OPT_ID, LF_ID, SUBSCRIPTION_ID, M_ID, SUB_LF_START_DATE, SUB_LF_END_DATE)-->
+<!--        <foreach collection="list" item="item" separator="UNION ALL">-->
+<!--            SELECT #{item.lfOptId}, #{item.lfId}, #{item.subscriptionId}, #{item.memberId}, sysdate, add_months(sysdate, #{item.lfPrMinPeriod}) FROM DUAL-->
+<!--        </foreach>-->
+<!--    </insert>-->
+<!--    -->
+<!--    <insert id="insertdelivery" parameterType="java.util.List">-->
+<!--        INSERT INTO DELIVERY (SUB_LF_ID, M_ID)-->
+<!--        <foreach collection="list" item="item" separator="UNION ALL">-->
+<!--            SELECT #{sub_lf_id} #{item.memberId} FROM DUAL-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+
 
 
 </mapper>

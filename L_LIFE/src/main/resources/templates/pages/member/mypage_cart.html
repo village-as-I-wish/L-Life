@@ -82,6 +82,7 @@
                         <input type="hidden" th:id="'lfImgMain_' + ${iterStat.index}" th:value="${product.lfImgMain}">
                         <input type="hidden" th:id="'lfPrPrice_' + ${iterStat.index}" th:value="${product.lfPrPrice}">
                         <input type="hidden" th:id="'lfPrMinPeriod_' + ${iterStat.index}" th:value="${product.lfPrMinPeriod}">
+                        <input type="hidden" th:id="'lfPrSubId_' + ${iterStat.index}" th:value="${session.prSubId}">
 
                         <input type="checkbox" class="premium-checkbox" th:id="'premium-subscription_' + ${iterStat.index}">
                         <a class="product-link" th:href="@{'#'}">
@@ -111,6 +112,7 @@
                 <div class="total-premium-price">구독상품금액: </div>
                 <a class="custom-button-link"><button class="custom-button premium-payment">결제하기</button></a>
             </div>
+            <input type="hidden" id="memberId" th:value="${session.existingMember.mId}">
         </section>
 
         <script>
@@ -129,10 +131,12 @@
                     var quantity = $('#quantity_' + id).val();
                     var lfBrandName = $('#lfBrandName_' + id).val();
                     var lfPrMinPeriod = $('#lfPrMinPeriod_' + id).val();
-
+                    var lfPrSubId =  $('#lfPrSubId_' + id).val();
+                    var memberId = $('#memberId').val();
 
                     selectedProducts.push(
                         {
+                            subscriptionId : lfPrSubId,
                             lfId: lfId,
                             lfOptId: lfOptId,
                             lfName: lfName,
@@ -140,7 +144,8 @@
                             lfPrPrice: lfPrPrice,
                             quantity: quantity,
                             lfBrandName : lfBrandName,
-                            lfPrMinPeriod : lfPrMinPeriod
+                            lfPrMinPeriod : lfPrMinPeriod,
+                            memberId : memberId
                     });
                     console.log(selectedProducts)
                 });

@@ -5,6 +5,7 @@ import kosa.com.suntofu.L_LIFE.subscription.dao.SubscriptionDao;
 import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
 import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionPlan;
 import kosa.com.suntofu.L_LIFE.subscription.vo.BillVo;
+import kosa.com.suntofu.L_LIFE.subscription.vo.PayFurnitureVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionPlanVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -90,5 +92,21 @@ public class SubscriptionServiceImpl implements SubscriptionService {
             log.info("[스탠다드 구독 가입 - 플랜 ] 데이터 삽입 오류 발생 ");
             return SubscriptionReturn.SUBSCRIPTION_ERROR;
         }
+    }
+
+    @Transactional
+    @Override
+    public int addPrLFSubcriptoin(List<PayFurnitureVo> payFurnitureList) {
+
+        for (PayFurnitureVo payFurniture : payFurnitureList){
+            int res1 = subscriptionDao.updateStock(payFurniture);
+            log.info("update stock : {}",payFurniture);
+            int res2 = subscriptionDao.insertPrLFSubscription(payFurniture);
+            log.info("insert pr lf : {}",payFurniture);
+            int res3 = subscriptionDao.insertdelivery(payFurniture);
+            log.info("insert delivery : {}",payFurniture);
+            int res4 = subscriptionDao.deleteCart(payFurniture);
+        }
+        return 1;
     }
 }

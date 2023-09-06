@@ -67,6 +67,9 @@ dependencies {
 
 	// openVidu
 	implementation 'io.openvidu:openvidu-java-client:2.28.0'
+
+	// log4jdbc
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 }
 
 tasks.named('test') {
