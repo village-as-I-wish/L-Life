@@ -11,4 +11,6 @@ public interface SubscriptionService {
     int subscribePlan(Integer subscriptionPlanId, Integer memberId);
 
     int addPrLFSubcriptoin(List<PayFurnitureVo> payFurnitureList);
+
+    int addStLFSubcriptoin(List<PayFurnitureVo> payFurnitureList);
 }

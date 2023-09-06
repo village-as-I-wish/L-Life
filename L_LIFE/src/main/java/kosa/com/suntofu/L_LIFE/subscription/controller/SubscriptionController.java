@@ -59,13 +59,27 @@ public class SubscriptionController {
      * @return String
      */
     @GetMapping(value="/standard/payment_detail")
-    public String loadStandardPaymentDetail(Model model, @RequestParam int subscriptionPlanId){
+    public String loadStandardPaymentDetail(Model model,
+                                            HttpServletRequest request){
+        HttpSession session = request.getSession();
+        System.out.println(session.getAttribute("stPaymentProduct"));
+        model.addAttribute("stPaymentProduct",session.getAttribute("stPaymentProduct"));
         model.addAttribute("baseUrl", baseUrl);
         model.addAttribute("payKeys", payKeysVO);
-        log.info("SubscriptionType {}", subscriptionPlanId);
-        BillVo billVo = subscriptionService.getSubscriptionPayBill(subscriptionPlanId);
-        model.addAttribute("billVo", billVo);
-        return "pages/subscription/standard_payment_detail";
+        return "pages/member/delivery_reservation";
+    }
+
+    @PostMapping(value="/standard/payment_detail")
+    @ResponseBody
+    public Map<String, String> loadStandardPaymentDetail(@RequestBody List<PayFurnitureVo> selectedStProducts,
+                                                         HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("stPaymentProduct",selectedStProducts);
+        log.info("st pay product : {}",selectedStProducts);
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", "http://localhost:8080/l-life/subscription/standard/payment_detail");
+
+        return response;
     }
 
     /**
@@ -75,8 +89,7 @@ public class SubscriptionController {
      */
     @PostMapping(value="/premium/payment_detail")
     @ResponseBody
-    public Map<String, String> loadPremiumPaymentDetail(Model model,
-                                                        @RequestBody List<PayFurnitureVo> selectedProducts,
+    public Map<String, String> loadPremiumPaymentDetail(@RequestBody List<PayFurnitureVo> selectedProducts,
                                                         HttpServletRequest request){
         HttpSession session = request.getSession();
         session.setAttribute("paymentProduct",selectedProducts);
@@ -91,8 +104,8 @@ public class SubscriptionController {
     public String postPremiumPaymentDetail(Model model,
                                            HttpServletRequest request){
         HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("paymentProduct"));
-        model.addAttribute("paymentProduct",session.getAttribute("paymentProduct"));
+        System.out.println(session.getAttribute("prPaymentProduct"));
+        model.addAttribute("paymentProduct",session.getAttribute("prPaymentProduct"));
         model.addAttribute("baseUrl", baseUrl);
         model.addAttribute("payKeys", payKeysVO);
         return "pages/subscription/premium_payment_detail";

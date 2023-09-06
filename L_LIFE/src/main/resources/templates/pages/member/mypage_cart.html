@@ -33,7 +33,16 @@
 
                 <div class="standard-product">
                     <div class="cart-sub-title">스탠다드구독상품</div>
-                    <div class="list-item" th:each="product : ${standardCarts}">
+                    <div class="list-item" th:each="product, iterStat  : ${standardCarts}">
+                        <input type="hidden" th:id="stId" th:value="${iterStat.index}">
+                        <input type="hidden" th:id="'slfId_' + ${iterStat.index}" th:value="${product.lfId}">
+                        <input type="hidden" th:id="'slfOptId_' + ${iterStat.index}" th:value="${product.lfOptId}">
+                        <input type="hidden" th:id="'slfBrandName_' + ${iterStat.index}" th:value="${product.lfBrandName}">
+                        <input type="hidden" th:id="'slfImgMain_' + ${iterStat.index}" th:value="${product.lfImgMain}">
+                        <input type="hidden" th:id="'slfstCoin_' + ${iterStat.index}" th:value="${product.lfStCoin}">
+                        <input type="hidden" th:id="'slfStSubId_' + ${iterStat.index}" th:value="${session.stSubId}">
+                        <input type="hidden" th:id="'slfName_' + ${iterStat.index}" th:value="${product.lfName}">
+
                         <input type="checkbox" class="standard-checkbox" id="standard-subscription" name="subscription" value="standard">
                         <a class="product-link" th:href="@{'#'}">
                             <img class="product-image" th:src="${product.lfImgMain}"/>
@@ -63,7 +72,7 @@
                 <a href="#" class="standard-add-link">스탠다드상품 추가하기</a>
                 <div class="reminder">L-lile Coin이 <span class="coinAmount" th:text="${session.currentCoin}"></span>개 남았어요!</div>
                 <a class="custom-button-link">
-                    <button class="custom-button standard-payment" data-bs-toggle="modal" data-bs-target="#standardCartModal">
+                    <button class="custom-button" data-bs-toggle="modal" data-bs-target="#standardCartModal">
                         구독 시작하기
                     </button>
                 </a>
@@ -172,6 +181,56 @@
                 });
             });
 
+            $('.standard-payment').click(function () {
+                // 선택된 상품들을 담을 배열
+                var selectedStProducts = [];
+                // 각 상품 요소를 순회하면서 선택 여부 확인
+                $('.standard-checkbox:checked').each(function () {
+
+                    var id = $('#stId').val();
+                    var lfId = $('#slfId_' + id).val();
+                    var lfOptId = $('#slfOptId_' + id).val();
+                    var lfName = $('#slfName_' + id).val();
+                    var lfImgMain = $('#slfImgMain_' + id).val();
+                    var lfStCoin = $('#slfstCoin_' + id).val();
+                    var lfBrandName = $('#slfBrandName_' + id).val();
+                    var lfStSubId =  $('#slfStSubId_' + id).val();
+                    var memberId = $('#memberId').val();
+                    console.log("st id"+id)
+                    selectedStProducts.push(
+                        {
+                            subscriptionId : lfStSubId,
+                            lfId: lfId,
+                            lfOptId: lfOptId,
+                            lfName: lfName,
+                            lfImgMain: lfImgMain,
+                            lfStCoin: lfStCoin,
+                            lfBrandName : lfBrandName,
+                            memberId : memberId
+                        });
+                    console.log(selectedStProducts)
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/l-life/subscription/standard/payment_detail',
+                    data: JSON.stringify(selectedStProducts),
+                    dataType: "json",
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log('Data sent successfully:', response);
+
+                        var redirectUrl = response.redirectUrl;
+                        if (redirectUrl) {
+                            window.location.href = redirectUrl;
+                        }
+                    },
+                    error: function (error) {
+                        // 오류 처리
+                        console.error('Error sending data:', error);
+                    }
+                });
+            });
 
             document.addEventListener('DOMContentLoaded', (event) => {
                 const standardCheckboxes = document.querySelectorAll('.standard-checkbox');

@@ -100,13 +100,15 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
         for (PayFurnitureVo payFurniture : payFurnitureList){
             int res1 = subscriptionDao.updateStock(payFurniture);
-            log.info("update stock : {}",payFurniture);
             int res2 = subscriptionDao.insertPrLFSubscription(payFurniture);
-            log.info("insert pr lf : {}",payFurniture);
             int res3 = subscriptionDao.insertdelivery(payFurniture);
-            log.info("insert delivery : {}",payFurniture);
             int res4 = subscriptionDao.deleteCart(payFurniture);
         }
         return 1;
+    }
+
+    @Override
+    public int addStLFSubcriptoin(List<PayFurnitureVo> payFurnitureList) {
+        return 0;
     }
 }
