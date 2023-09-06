@@ -1,8 +1,15 @@
 .sub-cate-header{
-    margin-top: 30px;
-    margin-bottom: 40px;
-    font-weight: bold;
-    color: #BBBBBB;
+    width: 100%;
+    position: absolute;
+    top: 155px;
+    display: flex;
+    padding: 8px 20px 0px 20px;
+    flex-direction: column;
+    /* font-size: 2px; */
+    margin-bottom: 10px;
+    justify-content: center;
+    z-index: 100000;
+
 }
 .sub-cate-header-main li{
     list-style: none;
