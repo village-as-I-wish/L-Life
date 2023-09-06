@@ -35,10 +35,10 @@ public class MemberController {
 
         Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
         int orderCount = memberService.getOrderCount(existingMember.getMId());
-        List<DeliveryStatusVo> deliveryStatusList = memberService.getDeliveryStatus(existingMember.getMId());
-        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
-        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
-        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
+//        List<DeliveryStatusVo> deliveryStatusList = memberService.getDeliveryStatus(existingMember.getMId());
+//        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
+//        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
+//        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
 
         Integer standardSubscriptionId = memberService.getStandardSubscriptionId(existingMember.getMId());
         Integer premiumSubscriptionId = memberService.getPremiumSubscriptionId(existingMember.getMId());
@@ -48,9 +48,9 @@ public class MemberController {
         session.setAttribute("existingMember", existingMember);
         session.setAttribute("currentCoin", currentCoin);
         session.setAttribute("orderCount",orderCount);
-        session.setAttribute("deliveryProgress",deliveryProgress);
-        session.setAttribute("deliveryReady",deliveryReady);
-        session.setAttribute("deliveryComplete",deliveryComplete);
+//        session.setAttribute("deliveryProgress",deliveryProgress);
+//        session.setAttribute("deliveryReady",deliveryReady);
+//        session.setAttribute("deliveryComplete",deliveryComplete);
         session.setAttribute("stSubId",standardSubscriptionId);
         session.setAttribute("prSubId",premiumSubscriptionId);
 
