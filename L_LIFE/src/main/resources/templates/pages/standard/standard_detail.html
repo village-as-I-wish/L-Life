@@ -373,7 +373,7 @@
         <div class="review-writer-box">
             <span class="review-writer" th:text="${' ' + review.mName + ' | ' + review.lfReviewDate}"></span>
             <span th:if="${ session.existingMember.mId == review.mId}">
-             <i class="fa-solid fa-trash" style="cursor: pointer;" onclick="deleteReview([[ ${review.lfReviewId} ]])"></i>
+             <i class="fa-solid fa-trash" style="cursor: pointer;" th:attr="onclick=|deleteReview('${review.lfReviewId}')|" ></i>
             </span>
         </div>
         <div class="review-card-content">

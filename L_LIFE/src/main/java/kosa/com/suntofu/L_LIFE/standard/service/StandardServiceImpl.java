@@ -172,6 +172,15 @@ public class StandardServiceImpl implements StandardService {
         return standardDAO.selectAllReviews(lfId);
     }
 
+    @Override
+    public int deleteReview(int lfReviewId) {
+        try{
+            return standardDAO.deleteReview(lfReviewId);
+        }catch(Exception e){
+            return -1;
+        }
+    }
+
     private String createFileName(String fileName) {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));
     }

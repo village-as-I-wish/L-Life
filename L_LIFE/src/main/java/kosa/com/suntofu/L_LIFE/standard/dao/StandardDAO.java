@@ -32,5 +32,6 @@ public interface StandardDAO {
 
     List<ReviewVo> selectAllReviews(int lfId);
 
+    int deleteReview(int lfReviewId);
 }
 
