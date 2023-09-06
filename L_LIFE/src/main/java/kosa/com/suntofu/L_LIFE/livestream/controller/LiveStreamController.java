@@ -23,6 +23,6 @@ public class LiveStreamController {
 
     @GetMapping("test")
     public String testLiveStream(){
-        return "pages/livestream/open_vidu_test";
+        return "pages/livestream/livestream";
     }
 }
