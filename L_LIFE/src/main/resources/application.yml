@@ -15,7 +15,16 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
     username: ${db-username}
     password: ${db-password}
-#  profiles:
+  kafka:
+    consumer:
+      bootstrap-servers: kafka.livart-life.com:9092
+      group-id: foo
+    producer:
+      bootstrap-servers: kafka.livart-life.com:9092
+
+
+
+    #  profiles:
 #    include:
 #      - dev
     
