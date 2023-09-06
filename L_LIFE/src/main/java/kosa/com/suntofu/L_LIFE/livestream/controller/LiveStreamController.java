@@ -17,7 +17,7 @@ public class LiveStreamController {
      */
     @GetMapping("")
     public String loadLiveStreamPage(){
-        return "pages/livestream/livestream";
+        return "pages/livestream/livestream-onboard";
     }
 
 
