@@ -5,18 +5,18 @@ $(document).ready(function(){
         send();
     });
 
-    const websocket = new WebSocket("ws://localhost:8080/l-life/ws/chat");
+    // const websocket = new WebSocket("ws://localhost:8080/l-life/ws/chat");
+    var sockJs = new SockJS("/l-life/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 
-    websocket.onmessage = onMessage;
-    websocket.onopen = onOpen;
-    websocket.onclose = onClose;
+    sockJs.onmessage = onMessage;
+    sockJs.onopen = onOpen;
+    sockJs.onclose = onClose;
 
     function send() {
         let msg = document.getElementById("msg");
 
         console.log(username + ":" + msg.value);
-        websocket.send(username + ":" + msg.value);
-        var chatbox = $('.chat-box')
+        sockJs.send(username + ":" + msg.value);
 
         msg.value = '';
 
@@ -25,13 +25,13 @@ $(document).ready(function(){
     //채팅창에서 나갔을 때
     function onClose(evt) {
         var str = username + ": 님이 방을 나가셨습니다.";
-        websocket.send(str);
+        sockJs.send(str);
     }
 
     //채팅창에 들어왔을 때
     function onOpen(evt) {
         var str = username + ": 님이 입장하셨습니다.";
-        websocket.send(str);
+        sockJs.send(str);
     }
 
     function onMessage(msg) {
