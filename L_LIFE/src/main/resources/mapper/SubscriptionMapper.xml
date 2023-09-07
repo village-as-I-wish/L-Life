@@ -43,25 +43,27 @@
         }
     </insert>
 
-        <!--  재고 업데이트-->
-        <update id="updateStock" parameterType="PayFurnitureVo">
-                UPDATE STOCK
-                SET
-                    STOCK_AMOUNT = STOCK_AMOUNT - #{quantity}
-                WHERE
-                    LF_OPT_ID = #{lfOptId} AND LF_ID = #{lfId}
-        </update>
 
-        <!--    장바구니삭제-->
-        <delete id="deleteCart" parameterType="PayFurnitureVo">
-            DELETE FROM CART
+<!-- 프리미엄 결제 로직  -->
+    <!--  재고 업데이트-->
+    <update id="updateStock" parameterType="PayFurnitureVo">
+            UPDATE STOCK
+            SET
+                STOCK_AMOUNT = STOCK_AMOUNT - #{quantity}
             WHERE
-                LF_OPT_ID = #{lfOptId}
-              AND
-                LF_ID = #{lfId}
-              AND
-                M_ID = #{memberId}
-        </delete>
+                LF_OPT_ID = #{lfOptId} AND LF_ID = #{lfId}
+    </update>
+
+    <!--    장바구니삭제-->
+    <delete id="deleteCart" parameterType="PayFurnitureVo">
+        DELETE FROM CART
+        WHERE
+            LF_OPT_ID = #{lfOptId}
+          AND
+            LF_ID = #{lfId}
+          AND
+            M_ID = #{memberId}
+    </delete>
 
     <!--     구독 내역 데이터 삽입 -->
     <insert id="insertPrLFSubscription" parameterType="PayFurnitureVo">
@@ -80,6 +82,61 @@
         INSERT INTO DELIVERY (SUB_LF_ID, M_ID)
         VALUES ( #{subLfId}, #{memberId})
     </insert>
+
+
+
+<!--  스탠다드 결제 로직-->
+    <!-- 재고 업데이트-->
+    <update id="stUpdateStock" parameterType="PayFurnitureVo">
+        UPDATE STOCK
+        SET
+            STOCK_AMOUNT = STOCK_AMOUNT - 1
+        WHERE
+            LF_OPT_ID = #{lfOptId} AND LF_ID = #{lfId}
+    </update>
+
+    <!-- 장바구니삭제-->
+    <delete id="stDeleteCart" parameterType="PayFurnitureVo">
+        DELETE FROM CART
+        WHERE
+            LF_OPT_ID = #{lfOptId}
+          AND
+            LF_ID = #{lfId}
+          AND
+            M_ID = #{memberId}
+    </delete>
+
+    <!--     구독 내역 데이터 삽입 -->
+    <insert id="stInsertStLFSubscription" parameterType="PayFurnitureVo">
+
+        INSERT INTO LFSUBSCRIPTIONLIST
+        (LF_OPT_ID, LF_ID, SUBSCRIPTION_ID, M_ID, SUB_LF_START_DATE, SUB_LF_END_DATE)
+        VALUES
+            (#{lfOptId}, #{lfId}, #{subscriptionId}, #{memberId}, sysdate, add_months(sysdate, 1))
+    </insert>
+
+    <!--    배송내역 추가-->
+    <insert id="stInsertDelivery" parameterType="PayFurnitureVo">
+        <selectKey keyProperty="subLfId" resultType="int" order="BEFORE">
+            SELECT NVL(MAX(sub_lf_id), 0) FROM LFSUBSCRIPTIONLIST
+        </selectKey>
+        INSERT INTO DELIVERY (SUB_LF_ID, M_ID)
+        VALUES ( #{subLfId}, #{memberId})
+    </insert>
+
+    <!-- 구독 포인트 업데이트-->
+    <update id="stUpdateSubPoint" parameterType="PayFurnitureVo">
+        UPDATE SUBSCRIPTION
+        SET
+            SUBSCRIBE_POINT = SUBSCRIBE_POINT - #{lfStCoin}
+        WHERE
+            SUBSCRIPTION_ID = #{subscriptionId}
+    </update>
+
+
+
+
+
 
 <!--    <update id="updateStock" parameterType="java.util.List">-->
 <!--        <foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">-->

@@ -4,6 +4,12 @@
 
 <head>
   <th:block th:replace="common/fragment/commonHead"></th:block>
+
+  <script th:inline="javascript">
+    var payKeys = /*[[${payKeys}]]*/ null;
+    var baseUrl = /*[[${baseUrl}]]*/ null;
+  </script>
+
 </head>
 <body>
 
@@ -175,6 +181,7 @@
 
 
 
+<span class="hidden" id="memberId" th:value="${session.existingMember.mId}"></span>
 </div>
 
 <!-- 푸터 프래그먼트 -->
@@ -183,6 +190,46 @@
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
+$(document).ready(function() {
+
+  $('.join-btn').click(function() {
+    var memberId = $('#memberId').val();
+    console.log("memberId" + memberId);
+    $.ajax({
+      type : "POST",
+      url : baseUrl +"/l-life/api/v1/subscription/standard",
+      success : function(res){
+        if (res.result == 1){
+          Swal.fire({
+            title: '구독이 시작되었습니다.',
+            text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+            imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = baseUrl + '/l-life/member/' + memberId + '/mypage'
+            }
+          })
+        }else{
+          Swal.fire({
+            title:'구독 중인 상품이 있습니다.',
+            text: '마이페이지를 확인해주세요.',
+            imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = baseUrl + '/l-life/member/' + memberId + '/mypage'
+            }
+          })
+        }
+      },
+      error : function(XMLHttpRequest, textStatus, errorThrown){
+        alert("통신 실패.")
+      }
+    });
+
+  })
+})
+
   function daumAddress() {
     new daum.Postcode({
       oncomplete: function(data) {
@@ -200,6 +247,7 @@
       }
     }).open();
   }
+
 
 </script>
 </html>

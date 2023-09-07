@@ -15,6 +15,7 @@ public class PayFurnitureVo {
     private String lfName;
     private String lfImgMain;
     private int lfPrPrice;
+    private int lfStCoin;
     private int quantity;
     private String lfBrandName;
     private int lfPrMinPeriod;
