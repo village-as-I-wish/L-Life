@@ -24,7 +24,7 @@ spring:
     mongodb:
       host: mongodb.livart-life.com
       port: 27017
-      username: hyewon
+      username: llife
       password: kosa1234
 
 
