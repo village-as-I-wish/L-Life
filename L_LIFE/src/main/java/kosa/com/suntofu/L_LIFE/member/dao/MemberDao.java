@@ -26,7 +26,9 @@ public interface MemberDao {
 
     Integer getOrderCount(int mId);
 
-    List<DeliveryStatusVo> getDeliveryStatus(int mId);
+    Integer getDeliveryReadyStatus(int mId);
+    Integer getDeliveryProgressStatus(int mId);
+    Integer getDeliveryCompleteStatus(int mId);
 
     List<DeliveryListVo> getDeliveryList(int memberId);
 
@@ -39,4 +41,5 @@ public interface MemberDao {
     Integer getStSubId(int mId);
 
     Integer getPrSubId(int mId);
+
 }
