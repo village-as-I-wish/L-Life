@@ -80,20 +80,34 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<DeliveryStatusVo> getDeliveryStatus(int memberId) {
-        List<DeliveryStatusVo> deliveryStatus = memberDao.getDeliveryStatus(memberId);
-        if (deliveryStatus.size() == 0){
-            List<DeliveryStatusVo> defaultDeliveryStatus = new ArrayList<>();
-            defaultDeliveryStatus.add(new DeliveryStatusVo(0,0));
-            defaultDeliveryStatus.add(new DeliveryStatusVo(1,0));
-            defaultDeliveryStatus.add(new DeliveryStatusVo(2,0));
-            return defaultDeliveryStatus;
-        }
-        else{
-
-            return deliveryStatus;
+    public int getDeliveryReadyStatus(int memberId) {
+        Integer deliveryReadyStatus = memberDao.getDeliveryReadyStatus(memberId);
+        if (deliveryReadyStatus == null){
+            return 0;
+        }else{
+            return deliveryReadyStatus;
         }
     }
+
+    @Override
+    public int getDeliveryProgressStatus(int mId) {
+        Integer deliveryProgressStatus = memberDao.getDeliveryProgressStatus(mId);
+        if (deliveryProgressStatus == null){
+            return 0;
+        }else{
+            return deliveryProgressStatus;
+        }
+    }
+
+    @Override
+    public int getDeliveryCompleteStatus(int mId) {
+        Integer deliveryCompleteStatus = memberDao.getDeliveryCompleteStatus(mId);
+        if (deliveryCompleteStatus == null){
+            return 0;
+        }else{
+            return deliveryCompleteStatus;
+        }        }
+
 
     @Override
     public List<DeliveryListVo> getDeliveryList(int memberId) {

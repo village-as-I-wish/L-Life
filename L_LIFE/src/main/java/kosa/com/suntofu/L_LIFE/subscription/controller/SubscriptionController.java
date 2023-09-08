@@ -59,7 +59,18 @@ public class SubscriptionController {
      * @return String
      */
     @GetMapping(value="/standard/payment_detail")
-    public String loadStandardPaymentDetail(Model model,
+        public String loadStandardPaymentDetail(Model model, @RequestParam int subscriptionPlanId){
+            model.addAttribute("baseUrl", baseUrl);
+            model.addAttribute("payKeys", payKeysVO);
+            log.info("SubscriptionType {}", subscriptionPlanId);
+            BillVo billVo = subscriptionService.getSubscriptionPayBill(subscriptionPlanId);
+            model.addAttribute("billVo", billVo);
+            return "pages/subscription/standard_payment_detail";
+        }
+
+
+    @GetMapping(value="/standard/delivery_reservation")
+    public String loadStandardDeliveryReservation(Model model,
                                             HttpServletRequest request){
         HttpSession session = request.getSession();
         System.out.println(session.getAttribute("stPaymentProduct"));
@@ -71,20 +82,20 @@ public class SubscriptionController {
 
     @PostMapping(value="/standard/payment_detail")
     @ResponseBody
-    public Map<String, String> loadStandardPaymentDetail(@RequestBody List<PayFurnitureVo> selectedStProducts,
+    public Map<String, String> postStandardDeliveryReservation(@RequestBody List<PayFurnitureVo> selectedStProducts,
                                                          HttpServletRequest request){
         HttpSession session = request.getSession();
         session.setAttribute("stPaymentProduct",selectedStProducts);
         log.info("st pay product : {}",selectedStProducts);
         Map<String, String> response = new HashMap<>();
-        response.put("redirectUrl", "http://localhost:8080/l-life/subscription/standard/payment_detail");
+        response.put("redirectUrl", "http://localhost:8080/l-life/subscription/standard/delivery_reservation");
 
         return response;
     }
 
     /**
      * 프리미엄 구독 이용료 결제 페이지 로드
-     * @param model
+     * @param
      * @return String
      */
     @PostMapping(value="/premium/payment_detail")
@@ -92,7 +103,7 @@ public class SubscriptionController {
     public Map<String, String> loadPremiumPaymentDetail(@RequestBody List<PayFurnitureVo> selectedProducts,
                                                         HttpServletRequest request){
         HttpSession session = request.getSession();
-        session.setAttribute("paymentProduct",selectedProducts);
+        session.setAttribute("prPaymentProduct",selectedProducts);
         Map<String, String> response = new HashMap<>();
         response.put("redirectUrl", "http://localhost:8080/l-life/subscription/premium/payment_detail");
 
@@ -104,7 +115,7 @@ public class SubscriptionController {
     public String postPremiumPaymentDetail(Model model,
                                            HttpServletRequest request){
         HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("prPaymentProduct"));
+        log.info("postPremiumPaymentDetail : {}",session.getAttribute("prPaymentProduct"));
         model.addAttribute("paymentProduct",session.getAttribute("prPaymentProduct"));
         model.addAttribute("baseUrl", baseUrl);
         model.addAttribute("payKeys", payKeysVO);

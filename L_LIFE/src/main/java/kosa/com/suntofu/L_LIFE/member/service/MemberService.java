@@ -20,7 +20,10 @@ public interface MemberService {
 
     Integer getOrderCount(int memberId);
 
-    List<DeliveryStatusVo> getDeliveryStatus(int memberId);
+    int getDeliveryReadyStatus(int memberId);
+    int getDeliveryProgressStatus(int mId);
+    int getDeliveryCompleteStatus(int mId);
+
 
     List<DeliveryListVo> getDeliveryList(int memberId);
 
@@ -33,4 +36,5 @@ public interface MemberService {
     Integer getStandardSubscriptionId(int mId);
 
     Integer getPremiumSubscriptionId(int mId);
+
 }

@@ -4,6 +4,7 @@ import kosa.com.suntofu.L_LIFE.member.SessionConst;
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Value;
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -35,10 +37,9 @@ public class MemberController {
 
         Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
         int orderCount = memberService.getOrderCount(existingMember.getMId());
-//        List<DeliveryStatusVo> deliveryStatusList = memberService.getDeliveryStatus(existingMember.getMId());
-//        int deliveryReady = deliveryStatusList.get(0).getStatusCount();
-//        int deliveryProgress = deliveryStatusList.get(1).getStatusCount();
-//        int deliveryComplete = deliveryStatusList.get(2).getStatusCount();
+        int deliveryReady = memberService.getDeliveryReadyStatus(existingMember.getMId());
+        int deliveryProgress = memberService.getDeliveryProgressStatus(existingMember.getMId());
+        int deliveryComplete = memberService.getDeliveryCompleteStatus(existingMember.getMId());
 
         Integer standardSubscriptionId = memberService.getStandardSubscriptionId(existingMember.getMId());
         Integer premiumSubscriptionId = memberService.getPremiumSubscriptionId(existingMember.getMId());
@@ -48,9 +49,9 @@ public class MemberController {
         session.setAttribute("existingMember", existingMember);
         session.setAttribute("currentCoin", currentCoin);
         session.setAttribute("orderCount",orderCount);
-//        session.setAttribute("deliveryProgress",deliveryProgress);
-//        session.setAttribute("deliveryReady",deliveryReady);
-//        session.setAttribute("deliveryComplete",deliveryComplete);
+        session.setAttribute("deliveryReady",deliveryReady);
+        session.setAttribute("deliveryProgress",deliveryProgress);
+        session.setAttribute("deliveryComplete",deliveryComplete);
         session.setAttribute("stSubId",standardSubscriptionId);
         session.setAttribute("prSubId",premiumSubscriptionId);
 
@@ -119,11 +120,13 @@ public class MemberController {
     public String loadCart(Model model, @PathVariable int memberId){
         // 스탠다드 장바구니
         List<CartVo> standardCarts  = memberService.getAllStandardCarts(memberId);
-
         // 프리미엄 장바구니
         List<CartVo> premiumCarts  = memberService.getAllPremiumCarts(memberId);
 
-        System.out.println(premiumCarts);
+        log.info("premium carts : {}",premiumCarts);
+        log.info("standard carts : {}",standardCarts);
+
+        model.addAttribute("baseUrl",baseUrl);
         model.addAttribute("standardCarts", standardCarts);
         model.addAttribute("premiumCarts", premiumCarts);
         return "pages/member/mypage_cart";

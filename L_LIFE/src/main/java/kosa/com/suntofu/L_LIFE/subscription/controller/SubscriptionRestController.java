@@ -40,7 +40,7 @@ public class SubscriptionRestController {
     public ResponseEntity<BasicResponse> subscribePremium(HttpServletRequest request){ //세션에서 memberId 가져올 예정
         HttpSession session = request.getSession();
         List<PayFurnitureVo> payFurnitureList = (List<PayFurnitureVo>) session.getAttribute("prPaymentProduct");
-        log.info("payment {}",payFurnitureList);
+        log.info("premium payment {}",payFurnitureList);
 
         int result = subscriptionService.addPrLFSubcriptoin(payFurnitureList);
 

@@ -181,7 +181,7 @@
 
 
 
-<span class="hidden" id="memberId" th:value="${session.existingMember.mId}"></span>
+<input type="hidden" id="mId" th:value="${session.existingMember.mId}">
 </div>
 
 <!-- 푸터 프래그먼트 -->
@@ -192,10 +192,10 @@
 <script>
 
 $(document).ready(function() {
+  var memberId = $('#mId').val();
+  console.log("memberId" + memberId);
 
   $('.join-btn').click(function() {
-    var memberId = $('#memberId').val();
-    console.log("memberId" + memberId);
     $.ajax({
       type : "POST",
       url : baseUrl +"/l-life/api/v1/subscription/standard",

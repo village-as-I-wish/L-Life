@@ -7,6 +7,7 @@
     <script th:inline="javascript">
         var loggedInMemberInfo = /*[[${loggedInMemberInfo}]]*/ null;
         var currentCoin = [[${session.currentCoin}]];
+        var baseUrl = /*[[${baseUrl}]]*/ null;
     </script>
 </head>
 <body>
@@ -87,7 +88,7 @@
                     <div class="list-item" th:each="product, iterStat : ${premiumCarts}">
                         <input type="hidden" th:id="'lfId_' + ${iterStat.index}" th:value="${product.lfId}">
                         <input type="hidden" th:id="'lfOptId_' + ${iterStat.index}" th:value="${product.lfOptId}">
-                        <input type="hidden" th:id="'stockAmount_' + ${iterStat.index}" th:value="${product.stockAmount}">
+                        <input type="hidden" th:id="'stockAmount_' + ${iterStat.index}" th:value="${product.stockAmount}" class="stockAmount">
                         <input type="hidden" th:id="'lfBrandName_' + ${iterStat.index}" th:value="${product.lfBrandName}">
                         <input type="hidden" th:id="'lfImgMain_' + ${iterStat.index}" th:value="${product.lfImgMain}">
                         <input type="hidden" th:id="'lfPrPrice_' + ${iterStat.index}" th:value="${product.lfPrPrice}">
@@ -160,6 +161,16 @@
                     console.log(selectedProducts)
                 });
 
+                console.log(selectedProducts.length)
+
+                if (selectedProducts.length == 0){
+                    Swal.fire({
+                        title: '선택된 상품이 없습니다.',
+                        text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    })
+                    return
+                }
                 $.ajax({
                     type: 'POST',
                     url: '/l-life/subscription/premium/payment_detail',
@@ -207,10 +218,16 @@
                             lfBrandName : lfBrandName,
                             memberId : memberId
                         });
-                    console.log(sid)
                     console.log(selectedStProducts)
                 });
-
+                if (selectedStProducts.length == 0){
+                    Swal.fire({
+                        title: '선택된 상품이 없습니다.',
+                        text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    })
+                    return
+                }
                 $.ajax({
                     type: 'POST',
                     url: '/l-life/subscription/standard/payment_detail',
@@ -260,8 +277,18 @@
 
                     incrementButton.addEventListener('click', () => {
                         const quantity = parseInt(quantityInput.value);
-                        quantityInput.value = quantity + 1;
-                        updateTotalPrice();
+
+                        const stockAmount = document.querySelector('.stockAmount').value; // 상품 수량 가져오기
+                        if (quantity < stockAmount) {
+                            quantityInput.value = quantity + 1;
+                            updateTotalPrice();
+                        } else {
+                            Swal.fire({
+                                title: '재고 수량을 초과하였습니다.',
+                                text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                                imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                            })
+                        }
                     });
 
                     quantityInput.addEventListener('change', () => {
@@ -272,9 +299,18 @@
                 standardCheckboxes.forEach(checkbox => {
                     checkbox.addEventListener('change', () => {
                         const productCoins = parseInt(checkbox.closest('.list-item').querySelector('.product-coins').textContent);
-                        const currentCoins = coinsRemainingElement.querySelectorAll('img').length;
+                        const currentCoins = document.querySelector('.coinAmount').textContent;
 
                         if (checkbox.checked) {
+                            if ((currentCoins - productCoins) < 0 ){
+                                checkbox.checked = !checkbox.checked;
+                                Swal.fire({
+                                    title: '보유 H코인이 부족합니다.',
+                                    text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                                    imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                                })
+                                return
+                            }
                             for (let i = 0; i < productCoins; i++) {
                                 const img = document.createElement('img');
                                 img.src = 'https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png';
