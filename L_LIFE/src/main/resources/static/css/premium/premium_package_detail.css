@@ -3,7 +3,7 @@
     min-height: 800px;
 }
 .pd-detail-container{
-    margin-top: 40px;
+    margin-top: 200px;
 }
 .pd-main-package-name{
     font-size: 25px;
@@ -20,7 +20,7 @@
 }
 .pd-detail-img img{
     width: 100%;
-    height: inherit;
+    height: 800px;
 }
 .pd-detail-product-list{
     width: 60%;
