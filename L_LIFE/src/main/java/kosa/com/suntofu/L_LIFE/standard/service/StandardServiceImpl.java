@@ -88,6 +88,7 @@ public class StandardServiceImpl implements StandardService {
 
     @Override
     public StandardDetailVo getStandardDetailById(int lfId) {
+
         return standardDAO.selectStandardDetailById(lfId);
     }
 

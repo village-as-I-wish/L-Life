@@ -27,4 +27,6 @@ public interface PremiumService {
     List<PackageVo> getPromotionPackages();
 
     PackageDetailVo getPremiumPackageDetail(int lfPackageId);
+
+    List<PackageVo> getRecommendationPackages();
 }

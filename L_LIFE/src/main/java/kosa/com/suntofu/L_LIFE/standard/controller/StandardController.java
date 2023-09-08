@@ -109,18 +109,18 @@ public class StandardController {
     public String getStandardDetailPage(@PathVariable("productId") int lfId, Model model) {
 
         model.addAttribute("baseUrl", baseUrl);
-        // 기본적인 상세정보 가져오기
+        // 기본적인 상세정보 가져오기 + 리퍼 사진 정보
         StandardDetailVo detail = standardService.getStandardDetailById(lfId);
         model.addAttribute("standardDetail",  detail);
-
+        log.info("Standard Detail  {}  : " , detail );
         // 옵션 가져오기
         List<StandardOptionVo> options = standardService.getStandardOptionById(lfId);
         model.addAttribute("options", options);
 
-        // 리퍼 정보 가져오기
-        List<StandardRefurVo> refurinfos = standardService.getStandardRefurById(lfId);
-        model.addAttribute("refurInfos", refurinfos);
-        model.addAttribute("lfId", lfId);
+        /*코드 리팩터링 -> 기본 정보 가져올 때로 합침 */
+//        List<StandardRefurVo> refurinfos = standardService.getStandardRefurById(lfId);
+//        model.addAttribute("refurInfos", refurinfos);
+//        model.addAttribute("lfId", lfId);
 
         // 카테고리 BEST
         List<StandardVo> recommendProducts = standardService.getStandardRecommendation(lfId);
@@ -128,6 +128,7 @@ public class StandardController {
 
         // Review 정보 가져오기
         List<ReviewVo> reviewList = standardService.getReviews(lfId);
+        log.info("reviewList {}", reviewList);
         model.addAttribute("reviewList", reviewList);
         return "pages/standard/standard_detail";
     }

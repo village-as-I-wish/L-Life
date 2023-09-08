@@ -285,6 +285,7 @@ ul.tabs li.current{
 .lf-pr-info img{
     width: 100%;
     height: auto;
+    margin-top: 100px;
 }
 .lf-pr-delivery{
     width:100%;
@@ -509,4 +510,11 @@ ul.tabs li.current{
     font-size: 20px;
     color: gray;
     margin-left: 0px;
+}
+.lf-pr-detail > p{
+    word-break: keep-all;
+    font-size: 22px;
+    line-height: 40px;
+    color: #5d493c;
+    margin: 50px 0px 70px 0px;
 }

@@ -95,21 +95,21 @@
         <li class="tab-link" data-tab="tab-3">배송 정보</li>
     </ul>
 
-    <div id="tab-1" class="tab-content">
+    <div id="tab-1" class="tab-content current">
         <div class="tab-pr-maininfo-content">
             <span> * 리퍼 상품이란 ?   </span>
             <span> 소비자의 단순 변심 등으로 인해 반품된 제품을 재입고 하여 재 점검한 후 현재 판매되고 있는 제품보다 저렴한 가격에 공급하는 상품입니다.</span>
             <span> 본 제품의 기능과 성능은 새 제품과 동일하며 리퍼 상품 특성상 외관에 약간의 흠집이 있을 수 있습니다. </span>
-            <span class="pr-grade">이 상품은 “<span class="pr-grade" th:text="${refurInfos[0].lfStGrade}"></span>” 등급 상품입니다.</span>
+            <span class="pr-grade">이 상품은 “<span class="pr-grade" th:text="${standardDetail.lfStGrade}"></span>” 등급 상품입니다.</span>
             <div class="page-wrapper">
                 <div class="lf-pr-slider">
                     <h1 class="lf-pr-slider-title"> 실제 상품 사진 </h1>
                     <i class="fas fa-chevron-left prev"></i>
                     <i class="fas fa-chevron-right next"></i>
                     <div class="lf-pr-slide-wrapper">
-                        <div class="lf-pr-slide-product-img" th:each="refurInfo : ${refurInfos}">
+                        <div class="lf-pr-slide-product-img" th:each="imgUrl : ${standardDetail.refurImgUrl}">
                             <img class="pr-real-img" alt="상품 사진 "
-                                 th:src="${refurInfo.refurImgUrl}"/>
+                                 th:src="${imgUrl.refurImgUrl}"/>
                         </div>
                     </div>
                 </div>
@@ -117,10 +117,10 @@
         </div>
 
         <div class="lf-pr-info">
-            <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample1.png}">
-            <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample2.png}">
-            <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample3.png}">
-            <img class="pr-real-img" alt="상품 사진" th:src="@{/img/standard/product_detail_pr_sample4.png}">
+            <div class="lf-pr-detail" th:each="imgUrl : ${standardDetail.detailImgUrl}">
+                <img class="pr-real-img" alt="상품 사진" th:src="${imgUrl.lfImgUrl}">
+                <p th:text="${imgUrl.imgComment}"></p>
+            </div>
         </div>
 
         <!-- 배송 / 환불 안내 -->
@@ -214,7 +214,7 @@
 
 </div>
 <!-- 상품 리뷰  -->
-<div id="tab-2" class="tab-content hd__inner1100 current">
+<div id="tab-2" class="tab-content hd__inner1100">
     <div class="review-header">
         <span> 상품 리뷰  </span>
         <!--            <a th:href="@{/standard/review}" class="review-write-btn"> 리뷰 작성 </a>-->
@@ -365,7 +365,7 @@
     <img class="review-banner-img" alt="리뷰 배너 "
          th:src="@{/img/standard/review_banner.png}"/>
 
-    <span class="review-sub-header"> 상품리뷰 (15)</span>
+    <span class="review-sub-header"> 상품리뷰 (<span th:text="${reviewList.size()}"></span>)</span>
     <hr>
     <div th:each="review : ${reviewList}" th:class="'review-card review-card-' + ${review.lfReviewId}">
         <span class="review-logo">리바트 라이프 </span><span th:text="${standardDetail.lfName}"> </span> |

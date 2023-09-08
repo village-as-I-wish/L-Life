@@ -165,6 +165,12 @@
         where LF_PACKAGE_TYPE =1 and IS_PROMOTION=1
     </select>
 
+    <select id="selectRecommendationPackages" resultType="PackageVo">
+        select *
+        from LFPACKAGE
+        where LF_PACKAGE_TYPE =1 and IS_PROMOTION=0 and IS_MD_PICK =0
+    </select>
+
     <resultMap id="packageDetail" type="PackageDetailVo">
     <id property="lfPackageId" column="LF_PACKAGE_ID"/>
     <result property="lfPackageName" column="LF_PACKAGE_NAME"/>

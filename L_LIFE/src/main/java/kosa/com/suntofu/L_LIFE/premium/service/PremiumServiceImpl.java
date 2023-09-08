@@ -149,6 +149,11 @@ public class PremiumServiceImpl implements PremiumService{
         return premiumDao.selectPackageDetail(lfPackageId);
     }
 
+    @Override
+    public List<PackageVo> getRecommendationPackages() {
+        return premiumDao.selectRecommendationPackages();
+    }
+
     private List<PackageVo> getCachedSearchResult(String cacheKey) {
         @SuppressWarnings("unchecked")
         List<PackageVo> cachedData = (List<PackageVo>) redisTemplate.opsForValue().get(cacheKey);

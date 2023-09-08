@@ -155,8 +155,33 @@
            lf.lf_st_coin BETWEEN #{minCoin} AND #{maxCoin}
     </select>
 
+
+    <resultMap id="StandardDetailResultMap" type="StandardDetailVo">
+        <id property="lfId" column="lf_id" />
+        <result property="lfSubType" column="lf_sub_type" />
+        <result property="lfStCoin" column="lf_st_coin" />
+        <result property="mId" column="M_ID" />
+        <result property="mName" column="M_NAME" />
+        <result property="lfSubIssub" column="lf_sub_issub" />
+        <result property="lfName" column="lf_name" />
+        <result property="lfImgMain" column="lf_img_main" />
+        <result property="lfBrandName" column="lf_brand_name" />
+        <result property="lfSubComment" column="lf_sub_comment" />
+        <result property="lfStGrade" column="lf_st_grade" />
+
+        <collection property="refurImgUrl" ofType="RefurImgVo">
+            <id property="refurImgId" column="refur_img_id" />
+            <result property="refurImgUrl" column="refur_img_url" />
+        </collection>
+
+        <collection property="detailImgUrl" ofType="DetailImgVo">
+            <id property="lfImgId" column="lf_img_id" />
+            <result property="lfImgUrl" column="lf_img_url" />
+            <result property="imgComment" column="img_comment" />
+        </collection>
+    </resultMap>
     <!-- 스탠다드 상세페이지 -->
-    <select id = "selectStandardDetailById">
+    <select id = "selectStandardDetailById" resultMap="StandardDetailResultMap">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
@@ -164,15 +189,24 @@
             lf.lf_name,
             lf.lf_st_coin,
             lf.lf_st_grade,
-            lf.lf_sub_comment
+            lf.lf_sub_comment,
+            rfImg.refur_img_id,
+            rfImg.REFUR_IMG_URL,
+            lfImg.lf_img_id,
+            lfImg.lf_img_url,
+            lfImg.img_comment
         FROM
             LLifeFurniture lf
-        JOIN
+        LEFT JOIN
             LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN
+            LfurnitureImage lfImg on lf.lf_id = lfImg.lf_id
+        LEFT JOIN
+            RefurbishImage rfImg ON lf.lf_id = rfImg.lf_id
         WHERE
             lf_sub_type = 0
         AND
-            lf_id = #{lfId}
+            lf.lf_id = #{lfId}
     </select>
 
     <!-- 스탠다드 상세페이지 옵션 -->
@@ -190,22 +224,22 @@
             s.lf_id = #{lfId}
     </select>
 
-    <!-- 스탠다드 상세페이지 리퍼 정보 -->
-    <select id="selectStandardRefurById" resultType="StandardRefurVo">
-        SELECT
-            lf.lf_id,
-            lf.lf_st_grade,
-            rfi.refur_img_id,
-            rfi.refur_img_url
-        FROM
-            LLifeFurniture lf
-        JOIN
-            RefurbishImage rfi ON lf.lf_id = rfi.lf_id
-        WHERE
-            lf.lf_sub_type = 0
-        AND
-            lf.lf_id = #{lfId}
-    </select>
+<!--    &lt;!&ndash; 스탠다드 상세페이지 리퍼 정보 &ndash;&gt;-->
+<!--    <select id="selectStandardRefurById" resultType="StandardRefurVo">-->
+<!--        SELECT-->
+<!--            lf.lf_id,-->
+<!--            lf.lf_st_grade,-->
+<!--            rfi.refur_img_id,-->
+<!--            rfi.refur_img_url-->
+<!--        FROM-->
+<!--            LLifeFurniture lf-->
+<!--        JOIN-->
+<!--            RefurbishImage rfi ON lf.lf_id = rfi.lf_id-->
+<!--        WHERE-->
+<!--            lf.lf_sub_type = 0-->
+<!--        AND-->
+<!--            lf.lf_id = #{lfId}-->
+<!--    </select>-->
 
     <!-- 스탠다드 추천(구독가능한 제품 + 해당 카테고리 제품을 랜덤으로 추천) -->
     <select id="selectStandardRecommendation" resultType="StandardVo">
@@ -321,7 +355,7 @@
         FROM REVIEW r
                  LEFT JOIN REVIEWIMAGE i ON r.LF_REVIEW_ID = i.LF_REVIEW_ID
                  LEFT JOIN MEMBER m ON r.M_ID = m.M_ID
-        WHERE r.LF_ID = 1
+        WHERE r.LF_ID = #{lfId}
         ORDER BY r.LF_REVIEW_DATE DESC
     </select>
 
