@@ -1,3 +1,75 @@
+
+$(document).ready(function() {
+    var memberId = $('#mId').val();
+    console.log("memberId" + memberId);
+
+
+
+
+    $('.join-btn').click(function() {
+
+        var checkedDay = $('.checkedDay').text()
+        var checkedTime = $('.checkedTime').text()
+
+        data =  {
+            checkedDay: checkedDay,
+            checkedTime: checkedTime
+        }
+        $.ajax({
+            type : "POST",
+            url : baseUrl +"/l-life/api/v1/subscription/standard",
+            data : data,
+            success : function(res){
+                if (res.result == 1){
+                    Swal.fire({
+                        title: '구독이 시작되었습니다.',
+                        text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = baseUrl + '/l-life/member/' + memberId + '/mypage'
+                        }
+                    })
+                }else{
+                    Swal.fire({
+                        title:'구독 중인 상품이 있습니다.',
+                        text: '마이페이지를 확인해주세요.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = baseUrl + '/l-life/member/' + memberId + '/mypage'
+                        }
+                    })
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.")
+            }
+        });
+
+    })
+})
+
+function daumAddress() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = '';
+            if (data.userSelectedType === 'R') {
+                addr = data.roadAddress;
+            } else {
+                addr = data.jibunAddress;
+            }
+
+            $("#zip_code").val(data.zonecode);
+            $("#addr").val(addr);
+            $("#addr_dtl").val("");
+            $("#addr_dtl").focus();
+        }
+    }).open();
+}
+
+
+
 function calendarInit() {
     var date = new Date();
     var utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
