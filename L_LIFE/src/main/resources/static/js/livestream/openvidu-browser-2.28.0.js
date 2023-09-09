@@ -6220,7 +6220,9 @@ the event name as the first argument.
                     });
                 }
             }
-            OpenVidu.prototype.initSession = function () {
+            OpenVidu.prototype.
+
+                initSession = function () {
                 this.session = new Session_1.Session(this);
                 return this.session;
             };

@@ -1,4 +1,10 @@
+var OV;
+var session;
+var publisher;
+var test_count = 0;
+
 $(document).ready(() => {
+
     var webComponent = document.querySelector('openvidu-webcomponent');
 
     webComponent.addEventListener('onSessionCreated', (event) => {
@@ -16,91 +22,53 @@ $(document).ready(() => {
 });
 
 
-async function joinSession() {
-    //Getting form inputvalue
-    var mySessionId = 'test' // document.getElementById("sessionId").value;
-    var myUserName = 'sj' // document.getElementById("userName").value;
 
-    // var sessionName = document.getElementById('sessionName').value;
-    // var participantName = document.getElementById('user').value;
+
+async function joinSession() {
+    var mySessionId = 'test';
+    var myUserName = 'sj';
+
+    test_count += 1;
+    console.log("test_count", test_count);
 
     OV = new OpenVidu();
     session = OV.initSession();
 
-
-    session.on('streamCreated', event => {
-
-        // Subscribe to the Stream to receive it. HTML video will be appended to element with 'video-container' id
-        var subscriber = session.subscribe(event.stream, 'video-container');
-
-        // When the HTML video has been appended to DOM...
-        subscriber.on('videoElementCreated', event => {
-
-            // Add a new <p> element for the user's nickname just below its video
-            appendUserData(event.element, subscriber.stream.connection);
-        });
-    });
-    getToken(mySessionId).then(token => {
-
-        // First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
-        // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
-        session.connect(token, { clientData: myUserName })
-            .then(() => {
-
-                // --- 5) Set page layout for active call ---
-
-                // document.getElementById('session-title').innerText = mySessionId;
-                // document.getElementById('join').style.display = 'none';
-                // document.getElementById('session').style.display = 'block';
-
-                // --- 6) Get your own camera stream with the desired properties ---
-
-                var publisher = OV.initPublisher('video-container', {
-                    audioSource: undefined, // The source of audio. If undefined default microphone
-                    videoSource: undefined, // The source of video. If undefined default webcam
-                    publishAudio: true,  	// Whether you want to start publishing with your audio unmuted or not
-                    publishVideo: true,  	// Whether you want to start publishing with your video enabled or not
-                    resolution: '640x480',  // The resolution of your video
-                    frameRate: 30,			// The frame rate of your video
-                    insertMode: 'PREPEND',	// How the video is inserted in the target element 'video-container'
-                    mirror: false       	// Whether to mirror your local video or not
-                });
-
-                // --- 7) Specify the actions when events take place in our publisher ---
-
-
-
-                // 분기 처리 -> Sub / Pub
-                publisher.on('videoElementCreated', function (event) {
-                      initMainVideo(event.element, myUserName); // subscriber ?
-                     // appendUserData(event.element, myUserName); // 생성하는 애
-                    event.element['muted'] = true;
-                });
-
-                // --- 8) Publish your stream ---
-
-                session.publish(publisher);
-
-            })
-            .catch(error => {
-                console.log('There was an error connecting to the session:', error.code, error.message);
+    if (test_count <= 1) {
+        session.on('streamCreated', event => {
+            var subscriber = session.subscribe(event.stream, 'video-container');
+            subscriber.on('videoElementCreated', event => {
+                appendUserData(event.element, subscriber.stream.connection);
+                event.element['muted'] = true;
             });
-    });
-    // // Requesting tokens
-    // var promiseResults = await Promise.all([getToken(sessionName), getToken(sessionName)]);
-    // var tokens = {webcam: promiseResults[0], screen: promiseResults[1]};
-    //
-    // //Getting the webcomponent element
-    // var webComponent = document.querySelector('openvidu-webcomponent');
-    //
-    // hideForm();
-    //
-    // // Displaying webcomponent
-    // webComponent.style.display = 'block';
-    //
-    // // Setting up our name and tokens
-    // webComponent.participantName = participantName;
-    // webComponent.tokens = tokens;
+        });
+    }
+
+    try {
+        var token = await getToken(mySessionId);
+        session.connect(token, { clientData: myUserName });
+
+            publisher = OV.initPublisher('video-container', {
+                audioSource: undefined,
+                videoSource: undefined,
+                publishAudio: true,
+                publishVideo: true,
+                resolution: '640x480',
+                frameRate: 30,
+                insertMode: 'PREPEND',
+                mirror: false
+            });
+
+            publisher.on('videoElementCreated', function (event) {
+                initMainVideo(event.element, myUserName);
+                event.element['muted'] = true;
+            });
+
+            session.publish(publisher);
+
+    } catch (error) {
+        console.log('There was an error:', error);
+    }
 }
 
 function appendUserData(videoElement, connection) {
