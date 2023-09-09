@@ -21,7 +21,6 @@ $(document).ready(function() {
     $('.final-price-num').text(totalPrice.toLocaleString() + '원');
 
     var paymentProduct = sessionStorage.getItem('paymentProduct');
-    console.log("vo"+ paymentProductObject)
 });
 
 
@@ -233,19 +232,19 @@ function calendarInit() {
         for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
             var date = new Date(currentYear, currentMonth - 1, i);
             var dateString = formatDate(date);
-            days.append('<button class="day prev">' + i + '</button>');
+            days.append('<button class="day prev" onclick="dayChecked(' + i + ')">' + i + '</button>');
         }
 
         for (var i = 1; i <= nextDate; i++) {
             var date = new Date(currentYear, currentMonth, i);
             var dateString = formatDate(date);
-            days.append('<button class="day current">' + i + '</button>');
+            days.append('<button class="day current" onclick="dayChecked(' + i + ')">' + i + '</button>');
         }
 
         for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
             var date = new Date(currentYear, currentMonth + 1, i);
             var dateString = formatDate(date);
-            days.append('<button class="day next">' + i + '</button>');
+            days.append('<button class="day next" onclick="dayChecked(' + i + ')">' + i + '</button>');
         }
 
         calendar.append(days);
@@ -266,4 +265,31 @@ function calendarInit() {
         thisMonth = new Date(currentYear, currentMonth + 1, 1);
         renderCalendar(thisMonth);
     });
+}
+// 달력 날짜 선택
+function dayChecked(i){
+
+    $('.day.selected').removeClass('selected');
+
+    var button = $(event.target);
+    button.addClass('selected');
+
+    var checkedMonth= $('.year-month').text();
+    var checkedDay = i;
+    var dateString = checkedMonth + '.' + checkedDay;
+    console.log(dateString);
+    $('.checkedDay').text(dateString);
+
+}
+
+// 배송 희망 시간대 선택
+function timeChecked(button){
+    $('.time-btn').removeClass('time-selected');
+    $(button).addClass('time-selected');
+
+    var time = $(button).attr('data-value');
+    console.log('data-value:', time);
+
+    $('.checkedTime').text(time);
+
 }

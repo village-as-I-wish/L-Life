@@ -432,9 +432,14 @@ h5{
 }
 
 .calendar .today {
-background-color: #ffcc00;
+background-color: #f0f0f0;
 font-weight: bold;
 }
+
+.selected {
+    border:1px solid #5D493E !important;
+}
+
 .calendar-box{
     width: 48%;
     display: flex;
