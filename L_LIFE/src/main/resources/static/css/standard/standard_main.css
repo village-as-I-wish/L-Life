@@ -136,7 +136,7 @@
 
 .sl-live-box-info {
     position: absolute;
-    height: 65px;
+    min-height: 65px;
     width: 90%;
     bottom: 10px;
     left: 50%;
