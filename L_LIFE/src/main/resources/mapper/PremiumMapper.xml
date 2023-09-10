@@ -58,7 +58,7 @@
         OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
-    <select id="selectProductByKeywordㅠㅛ" parameterType="PaginationVo" resultType="_int">
+    <select id="selectProductByKeywordPagination" parameterType="PaginationVo" resultType="_int">
         SELECT count(*)
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb
@@ -69,7 +69,6 @@
         OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
     </select>
 
-    <!-- 프리미엄 상품 사이드 필터 (브랜드, 분위기, 가격) -->
     <select id="selectProductByFilter" parameterType="PaginationVo">
         SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price, lfb.lf_brand_id
         FROM LLifeFurniture lf
@@ -78,17 +77,27 @@
         JOIN LFurnitureMood lfm
         ON lf.lf_mood_id = lfm.lf_mood_id
         WHERE lf.lf_sub_type = 1
-        AND lfb.lf_brand_id IN
-        <foreach collection="lfBrandIds" item="brandId" open="(" separator="," close=")">
-            #{brandId}
-        </foreach>
-        AND lfm.lf_mood_id IN
-        <foreach collection="lfMoodIds" item="moodId" open="(" separator="," close=")">
-            #{moodId}
-        </foreach>
-        AND lf.lf_pr_price BETWEEN #{minPrice} AND #{maxPrice}
+        <!-- 브랜드 조건 -->
+        <if test="lfBrandIds != null and lfBrandIds.size() > 0">
+            AND lfb.lf_brand_id IN
+            <foreach collection="lfBrandIds" item="brandId" open="(" separator="," close=")">
+                #{brandId}
+            </foreach>
+        </if>
+        <!-- 분위기 조건 -->
+        <if test="lfMoodIds != null and lfMoodIds.size() > 0">
+            AND lfm.lf_mood_id IN
+            <foreach collection="lfMoodIds" item="moodId" open="(" separator="," close=")">
+                #{moodId}
+            </foreach>
+        </if>
+        <!-- 가격 조건 -->
+        <if test="minPrice != null and maxPrice != null">
+            AND lf.lf_pr_price BETWEEN #{minPrice} AND #{maxPrice}
+        </if>
         OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
+
 
     <!-- 프리미엄 상품 상세 -->
     <select id="selectPremiumProductDetailById" parameterType="PremiumVo">

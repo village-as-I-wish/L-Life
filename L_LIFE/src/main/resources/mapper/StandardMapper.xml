@@ -54,7 +54,7 @@
     </select>
 
     <!-- 스탠다드 상품 카테고리 필터링 -->
-    <select id="selectStandardProductByCategory" parameterType="PaginationVo"  resultType="StandardVo">
+    <select id="selectStandardProductByCategory" parameterType="StandardPaginationVo"  resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
@@ -140,19 +140,26 @@
         JOIN
             LFurnitureMood lfm ON lf.lf_mood_id = lfm.lf_mood_id
         WHERE
-           lf.lf_sub_type = 0
-        AND
-            lfb.lf_brand_id IN
+            lf.lf_sub_type = 0
+        <!-- 브랜드 조건 -->
+        <if test="lfBrandIds != null and lfBrandIds.size() > 0">
+            AND lfb.lf_brand_id IN
             <foreach collection="lfBrandIds" item="brandId" open="(" separator="," close=")">
                 #{brandId}
             </foreach>
-        AND
-            lfm.lf_mood_id IN
+        </if>
+        <!-- 분위기 조건 -->
+        <if test="lfMoodIds != null and lfMoodIds.size() > 0">
+            AND lfm.lf_mood_id IN
             <foreach collection="lfMoodIds" item="moodId" open="(" separator="," close=")">
                 #{moodId}
             </foreach>
-        AND
-           lf.lf_st_coin BETWEEN #{minCoin} AND #{maxCoin}
+        </if>
+        <!-- 코인 조건 -->
+        <if test="minCoin != null and maxCoin != null">
+            AND lf.lf_st_coin BETWEEN #{minCoin} AND #{maxCoin}
+        </if>
+        OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
 

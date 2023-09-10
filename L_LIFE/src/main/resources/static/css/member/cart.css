@@ -48,6 +48,7 @@
 
 .product-link {
     display: flex;
+    margin-left: 20px;
 }
 
 .product-image {
@@ -135,4 +136,24 @@ a.product-link {
 
 .subscription-price {
     margin-left: 12px;
+}
+
+.standard-container, .premium-container {
+    min-height: 350px;
+}
+
+.standard-checkbox, .premium-checkbox {
+    height: 15px;
+    width: 15px;
+}
+
+.delete-btn {
+    color: #5D493E;
+    font-weight: lighter;
+    border-color: #5D493E;
+    border: 0.5px solid #5D493E;
+    background-color: white;
+    font-size: 13px;
+    margin: 10px 0px;
+    padding: 5px 7px;
 }
