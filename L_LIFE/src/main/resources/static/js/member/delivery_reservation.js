@@ -1,8 +1,6 @@
 
 $(document).ready(function() {
     var memberId = $('#mId').val();
-    console.log("memberId" + memberId);
-
 
 
 
@@ -11,9 +9,13 @@ $(document).ready(function() {
         var checkedDay = $('.checkedDay').text()
         var checkedTime = $('.checkedTime').text()
 
+        var address = $('#addr').val();
+        var addressDetail = $('#addr_dtl').val();
+        var deliveryAddress = address + addressDetail
         data =  {
             checkedDay: checkedDay,
-            checkedTime: checkedTime
+            checkedTime: checkedTime,
+            deliveryAddress : deliveryAddress
         }
         $.ajax({
             type : "POST",

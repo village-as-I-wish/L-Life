@@ -53,12 +53,20 @@ public class SubscriptionRestController {
     @PostMapping("standard")
     public ResponseEntity<BasicResponse> subscribeStandard(HttpServletRequest request,
                                                            @RequestParam String checkedDay,
-                                                           @RequestParam String checkedTime){
+                                                           @RequestParam String checkedTime,
+                                                           @RequestParam String deliveryAddress){
         HttpSession session = request.getSession();
         List<PayFurnitureVo> payFurnitureList = (List<PayFurnitureVo>) session.getAttribute("stPaymentProduct");
         log.info("starndard {}",payFurnitureList);
         log.info("starndard day{}",checkedDay);
         log.info("starndard time{}",checkedTime);
+        log.info("deliveryAddress {}",deliveryAddress);
+
+        for (PayFurnitureVo payFurnitureVo: payFurnitureList){
+            payFurnitureVo.setDeliveryDate(checkedDay);
+            payFurnitureVo.setDeliveryTime(checkedTime);
+            payFurnitureVo.setDeliveryAddress(deliveryAddress);
+        }
 
         int result = subscriptionService.addStLFSubcriptoin(payFurnitureList);
 

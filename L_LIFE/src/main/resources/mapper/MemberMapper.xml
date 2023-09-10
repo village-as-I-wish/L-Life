@@ -97,6 +97,8 @@
             sub.M_ID = #{memberId}
           and
             sub.SUBSCRIBE_TYPE = 0
+          and
+            sub.SUBSCRIBE_STATUS = 1
     </select>
 
     <select id="getPrSubId" parameterType="int" resultType="int">
@@ -109,6 +111,8 @@
             sub.M_ID = #{memberId}
           and
             sub.SUBSCRIBE_TYPE = 1
+          and
+            sub.SUBSCRIBE_STATUS = 1
     </select>
 
 </mapper>
