@@ -58,7 +58,7 @@
         OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
-    <select id="selectProductByKeywordㅠㅛ" parameterType="PaginationVo" resultType="_int">
+    <select id="selectProductByKeywordPagination" parameterType="PaginationVo" resultType="_int">
         SELECT count(*)
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb

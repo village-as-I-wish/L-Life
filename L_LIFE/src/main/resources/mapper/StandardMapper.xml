@@ -54,7 +54,7 @@
     </select>
 
     <!-- 스탠다드 상품 카테고리 필터링 -->
-    <select id="selectStandardProductByCategory" parameterType="PaginationVo"  resultType="StandardVo">
+    <select id="selectStandardProductByCategory" parameterType="StandardPaginationVo"  resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,

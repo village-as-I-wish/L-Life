@@ -48,6 +48,7 @@
 
 .product-link {
     display: flex;
+    margin-left: 20px;
 }
 
 .product-image {
@@ -135,4 +136,13 @@ a.product-link {
 
 .subscription-price {
     margin-left: 12px;
+}
+
+.standard-container, .premium-container {
+    min-height: 300px;
+}
+
+.standard-checkbox, .premium-checkbox {
+    height: 15px;
+    width: 15px;
 }
