@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class StandardLiveVo {
 
+    private int lStreamId;
     private String lStreamName; //라이브 방송 이름
     private LocalDateTime lStreamTime; // 라이브 방송 날짜 (timestamp)
     private String streamDate; // 라이브 날짜

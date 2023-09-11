@@ -30,7 +30,7 @@
                 <div class="sl-main-live-product" th:each="LiveList : ${standardLiveList}">
 
                     <!-- 방송 시작전 -->
-                    <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isBefore(LiveList.lStreamTime)}">
+                    <a th:href="@{'/livestream/' + ${LiveList.lStreamId}}" class="sl-live-box" th:if="${now.isBefore(LiveList.lStreamTime)}">
 
                         <img alt="베너 사진1 " th:src="${LiveList.lfPackageImg}"/>
                         <div class="overlay">
@@ -50,7 +50,7 @@
                     </a>
 
                     <!-- 방송 시작 후 -->
-                    <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isAfter(LiveList.lStreamTime)}">
+                    <a th:href="@{'/livestream/' + ${LiveList.lStreamId}}" class="sl-live-box" th:if="${now.isAfter(LiveList.lStreamTime)}">
                         <img alt="베너 사진1" th:src="${LiveList.lfPackageImg}"/>
                         <div class="sl-live-box-info d-flex">
                             <img class="sl-live-box-info-img" th:src="@{/img/standard/live-box-sample.png}"/>

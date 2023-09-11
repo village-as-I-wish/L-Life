@@ -36,6 +36,7 @@
     <!-- 라이브 리스트 가져오기 -->
     <select id = "selectAllLiveStream" resultType="StandardLiveVo">
         SELECT
+            LS.L_STREAM_ID,
             LS.l_stream_name,
             LS.l_stream_time,
             TO_CHAR(LS.l_stream_time, 'MM/DD') AS stream_date,

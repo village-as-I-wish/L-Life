@@ -21,7 +21,7 @@
         </div>
     </div>
     <input id="memberName" type="hidden" th:value="${session.existingMember.mName}">
-    <input name="roomId" type="hidden" th:value="${roomId}">
+    <input id="lStreamId" type="hidden" th:value="${lStreamId}">
 </th:block>
 <script th:src="@{/js/chat/chat.js}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>

@@ -18,16 +18,6 @@ public class ChatRoomController {
 
     private final ChatRoomService chatRoomService;
 
-    // 채팅방 목록 조회
-//    @GetMapping("/rooms")
-//    public ModelAndView rooms(){
-//        ModelAndView mv = new ModelAndView("pages/chat/chat");
-//
-//        mv.addObject("list", chatRoomService.findAllRooms());
-//
-//        return mv;
-//    }
-
     //채팅방 조회
     @GetMapping("/room/{lStreamId}")
     public String getRoom(@PathVariable int lStreamId, Model model){
