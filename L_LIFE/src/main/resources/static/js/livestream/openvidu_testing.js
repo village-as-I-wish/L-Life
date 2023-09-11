@@ -24,52 +24,51 @@ $(document).ready(() => {
 
 
 
-async function joinSession() {
+async function joinSession(isAdmin) {
     var mySessionId = 'test';
     var myUserName = 'sj';
-
-    test_count += 1;
-    console.log("test_count", test_count);
 
     OV = new OpenVidu();
     session = OV.initSession();
 
-    if (test_count <= 1) {
-        session.on('streamCreated', event => {
-            var subscriber = session.subscribe(event.stream, 'video-container');
-            subscriber.on('videoElementCreated', event => {
-                appendUserData(event.element, subscriber.stream.connection);
+    session.on('streamCreated', event => {
+        var subscriber = session.subscribe(event.stream, 'video-container');
+        subscriber.on('videoElementCreated', event => {
+            const connection = subscriber.stream.connection;
+            appendUserData(event.element, connection);
+
+            // 관리자인 경우에만 자신의 화면을 추가
+            if (isAdmin == 1) {
                 event.element['muted'] = true;
-            });
+                initMainVideo(event.element, myUserName);
+            }
         });
-    }
+    });
 
     try {
         var token = await getToken(mySessionId);
         session.connect(token, { clientData: myUserName });
 
-            publisher = OV.initPublisher('video-container', {
-                audioSource: undefined,
-                videoSource: undefined,
-                publishAudio: true,
-                publishVideo: true,
-                resolution: '640x480',
-                frameRate: 30,
-                insertMode: 'PREPEND',
-                mirror: false
-            });
+        publisher = OV.initPublisher('video-container', {
+            audioSource: undefined,
+            videoSource: undefined,
+            publishAudio: true,
+            publishVideo: true,
+            resolution: '640x480',
+            frameRate: 30,
+            insertMode: 'PREPEND',
+            mirror: false
+        });
 
-            publisher.on('videoElementCreated', function (event) {
-                initMainVideo(event.element, myUserName);
-                event.element['muted'] = true;
-            });
-
-            session.publish(publisher);
+        session.publish(publisher);
 
     } catch (error) {
         console.log('There was an error:', error);
     }
 }
+
+// 관리자 여부를 확인하는 함수 (예: 어떤 조건에 따라서 관리자 여부 판단)
+
 
 function appendUserData(videoElement, connection) {
     var userData;
