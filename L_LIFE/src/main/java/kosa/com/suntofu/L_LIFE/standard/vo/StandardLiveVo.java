@@ -14,7 +14,6 @@ public class StandardLiveVo {
 
     private int lStreamId; // 라이브 방송 번호
     private String lStreamName; //라이브 방송 이름
-
     private String lStreamImg ; // 라이브 방송 사진
     private String lStreamComment; // 라이브 방송 코멘트 ( 기타 설명 )
     private LocalDateTime lStreamTime; // 라이브 방송 날짜 (timestamp)
