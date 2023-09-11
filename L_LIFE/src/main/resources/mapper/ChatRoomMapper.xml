@@ -5,14 +5,11 @@
 <mapper namespace="kosa.com.suntofu.L_LIFE.chat.dao.ChatRoomDao">
 
     <select id="findAllRooms">
-        SELECT * FROM LIVESTREAM;
+        SELECT * FROM LIVESTREAM
     </select>
 
     <select id="findRoomById" parameterType="string">
-        SELECT * FROM LIVESTREAM WHERE L_STREAM_ID = #{id};
+        SELECT * FROM LIVESTREAM WHERE L_STREAM_ID = #{lStreamId}
     </select>
 
-    <insert id="createChatRoom">
-        INSERT INTO LIVESTREAM (L_STREAM_NAME) VALUES (#{roomName});
-    </insert>
 </mapper>
