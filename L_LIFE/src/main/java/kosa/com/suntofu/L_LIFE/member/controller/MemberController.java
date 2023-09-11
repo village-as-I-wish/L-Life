@@ -32,7 +32,7 @@ public class MemberController {
 
     @PostMapping("/login")
     public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpServletRequest request, Model model){
-        MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"");
+        MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"",0);
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
 
         Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
