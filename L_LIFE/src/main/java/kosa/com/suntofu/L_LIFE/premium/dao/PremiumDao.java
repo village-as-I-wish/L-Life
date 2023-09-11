@@ -28,4 +28,6 @@ public interface PremiumDao {
     List<PackageVo> selectPromotionPackages();
 
     PackageDetailVo selectPackageDetail(int lfPackageId);
+
+    List<PackageVo> selectRecommendationPackages();
 }

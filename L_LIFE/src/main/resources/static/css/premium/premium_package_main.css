@@ -1,7 +1,6 @@
 .sl-top-banner{
     width: 100%;
     height: 300px;
-    position: relative;
     margin-bottom: 70px;
     margin-top: 175px;
 }
@@ -88,6 +87,13 @@
     height: 410px;
     position: relative;
 }
+.lf-pr-img,.lf-rec-img{
+    width: 300px !important;
+    display: block;
+    width: inherit;
+    height: 300px;
+    position: relative;
+}
 
 .img-overlay {
     position: absolute;
@@ -113,3 +119,21 @@
 .pr-promotion-list, .pr-popular-list{
     margin-top:80px;
 }
+
+video{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    object-fit: cover;
+    height: 600px;
+}
+.premium_pk_container{
+    margin-top:200px;
+}
+
+.pr-pk-name-txt{
+    margin-top: 10px;
+    font-size: 1.1rem;
+
+}
+

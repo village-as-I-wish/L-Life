@@ -39,11 +39,10 @@
     </select>
 
 
-    <select id="getDeliveryStatus" parameterType="int" resultType="DeliveryStatusVo">
-        -- 주문 배송 현황(배송준비중, 배송중, 배송완료) 개수 --
+    <select id="getDeliveryReadyStatus" parameterType="java.lang.Integer">
+        -- 배송 준비
         SELECT
-            D.DELIVERY_STATUS,
-            COUNT(*) AS STATUS_COUNT
+            count(*) as STATUS_COUNT
         FROM
             DELIVERY D
                 JOIN
@@ -52,9 +51,40 @@
             SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
         WHERE
             S.M_ID = #{memberId}
-        GROUP BY
-            D.DELIVERY_STATUS
+          and
+            D.DELIVERY_STATUS = 0
+    </select>
 
+    <select id="getDeliveryProgressStatus" parameterType="java.lang.Integer">
+        -- 배송 중
+        SELECT
+            count(*) as STATUS_COUNT
+        FROM
+            DELIVERY D
+                JOIN
+            LFSUBSCRIPTIONLIST SUB_LF on D.SUB_LF_ID = SUB_LF.SUB_LF_ID
+                JOIN
+            SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
+        WHERE
+            S.M_ID = #{memberId}
+          and
+            D.DELIVERY_STATUS = 1
+    </select>
+
+    <select id="getDeliveryCompleteStatus" parameterType="java.lang.Integer">
+        -- 배송 완료
+        SELECT
+            count(*) as STATUS_COUNT
+        FROM
+            DELIVERY D
+                JOIN
+            LFSUBSCRIPTIONLIST SUB_LF on D.SUB_LF_ID = SUB_LF.SUB_LF_ID
+                JOIN
+            SUBSCRIPTION S on SUB_LF.SUBSCRIPTION_ID = S.SUBSCRIPTION_ID
+        WHERE
+            S.M_ID = #{memberId}
+          and
+            D.DELIVERY_STATUS = 2
     </select>
 
     <select id="getStSubId" parameterType="int" resultType="int">
@@ -67,6 +97,8 @@
             sub.M_ID = #{memberId}
           and
             sub.SUBSCRIBE_TYPE = 0
+          and
+            sub.SUBSCRIBE_STATUS = 1
     </select>
 
     <select id="getPrSubId" parameterType="int" resultType="int">
@@ -79,6 +111,8 @@
             sub.M_ID = #{memberId}
           and
             sub.SUBSCRIBE_TYPE = 1
+          and
+            sub.SUBSCRIBE_STATUS = 1
     </select>
 
 </mapper>

@@ -21,4 +21,6 @@ public class StandardDetailVo {
     private String lfBrandName; //브랜드이름
     private String lfSubComment; // 코멘트
     private String lfStGrade;  // 상품등급
+    private List<RefurImgVo> refurImgUrl;
+    private List<DetailImgVo> detailImgUrl;
 }

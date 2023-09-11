@@ -20,4 +20,8 @@ public class PayFurnitureVo {
     private String lfBrandName;
     private int lfPrMinPeriod;
     private int memberId;
+
+    private String deliveryDate;
+    private String deliveryTime;
+    private String deliveryAddress;
 }

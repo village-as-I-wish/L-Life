@@ -40,9 +40,10 @@ public class SubscriptionRestController {
     public ResponseEntity<BasicResponse> subscribePremium(HttpServletRequest request){ //세션에서 memberId 가져올 예정
         HttpSession session = request.getSession();
         List<PayFurnitureVo> payFurnitureList = (List<PayFurnitureVo>) session.getAttribute("prPaymentProduct");
-        log.info("payment {}",payFurnitureList);
+        log.info("premium payment {}",payFurnitureList);
 
         int result = subscriptionService.addPrLFSubcriptoin(payFurnitureList);
+        session.removeAttribute("prPaymentProduct");
 
 
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("프리미엄 구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
@@ -50,13 +51,26 @@ public class SubscriptionRestController {
     }
 
     @PostMapping("standard")
-    public ResponseEntity<BasicResponse> subscribeStandard(HttpServletRequest request){ //세션에서 memberId 가져올 예정
+    public ResponseEntity<BasicResponse> subscribeStandard(HttpServletRequest request,
+                                                           @RequestParam String checkedDay,
+                                                           @RequestParam String checkedTime,
+                                                           @RequestParam String deliveryAddress){
         HttpSession session = request.getSession();
         List<PayFurnitureVo> payFurnitureList = (List<PayFurnitureVo>) session.getAttribute("stPaymentProduct");
         log.info("starndard {}",payFurnitureList);
+        log.info("starndard day{}",checkedDay);
+        log.info("starndard time{}",checkedTime);
+        log.info("deliveryAddress {}",deliveryAddress);
+
+        for (PayFurnitureVo payFurnitureVo: payFurnitureList){
+            payFurnitureVo.setDeliveryDate(checkedDay);
+            payFurnitureVo.setDeliveryTime(checkedTime);
+            payFurnitureVo.setDeliveryAddress(deliveryAddress);
+        }
 
         int result = subscriptionService.addStLFSubcriptoin(payFurnitureList);
 
+        session.removeAttribute("stPaymentProduct");
 
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("스탠다드 가구 구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
 

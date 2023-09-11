@@ -25,8 +25,14 @@ public class PremiumController {
     @GetMapping()
     public String loadPremiumPackageMainPage(Model model){
 
+        // md pick 라인
         model.addAttribute("MDPickPackages", premiumService.getMDPickPackages());
+
+        // promotion 라인
         model.addAttribute("PromotionPackages", premiumService.getPromotionPackages());
+
+        // 기타 추천 라인
+        model.addAttribute("RecommendationPackages", premiumService.getRecommendationPackages());
         return "pages/premium/premium_package_main";
     }
 

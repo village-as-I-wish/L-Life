@@ -37,10 +37,20 @@ $(document).ready(function(){
                                     method: 'POST',
                                     data: data,
                                     success: function (response) {
+                                        Swal.fire({
+                                            title: '성공',
+                                            text: '재입고 알림 신청 완료',
+                                            icon: 'success'
+                                        });
                                         console.log("재입고 알림 신청 완료")
                                         console.log(response)
                                     },
                                     error: function (error) {
+                                        Swal.fire({
+                                            title: '오류',
+                                            text: '재입고 알림 신청 실패',
+                                            icon: 'error'
+                                        });
                                         console.log("재입고 알림 신청 실패")
                                         console.log(error)
                                     }
@@ -85,12 +95,7 @@ $(document).ready(function(){
                     });
                 },
                 error: function(error) {
-                    if (error.responseText === "Product-Option already in cart") {
-                        Swal.fire('오류', '이 상품-옵션은 이미 장바구니에 있습니다.', 'error');
-                    } else {
-                        console.log("장바구니에 담기 실패");
-                        console.log(error);
-                    }
+                    Swal.fire('오류', '장바구니에 담기 실패', 'error');
                 }
             });
 

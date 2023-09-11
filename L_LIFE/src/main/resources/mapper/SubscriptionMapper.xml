@@ -120,8 +120,8 @@
         <selectKey keyProperty="subLfId" resultType="int" order="BEFORE">
             SELECT NVL(MAX(sub_lf_id), 0) FROM LFSUBSCRIPTIONLIST
         </selectKey>
-        INSERT INTO DELIVERY (SUB_LF_ID, M_ID)
-        VALUES ( #{subLfId}, #{memberId})
+        INSERT INTO DELIVERY (SUB_LF_ID, M_ID, DELIVERY_DATE, DELIVERY_TIME, DELIVERY_ADDRESS)
+        VALUES ( #{subLfId}, #{memberId}, #{deliveryDate}, #{deliveryTime}, #{deliveryAddress})
     </insert>
 
     <!-- 구독 포인트 업데이트-->

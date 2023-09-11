@@ -125,10 +125,10 @@ public class PremiumServiceImpl implements PremiumService{
     public List<PackageVo> getMDPickPackages() {
         List<PackageVo> packages = getCachedSearchResult(CacheKey.MDPICK_LLIFE_PACKAGES);
         if (packages != null){
-            log.info("[REDIS] SEARCH - Cache Hit - {}", CacheKey.MDPICK_LLIFE_PACKAGES);
+            log.info("[REDIS] MD PICK PACKAGES  - Cache Hit - {}", CacheKey.MDPICK_LLIFE_PACKAGES);
             return packages;
         }else{
-            log.info("[REDIS] TOP_10 - Cache Miss - {}", CacheKey.MDPICK_LLIFE_PACKAGES);
+            log.info("[REDIS]  MD PICK PACKAGES - Cache Miss - {}", CacheKey.MDPICK_LLIFE_PACKAGES);
             packages = premiumDao.selectMDPickPackages();
             cachePackages(CacheKey.MDPICK_LLIFE_PACKAGES, packages);
             return packages;
@@ -141,13 +141,41 @@ public class PremiumServiceImpl implements PremiumService{
      */
     @Override
     public List<PackageVo> getPromotionPackages() {
-        return premiumDao.selectPromotionPackages();
+
+        List<PackageVo> packages = getCachedSearchResult(CacheKey.PROMOTION_LLIFE_PACKAGES);
+
+        if (packages != null){
+            log.info("[REDIS] PROMOTION PACKAGES - Cache Hit - {}", CacheKey.PROMOTION_LLIFE_PACKAGES);
+            return packages;
+        }else{
+            log.info("[REDIS] PROMOTION PACKAGES - Cache Miss - {}", CacheKey.PROMOTION_LLIFE_PACKAGES);
+            packages = premiumDao.selectPromotionPackages();
+            cachePackages(CacheKey.PROMOTION_LLIFE_PACKAGES, packages);
+            return packages;
+        }
+    }
+
+    @Override
+    public List<PackageVo> getRecommendationPackages() {
+
+        List<PackageVo> packages = getCachedSearchResult(CacheKey.RECOMMENDATION_LLIFE_PACKAGES);
+
+        if (packages != null){
+            log.info("[REDIS] RECOMMENDATION PACKAGES - Cache Hit - {}", CacheKey.RECOMMENDATION_LLIFE_PACKAGES);
+            return packages;
+        }else{
+            log.info("[REDIS] RECOMMENDATION PACKAGES - Cache Miss - {}", CacheKey.RECOMMENDATION_LLIFE_PACKAGES);
+            packages = premiumDao.selectRecommendationPackages();
+            cachePackages(CacheKey.RECOMMENDATION_LLIFE_PACKAGES, packages);
+            return packages;
+        }
     }
 
     @Override
     public PackageDetailVo getPremiumPackageDetail(int lfPackageId) {
         return premiumDao.selectPackageDetail(lfPackageId);
     }
+
 
     private List<PackageVo> getCachedSearchResult(String cacheKey) {
         @SuppressWarnings("unchecked")
@@ -157,7 +185,7 @@ public class PremiumServiceImpl implements PremiumService{
 
 
     private void cachePackages(String cacheKey, List<PackageVo> cachingData) {
-        redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);
+        redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);  // 하루동안 캐싱
         log.info("[REDIS] 패키지 - Cache 저장 - {}", cacheKey);
     }
 

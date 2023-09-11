@@ -136,15 +136,17 @@
                                         </div>
                                         <div class="calendar" th:utext="${calendarHTML}">
                                         </div>
+                                        <span class="hidden checkedDay"></span>
                                     </div>
                                     <div class="time-select-box">
                                         <p> 배송 희망 시간대를 선택해주세요.</p>
                                         <div class="time-btn-group">
-                                            <button class="time-btn" data-value="all-day">종일</button>
-                                            <button class="time-btn" data-value="morning">오전</button>
-                                            <button class="time-btn" data-value="afternoonA">오후A</button>
-                                            <button class="time-btn" data-value="afternoonB">오후B</button>
+                                            <button class="time-btn" data-value="종일" onclick="timeChecked(this)">종일</button>
+                                            <button class="time-btn" data-value="오전" onclick="timeChecked(this)">오전</button>
+                                            <button class="time-btn" data-value="오후A" onclick="timeChecked(this)">오후A</button>
+                                            <button class="time-btn" data-value="오후B" onclick="timeChecked(this)">오후B</button>
                                         </div>
+                                        <span class="hidden checkedTime"></span>
                                     </div>
                                 </div>
                                 <div class="delivery-notice">
@@ -159,7 +161,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn-close modal-save-btn"> 선택완료</button>
+                                <button type="button" class="btn-close modal-save-btn" data-bs-dismiss="modal" aria-label="Close"> 선택완료</button>
                             </div>
 
                         </div>

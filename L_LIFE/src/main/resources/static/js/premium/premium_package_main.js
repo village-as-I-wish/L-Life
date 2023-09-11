@@ -22,7 +22,7 @@ $(document).ready(function(){
     $('.lf-pr-promotion-slide-wrapper').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         nextArrow:$('.lf-pr-promotion-slider .next'),
         prevArrow:$('.lf-pr-promotion-slider .prev'),
@@ -31,7 +31,7 @@ $(document).ready(function(){
     $('.lf-pr-popular-slide-wrapper').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         nextArrow:$('.lf-pr-popular-slider .next'),
         prevArrow:$('.lf-pr-popular-slider .prev'),
