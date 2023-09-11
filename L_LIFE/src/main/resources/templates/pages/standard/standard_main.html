@@ -32,7 +32,7 @@
                     <!-- 방송 시작전 -->
                     <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isBefore(LiveList.lStreamTime)}">
 
-                        <img alt="베너 사진1 " th:src="${LiveList.lfPackageImg}"/>
+                        <img alt="베너 사진1 " th:src="${LiveList.lStreamImg}"/>
                         <div class="overlay">
                             <p class="sl-live-box-day-txt" th:text="${LiveList.streamDate}"></p>
                             <p class="sl-live-box-time-txt" th:text="${LiveList.streamTime}"></p>
@@ -51,11 +51,13 @@
 
                     <!-- 방송 시작 후 -->
                     <a th:href="@{/livestream}" class="sl-live-box" th:if="${now.isAfter(LiveList.lStreamTime)}">
-                        <img alt="베너 사진1" th:src="${LiveList.lfPackageImg}"/>
+                        <img alt="베너 사진1 " th:src="${LiveList.lStreamImg}"/>
                         <div class="sl-live-box-info d-flex">
-                            <img class="sl-live-box-info-img" th:src="@{/img/standard/live-box-sample.png}"/>
+                            <img class="sl-live-box-info-img" th:if="${LiveList.lfPackageImg == null}" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-LiveStream/livart_live_sample.jpeg" />
+                            <img class="sl-live-box-info-img" th:if="${LiveList.lfPackageImg != null}" th:src="@{${LiveList.lfPackageImg}}" />
                             <div class="sl-live-box-info-title">
-                                <span th:text="${LiveList.lfPackageName}">패키지이름</span>
+                                <span th:if="${LiveList.lfPackageName == null}">상품 준비중</span>
+                                <span th:unless="${LiveList.lfPackageName == null}" th:text="${LiveList.lfPackageName}">패키지이름</span>
                                 <div class="coin-img-box">
                                     <th:block th:each="coins, stat : ${#numbers.sequence(1, LiveList.lfPackageStCoin)}">
                                         <img class="coin-img" th:src="@{/img/member/coin.png}"/>
