@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface ChatRoomDao {
     List<ChatRoomVo> findAllRooms();
-    ChatRoomVo findRoomById(@Param("lStreamId") int lStreamId);
+    ChatRoomVo findRoomById(int lStreamId);
 }

@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,12 +29,11 @@ public class ChatRoomController {
 //    }
 
     //채팅방 조회
-    @GetMapping("/room")
-    public String getRoom(int lStreamId, Model model){
+    @GetMapping("/room/{lStreamId}")
+    public String getRoom(@PathVariable int lStreamId, Model model){
         ChatRoomVo roomId = chatRoomService.findRoomById(lStreamId);
-        log.info("# get Chat Room, roomID {} ", roomId);
-
         model.addAttribute("roomId", roomId);
+        log.info("# get Chat Room, roomID {} ", roomId);
         return "pages/chat/chat";
     }
 }

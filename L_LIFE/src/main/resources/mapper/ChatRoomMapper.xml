@@ -8,7 +8,7 @@
         SELECT * FROM LIVESTREAM
     </select>
 
-    <select id="findRoomById" parameterType="string">
+    <select id="findRoomById" parameterType="int">
         SELECT * FROM LIVESTREAM WHERE L_STREAM_ID = #{lStreamId}
     </select>
 
