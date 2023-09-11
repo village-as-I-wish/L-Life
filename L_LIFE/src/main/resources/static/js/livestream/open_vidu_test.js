@@ -5,9 +5,11 @@ var session;
 /* OPENVIDU METHODS */
 
 function joinSession() {
+    var mySessionId = 'test'
+    var myUserName= 'sj'
 
-    var mySessionId = document.getElementById("sessionId").value;
-    var myUserName = document.getElementById("userName").value;
+    // var mySessionId = document.getElementById("sessionId").value;
+    // var myUserName = document.getElementById("userName").value;
 
     // --- 1) Get an OpenVidu object ---
 
@@ -58,9 +60,9 @@ function joinSession() {
 
                 // --- 5) Set page layout for active call ---
 
-                document.getElementById('session-title').innerText = mySessionId;
-                document.getElementById('join').style.display = 'none';
-                document.getElementById('session').style.display = 'block';
+                // document.getElementById('session-title').innerText = mySessionId;
+                // document.getElementById('join').style.display = 'none';
+                // document.getElementById('session').style.display = 'block';
 
                 // --- 6) Get your own camera stream with the desired properties ---
 
