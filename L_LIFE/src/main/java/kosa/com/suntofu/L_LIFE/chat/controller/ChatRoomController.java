@@ -24,6 +24,6 @@ public class ChatRoomController {
         ChatRoomVo liveStreamId = chatRoomService.findRoomById(lStreamId);
         model.addAttribute("liveStreamId", liveStreamId);
         log.info("# get Chat Room, liveStreamId {} ", liveStreamId);
-        return "pages/chat/chat";
+        return "pages/livestream/livestream-onboard";
     }
 }

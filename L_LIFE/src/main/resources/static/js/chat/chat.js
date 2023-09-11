@@ -2,8 +2,6 @@ $(document).ready(function(){
     var lStreamId = $('#lStreamId').val();
     var memberName = $('#memberName').val();
 
-    console.log("확인해보기" + lStreamId);
-
     var sockJs = new SockJS("/l-life/stomp/chat");
     //1. SockJS를 내부에 들고있는 stomp를 내어줌
     var stomp = Stomp.over(sockJs);
@@ -35,14 +33,14 @@ $(document).ready(function(){
         });
 
         //3. send(path, header, message)로 메세지를 보낼 수 있음
-        stomp.send('/pub/chat/enter', {}, JSON.stringify({liveStreamId: lStreamId, writer: memberName}))
+        stomp.send('/pub/chat/enter', {}, JSON.stringify({lStreamId: lStreamId, writer: memberName}))
     });
 
     $("#button-send").on("click", (e) => {
         var msg = document.getElementById("msg");
 
         console.log(memberName + ":" + msg.value);
-        stomp.send('/pub/chat/message', {}, JSON.stringify({liveStreamId: lStreamId, message: msg.value, writer: memberName}));
+        stomp.send('/pub/chat/message', {}, JSON.stringify({lStreamId: lStreamId, message: msg.value, writer: memberName}));
         msg.value = '';
     });
 });
