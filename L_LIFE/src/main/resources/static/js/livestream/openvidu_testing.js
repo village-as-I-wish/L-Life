@@ -55,10 +55,10 @@ function joinSession(isAdmin) {
 
         // When the HTML video has been appended to DOM...
         subscriber.on('videoElementCreated', event => {
-           //  initMainVideo(event.element, myUserName);
-           //
-           //  // Add a new <p> element for the user's nickname just below its video
-           // appendUserData(event.element, subscriber.stream.connection);
+            //  initMainVideo(event.element, myUserName);
+            //
+            //  // Add a new <p> element for the user's nickname just below its video
+            // appendUserData(event.element, subscriber.stream.connection);
         });
     });
 
@@ -75,84 +75,97 @@ function joinSession(isAdmin) {
     });
 
     // --- 4) Connect to the session with a valid user token ---
+    if (isAdmin == 1) {
 
-    // Get a token from the OpenVidu deployment
-    getToken(mySessionId).then(token => {
+        // Get a token from the OpenVidu deployment
+        getToken(mySessionId).then(token => {
 
-        // First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
-        // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
-        session.connect(token, { clientData: myUserName })
-            .then(() => {
+            // First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
+            // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
+            session.connect(token, {clientData: myUserName})
+                .then(() => {
 
-                // --- 5) Set page layout for active call ---
-                //
-                // document.getElementById('session-title').innerText = mySessionId;
-                // document.getElementById('join').style.display = 'none';
-                // document.getElementById('session').style.display = 'block';
+                    // --- 5) Set page layout for active call ---
+                    //
+                    // document.getElementById('session-title').innerText = mySessionId;
+                    // document.getElementById('join').style.display = 'none';
+                    // document.getElementById('session').style.display = 'block';
 
-                // --- 6) Get your own camera stream with the desired properties ---
-                if(isAdmin == 1){
-                    var publisher = OV.initPublisher('video-container', {
-                        audioSource: undefined, // The source of audio. If undefined default microphone
-                        videoSource: undefined, // The source of video. If undefined default webcam
-                        publishAudio: true,     // Whether you want to start publishing with your audio unmuted or not
-                        publishVideo: true,     // Whether you want to start publishing with your video enabled or not
-                        resolution: '640x480',  // The resolution of your video
-                        frameRate: 30,         // The frame rate of your video
-                        insertMode: 'PREPEND',   // How the video is inserted in the target element 'video-container'
-                        mirror: false          // Whether to mirror your local video or not
-                    });
+                    // --- 6) Get your own camera stream with the desired properties ---
+                    if (isAdmin == 1) {
+                        var publisher = OV.initPublisher('video-container', {
+                            audioSource: undefined, // The source of audio. If undefined default microphone
+                            videoSource: undefined, // The source of video. If undefined default webcam
+                            publishAudio: true,     // Whether you want to start publishing with your audio unmuted or not
+                            publishVideo: true,     // Whether you want to start publishing with your video enabled or not
+                            resolution: '640x480',  // The resolution of your video
+                            frameRate: 30,         // The frame rate of your video
+                            insertMode: 'PREPEND',   // How the video is inserted in the target element 'video-container'
+                            mirror: false          // Whether to mirror your local video or not
+                        });
 
-                    session.publish(publisher);
+                        session.publish(publisher);
+                        appendUserData(event.element, myUserName);
 
-                }else{
-                    console.log("testingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtesting")
+                    } else {
+                        console.log("testingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtesting")
 
-                }
-                // var publisher = OV.initPublisher('video-container', {
-                //     audioSource: undefined, // The source of audio. If undefined default microphone
-                //     videoSource: undefined, // The source of video. If undefined default webcam
-                //     publishAudio: true,     // Whether you want to start publishing with your audio unmuted or not
-                //     publishVideo: true,     // Whether you want to start publishing with your video enabled or not
-                //     resolution: '640x480',  // The resolution of your video
-                //     frameRate: 30,         // The frame rate of your video
-                //     insertMode: 'PREPEND',   // How the video is inserted in the target element 'video-container'
-                //     mirror: false          // Whether to mirror your local video or not
-                // });
+                    }
+                    // var publisher = OV.initPublisher('video-container', {
+                    //     audioSource: undefined, // The source of audio. If undefined default microphone
+                    //     videoSource: undefined, // The source of video. If undefined default webcam
+                    //     publishAudio: true,     // Whether you want to start publishing with your audio unmuted or not
+                    //     publishVideo: true,     // Whether you want to start publishing with your video enabled or not
+                    //     resolution: '640x480',  // The resolution of your video
+                    //     frameRate: 30,         // The frame rate of your video
+                    //     insertMode: 'PREPEND',   // How the video is inserted in the target element 'video-container'
+                    //     mirror: false          // Whether to mirror your local video or not
+                    // });
 
-                // --- 7) Specify the actions when events take place in our publisher ---
+                    // --- 7) Specify the actions when events take place in our publisher ---
 
-                // When our HTML video has been added to DOM...
-                // publisher.on('videoElementCreated', function (event) {
-                //     // if (isAdmin !=1) {
-                //     //     event.element.style.display = 'none'; // Hide video for non-admin users
-                //     // }
-                //     if(isAdmin ==1 ){
-                //         initMainVideo(event.element, myUserName);
-                //         appendUserData(event.element, myUserName);
-                //         event.element['muted'] = true;
-                //     }else{
-                //
-                //     }
-                //     // initMainVideo(event.element, myUserName);
-                //     // appendUserData(event.element, myUserName);
-                //
-                // });
+                    // When our HTML video has been added to DOM...
+                    // publisher.on('videoElementCreated', function (event) {
+                    //     // if (isAdmin !=1) {
+                    //     //     event.element.style.display = 'none'; // Hide video for non-admin users
+                    //     // }
+                    //     if(isAdmin ==1 ){
+                    //         initMainVideo(event.element, myUserName);
+                    //         appendUserData(event.element, myUserName);
+                    //         event.element['muted'] = true;
+                    //     }else{
+                    //
+                    //     }
+                    //     // initMainVideo(event.element, myUserName);
+                    //     // appendUserData(event.element, myUserName);
+                    //
+                    // });
 
-                // --- 8) Publish your stream ---
-                // if(isAdmin ==1){
-                //     console.log("Admin 영역 : ", "testing")
-                //     session.publish(publisher);
-                //
-                // }
+                    // --- 8) Publish your stream ---
+                    // if(isAdmin ==1){
+                    //     console.log("Admin 영역 : ", "testing")
+                    //     session.publish(publisher);
+                    //
+                    // }
 
-            })
-            .catch(error => {
-                console.log('There was an error connecting to the session:', error.code, error.message);
-            });
-    });
+                })
+                .catch(error => {
+                    console.log('There was an error connecting to the session:', error.code, error.message);
+                });
+        });
+    } else {
+        createToken(mySessionId).then(token => {
+
+            // First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
+            // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
+            session.connect(token, {clientData: myUserName})
+                .then(() => {
+
+                });
+
+        });
+    }
 }
-
 
 //
 // async function joinSession(isAdmin) {
