@@ -31,9 +31,9 @@ public class ChatRoomController {
     //채팅방 조회
     @GetMapping("/room/{lStreamId}")
     public String getRoom(@PathVariable int lStreamId, Model model){
-        ChatRoomVo roomId = chatRoomService.findRoomById(lStreamId);
-        model.addAttribute("roomId", roomId);
-        log.info("# get Chat Room, roomID {} ", roomId);
+        ChatRoomVo liveStreamId = chatRoomService.findRoomById(lStreamId);
+        model.addAttribute("liveStreamId", liveStreamId);
+        log.info("# get Chat Room, liveStreamId {} ", liveStreamId);
         return "pages/chat/chat";
     }
 }

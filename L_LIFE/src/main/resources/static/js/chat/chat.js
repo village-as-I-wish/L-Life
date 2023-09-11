@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var roomId = $('#roomId').val();
+    var liveStreamId = $('#liveStreamId').val();
     var roomName = '${chat.lStreamName}';
     var username = $('#memberName').val();
 
@@ -12,7 +12,7 @@ $(document).ready(function(){
         console.log("STOMP Connection")
 
         //4. subscribe(path, callback)으로 메세지를 받을 수 있음
-        stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
+        stomp.subscribe("/sub/chat/room/" + liveStreamId, function (chat) {
             var content = JSON.parse(chat.body);
 
             var writer = content.writer;
@@ -20,25 +20,25 @@ $(document).ready(function(){
                 //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
                 if(writer === username){ // 본인 챗
                     var str = "<p class='chat'>";
-                    str += "<span class='chat-user' style='color:blue;'>" + writer + "</span>" + " : " + message + "</p>";
+                    str += "<span class='chat-user' style='color:blue;'>" + writer + "</span>" + " : " + content + "</p>";
                     $("#msgArea").append(str);
                 }
                 else{ // 타 챗
                     var str = "<p class='chat'>";
-                    str += "<span class='chat-user'>" + writer + "</span>" + " : " + message + "</p>";
+                    str += "<span class='chat-user'>" + writer + "</span>" + " : " + content + "</p>";
                     $("#msgArea").append(str);
                 }
         });
 
         //3. send(path, header, message)로 메세지를 보낼 수 있음
-        stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
+        stomp.send('/pub/chat/enter', {}, JSON.stringify({liveStreamId: liveStreamId, writer: username}))
     });
 
     $("#button-send").on("click", (e) => {
         var msg = document.getElementById("msg");
 
         console.log(username + ":" + msg.value);
-        stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
+        stomp.send('/pub/chat/message', {}, JSON.stringify({liveStreamId: liveStreamId, message: msg.value, writer: username}));
         msg.value = '';
     });
 

@@ -16,11 +16,11 @@ import java.util.List;
 public class ChatRoomServiceImpl implements ChatRoomService {
 
     private final ChatRoomDao chatRoomDao;
-    @Override
-    public List<ChatRoomVo> findAllRooms() {
-
-        return chatRoomDao.findAllRooms();
-    }
+//    @Override
+//    public List<ChatRoomVo> findAllRooms() {
+//
+//        return chatRoomDao.findAllRooms();
+//    }
 
     @Override
     public ChatRoomVo findRoomById(int lStreamId) {

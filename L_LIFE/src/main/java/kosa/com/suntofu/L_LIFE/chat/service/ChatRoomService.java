@@ -5,6 +5,6 @@ import kosa.com.suntofu.L_LIFE.chat.vo.ChatRoomVo;
 import java.util.List;
 
 public interface ChatRoomService {
-    List<ChatRoomVo> findAllRooms();
+//    List<ChatRoomVo> findAllRooms();
     ChatRoomVo findRoomById(int lStreamId);
 }

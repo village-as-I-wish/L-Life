@@ -8,6 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface ChatRoomDao {
-    List<ChatRoomVo> findAllRooms();
+//    List<ChatRoomVo> findAllRooms();
     ChatRoomVo findRoomById(int lStreamId);
 }
