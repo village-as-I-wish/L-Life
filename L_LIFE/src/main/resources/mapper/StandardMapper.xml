@@ -254,6 +254,8 @@
         AND
             lf.lf_sub_type = 0
         AND
+            lf.lf_id != #{lfId}
+        AND
             recommend.lf_id IN (
                 SELECT #{lfId}
                 FROM LLifeFurniture
