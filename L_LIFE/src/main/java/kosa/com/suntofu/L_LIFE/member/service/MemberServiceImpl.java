@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.member.service;
 
 import kosa.com.suntofu.L_LIFE.member.dao.MemberDao;
 import kosa.com.suntofu.L_LIFE.member.vo.*;
+import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -151,6 +152,11 @@ public class MemberServiceImpl implements MemberService {
         }else{
             return prSubId;
         }
+    }
+
+    @Override
+    public SubscriptionVo getStandardSubscription(Integer standardSubscriptionId) {
+        return memberDao.getStandardSubscription(standardSubscriptionId);
     }
 }
 

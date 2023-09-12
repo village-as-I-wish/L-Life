@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.member.controller;
 import kosa.com.suntofu.L_LIFE.member.SessionConst;
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.*;
+import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.parameters.P;
@@ -42,8 +43,10 @@ public class MemberController {
         int deliveryComplete = memberService.getDeliveryCompleteStatus(existingMember.getMId());
 
         Integer standardSubscriptionId = memberService.getStandardSubscriptionId(existingMember.getMId());
+        SubscriptionVo standardSubscription = memberService.getStandardSubscription(standardSubscriptionId);
         Integer premiumSubscriptionId = memberService.getPremiumSubscriptionId(existingMember.getMId());
 
+        System.out.println(standardSubscription);
         HttpSession session = request.getSession();
         // 세션 저장
         session.setAttribute("existingMember", existingMember);
@@ -53,6 +56,7 @@ public class MemberController {
         session.setAttribute("deliveryProgress",deliveryProgress);
         session.setAttribute("deliveryComplete",deliveryComplete);
         session.setAttribute("stSubId",standardSubscriptionId);
+        session.setAttribute("stSub",standardSubscription);
         session.setAttribute("prSubId",premiumSubscriptionId);
 
         return "pages/main/main";

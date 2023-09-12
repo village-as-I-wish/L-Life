@@ -4,7 +4,7 @@
     <link rel="stylesheet" th:href="@{/css/member/mypage_standard_subscription.css}">
 
     <div class="subscribe-title">스탠다드 구독 제품</div>
-    <div class="subscribe-sub-title">다음 구독료 결제일은 ${2023년 8월 23일 (수)}입니다.</div>
+    <div class="subscribe-sub-title">다음 구독료 결제일은 <span th:text="${session.stSub.subscriptionStartDate}"></span> +1달</div>
     <ul>
         <li th:each="product : ${standardSubscriptionList}" class="list-item">
             <div class="product-item">

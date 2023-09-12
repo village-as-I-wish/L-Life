@@ -35,7 +35,7 @@
             </div>
 
 
-            <button className="livestream-sharebtn" name="commit" value="Join!"
+            <button id="openSession"  class="livestream-sharebtn" name="commit" value="Join!"
                     th:if="${session.existingMember.mIsAdmin == 1}" th:onclick="'joinSession(' + ${session.existingMember.mIsAdmin} + ')'">
                 <div class="share-btn-box">
                     <i class="fa-solid fa-share-nodes"></i>
@@ -43,6 +43,7 @@
                 <span class="share-btn-txt">
                     방송 개설하기
                 </span>
+
             </button>
 
             <button className="livestream-sharebtn" name="commit" value="Join!" th:if="${session.existingMember.mIsAdmin == 0}" th:onclick="'joinSession(' + ${session.existingMember.mIsAdmin} + ')'">
@@ -70,13 +71,14 @@
             </span>
         </div>
     </div>
-    <!--    <div class="stream-chat-box">-->
-    <!--        <i class="fa-solid fa-hourglass-half hourglass" style="color: #c9cbcf;"></i>-->
-    <!--        <p> 채팅은 라이브가 시작되면 참여하실 수 있습니다. </p>-->
-    <!--        <p> 라이브가 시작하기 전까지 기다려주세요. </p>-->
-    <!--     -->
-    <!--    </div>-->
-    <div class="stream-chat-box-onboard">
+        <div class="stream-chat-box">
+            <i class="fa-solid fa-hourglass-half hourglass" style="color: #c9cbcf;"></i>
+            <div id="countdown"></div>
+            <p> 채팅은 라이브가 시작되면 참여하실 수 있습니다. </p>
+            <p> 라이브가 시작하기 전까지 기다려주세요. </p>
+
+        </div>
+    <div class="stream-chat-box-onboard hidden">
         <div class="chat-box">
             <p class="chat"><span class="chat-user"> 라이브 MD ⚽️ </span>리바트 라이프 구독 서비스 홍보 라이브 인가요? </p>
             <p class="chat"><span class="chat-user"> 라이브 MD ⚽️ </span> 할인이 많아서 좋습니다. </p>
@@ -150,4 +152,51 @@
 
 </div>
 </body>
+
+<script>
+    var targetTime = new Date().getTime() + 10000; // 초기에 한 번 설정
+
+    // 특정 시간까지 남은 시간을 계산하는 함수
+    function calculateTimeRemaining(targetTime) {
+        var currentTime = new Date().getTime();
+        var timeRemaining = targetTime - currentTime;
+
+        var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        return {
+            days: days,
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds
+        };
+    }
+
+    // 남은 시간을 화면에 업데이트하는 함수
+    function updateCountdown() {
+        var timeRemaining = calculateTimeRemaining(targetTime);
+
+        if (timeRemaining.days >= 0) {
+            $("#countdown").html(
+                "남은 시간: " +
+                timeRemaining.days + "일 " +
+                timeRemaining.hours + "시간 " +
+                timeRemaining.minutes + "분 " +
+                timeRemaining.seconds + "초"
+            );
+        } else {
+            $('.stream-chat-box').addClass("hidden")
+            $('.stream-chat-box-onboard').removeClass("hidden")
+
+        }
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    $(document).ready(function() {
+        updateCountdown();
+    });
+</script>
 </html>
