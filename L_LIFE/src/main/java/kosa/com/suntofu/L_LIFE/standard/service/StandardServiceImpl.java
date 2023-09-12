@@ -103,8 +103,8 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public List<StandardVo> getStandardRecommendation(int lfId) {
-        return standardDAO.selectStandardRecommendation(lfId);
+    public List<StandardVo> getStandardRecommendation(StandardDetailVo standardDetailVo) {
+        return standardDAO.selectStandardRecommendation(standardDetailVo);
     }
 
     @Override

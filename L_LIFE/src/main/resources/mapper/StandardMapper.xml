@@ -164,7 +164,6 @@
         OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
-
     <resultMap id="StandardDetailResultMap" type="StandardDetailVo">
         <id property="lfId" column="lf_id" />
         <result property="lfSubType" column="lf_sub_type" />
@@ -177,7 +176,7 @@
         <result property="lfBrandName" column="lf_brand_name" />
         <result property="lfSubComment" column="lf_sub_comment" />
         <result property="lfStGrade" column="lf_st_grade" />
-
+        <result property="lfMoodId" column="lf_mood_id"/>
         <collection property="refurImgUrl" ofType="RefurImgVo">
             <id property="refurImgId" column="refur_img_id" />
             <result property="refurImgUrl" column="refur_img_url" />
@@ -189,6 +188,7 @@
             <result property="imgComment" column="img_comment" />
         </collection>
     </resultMap>
+
     <!-- 스탠다드 상세페이지 -->
     <select id = "selectStandardDetailById" resultMap="StandardDetailResultMap">
         SELECT
@@ -203,12 +203,13 @@
             rfImg.REFUR_IMG_URL,
             lfImg.lf_img_id,
             lfImg.lf_img_url,
-            lfImg.img_comment
+            lfImg.img_comment,
+            lf.lf_mood_id
         FROM
             LLifeFurniture lf
         LEFT JOIN
             LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
-        JOIN
+        LEFT JOIN
             LfurnitureImage lfImg on lf.lf_id = lfImg.lf_id
         LEFT JOIN
             RefurbishImage rfImg ON lf.lf_id = rfImg.lf_id
@@ -233,31 +234,15 @@
             s.lf_id = #{lfId}
     </select>
 
-<!--    &lt;!&ndash; 스탠다드 상세페이지 리퍼 정보 &ndash;&gt;-->
-<!--    <select id="selectStandardRefurById" resultType="StandardRefurVo">-->
-<!--        SELECT-->
-<!--            lf.lf_id,-->
-<!--            lf.lf_st_grade,-->
-<!--            rfi.refur_img_id,-->
-<!--            rfi.refur_img_url-->
-<!--        FROM-->
-<!--            LLifeFurniture lf-->
-<!--        JOIN-->
-<!--            RefurbishImage rfi ON lf.lf_id = rfi.lf_id-->
-<!--        WHERE-->
-<!--            lf.lf_sub_type = 0-->
-<!--        AND-->
-<!--            lf.lf_id = #{lfId}-->
-<!--    </select>-->
-
-    <!-- 스탠다드 추천(구독가능한 제품 + 해당 카테고리 제품을 랜덤으로 추천) -->
+    <!-- 스탠다드 추천(비슷한 분위기의 제품 추천) -->
     <select id="selectStandardRecommendation" resultType="StandardVo">
         SELECT
             lf.lf_id,
             lf.lf_img_main,
             lfb.lf_brand_name,
             lf.lf_name,
-            lf.lf_st_coin
+            lf.lf_st_coin,
+            lfm.lf_mood_id
         FROM
             LLifeFurniture lf
         INNER JOIN
@@ -265,18 +250,13 @@
         JOIN
             LFurnitureBrand lfb ON lf.lf_brand_id = lfb.lf_brand_id
         JOIN
-            LLifeFurniture recommend ON lf.lf_category_id = recommend.lf_category_id
+            LFurnitureMood lfm ON lf.lf_mood_id = lfm.lf_mood_id
         WHERE
-            recommend.lf_sub_issub = 0
-        AND
             lf.lf_sub_type = 0
         AND
-            recommend.lf_id IN (
-                SELECT #{lfId}
-                FROM LLifeFurniture
-                WHERE lf_category_id = lf.lf_category_id
-                AND lf_sub_issub = 0
-        )
+            lf.lf_mood_id = #{lfMoodId}
+        AND
+            lf.lf_id != #{lfId}
         ORDER BY DBMS_RANDOM.VALUE
     </select>
 

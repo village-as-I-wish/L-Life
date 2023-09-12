@@ -123,7 +123,7 @@ public class StandardController {
 //        model.addAttribute("lfId", lfId);
 
         // 카테고리 BEST
-        List<StandardVo> recommendProducts = standardService.getStandardRecommendation(lfId);
+        List<StandardVo> recommendProducts = standardService.getStandardRecommendation(detail);
         model.addAttribute("recommendProducts", recommendProducts);
 
         // Review 정보 가져오기

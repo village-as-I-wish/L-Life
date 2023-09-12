@@ -22,4 +22,6 @@ public class SearchRequestVo {
     private int maxCoin;
     private int minPrice;
     private int maxPrice;
+    private int offset; // 오프셋 수
+    private int page; // 페이지 수
 }

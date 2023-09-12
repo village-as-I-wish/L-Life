@@ -18,7 +18,7 @@ public interface StandardService {
     StandardDetailVo getStandardDetailById(int lfId);
     List<StandardOptionVo> getStandardOptionById(int lfId);
     List<StandardRefurVo> getStandardRefurById(int lfId);
-    List<StandardVo> getStandardRecommendation(int lfId);
+    List<StandardVo> getStandardRecommendation(StandardDetailVo standardDetailVo);
     int getStandardStockAmount(int lfOptId, int lfId);
     int putOptionToReservation(StandardOptionVo standardOptionVo);
     int putProductToCart(StandardSubscriptionVo standardSubscriptionVo);
