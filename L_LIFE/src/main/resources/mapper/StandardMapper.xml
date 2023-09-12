@@ -164,7 +164,6 @@
         OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
-
     <resultMap id="StandardDetailResultMap" type="StandardDetailVo">
         <id property="lfId" column="lf_id" />
         <result property="lfSubType" column="lf_sub_type" />
@@ -189,6 +188,7 @@
             <result property="imgComment" column="img_comment" />
         </collection>
     </resultMap>
+
     <!-- 스탠다드 상세페이지 -->
     <select id = "selectStandardDetailById" resultMap="StandardDetailResultMap">
         SELECT
@@ -232,23 +232,6 @@
         WHERE
             s.lf_id = #{lfId}
     </select>
-
-<!--    &lt;!&ndash; 스탠다드 상세페이지 리퍼 정보 &ndash;&gt;-->
-<!--    <select id="selectStandardRefurById" resultType="StandardRefurVo">-->
-<!--        SELECT-->
-<!--            lf.lf_id,-->
-<!--            lf.lf_st_grade,-->
-<!--            rfi.refur_img_id,-->
-<!--            rfi.refur_img_url-->
-<!--        FROM-->
-<!--            LLifeFurniture lf-->
-<!--        JOIN-->
-<!--            RefurbishImage rfi ON lf.lf_id = rfi.lf_id-->
-<!--        WHERE-->
-<!--            lf.lf_sub_type = 0-->
-<!--        AND-->
-<!--            lf.lf_id = #{lfId}-->
-<!--    </select>-->
 
     <!-- 스탠다드 추천(구독가능한 제품 + 해당 카테고리 제품을 랜덤으로 추천) -->
     <select id="selectStandardRecommendation" resultType="StandardVo">
