@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.member.dao;
 
 
 import kosa.com.suntofu.L_LIFE.member.vo.*;
+import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -42,4 +43,5 @@ public interface MemberDao {
 
     Integer getPrSubId(int mId);
 
+    SubscriptionVo getStandardSubscription(Integer standardSubscriptionId);
 }

@@ -26,6 +26,8 @@
         where
             subscribe.M_ID = #{memberId}
         and
+            lf.LF_SUB_TYPE = 0
+        and
             subscribe.SUBSCRIBE_STATUS = 1
         and
             sub_lf.SUB_LF_RETURN_STATUS = 0

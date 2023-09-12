@@ -1,6 +1,7 @@
 package kosa.com.suntofu.L_LIFE.member.service;
 
 import kosa.com.suntofu.L_LIFE.member.vo.*;
+import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 
 import java.util.List;
 
@@ -37,4 +38,5 @@ public interface MemberService {
 
     Integer getPremiumSubscriptionId(int mId);
 
+    SubscriptionVo getStandardSubscription(Integer standardSubscriptionId);
 }
