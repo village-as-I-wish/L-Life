@@ -17,5 +17,7 @@ public class MemberVo {
     private String mEmail;
     private String mProfile;
     private String mPhone;
+
+    private int mIsAdmin;
 }
 

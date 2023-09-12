@@ -20,7 +20,6 @@
         <openvidu-webcomponent style="display: none"></openvidu-webcomponent>
         <!--        <div id="video-container" style="border:1px solid red;"></div>-->
         <div id="video-container"><p></p>
-            <video autoplay playsinline="true"></video>
         </div>
 
         <div class="stream-info-txt-box">
@@ -36,13 +35,23 @@
             </div>
 
 
-            <button class="livestream-sharebtn" onclick="joinSession()" name="commit" value="Join!">
+            <button className="livestream-sharebtn" name="commit" value="Join!"
+                    th:if="${session.existingMember.mIsAdmin == 1}" th:onclick="'joinSession(' + ${session.existingMember.mIsAdmin} + ')'">
+                <div class="share-btn-box">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
+                <span class="share-btn-txt">
+                    방송 개설하기
+                </span>
+            </button>
+
+            <button className="livestream-sharebtn" name="commit" value="Join!" th:if="${session.existingMember.mIsAdmin == 0}" th:onclick="'joinSession(' + ${session.existingMember.mIsAdmin} + ')'">
                 <div class="share-btn-box">
                     <i class="fa-solid fa-share-nodes"></i>
                 </div>
                 <span class="share-btn-txt">
                     방송 공유하기
-                    </span>
+                </span>
             </button>
         </div>
 
