@@ -1,12 +1,10 @@
 package kosa.com.suntofu.L_LIFE.chat.service;
 
 import kosa.com.suntofu.L_LIFE.chat.repository.MessageRepository;
-import kosa.com.suntofu.L_LIFE.chat.vo.MessageVo;
+import kosa.com.suntofu.L_LIFE.chat.vo.ChatMessageVo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,12 +13,12 @@ public class MessageService {
 
     private final MessageRepository messageRepository;
 
-    public MessageVo findById(String id) {
-        Optional<MessageVo> messageOptional = messageRepository.findById(id);
+    public ChatMessageVo findById(String id) {
+        Optional<ChatMessageVo> messageOptional = messageRepository.findById(id);
         return messageOptional.orElse(null);
     }
 
-    public MessageVo save(MessageVo messageVo) {
+    public ChatMessageVo save(ChatMessageVo messageVo) {
         return messageRepository.save(messageVo);
     }
 

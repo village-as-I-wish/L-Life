@@ -1,8 +1,7 @@
 package kosa.com.suntofu.L_LIFE.chat.controller;
 
 import kosa.com.suntofu.L_LIFE.chat.service.MessageService;
-import kosa.com.suntofu.L_LIFE.chat.vo.MessageVo;
-import lombok.RequiredArgsConstructor;
+import kosa.com.suntofu.L_LIFE.chat.vo.ChatMessageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,13 +13,13 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping("/{id}")
-    public MessageVo findById(@PathVariable String id) {
+    public ChatMessageVo findById(@PathVariable String id) {
         return messageService.findById(id);
     }
 
     @PostMapping
-    public MessageVo create(@RequestBody MessageVo messageVo) {
-        return messageService.save(messageVo);
+    public ChatMessageVo create(@RequestBody ChatMessageVo message) {
+        return messageService.save(message);
     }
 
     @DeleteMapping("/{id}")
