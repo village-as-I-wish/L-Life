@@ -21,6 +21,9 @@ public class StandardDetailVo {
     private String lfBrandName; //브랜드이름
     private String lfSubComment; // 코멘트
     private String lfStGrade;  // 상품등급
+    private Integer lfMoodId;
+    private Integer lfBrandId; // 가구 브랜드 아이디 (필터링)
+    private int lfCategoryId; // 가구 카테고리 아이디 (필터링)
     private List<RefurImgVo> refurImgUrl;
     private List<DetailImgVo> detailImgUrl;
 }
