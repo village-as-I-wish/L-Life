@@ -24,6 +24,7 @@
             <div class="header-user" th:if="${session.existingMember != null}">
                 <li><span th:text="${session.existingMember.mName}"/> 님</li>
                 <li><a th:href="@{'/member/' + ${session.existingMember.mId} + '/mypage'}">마이페이지</a></li>
+                <li><a th:href="@{/member/logout}">로그아웃</a></li>
                 <li>고객센터</li>
             </div>
         </div>

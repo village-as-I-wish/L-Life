@@ -58,18 +58,11 @@ public class MemberController {
         return "pages/main/main";
     }
 
-//    @GetMapping("/checkSession")
-//    @ResponseBody
-//    public String checkSession(HttpSession session) {
-//        MemberVo loggedInMember = (MemberVo) session.getAttribute("loggedInMemberInfo");
-//
-//        if (loggedInMember != null) {
-//            // 세션에 저장된 정보 출력 또는 활용
-//            return "Logged in member's name: " + loggedInMember.getMName();
-//        } else {
-//            return "No user logged in.";
-//        }
-//    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션을 무효화하여 로그아웃 처리
+        return "pages/main/main"; // 로그아웃 후 홈페이지로 리다이렉트
+    }
   
     @GetMapping("/{memberId}/mypage")
     public String loadMyPage(Model model){
