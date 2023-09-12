@@ -100,7 +100,7 @@ function createPaymentData(){
     var amount =  $('#final-price').text()
     var orderId =  createOrderNum() // 주문 ID -> 변경 필요
     var orderName = $('#product-name').text()
-    var customerName = '김승주'
+    var customerName = $('.st-payment-username-input').val()
 
     data ={
         amount : amount,

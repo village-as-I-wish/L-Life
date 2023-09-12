@@ -44,7 +44,7 @@
                 <span> 주문자 </span>
             </div>
             <div class="st-payment-username-content">
-                <input type="text" class="st-payment-username-input">
+                <input type="text" class="st-payment-username-input" th:value="${session.existingMember.mName}">
             </div>
         </div>
 
@@ -208,7 +208,7 @@
                     <input type="checkbox" class="agreement-checkbox">
                     <span class="bold-text">[필수] 주문내역 확인/동의</span>
                 </span>
-                    <button class="payment-button" th:onclick="payment(1)">결제하기</button> <!-- memberId -->
+                    <button class="payment-button" th:onclick="'payment('+ ${session.existingMember.mId} +')'">결제하기</button> <!-- memberId -->
             </div>
         </div>
 
