@@ -1,6 +1,6 @@
 package kosa.com.suntofu.L_LIFE.config;
 import com.google.common.collect.ImmutableMap;
-import kosa.com.suntofu.L_LIFE.chat.vo.MessageVo;
+import kosa.com.suntofu.L_LIFE.chat.vo.ChatMessageVo;
 import kosa.com.suntofu.L_LIFE.constant.KafkaConstants;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -21,7 +21,7 @@ public class KafkaProducerConfig {
 
     @Bean
     // ProducerFactory: 카프카 서버로 메시지를 보내는 생산자를 생성
-    public ProducerFactory<String, MessageVo> producerFactory() {
+    public ProducerFactory<String, ChatMessageVo> producerFactory() {
         return new DefaultKafkaProducerFactory<>(kafkaProducerConfiguration());
     }
 
@@ -37,7 +37,7 @@ public class KafkaProducerConfig {
 
     @Bean
     // KafkaTemplate는:  카프카 서버로 메시지를 전송하는 API를 제공
-    public KafkaTemplate<String, MessageVo> kafkaTemplate() {
+    public KafkaTemplate<String, ChatMessageVo> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }
