@@ -37,10 +37,17 @@ public class SubscriptionRestController {
     }
 
     @PostMapping("premium")
-    public ResponseEntity<BasicResponse> subscribePremium(HttpServletRequest request){ //세션에서 memberId 가져올 예정
+    public ResponseEntity<BasicResponse> subscribePremium(HttpServletRequest request,
+                                                          @RequestParam String checkedDay,
+                                                          @RequestParam String checkedTime){ //세션에서 memberId 가져올 예정
         HttpSession session = request.getSession();
         List<PayFurnitureVo> payFurnitureList = (List<PayFurnitureVo>) session.getAttribute("prPaymentProduct");
         log.info("premium payment {}",payFurnitureList);
+
+        for (PayFurnitureVo payFurnitureVo: payFurnitureList){
+            payFurnitureVo.setDeliveryDate(checkedDay);
+            payFurnitureVo.setDeliveryTime(checkedTime);
+        }
 
         int result = subscriptionService.addPrLFSubcriptoin(payFurnitureList);
         session.removeAttribute("prPaymentProduct");

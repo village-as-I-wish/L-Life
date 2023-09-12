@@ -123,9 +123,18 @@ function paymentToss(tossPayKey, memberId){
 }
 
 function paymentSuccess(memberId){
+    var checkedDay = $('.checkedDay').text()
+    var checkedTime = $('.checkedTime').text()
+    console.log(checkedDay)
+    console.log(checkedTime)
 
+    data =  {
+        checkedDay: checkedDay,
+        checkedTime: checkedTime,
+    }
     $.ajax({
         type : "POST",
+        data : data,
         url : baseUrl +"/l-life/api/v1/subscription/premium",
         success : function(res){
             if (res.result == 1){
