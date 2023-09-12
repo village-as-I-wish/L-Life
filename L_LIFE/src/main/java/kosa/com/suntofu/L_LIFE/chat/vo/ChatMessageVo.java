@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class ChatMessageVo {
-    private int lStreamId;
+    private String lStreamId;
     private String mName;
     private String message;
 }

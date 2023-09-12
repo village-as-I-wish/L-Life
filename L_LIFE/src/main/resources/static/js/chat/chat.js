@@ -33,14 +33,16 @@ $(document).ready(function(){
         });
 
         //3. send(path, header, message)로 메세지를 보낼 수 있음
-        stomp.send('/pub/chat/enter', {}, JSON.stringify({lStreamId: lStreamId, writer: memberName}))
+        stomp.send('/pub/chat/enter', {}, JSON.stringify({lStreamId: lStreamId, mName: memberName}))
     });
 
     $("#button-send").on("click", (e) => {
         var msg = document.getElementById("msg");
 
-        console.log(memberName + ":" + msg.value);
-        stomp.send('/pub/chat/message', {}, JSON.stringify({lStreamId: lStreamId, message: msg.value, writer: memberName}));
+        var payload = JSON.stringify({lStreamId: lStreamId, message: msg.value, mName: memberName});
+        console.log("Sending payload: ", payload);
+
+        stomp.send('/pub/chat/message', {}, payload);
         msg.value = '';
     });
 });

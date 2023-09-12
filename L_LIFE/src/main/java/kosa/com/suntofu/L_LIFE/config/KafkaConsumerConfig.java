@@ -42,7 +42,7 @@ public class KafkaConsumerConfig {
 
         return ImmutableMap.<String, Object>builder()
                 .put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.BROKER)  //브로커 알려주기
-                .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class) //key 설정
+                .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class) //key 설정
                 .put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, new JsonDeserializer<>(ChatMessageVo.class))   // value 설정
                 .put(ConsumerConfig.GROUP_ID_CONFIG, KafkaConstants.GROUP_ID)
                 .put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest")
