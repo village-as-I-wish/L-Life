@@ -1,4 +1,3 @@
-
 server:
   port: 8080
   servlet:
@@ -17,23 +16,15 @@ spring:
     password: ${db-password}
   kafka:
     consumer:
-      bootstrap-servers: kafka.livart-life.com:9093
+      bootstrap-servers: livart-life.com:9093
     producer:
-      bootstrap-servers: kafka.livart-life.com:9093
+      bootstrap-servers: livart-life.com:9093
   data:
     mongodb:
-      host: mongodb.livart-life.com
+      host: livart-life.com
       port: 27017
       username: llife
       password: kosa1234
-
-
-
-
-    #  profiles:
-#    include:
-#      - dev
-
 
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
@@ -55,7 +46,7 @@ spring:
     redis:
       time-to-live: 3600
       cache-null-values: true
-      host: localhost
+      host: livart-life.com
       port: 6379
 
   servlet:
@@ -77,14 +68,15 @@ spring:
             enable: true
 
   redis:
-    host: localhost
+    host: livart-life.com
+    password: ${redis-password}
     port: 6379
 
 
 
 mybatis:
-  type-aliases-package: kosa.com.suntofu.L_Life.*.vo
-  mapper-locations: mapper/**/*.xml
+  type-aliases-package: kosa.com.suntofu.L_LIFE.*.vo
+  mapper-locations: mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
 

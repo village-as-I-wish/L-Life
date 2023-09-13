@@ -20,6 +20,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
         registry.addHandler(chatHandler, "/ws/chat")
                 .setAllowedOriginPatterns("*")
                 .withSockJS()
-                .setClientLibraryUrl("http://localhost:8080/l-life/js/sock-client.js");
+                .setClientLibraryUrl("http://livart-life.com:8080/l-life/js/sock-client.js");
     }
 }

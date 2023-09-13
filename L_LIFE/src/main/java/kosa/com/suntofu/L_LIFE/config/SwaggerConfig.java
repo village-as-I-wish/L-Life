@@ -17,7 +17,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    // http://localhost:8080/l-life/swagger-ui/index.html
+    // http://livart-life.com:8080/l-life/swagger-ui/index.html
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()

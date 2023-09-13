@@ -194,7 +194,7 @@ function initMainVideo(videoElement, userData) {
  * more about the integration of OpenVidu in your application server.
  */
 
-var APPLICATION_SERVER_URL = "http://localhost:8080/l-life/";
+var APPLICATION_SERVER_URL = "http://livart-life.com:8080/l-life/";
 
 function getToken(mySessionId) {
     return createSession(mySessionId).then(sessionId => createToken(sessionId));
