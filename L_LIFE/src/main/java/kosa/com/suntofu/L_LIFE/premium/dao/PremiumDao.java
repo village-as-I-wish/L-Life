@@ -18,7 +18,6 @@ public interface PremiumDao {
     List<PremiumVo> selectProductByFilter(PaginationVo paginationVo);
     int selectProductByFilterByPagination(PaginationVo paginationVo);
     PremiumVo selectPremiumProductDetailById(int lfId);
-    List<PremiumVo> selectProductImgById(int lfId);
     List<PremiumOptionVo> selectPremiumOptionById(int lfId);
     PremiumOptionVo selectPremiumStockAmount(@Param("lfOptId") int lfOptId, @Param("lfId") int lfId);
     int insertOptionToReservation(PremiumOptionVo premiumOptionVo);

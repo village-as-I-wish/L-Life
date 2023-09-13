@@ -96,12 +96,10 @@ public class PremiumController {
     public String loadPremiumDetailPage(@PathVariable("productId") int lfId, Model model){
         PremiumVo premiumDetailById = premiumService.selectPremiumProductDetailById(lfId);
         model.addAttribute("premiumDetail", premiumDetailById);
+        log.info("Premium Detail  {}  : " , premiumDetailById );
 
         List<PremiumOptionVo> options = premiumService.selectPremiumOptionById(lfId);
         model.addAttribute("premiumOption", options);
-
-        List<PremiumVo> images = premiumService.selectProductImgById(lfId);
-        model.addAttribute("premiumImg", images);
 
         List<PremiumVo> recommendProducts = premiumService.selectPremiumRecommendation(premiumDetailById.getLfPrPrice());
         model.addAttribute("recommendProducts", recommendProducts);

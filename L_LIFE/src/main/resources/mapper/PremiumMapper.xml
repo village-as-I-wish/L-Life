@@ -98,23 +98,32 @@
         OFFSET #{offset} ROWS FETCH NEXT 20 ROWS ONLY
     </select>
 
-
     <!-- 프리미엄 상품 상세 -->
-    <select id="selectPremiumProductDetailById" parameterType="PremiumVo">
-        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price, lf.lf_pr_min_period
-        FROM LLifeFurniture lf
-        JOIN LFurnitureBrand lfb
-        ON lf.lf_brand_id = lfb.lf_brand_id
-        WHERE lf_sub_type = 1
-        AND lf_id = #{lfId}
-    </select>
+    <resultMap id="PremiumDetailResultMap" type="PremiumVo">
+        <id property="lfId" column="lf_id" />
+        <result property="lfSubType" column="lf_sub_type" />
+        <result property="lfPrPrice" column="lf_pr_price" />
+        <result property="mId" column="M_ID" />
+        <result property="mName" column="M_NAME" />
+        <result property="lfName" column="lf_name" />
+        <result property="lfImgMain" column="lf_img_main" />
+        <result property="lfBrandName" column="lf_brand_name" />
+        <result property="lfPrMinPeriod" column="lf_pr_min_period" />
+        <collection property="detailImgUrl" ofType="PremiumDetailImgVo">
+            <id property="lfImgId" column="lf_img_id" />
+            <result property="lfImgUrl" column="lf_img_url" />
+            <result property="imgComment" column="img_comment" />
+        </collection>
+    </resultMap>
 
-    <!-- 상품 상세 이미지 목록 -->
-    <select id="selectProductImgById" parameterType="PremiumVo">
-        SELECT lf.LF_ID, lfi.LF_IMG_URL, lfi.IMG_COMMENT
-        FROM LLIFEFURNITURE lf
-        JOIN LFURNITUREIMAGE lfi
-        ON lf.LF_ID = lfi.LF_ID
+    <select id="selectPremiumProductDetailById" resultMap="PremiumDetailResultMap">
+        SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price, lf.lf_pr_min_period,
+               lfImg.lf_img_id, lfImg.lf_img_url, lfImg.img_comment
+        FROM LLifeFurniture lf
+        LEFT JOIN LFurnitureBrand lfb
+        ON lf.lf_brand_id = lfb.lf_brand_id
+        JOIN LfurnitureImage lfImg
+        ON lf.lf_id = lfImg.lf_id
         WHERE lf_sub_type = 1
         AND lf.lf_id = #{lfId}
     </select>

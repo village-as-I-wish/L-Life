@@ -92,10 +92,10 @@
 
     <div id="tab-1" class="tab-content current">
         <div class="tab-pr-maininfo-content">
-            <div class="lf-pr-info" th:each="img : ${premiumImg}">
+            <div class="lf-pr-info" th:each="imgUrl : ${premiumDetail.detailImgUrl}">
 
-                <img class="pr-real-img" alt="상품 사진" th:src="${img.lfImgUrl}">
-                <span th:text="${img.imgComment}"></span>
+                <img class="pr-real-img" alt="상품 사진" th:src="${imgUrl.lfImgUrl}">
+                <span th:text="${imgUrl.imgComment}"></span>
 
 
             </div>

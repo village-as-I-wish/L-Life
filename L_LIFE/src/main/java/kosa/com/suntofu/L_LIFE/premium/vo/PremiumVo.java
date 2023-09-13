@@ -1,8 +1,11 @@
 package kosa.com.suntofu.L_LIFE.premium.vo;
 
+import kosa.com.suntofu.L_LIFE.standard.vo.DetailImgVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +21,5 @@ public class PremiumVo {
     private Integer lfMoodId; // 가구 분위기 아이디 (필터링)
     private Integer lfBrandId; // 가구 브랜드 아이디 (필터링)
     private Integer lfCategoryId; // 가구 카테고리 아이디 (필터링)
-    private String lfImgUrl; // 가구 이미지 url
-    private String imgComment; // 가구 이미지 코멘트
+    private List<PremiumDetailImgVo> detailImgUrl;
 }
