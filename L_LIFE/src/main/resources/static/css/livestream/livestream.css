@@ -225,11 +225,11 @@
 
 }
 .stream-sub-product-name{
-    height: 40px;
     display: flex;
     align-items: flex-start;
     font-size: 18px;
     margin-top: 7px;
+    flex-direction: column;
 }
 .stream-sub-product-card{
     width: 100%;
@@ -239,6 +239,7 @@
 }
 .stream-sub-product-card > img{
     border-radius: 7px;
+    width: 20%;
 }
 
 .stream-sub-product-info{
