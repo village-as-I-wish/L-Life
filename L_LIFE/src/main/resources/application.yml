@@ -17,9 +17,9 @@ spring:
     password: ${db-password}
   kafka:
     consumer:
-      bootstrap-servers: kafka.livart-life.com:9092
+      bootstrap-servers: kafka.livart-life.com:9093
     producer:
-      bootstrap-servers: kafka.livart-life.com:9092
+      bootstrap-servers: kafka.livart-life.com:9093
   data:
     mongodb:
       host: mongodb.livart-life.com

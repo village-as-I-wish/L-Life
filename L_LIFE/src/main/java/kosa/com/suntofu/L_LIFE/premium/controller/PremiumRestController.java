@@ -1,5 +1,7 @@
 package kosa.com.suntofu.L_LIFE.premium.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.premium.service.PremiumService;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumOptionVo;
@@ -16,9 +18,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/premium")
 @RequiredArgsConstructor
+@Tag(name = "premium", description = "프리미엄 API")
 public class PremiumRestController {
     private final PremiumService premiumService;
 
+    @Operation(summary = "프리미엄 상품 필터 검색", description = "프리미엄 상품 필터 검색")
     @GetMapping("/search")
     public ResponseEntity<List<PremiumVo>> search(PaginationVo paginationVo) {
 

@@ -1,6 +1,8 @@
 package kosa.com.suntofu.L_LIFE.notification.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.notification.vo.NotificationMessageVo;
 import kosa.com.suntofu.L_LIFE.notification.service.NotificationService;
 import lombok.Builder;
@@ -17,11 +19,14 @@ import org.thymeleaf.context.Context;
 @RequiredArgsConstructor
 @Builder
 @RequestMapping("/notification")
-public class NotificationController {
+@Tag(name = "notification", description = "알림 API")
+public class NotificationRestController {
 
     private final NotificationService notificationService;
     private final TemplateEngine templateEngine;
 
+
+    @Operation(summary = "메일 전송", description = "메일 전송")
     @GetMapping("/send-mail")
     public ResponseEntity sendMail() {
         String username = "dev-park";

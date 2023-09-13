@@ -1,6 +1,8 @@
 package kosa.com.suntofu.L_LIFE.subscription.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
 import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
 import kosa.com.suntofu.L_LIFE.subscription.vo.BasicResponse;
@@ -19,10 +21,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/subscription")
 @RequiredArgsConstructor
+@Tag(name = "subscription", description = "구독 API")
 public class SubscriptionRestController {
 
     private final SubscriptionService subscriptionService;
 
+    @Operation(summary = "스탠다드 구독권 구매", description = "스탠다드 구독권을 구매합니다(33/55)")
     @PostMapping("")
     public ResponseEntity<BasicResponse> subscribePlan(int subscriptionPlanId){ //세션에서 memberId 가져올 예정
         int memberId = 1; // MemerId 변경 필요
@@ -35,7 +39,7 @@ public class SubscriptionRestController {
             return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("[구독 플랜 ] - 데이터 처리 서버 오류 발생 ").build(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @Operation(summary = "프리미엄 가구 구독", description = "프리미엄 가구 구독")
     @PostMapping("premium")
     public ResponseEntity<BasicResponse> subscribePremium(HttpServletRequest request,
                                                           @RequestParam String checkedDay,
@@ -56,7 +60,7 @@ public class SubscriptionRestController {
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("프리미엄 구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
 
     }
-
+    @Operation(summary = "스탠다드 가구 구독", description = "스탠다드 가구 구독")
     @PostMapping("standard")
     public ResponseEntity<BasicResponse> subscribeStandard(HttpServletRequest request,
                                                            @RequestParam String checkedDay,
