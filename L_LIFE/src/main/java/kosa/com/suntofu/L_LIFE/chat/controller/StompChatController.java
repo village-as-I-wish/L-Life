@@ -1,8 +1,10 @@
 package kosa.com.suntofu.L_LIFE.chat.controller;
 
+import kosa.com.suntofu.L_LIFE.chat.service.KafkaService;
 import kosa.com.suntofu.L_LIFE.chat.vo.ChatMessageVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,10 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 public class StompChatController {
     private final SimpMessagingTemplate template;
+
+    // KafkaService 의존성 주입
+    @Autowired
+    private KafkaService kafkaService;
 
     //Client가 SEND할 수 있는 경로
     //stompConfig에서 설정한 applicationDestinationPrefixes와 @MessageMapping 경로가 병합됨
@@ -26,5 +32,8 @@ public class StompChatController {
     public void message(ChatMessageVo messageVo){
         log.info("messages {} ", messageVo);
         template.convertAndSend("/sub/chat/room/" + messageVo.getLStreamId(), messageVo);
+
+        // Kafka로 메시지 전송
+        kafkaService.sendMessageToKafka(messageVo);
     }
 }
