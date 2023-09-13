@@ -158,13 +158,14 @@
     </insert>
 
     <!-- 프리미엄 비슷한 가격대의 상품 추천 -->
-    <select id="selectPremiumRecommendation" parameterType="PremiumVo">
+    <select id="selectPremiumRecommendation" parameterType="PremiumVo" resultType="PremiumVo">
         <![CDATA[
         SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
         FROM LLIFEFURNITURE lf
         JOIN LFURNITUREBRAND lfb
         ON lf.LF_BRAND_ID = lfb.LF_BRAND_ID
-        WHERE lf.lf_pr_price >= #{lfPrPrice}*0.8
+        WHERE lf_sub_type = 1
+        AND lf.lf_pr_price >= #{lfPrPrice}*0.8
         AND lf.lf_pr_price <= #{lfPrPrice}*1.2
         AND lf.lf_id != #{lfId}
         ]]>

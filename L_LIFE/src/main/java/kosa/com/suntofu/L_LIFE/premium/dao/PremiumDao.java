@@ -21,7 +21,7 @@ public interface PremiumDao {
     List<PremiumOptionVo> selectPremiumOptionById(int lfId);
     PremiumOptionVo selectPremiumStockAmount(@Param("lfOptId") int lfOptId, @Param("lfId") int lfId);
     int insertOptionToReservation(PremiumOptionVo premiumOptionVo);
-    List<PremiumVo> selectPremiumRecommendation(int lfId);
+    List<PremiumVo> selectPremiumRecommendation(PremiumVo premiumVo);
     int insertPremiumProductToCart(PremiumOptionVo premiumOptionVo);
     List<PackageVo> selectMDPickPackages();
     List<PackageVo> selectPromotionPackages();

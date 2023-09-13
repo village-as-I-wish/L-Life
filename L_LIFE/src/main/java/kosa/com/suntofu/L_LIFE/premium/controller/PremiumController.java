@@ -101,7 +101,7 @@ public class PremiumController {
         List<PremiumOptionVo> options = premiumService.selectPremiumOptionById(lfId);
         model.addAttribute("premiumOption", options);
 
-        List<PremiumVo> recommendProducts = premiumService.selectPremiumRecommendation(premiumDetailById.getLfPrPrice());
+        List<PremiumVo> recommendProducts = premiumService.selectPremiumRecommendation(premiumDetailById);
         model.addAttribute("recommendProducts", recommendProducts);
         log.info("result{}", recommendProducts);
         return "pages/premium/premium_detail";

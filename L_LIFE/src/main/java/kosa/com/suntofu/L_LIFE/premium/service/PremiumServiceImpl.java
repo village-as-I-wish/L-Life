@@ -101,8 +101,8 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
-    public List<PremiumVo> selectPremiumRecommendation(int lfId) {
-        return premiumDao.selectPremiumRecommendation(lfId);
+    public List<PremiumVo> selectPremiumRecommendation(PremiumVo premiumVo) {
+        return premiumDao.selectPremiumRecommendation(premiumVo);
     }
 
     @Override
