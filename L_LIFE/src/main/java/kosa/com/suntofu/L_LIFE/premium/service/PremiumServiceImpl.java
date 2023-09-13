@@ -76,19 +76,8 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
-    public int selectProductByFilterByPagination(PaginationVo paginationVo) {
-        return premiumDao.selectProductByFilterByPagination(paginationVo);
-    }
-
-
-    @Override
     public PremiumVo selectPremiumProductDetailById(int lfId) {
         return premiumDao.selectPremiumProductDetailById(lfId);
-    }
-
-    @Override
-    public List<PremiumVo> selectProductImgById(int lfId) {
-        return premiumDao.selectProductImgById(lfId);
     }
 
     @Override
