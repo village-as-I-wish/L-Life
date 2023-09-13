@@ -52,10 +52,17 @@ function joinSession(isAdmin) {
     // On every Stream destroyed...
     session.on('streamDestroyed', event => {
         console.log("사용자 세션 끊김!")
-        // Delete the HTML element with the user's nickname. HTML videos are automatically removed from DOM
+        Swal.fire({
+            title: '방송이 종료되었습니다.',
+            text: '이전 화면으로 돌아갑니다.',
+            // imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "http://localhost:8080/l-life/standard/main";
+            }
+        })
         removeUserData(event.stream.connection);
-        // alert("방송이 종료되었습니다. 메인페이지로 이동합니다")
-        // window.location.href = "http://localhost:8080/l-life/main";
+
 
     });
 
