@@ -14,22 +14,19 @@ $(document).ready(function(){
         stomp.subscribe("/sub/chat/room/" + lStreamId, function (chat) {
             var content = JSON.parse(chat.body);
 
-            var writer = content.writer;
-            var str = '';
+            var writer = content.mname;
 
                 //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
                 if(writer === memberName){ // 본인 챗
-                    str = "<p class='chat'>";
-                    str += "<span class='chat-user' style='color:blue;'>" + writer + "</span>" + " : " + content + "</p>";
+                    var str = "<p class='chat'>";
+                    str += "<span class='chat-user' style='color:blue;'>" + writer + "</span>" + " : " + content.message + "</p>";
                     $("#msgArea").append(str);
                 }
                 else{ // 타 챗
-                    str = "<p class='chat'>";
-                    str += "<span class='chat-user'>" + writer + "</span>" + " : " + content + "</p>";
+                    var str = "<p class='chat'>";
+                    str += "<span class='chat-user'>" + writer + "</span>" + " : " + content.message+ "</p>";
                     $("#msgArea").append(str);
                 }
-
-            $("#msgArea").append(str);
         });
 
         //3. send(path, header, message)로 메세지를 보낼 수 있음
@@ -39,7 +36,7 @@ $(document).ready(function(){
     $("#button-send").on("click", (e) => {
         var msg = document.getElementById("msg");
 
-        var payload = JSON.stringify({lStreamId: lStreamId, message: msg.value, mName: memberName});
+        var payload = JSON.stringify({lstreamId: lStreamId, message: msg.value, mname: memberName});
         console.log("Sending payload: ", payload);
 
         stomp.send('/pub/chat/message', {}, payload);
