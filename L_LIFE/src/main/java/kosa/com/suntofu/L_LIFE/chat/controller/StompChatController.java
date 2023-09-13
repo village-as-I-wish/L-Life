@@ -30,8 +30,8 @@ public class StompChatController {
 
     @MessageMapping(value = "/chat/message")
     public void message(ChatMessageVo messageVo){
-        log.info("messages {} ", messageVo);
-        template.convertAndSend("/sub/chat/room/" + messageVo.getLStreamId(), messageVo);
+        log.info("Kafka로 메시지 전송 messages {} ", messageVo);
+        //template.convertAndSend("/sub/chat/room/" + messageVo.getLStreamId(), messageVo);
 
         // Kafka로 메시지 전송
         kafkaService.sendMessageToKafka(messageVo);
