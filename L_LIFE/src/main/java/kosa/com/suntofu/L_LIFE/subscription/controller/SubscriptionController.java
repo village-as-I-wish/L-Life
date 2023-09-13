@@ -73,7 +73,6 @@ public class SubscriptionController {
     public String loadStandardDeliveryReservation(Model model,
                                             HttpServletRequest request){
         HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("stPaymentProduct"));
         model.addAttribute("stPaymentProduct",session.getAttribute("stPaymentProduct"));
         model.addAttribute("baseUrl", baseUrl);
         model.addAttribute("payKeys", payKeysVO);
