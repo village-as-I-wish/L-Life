@@ -37,14 +37,16 @@ public class KafkaConsumerConfig {
 
 
     @Bean
-    // Kafka Consumer의 설정(브로커의 주소, 키와 값의 역직렬화 방식, 그룹 ID 등)
     public Map<String, Object> consumerConfigurations() {
+        JsonDeserializer<ChatMessageVo> deserializer = new JsonDeserializer<>();
+        // 패키지 신뢰 오류로 인해 모든 패키지를 신뢰하도록 작성
+        deserializer.addTrustedPackages("*");
 
         return ImmutableMap.<String, Object>builder()
                 .put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.BROKER)  //브로커 알려주기
-                .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class) //key 설정
-                .put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, new JsonDeserializer<>(ChatMessageVo.class))   // value 설정
                 .put(ConsumerConfig.GROUP_ID_CONFIG, KafkaConstants.GROUP_ID)
+                .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class) //key 설정
+                .put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer)   // value 설정
                 .put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest")
                 //  consumer가 연결되고 나서 broker가 가진 partion에서 어떤 offset 부터 확인할지
                 // (latest : 연결 이후 들어온 값만 소비. earliest : 무조건 partition의 제일 앞부터 확인해서 소비)
