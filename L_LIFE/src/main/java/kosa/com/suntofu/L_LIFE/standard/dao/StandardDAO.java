@@ -1,11 +1,11 @@
 package kosa.com.suntofu.L_LIFE.standard.dao;
 
-import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface StandardDAO {
@@ -24,7 +24,7 @@ public interface StandardDAO {
     StandardRestockVo selectStandardStockAmount(@Param("lfOptId") int lfOptId, @Param("lfId") int lfId);
     int insertOptionToReservation(StandardOptionVo standardOptionVo);
   
-    int insertProductToCart(StandardSubscriptionVo standardSubscriptionVo);
+    int insertProductToCart(CartItemVO cartItemVO); // 스탠다드 상품 장바구니 추가
 
     void insertReview(ReviewRequestVo reviewRequestVo);
 
@@ -33,5 +33,7 @@ public interface StandardDAO {
     List<ReviewVo> selectAllReviews(int lfId);
 
     int deleteReview(int lfReviewId);
+
+    int insertProductsToCart(Map<String, Object> carts);
 }
 

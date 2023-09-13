@@ -68,15 +68,18 @@ $(document).ready(function(){
         $('#cartBtn').click(function() {
             var selectedOptionId = parseInt($('.selected-option').text());
             var memberId = parseInt($('#memberId').text());
+            var totalCoin = parseInt($('#lfStCoin').text());
+
             console.log("click" + memberId)
             data = {
                 lfOptId: selectedOptionId,
                 lfId: productId,
-                memberId: memberId,
+                mId: memberId,
+                totalCoin : totalCoin
             }
             // TODO : 장바구니 담기 버튼 클릭시 관련 API 호출
             $.ajax({
-                url: '/l-life/api/v1/standard/insertcart',
+                url: '/l-life/api/v1/standard/cart',
                 method: 'POST',
                 data: data,
                 success: function(response) {
@@ -102,14 +105,6 @@ $(document).ready(function(){
         });
 
     });
-
-
-
-
-
-
-
-
 
     $('.lf-pr-main-content .main-tab li').click(function(){
         var tab_id = $(this).attr('data-tab');

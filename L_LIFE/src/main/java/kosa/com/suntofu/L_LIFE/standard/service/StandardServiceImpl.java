@@ -14,9 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -124,10 +122,18 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public int putProductToCart(StandardSubscriptionVo standardSubscriptionVo) {
-        return standardDAO.insertProductToCart(standardSubscriptionVo);
+    public int putProductToCart(CartItemVO cartItemVO) {
+
+        return standardDAO.insertProductToCart(cartItemVO);
     }
 
+    @Transactional
+    @Override
+    public int putProductsToCart(CartsRequestVo cartRequestVo) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", cartRequestVo.getCarts());
+        return standardDAO.insertProductsToCart(map);
+    }
     @Transactional
     @Override
     public int createReview(ReviewRequestVo reviewRequestVo) {
@@ -181,6 +187,8 @@ public class StandardServiceImpl implements StandardService {
             return -1;
         }
     }
+
+
 
     private String createFileName(String fileName) {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));

@@ -49,14 +49,23 @@ public class StandardRestController {
     }
 
     @Operation(summary = "스탠다드 상품 장바구니 담기", description = "스탠상품을 장바구니에 담습니다.")
-    @PostMapping("/insertcart")
+    @PostMapping("/cart")
     @ResponseBody
-    public ResponseEntity<String> putProductToCart(@RequestParam int lfOptId,
-                                @RequestParam int lfId,
-                                @RequestParam int memberId) {
+    public ResponseEntity<String> putProductToCart(CartItemVO cartItemVO) {
 
-        StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfId, memberId, lfOptId);
-        int result = standardService.putProductToCart(tocart);
+//        StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfId, memberId, lfOptId);
+        log.info("Product To Cart {} ", cartItemVO);
+        int result = standardService.putProductToCart(cartItemVO);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @Operation(summary = "스탠다드 상품 한번에 장바구니 담기", description = "스탠상품 여러개를 장바구니에 담습니다.")
+    @PostMapping("/carts")
+    @ResponseBody
+    public ResponseEntity<String> putProductsToCart(@RequestBody  CartsRequestVo cartRequestVo) {
+
+        log.info("Product To Cart {} ", cartRequestVo);
+        int result = standardService.putProductsToCart(cartRequestVo);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
