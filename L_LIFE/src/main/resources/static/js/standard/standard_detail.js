@@ -70,7 +70,6 @@ $(document).ready(function(){
             var memberId = parseInt($('#memberId').text());
             var totalCoin = parseInt($('#lfStCoin').text());
 
-            console.log("click" + memberId)
             data = {
                 lfOptId: selectedOptionId,
                 lfId: productId,

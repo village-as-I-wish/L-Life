@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
 import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
-import kosa.com.suntofu.L_LIFE.subscription.vo.BasicResponse;
+import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
 import kosa.com.suntofu.L_LIFE.subscription.vo.PayFurnitureVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
