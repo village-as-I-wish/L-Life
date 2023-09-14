@@ -1,8 +1,15 @@
 package kosa.com.suntofu.L_LIFE.livestream.controller;
 
 
-import org.springframework.web.bind.annotation.RestController;
+import kosa.com.suntofu.L_LIFE.chat.service.MessageService;
+import kosa.com.suntofu.L_LIFE.chat.vo.ChatMessageVo;
+import kosa.com.suntofu.L_LIFE.common.util.CartReturn;
+import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -10,10 +17,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import io.openvidu.java.client.Connection;
 import io.openvidu.java.client.ConnectionProperties;
@@ -23,6 +26,7 @@ import io.openvidu.java.client.OpenViduJavaClientException;
 import io.openvidu.java.client.Session;
 import io.openvidu.java.client.SessionProperties;
 
+@Slf4j
 @CrossOrigin(origins = "*")
 @RestController
 public class LiveStreamRestController {
@@ -34,6 +38,8 @@ public class LiveStreamRestController {
     private String OPENVIDU_SECRET;
 
     private OpenVidu openvidu;
+    @Autowired
+    private MessageService messageService;
 
     @PostConstruct
     public void init() {
@@ -71,5 +77,10 @@ public class LiveStreamRestController {
         return new ResponseEntity<>(connection.getToken(), HttpStatus.OK);
     }
 
-
+    @GetMapping("/api/v1/livestream/{lStreamId}")
+    public ResponseEntity<BasicResponse> findBylStreamId(@PathVariable int lStreamId) {
+        List<ChatMessageVo> chats =  messageService.findBylStreamId(lStreamId);
+        log.info("chat from mongo {} ", chats);
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("채팅 목록").result(CartReturn.CART_ADD_SUCCESS).result(chats).build(), HttpStatus.OK);
+    }
 }
