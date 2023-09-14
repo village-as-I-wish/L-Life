@@ -56,6 +56,12 @@
                                         <img th:src="@{/img/member/coin.png}"/>
                                     </th:block>
                                 </div>
+                                <div class="coins" th:if="${product.lfPackageId != null}">
+                                    <div>할인 후 </div>
+                                    <th:block th:each="coins, stat : ${#numbers.sequence(1, product.totalCoin)}">
+                                        <img th:src="@{/img/member/coin.png}"/>
+                                    </th:block>
+                                </div>
                                 <div class="product-coins" th:text="${product.lfStCoin}" style="display: none;"></div>
                             </div>
                         </a>
