@@ -55,32 +55,49 @@ $(document).ready(function(){
 
     $('.lf-pr-submit-btns form').on('submit', function(event) {
         var selectedOptionId = parseInt($('.selected-option').text());
-        var memberId = parseInt($('#memberId').val());
+        var mId = parseInt($('#memberId').val());
+        var totalPrice = parseInt($('#productPrice').text());
+
         event.preventDefault();
                 data = {
                     lfOptId: selectedOptionId,
                     lfId: productId,
-                    memberId: memberId
+                    mId: mId,
+                    totalPrice : totalPrice
                 };
                 $.ajax({
                     url: '/l-life/api/v1/premium/cart',
                     method: 'POST',
                     data: data,
                     success: function(response) {
-                        Swal.fire({
-                            title: '장바구니에 추가되었습니다.',
-                            text: '장바구니로 이동하시겠습니까?',
-                            confirmButtonText: '확인',
-                            cancelButtonText: '취소',
-                            showCancelButton: true,
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log("장바구니에 담기 완료");
-                                window.location.href = "/l-life/member/" + memberId + "/mypage/cart";
-                            }
-                        });
+                        if(response.result === 1){
+                            Swal.fire({
+                                title: '장바구니에 추가되었습니다.',
+                                text: '장바구니로 이동하시겠습니까?',
+                                confirmButtonText: '확인',
+                                cancelButtonText: '취소',
+                                showCancelButton: true,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    console.log("장바구니에 담기 완료");
+                                    window.location.href = "/l-life/member/" + mId + "/mypage/cart";
+                                }
+                            });
+                        }else if(response.result ===0){
+                            Swal.fire({
+                                title: '프리미엄 구독권이 없습니다.',
+                                text: '구독권 구매 후 이용 바랍니다.',
+                                confirmButtonText: '확인',
+                                cancelButtonText: '취소',
+                                showCancelButton: true,
+                            }).then((result) => {
+
+                            });
+                        }
+
                     },
                     error: function(error) {
+                        Swal.fire('오류', '장바구니에 담기 실패 ( 서버 오류 )', 'error');
                         console.log("장바구니에 담기 실패");
                         console.log(error);
                     }

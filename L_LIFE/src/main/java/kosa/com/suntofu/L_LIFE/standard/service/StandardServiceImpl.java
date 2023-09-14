@@ -2,10 +2,10 @@ package kosa.com.suntofu.L_LIFE.standard.service;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
-import kosa.com.suntofu.L_LIFE.standard.util.CartReturn;
+import kosa.com.suntofu.L_LIFE.common.util.CartReturn;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
-import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -128,7 +128,7 @@ public class StandardServiceImpl implements StandardService {
     public int putProductToCart(CartItemVO cartItemVO) {
         try{
             standardDAO.insertProductToCart(cartItemVO);
-            return SubscriptionReturn.SUBSCRIPTION_SUCCESS;
+            return CartReturn.CART_ADD_SUCCESS;
         }catch(Exception e){
             if (e.getCause() instanceof SQLException) {
                 SQLException sqlException = (SQLException) e.getCause();

@@ -1,14 +1,16 @@
 package kosa.com.suntofu.L_LIFE.premium.service;
 
-
+import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
 import kosa.com.suntofu.L_LIFE.constant.CacheKey;
 import kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao;
 import kosa.com.suntofu.L_LIFE.premium.vo.*;
+import kosa.com.suntofu.L_LIFE.common.util.CartReturn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -106,8 +108,29 @@ public class PremiumServiceImpl implements PremiumService{
     }
 
     @Override
-    public int insertPremiumProductToCart(PremiumOptionVo premiumOptionVo) {
-        return premiumDao.insertPremiumProductToCart(premiumOptionVo);
+    public int insertPremiumProductToCart(CartItemVO cartItemVO) {
+        try{
+            premiumDao.insertPremiumProductToCart(cartItemVO);
+            return CartReturn.CART_ADD_SUCCESS;
+        }catch(Exception e){
+            if (e.getCause() instanceof SQLException) {
+                SQLException sqlException = (SQLException) e.getCause();
+                int oracleErrorCode = sqlException.getErrorCode();
+                if (oracleErrorCode == 20002) {
+                    log.info("[ 프리미엄 장바구니 ] 프리미엄 구독권이 없는 상태");
+                    return CartReturn.NO_SUBSCRIPTION_EXIST;
+                } else {
+                    log.info("[프리미엄 장바구니 ] 데이터 삽입 오류 발생 ");
+                    System.out.println(e.getMessage());
+                    System.out.println(e.getStackTrace());
+                    return CartReturn.CART_ADD_ERROR;
+                }
+            }
+            System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
+            log.info("[ 프리미엄 장바구니 ] 데이터 삽입 오류 발생 ");
+            return CartReturn.CART_ADD_ERROR;
+        }
     }
 
     @Override

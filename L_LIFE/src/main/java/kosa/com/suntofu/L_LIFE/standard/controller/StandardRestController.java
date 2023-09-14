@@ -2,10 +2,11 @@ package kosa.com.suntofu.L_LIFE.standard.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
-import kosa.com.suntofu.L_LIFE.standard.util.CartReturn;
+import kosa.com.suntofu.L_LIFE.common.util.CartReturn;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
-import kosa.com.suntofu.L_LIFE.subscription.vo.BasicResponse;
+import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -79,7 +80,6 @@ public class StandardRestController {
     @PostMapping("/review")
     @ResponseBody
     public ResponseEntity<BasicResponse> createReview(ReviewRequestVo reviewRequestVo){
-
         log.info("[리뷰 등록 ] 요청 VO {} ", reviewRequestVo);
         int result  = standardService.createReview(reviewRequestVo);
         if(result < 1){

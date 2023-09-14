@@ -1,4 +1,4 @@
-package kosa.com.suntofu.L_LIFE.standard.util;
+package kosa.com.suntofu.L_LIFE.common.util;
 
 public class CartReturn {
 

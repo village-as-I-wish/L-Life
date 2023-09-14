@@ -291,9 +291,9 @@
                 SELECT count(SUBSCRIPTION.m_id)
                 INTO v_member_id
                 FROM SUBSCRIPTION
-                where m_id = #{mId};
+                where m_id = #{mId} and subscribe_type=0 and subscribe_status=1;
 
-                    IF v_member_id > 0 THEN
+            IF v_member_id > 0 THEN
                 INSERT INTO CART (lf_id, m_id, lf_opt_id, total_coin)
                 VALUES (#{lfId}, #{mId}, #{lfOptId},#{totalCoin});
             ELSE

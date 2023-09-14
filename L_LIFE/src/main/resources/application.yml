@@ -46,7 +46,7 @@ spring:
     redis:
       time-to-live: 3600
       cache-null-values: true
-      host: livart-life.com
+      host: redis.livart-life.com
       port: 6379
 
   servlet:
@@ -68,7 +68,7 @@ spring:
             enable: true
 
   redis:
-    host: livart-life.com
+    host: redis.livart-life.com
     password: ${redis-password}
     port: 6379
 

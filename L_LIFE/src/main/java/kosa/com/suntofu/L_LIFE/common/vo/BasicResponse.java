@@ -1,4 +1,4 @@
-package kosa.com.suntofu.L_LIFE.subscription.vo;
+package kosa.com.suntofu.L_LIFE.common.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

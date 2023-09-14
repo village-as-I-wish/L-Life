@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.premium.service;
 
+import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
 import kosa.com.suntofu.L_LIFE.premium.vo.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface PremiumService {
     int selectPremiumStockAmount(int lfOptId, int lfId);
     int insertOptionToReservation(PremiumOptionVo premiumOptionVo);
     List<PremiumVo> selectPremiumRecommendation(PremiumVo lfId);
-    int insertPremiumProductToCart(PremiumOptionVo premiumOptionVo);
+    int insertPremiumProductToCart(CartItemVO cartItemVO);
     List<PackageVo> getMDPickPackages();
     List<PackageVo> getPromotionPackages();
 

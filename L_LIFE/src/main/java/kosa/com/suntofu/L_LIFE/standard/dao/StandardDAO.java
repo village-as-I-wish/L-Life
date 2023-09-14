@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.standard.dao;
 
+import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
