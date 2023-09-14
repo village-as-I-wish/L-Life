@@ -14,6 +14,11 @@
     <script th:src="@{/js/livestream/openvidu-browser-2.28.0.js}" type="text/javascript"></script>
     <script th:src="@{/js/livestream/openvidu_testing.js}" type="text/javascript"></script>
     <script th:src="@{/js/livestream/livestream.js}" type="text/javascript"></script>
+
+    <script th:src="@{/js/chat/chat.js}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
 </head>
 <body>
 <div class="livestream-container hd__inner1400">
@@ -81,19 +86,20 @@
 
         </div>
     <div class="stream-chat-box-onboard hidden">
-        <div class="chat-box">
-            <p class="chat"><span class="chat-user"> 라이브 MD ⚽️ </span>리바트 라이프 구독 서비스 홍보 라이브 인가요? </p>
-            <p class="chat"><span class="chat-user"> 라이브 MD ⚽️ </span> 할인이 많아서 좋습니다. </p>
-            <p class="chat chat-blue"><span class="chat-user"> 라이브 MD ⚽️ </span> 라이브 방송 좋아요 </p>
+        <div class="chat-box" id="msgArea">
+            <p class="chat"> <span class="chat-user"> 라이브 MD ⚽️ </span>리바트 라이프 구독 서비스 홍보 라이브 인가요? </p>
+            <p class="chat">  <span class="chat-user"> 라이브 MD ⚽️ </span> 할인이 많아서 좋습니다.   </p>
+            <p class="chat chat-blue">  <span class="chat-user"> 라이브 MD ⚽️ </span> 라이브 방송 좋아요    </p>
 
         </div>
         <div class="chat-btn-box">
-            <input class="chat-input">
-            <button class="chat-submit-btn">
+            <input class="chat-input" id="msg">
+            <button class="chat-submit-btn" id="button-send">
                 <img alt="라이브 샘플 사진" th:src="@{/img/livestream/livestream_chat_btn.png}"/>
-
             </button>
         </div>
+        <input id="memberName" type="hidden" th:value="${session.existingMember.mName}">
+        <input id="lStreamId" type="hidden" th:value="${lStreamId}">
     </div>
     <div class="stream-product-box">
         <div class="stream-product-box-header">

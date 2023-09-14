@@ -45,12 +45,17 @@ $(document).ready(function(){
     });
 
     function sendMessage() {
-        var msg = document.getElementById("msg");
+        var msg = document.getElementById("msg").value.trim()
+        console.log("enter Test")
 
-        var payload = JSON.stringify({lstreamId: lStreamId, message: msg.value, mname: memberName});
+        if (msg.endsWith("\n")) { // 엔터 제거
+            console.log("enter")
+            msg = msg.slice(0, -1);
+        }
+        var payload = JSON.stringify({lstreamId: lStreamId, message: msg, mname: memberName});
         console.log("Sending payload: ", payload);
 
         stomp.send('/pub/chat/message', {}, payload);
-        msg.value = '';
+        document.getElementById("msg").value ='';
     }
 });
