@@ -21,7 +21,7 @@ spring:
       bootstrap-servers: livart-life.com:9093
   data:
     mongodb:
-      host: livart-life.com
+      host: mongodb.livart-life.com
       port: 27017
       username: llife
       password: kosa1234

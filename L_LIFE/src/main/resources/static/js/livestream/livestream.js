@@ -33,7 +33,7 @@ function packageToCart(){
                         text: '리바트 라이프와 함께 해주셔서 감사합니다.',
                         imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
                     }).then((result) => {
-                        if (result.isConfirmed) {
+                        if (result.isConfirmed) { // 알림창 확인 시
 
                         }
                     })

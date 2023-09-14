@@ -62,11 +62,16 @@ public class StandardRestController {
     @Operation(summary = "스탠다드 상품 한번에 장바구니 담기", description = "스탠상품 여러개를 장바구니에 담습니다.")
     @PostMapping("/carts")
     @ResponseBody
-    public ResponseEntity<String> putProductsToCart(@RequestBody  CartsRequestVo cartRequestVo) {
+    public ResponseEntity<BasicResponse> putProductsToCart(@RequestBody  CartsRequestVo cartRequestVo) {
 
         log.info("Product To Cart {} ", cartRequestVo);
         int result = standardService.putProductsToCart(cartRequestVo);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        log.info("Testing Result {} ", result);
+
+        if(result != cartRequestVo.getCarts().size()){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("패키지 상품들 담기 실패").build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("패키지 상품 장바구니 담기 성공").build(), HttpStatus.OK);
     }
 
     @Operation(summary = "스탠다드 상품 리뷰 작성 ", description = "스탠상품 리뷰를 작성합니다.")
