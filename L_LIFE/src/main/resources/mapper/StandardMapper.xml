@@ -293,7 +293,7 @@
                 FROM SUBSCRIPTION
                 where m_id = #{mId};
 
-            IF v_member_id > 0 THEN
+                    IF v_member_id > 0 THEN
                 INSERT INTO CART (lf_id, m_id, lf_opt_id, total_coin)
                 VALUES (#{lfId}, #{mId}, #{lfOptId},#{totalCoin});
             ELSE

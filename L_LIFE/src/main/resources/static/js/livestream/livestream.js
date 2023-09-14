@@ -42,7 +42,57 @@ function packageToCart(){
     }
 }
 
-function productToCart(){
+function productToCart(productIndex){
     console.log("testing Product to cart")
     // 그냥 장바구니로 보낼 것
+    var existingMemberId =parseInt($('#existingMember').text())
+
+    var cartItemVO = {
+        mId: existingMemberId,
+        lfId: parseInt($('#' + 'lsProductCard' + productIndex + 'lfId').text()),
+        lfOptId: parseInt($('#' + 'lsProductCard' + productIndex + 'lfOptId').text()),
+        totalCoin: parseInt($('#' + 'lsProductCard' + productIndex + 'lfStCoin').text()),
+        lfPackageId :parseInt($('#liveStreamPackageId').text())
+    };
+    $.ajax({
+        type: "POST",
+        data:  cartItemVO,
+        url: baseUrl + "/l-life/api/v1/standard/cart",
+        success: function (res) {
+            if(res.result === 0){
+                Swal.fire({
+                    title: '스탠다드 구독권이 없습니다.',
+                    text: '구독권 구매 후 다시 이용해주세요.',
+                    imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    }
+                })
+            }else if(res.result ===1){
+                Swal.fire({
+                    title: '장바구니에 상품을 담았습니다.',
+                    text: '장바구니를 확인해주세요.',
+                    imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    }
+                })
+            }
+        } ,
+        error: (error) => {
+            Swal.fire({
+                title: '서버 오류로 장바구니에 담지 못했습니다.',
+                text: '잠시 후 다시 이용해주세요.',
+                imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                }
+            })
+        }
+
+    });
+
 }

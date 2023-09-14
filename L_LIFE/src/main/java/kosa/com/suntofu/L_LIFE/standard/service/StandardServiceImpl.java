@@ -3,7 +3,9 @@ package kosa.com.suntofu.L_LIFE.standard.service;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
+import kosa.com.suntofu.L_LIFE.standard.util.CartReturn;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
+import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.*;
 
 @Slf4j
@@ -123,8 +126,29 @@ public class StandardServiceImpl implements StandardService {
 
     @Override
     public int putProductToCart(CartItemVO cartItemVO) {
+        try{
+            standardDAO.insertProductToCart(cartItemVO);
+            return SubscriptionReturn.SUBSCRIPTION_SUCCESS;
+        }catch(Exception e){
+            if (e.getCause() instanceof SQLException) {
+                SQLException sqlException = (SQLException) e.getCause();
+                int oracleErrorCode = sqlException.getErrorCode();
+                if (oracleErrorCode == 20002) {
+                    log.info("[ 스탠다드 장바구니 ] 스탠다드 구독권이 없는 상태");
+                    return CartReturn.NO_SUBSCRIPTION_EXIST;
+                } else {
+                    log.info("[스탠다드 구독 가입 - 플랜 ] 데이터 삽입 오류 발생 ");
+                    System.out.println(e.getMessage());
+                    System.out.println(e.getStackTrace());
+                    return CartReturn.CART_ADD_ERROR;
+                }
+            }
+            System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
+            log.info("[스탠다드 장바구니] 데이터 삽입 오류 발생 ");
+            return CartReturn.CART_ADD_ERROR;
+        }
 
-        return standardDAO.insertProductToCart(cartItemVO);
     }
 
     @Transactional

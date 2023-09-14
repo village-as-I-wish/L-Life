@@ -37,7 +37,6 @@
                <span th:text="${liveStreamDetail.getLStreamTags()}"></span>
             </div>
 
-
             <button id="openSession"  class="livestream-sharebtn" name="commit" value="Join!"
                     th:if="${session.existingMember.mIsAdmin == 1}" th:onclick="'joinSession(' + ${session.existingMember.mIsAdmin} + ')'">
                 <div class="share-btn-box">
@@ -135,7 +134,7 @@
                     </div>
                     <div class="stream-sub-product-btns">
                         <i class="fa-regular fa-heart fa-xl dark-brown"></i>
-                        <button class="stream-sub-product-cart-btn dark-brown" th:onclick="productToCart()"> 상품 담기 </button>
+                        <button class="stream-sub-product-cart-btn dark-brown" th:onclick="productToCart([[${i.index}]])"> 상품 담기 </button>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.standard.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
+import kosa.com.suntofu.L_LIFE.standard.util.CartReturn;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import kosa.com.suntofu.L_LIFE.subscription.vo.BasicResponse;
 import lombok.RequiredArgsConstructor;
@@ -51,23 +52,23 @@ public class StandardRestController {
     @Operation(summary = "스탠다드 상품 장바구니 담기", description = "스탠상품을 장바구니에 담습니다.")
     @PostMapping("/cart")
     @ResponseBody
-    public ResponseEntity<String> putProductToCart(CartItemVO cartItemVO) {
-
-//        StandardSubscriptionVo tocart = new StandardSubscriptionVo(lfId, memberId, lfOptId);
+    public ResponseEntity<BasicResponse> putProductToCart(CartItemVO cartItemVO) {
         log.info("Product To Cart {} ", cartItemVO);
         int result = standardService.putProductToCart(cartItemVO);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        if(result == CartReturn.CART_ADD_ERROR){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("상품 담기 실패").result(CartReturn.CART_ADD_ERROR).build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if(result == CartReturn.NO_SUBSCRIPTION_EXIST){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("구독권이 없어 장바구니에 담지 못함").result(CartReturn.NO_SUBSCRIPTION_EXIST).build(), HttpStatus.OK);
+        }
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("상품 장바구니 담기 성공").result(CartReturn.CART_ADD_SUCCESS).build(), HttpStatus.OK);
     }
 
     @Operation(summary = "스탠다드 상품 한번에 장바구니 담기", description = "스탠상품 여러개를 장바구니에 담습니다.")
     @PostMapping("/carts")
     @ResponseBody
     public ResponseEntity<BasicResponse> putProductsToCart(@RequestBody  CartsRequestVo cartRequestVo) {
-
-        log.info("Product To Cart {} ", cartRequestVo);
         int result = standardService.putProductsToCart(cartRequestVo);
-        log.info("Testing Result {} ", result);
-
         if(result != cartRequestVo.getCarts().size()){
             return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("패키지 상품들 담기 실패").build(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
