@@ -43,7 +43,7 @@ function search() {
     }
     queryParams = queryParams.slice(0, -1);
 
-    var url = "http://livart-life.com:8080/l-life/api/v1/standard/search?" + queryParams;
+    var url = "https://livart-life.com/l-life/api/v1/standard/search?" + queryParams;
 
     $.ajax({
         type: "GET",

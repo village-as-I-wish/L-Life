@@ -45,7 +45,7 @@ function search() {
     queryParams = queryParams.slice(0, -1);
     console.log(queryParams)
 
-    var url = "http://livart-life.com:8080/l-life/api/v1/premium/search?" + queryParams;
+    var url = "https://livart-life.com/l-life/api/v1/premium/search?" + queryParams;
     console.log(url)
 
     $.ajax({
