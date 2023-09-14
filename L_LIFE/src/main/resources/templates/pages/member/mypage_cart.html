@@ -43,6 +43,8 @@
                         <input type="hidden" th:id="'slfstCoin_' + ${iterStat.index}" th:value="${product.lfStCoin}">
                         <input type="hidden" th:id="'slfStSubId_' + ${iterStat.index}" th:value="${session.stSubId}">
                         <input type="hidden" th:id="'slfName_' + ${iterStat.index}" th:value="${product.lfName}">
+                        <input type="hidden" th:id="'stotalCoin_' + ${iterStat.index}" th:value="${product.totalCoin}">
+                        <input type="hidden" th:id="'slfPackageId' + ${iterStat.index}" th:value="${product.lfPackageId}">
 
                         <input type="checkbox" class="standard-checkbox" th:id="'standard-subscription_' + ${iterStat.index}" name="subscription" value="standard">
                         <a class="product-link" th:href="@{'#'}">
@@ -96,6 +98,7 @@
                         <input type="hidden" th:id="'lfPrPrice_' + ${iterStat.index}" th:value="${product.lfPrPrice}">
                         <input type="hidden" th:id="'lfPrMinPeriod_' + ${iterStat.index}" th:value="${product.lfPrMinPeriod}">
                         <input type="hidden" th:id="'lfPrSubId_' + ${iterStat.index}" th:value="${session.prSubId}">
+                        <input type="hidden" th:id="'lftotalPrice_' + ${iterStat.index}" th:value="${product.totalPrice}">
 
                         <input type="checkbox" class="premium-checkbox" th:id="'premium-subscription_' + ${iterStat.index}">
                         <a class="product-link" th:href="@{'#'}">
@@ -146,7 +149,7 @@
                     var lfPrMinPeriod = $('#lfPrMinPeriod_' + id).val();
                     var lfPrSubId =  $('#lfPrSubId_' + id).val();
                     var memberId = $('#memberId').val();
-
+                    var totalPrice = $('#lftotalPrice_'+id).val();
                     selectedProducts.push(
                         {
                             subscriptionId : lfPrSubId,
@@ -158,7 +161,8 @@
                             quantity: quantity,
                             lfBrandName : lfBrandName,
                             lfPrMinPeriod : lfPrMinPeriod,
-                            memberId : memberId
+                            memberId : memberId,
+                            totalPrice: totalPrice
                     });
                     console.log(selectedProducts)
                 });
@@ -209,6 +213,8 @@
                     var lfBrandName = $('#slfBrandName_' + sid).val();
                     var lfStSubId =  $('#slfStSubId_' + sid).val();
                     var memberId = $('#memberId').val();
+                    var totalCoin = $('#stotalCoin_'+ sid).val();
+
                     selectedStProducts.push(
                         {
                             subscriptionId : lfStSubId,
@@ -218,7 +224,8 @@
                             lfImgMain: lfImgMain,
                             lfStCoin: lfStCoin,
                             lfBrandName : lfBrandName,
-                            memberId : memberId
+                            memberId : memberId,
+                            totalCoin: totalCoin
                         });
                     console.log(selectedStProducts)
                 });

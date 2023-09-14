@@ -13,7 +13,10 @@
             lf_opt.LF_OPT_ID,
             lf_opt.LF_OPT_NAME,
             lf_brand.LF_BRAND_NAME,
-            NVL(s.STOCK_AMOUNT, 0) AS STOCK_AMOUNT
+            NVL(s.STOCK_AMOUNT, 0) AS STOCK_AMOUNT,
+            c.TOTAL_COIN,
+            c.TOTAL_PRICE,
+            c.LF_PACKAGE_ID
         from
             cart c
                 left join
@@ -41,7 +44,9 @@
             lf_opt.LF_OPT_NAME,
             lf_brand.LF_BRAND_NAME,
             NVL(s.STOCK_AMOUNT, 0) AS STOCK_AMOUNT,
-            lf.LF_PR_MIN_PERIOD
+            lf.LF_PR_MIN_PERIOD,
+            c.TOTAL_COIN,
+            c.TOTAL_PRICE
         from
             cart c
                 left join

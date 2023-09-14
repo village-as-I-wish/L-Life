@@ -3,10 +3,11 @@ server:
   servlet:
     context-path: /l-life
   ssl:
-    enabled: true
-    key-store: classpath:ssl/keystore.p12
-    key-store-type: PKCS12
-    key-store-password: ${key-store-password}
+    enabled: false
+#    enabled: true
+#    key-store: classpath:ssl/keystore.p12
+#    key-store-type: PKCS12
+#    key-store-password: ${key-store-password}
 
 spring:
   profiles:
