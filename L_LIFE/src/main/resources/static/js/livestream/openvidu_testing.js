@@ -58,7 +58,7 @@ function joinSession(isAdmin) {
             // imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "http://livart-life.com:8080/l-life/standard/main";
+                window.location.href = "https://livart-life.com/l-life/standard/main";
             }
         })
         removeUserData(event.stream.connection);
@@ -149,7 +149,7 @@ function appendUserData(videoElement, connection) {
 
 }
 
-var APPLICATION_SERVER_URL = "http://livart-life.com:8080/l-life/";
+var APPLICATION_SERVER_URL = "https://livart-life.com/l-life/";
 
 function getToken(mySessionId) {
     return createSession(mySessionId).then(sessionId => createToken(sessionId));
