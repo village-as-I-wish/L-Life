@@ -38,6 +38,7 @@
                 <span class="lf-pr-point-txt text-sm f-bold" th:text="'포인트 ' + ${standardDetail.lfStCoin} + '개'"></span>
                 <th:block
                         th:each="coinNumber : ${#numbers.sequence(1, standardDetail.lfStCoin)}">
+                        <span class="hidden" id="lfStCoin" th:text="${standardDetail.lfStCoin}"></span>
                     <img class="coin-img" th:src="@{/img/member/coin.png}"/>
                 </th:block>
             </div>

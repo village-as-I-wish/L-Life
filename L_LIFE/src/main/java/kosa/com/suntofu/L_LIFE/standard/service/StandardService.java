@@ -21,12 +21,14 @@ public interface StandardService {
     List<StandardVo> getStandardRecommendation(StandardDetailVo standardDetailVo);
     int getStandardStockAmount(int lfOptId, int lfId);
     int putOptionToReservation(StandardOptionVo standardOptionVo);
-    int putProductToCart(StandardSubscriptionVo standardSubscriptionVo);
+    int putProductToCart(CartItemVO cartItemVO);
 
     int createReview(ReviewRequestVo reviewRequestVo);
 
     List<ReviewVo> getReviews(int lfId);
 
     int deleteReview(int lfReviewId);
+
+    int putProductsToCart(CartsRequestVo cartRequestVo);
 
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kosa.com.suntofu.L_LIFE.livestream.dao.LiveStreamDao">
+
+    <resultMap type="LfPackageVo" id="LfPackageVo">
+        <result column="lf_package_id" property="lfPackageId" />
+        <result column="lf_package_name" property="lfPackageName" />
+        <result column="lf_package_st_coin" property="lfPackageStCoin" />
+        <result column="lf_package_img" property="lfPackageImg" />
+    </resultMap>
+
+    <resultMap type="LiveStreamDetailVo" id="liveStreamResultMap">
+        <result column="l_stream_id" property="lStreamId" />
+        <result column="lf_package_id" property="lfPackageId" />
+        <result column="l_stream_name" property="lStreamName" />
+        <result column="l_stream_comment" property="lStreamComment" />
+        <result column="l_stream_tags" property="lStreamTags" />
+        <result column="l_stream_img" property="lStreamImg" />
+        <result column="l_stream_time" property="lStreamTime" />
+        <collection property="lfPackage" resultMap="LfPackageVo" />
+    </resultMap>
+    <select id="selectLiveStreamById" parameterType="int" resultMap="liveStreamResultMap">
+        select *
+        from LIVESTREAM ls
+        left join lfpackage lfp on ls.LF_PACKAGE_ID = lfp.LF_PACKAGE_ID
+        where L_STREAM_ID = #{lStreamId}
+    </select>
+
+    <!-- 라이브 방송 상품 정보 -->
+    <select id="selectLiveStreamPackageById" parameterType="int">
+        select lfpc.lfp_catalog_id,
+               lfpc.lf_package_id,
+               lfpc.lf_id,
+               lfpc.lf_opt_id,
+               lfopt.lf_opt_name,
+               lf.lf_st_coin,
+               lf.lf_sub_comment,
+               lf.lf_st_grade,
+               lf.lf_name,
+               lf.lf_img_main,
+               lfm.lf_mood_id,
+               lfm.lf_mood_name,
+               lfb.lf_brand_id,
+               lfb.lf_brand_name
+        from LFPACKAGE lfp
+                 left join LFPACKAGECATALOG lfpc on lfp.LF_PACKAGE_ID = lfpc.LF_PACKAGE_ID
+                 left join LLIFEFURNITURE lf on lfpc.LF_ID  = lf.LF_ID
+                 left join LFURNITUREOPTION lfopt on lfpc.LF_OPT_ID = lfopt.LF_OPT_ID
+                 left join LFURNITUREBRAND lfb on lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+                 left join LFURNITUREMOOD lfm on lf.LF_MOOD_ID = lfm.LF_MOOD_ID
+        where lfp.LF_PACKAGE_ID = #{lfPackageId}
+    </select>
+
+
+</mapper>

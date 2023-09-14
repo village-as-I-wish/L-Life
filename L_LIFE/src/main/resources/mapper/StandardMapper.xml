@@ -283,7 +283,7 @@
     </insert>
 
     <!-- 장바구니 테이블에 insert -->
-    <insert id="insertProductToCart" parameterType="StandardSubscriptionVo">
+    <insert id="insertProductToCart" parameterType="CartItemVo">
         {CALL
             DECLARE
                 v_member_id NUMBER :=0;
@@ -294,14 +294,26 @@
                 where m_id = #{mId};
 
             IF v_member_id > 0 THEN
-                INSERT INTO CART (lf_id, m_id, lf_opt_id)
-                VALUES (#{lfId}, #{mId}, #{lfOptId});
+                INSERT INTO CART (lf_id, m_id, lf_opt_id, total_coin)
+                VALUES (#{lfId}, #{mId}, #{lfOptId},#{totalCoin});
             ELSE
                 RAISE_APPLICATION_ERROR(-20002, 'No subscription found for the user');
         END IF;
         END
         }
     </insert>
+
+    <!-- 한번에 여러개 장바구니에 담기 -->
+    <update id="insertProductsToCart" parameterType="java.util.Map">
+        <selectKey keyProperty="maxSeq" resultType="int" order="BEFORE">
+            SELECT NVL(MAX(cart_id), 0) FROM cart
+        </selectKey>
+        INSERT INTO cart (cart_id, lf_id, m_id, lf_opt_id, lf_package_id, total_coin)
+        <foreach collection="list" item="item" index="idx" separator="UNION ALL">
+            SELECT #{maxSeq} + #{idx} +1, #{item.lfId}, #{item.mId}, #{item.lfOptId}, #{item.lfPackageId}, #{item.totalCoin} FROM DUAL
+        </foreach>
+    </update>
+
 
 
     <insert id="insertReview" useGeneratedKeys="false" parameterType="ReviewRequestVo" >
