@@ -26,8 +26,8 @@ public class KafkaMessageConsumer {
         log.debug("Received message from Kafka: " + message);
 
         // 1. MongoDB에 메시지 저장
-        messageRepository.save(message);
-
+        ChatMessageVo chatMessageVo = messageRepository.save(message);
+        log.info("chatting message saved {} ", chatMessageVo);
         // 2. 저장된 메시지를 사용자에게 전송
         log.debug("kafka consumer, " + message);
         // livestream/room/{아이디}를 듣고있는 client에 전송

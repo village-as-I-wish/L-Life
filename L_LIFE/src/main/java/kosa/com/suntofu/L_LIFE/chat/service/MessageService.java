@@ -5,6 +5,7 @@ import kosa.com.suntofu.L_LIFE.chat.vo.ChatMessageVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,4 +26,10 @@ public class MessageService {
     public void deleteById(String id) {
         messageRepository.deleteById(id);
     }
+
+    public List<ChatMessageVo> findBylStreamId(int lStreamId) {
+        return messageRepository.findBylStreamId(lStreamId);
+    }
+
+
 }
