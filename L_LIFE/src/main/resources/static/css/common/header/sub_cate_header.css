@@ -26,3 +26,9 @@
     text-decoration: none;
     color: #333333;
 }
+
+
+#menu li a:hover{
+    color: #E1BFAD;
+    transform:scale(1.1);
+}

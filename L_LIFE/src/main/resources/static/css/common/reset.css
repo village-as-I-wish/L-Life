@@ -170,3 +170,6 @@ table {
 .hidden{
     display:none;
 }
+a{
+    color:inherit;
+}
