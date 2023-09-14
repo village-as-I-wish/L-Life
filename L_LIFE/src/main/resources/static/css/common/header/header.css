@@ -12,6 +12,12 @@ header{
     margin: 0 auto;
     width: 100%;
 }
+
+.header-selected {
+    font-weight: bold;
+    color : #5d493c !important;
+    font-size: 25px !important;
+}
 .text-white{
     color:white;
 }
