@@ -15,7 +15,7 @@
                 SELECT COUNT(*)
                 INTO v_subscription_count
                 FROM SUBSCRIPTION
-                WHERE M_ID = v_member_id AND SUBSCRIBE_END_DATE >= v_today and subscribe_status = 1;
+                WHERE M_ID = v_member_id AND SUBSCRIBE_END_DATE >= v_today and subscribe_status = 1 and subscribe_type = 0;
 
                 IF v_subscription_count > 0 THEN
                         RAISE_APPLICATION_ERROR(-20001, 'Subscription already exists');
