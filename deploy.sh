@@ -16,3 +16,6 @@ docker-compose -p ${DOCKER_APP_NAME} -f docker-compose.yml up -d
 sleep 5
 
 echo "Server On"
+
+XIST_AFTER=$(docker-compose -p ${DOCKER_APP_NAME} -f docker-compose.yml ps | grep Up)
+echo EXIST_AFTER
