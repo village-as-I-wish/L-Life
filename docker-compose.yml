@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  backend:
+    container_name: "l-life"
+    image: :l-life0.1
+    build:
+      context: L-Life/
+      dockerfile: Dockerfile
+    ports:
+      - "443:8080"
+    # [인증서 파일 저장 경로]:/root
+    # volumes:
+    #  - /etc/letsencrypt/live/k7d206.p.ssafy.io/:/root
+    environment:
+      - TZ=Asia/Seoul
