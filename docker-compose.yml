@@ -3,9 +3,9 @@ version: '3.7'
 services:
   backend:
     container_name: "l_life"
-    image: :l_life:0.1
+    image: l_life:0.1
     build:
-      context: L-Life/
+      context: L_LIFE/
       dockerfile: Dockerfile
     ports:
       - "443:8080"
