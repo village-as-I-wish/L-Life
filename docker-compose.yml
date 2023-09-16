@@ -11,6 +11,6 @@ services:
       - "443:8080"
     # [인증서 파일 저장 경로]:/root
     # volumes:
-    #  - /etc/letsencrypt/live/k7d206.p.ssafy.io/:/root
+    #  - /etc/letsencrypt/---
     environment:
       - TZ=Asia/Seoul
