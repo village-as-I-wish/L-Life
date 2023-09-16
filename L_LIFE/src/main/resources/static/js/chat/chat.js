@@ -59,7 +59,7 @@ $(document).ready(function(){
     // Fetch chat messages from the API and appends them to the chat display.
     function fetchChatMessages() {
         $.ajax({
-            url: "http://localhost:8080/l-life/api/v1/livestream/" + lStreamId,
+            url: "https://livart-life.com/l-life/api/v1/livestream/" + lStreamId,
             method: "GET",
             success: function(response) {
                 if (response.code === 200 && response.result && Array.isArray(response.result)) {

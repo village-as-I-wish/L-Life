@@ -87,7 +87,7 @@ public class SubscriptionController {
         session.setAttribute("stPaymentProduct",selectedStProducts);
         log.info("st pay product : {}",selectedStProducts);
         Map<String, String> response = new HashMap<>();
-        response.put("redirectUrl", "http://localhost:8080/l-life/subscription/standard/delivery_reservation");
+        response.put("redirectUrl", "https://livart-life.com/l-life/subscription/standard/delivery_reservation");
 
         return response;
     }
