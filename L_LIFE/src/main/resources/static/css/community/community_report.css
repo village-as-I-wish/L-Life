@@ -1,0 +1,64 @@
+.cm-top-banner img{
+    transform: scaleX(-1);
+    width: 100%;
+    max-height: 700px;
+}
+.cm-report-header{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.cm-report-header span{
+    font-size: 50px;
+    font-weight: 600;
+    align-self: end;
+}
+.cm-report-header img{
+    width: 400px;
+    height: 80px;
+    margin-top: 10px;
+}
+.hr-first{
+    width: 10%;
+    display: inline-block;
+}
+.hr-second{
+    width: 29%;
+    display: inline-block;
+    height: 4px !important;
+    color: #5d493c;
+    opacity: 1;
+}
+.hr-third{
+    display: inline-block;
+    padding: 0;
+    width: 60%;
+    margin-left: -5px;
+}
+.upload-box {
+    width: calc(50% - 15px);
+    box-sizing: border-box;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.upload-box .drag-file {
+    width: 100%;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed #dbdbdb;
+}
+.upload-box .drag-file.highlight {
+    border: 3px dashed red;
+}
+.upload-box .drag-file .image {
+    width: 40px;
+}
+.upload-box .drag-file .message {
+    margin-bottom: 0;
+}

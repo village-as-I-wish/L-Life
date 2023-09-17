@@ -16,4 +16,16 @@ public class CommunityController {
         return "pages/community/community_main";
     }
 
+    @GetMapping("/report")
+    public String loadReportPage(Model model){
+        return "pages/community/community_report";
+    }
+
+
+    @GetMapping("/3d")
+    public String load3dPage(Model model){
+        return "pages/community/community_3d";
+    }
+
+
 }

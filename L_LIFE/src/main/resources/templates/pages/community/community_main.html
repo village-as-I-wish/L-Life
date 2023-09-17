@@ -4,11 +4,55 @@
     <meta charset="UTF-8">
     <title>L-Life Community</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_main.css}"/>
-    <script th:src="@{/js/community/community_main.js}" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_report.css}"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script th:src="@{/js/community/community_report.js}" type="text/javascript"></script>
 
 </head>
 <body>
     <button onclick="test()"> 테스트용 </button>
+
+    <div id="imageContainer">
+        <img id="objectImage" src="https://www.ikea.com/images/2-e4e271bd007a75af466351b6828af61c.jpg" alt="Object Image">
+        <div id="objectOverlay"></div>
+    </div>
+
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <div class="space-box">
+        <p> 공간 분석 결과
+        </p>
+        <span> Nature</span>
+        <span> 98.8%</span>
+    </div>
+    <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+
+
+    <script>
+        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        var yValues = [55, 49, 44, 24, 15];
+        var barColors = ["red", "green","blue","orange","brown"];
+
+        new Chart("myChart2", {
+            type: "horizontalBar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: "World Wine Production 2018"
+                },
+                scales: {
+                    xAxes: [{ticks: {min: 10, max:60}}]
+                }
+            }
+        });
+    </script>
 </body>
 </html>
