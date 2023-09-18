@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kosa.com.suntofu.L_LIFE.community.dao.CommunityDao">
+
+    <select id ="selectProductByStyle" parameterType="int">
+        select *
+        from LLIFEFURNITURE lf
+                 left join LFURNITUREMOOD lfm on lf.LF_MOOD_ID = lfm.LF_MOOD_ID
+                 left join LFURNITUREBRAND lfb on lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+        where lf.lf_mood_id = #{lfMoodId} and lf.LF_SUB_TYPE =0
+    </select>
+
+</mapper>

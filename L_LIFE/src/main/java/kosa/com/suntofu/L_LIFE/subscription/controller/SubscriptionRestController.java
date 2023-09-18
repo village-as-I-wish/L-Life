@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.subscription.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
 import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
 import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
@@ -28,8 +29,9 @@ public class SubscriptionRestController {
 
     @Operation(summary = "스탠다드 구독권 구매", description = "스탠다드 구독권을 구매합니다(33/55)")
     @PostMapping("")
-    public ResponseEntity<BasicResponse> subscribePlan(int subscriptionPlanId){ //세션에서 memberId 가져올 예정
-        int memberId = 1; // MemerId 변경 필요
+    public ResponseEntity<BasicResponse> subscribePlan(int subscriptionPlanId, @SessionAttribute MemberVo existingMember){ //세션에서 memberId 가져올 예정
+        int memberId = existingMember.getMId(); // MemerId 변경 필요
+        log.info("Testing memberId {} ", memberId);
         int result = subscriptionService.subscribePlan(subscriptionPlanId, memberId);
         if(result == SubscriptionReturn.SUBSCRIPTION_SUCCESS){
             return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
