@@ -28,7 +28,6 @@ function sendAnalyzeRequest(requestUrl, imgUrl){
 }
 
 function test(){
-    createColorChart()
     let imgUrl = 'https://www.ikea.com/images/2-e4e271bd007a75af466351b6828af61c.jpg'
     // 공간 분석 API
     var spaceAnalyze = sendAnalyzeRequest(spaceAnalyzeUrl,imgUrl)
