@@ -107,6 +107,7 @@ a.product-link {
 
 .reminder, .total-premium-price {
     text-align: right;
+     margin-right: 10px;
 }
 
 .custom-button-link {
@@ -212,4 +213,10 @@ a.product-link {
 
 .discount-coins img, .coins img{
     margin-right: -5px;
+}
+
+.coinAmount {
+    font-size: 20px;
+    color: #f65c60;
+    font-weight: bold;
 }
