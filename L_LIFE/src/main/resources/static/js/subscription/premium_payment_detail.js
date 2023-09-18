@@ -56,6 +56,7 @@ function payment(memberId){
     if (selectedPaymentMethod === "kakao") {
         paymentKaKao(payKeys.kakaoPayKey, memberId);
     } else if (selectedPaymentMethod === "toss") {
+        console.log(payKeys.tossPayKey)
         paymentToss(payKeys.tossPayKey, memberId);
     } else if(selectedPaymentMethod==""){
         alert("결제 방식을 선택해주세요. ");
@@ -100,6 +101,7 @@ function paymentKaKao(kakaoPayKey, memberId) {
  */
 function paymentToss(tossPayKey, memberId){
     var tossPayments = TossPayments(tossPayKey)
+    console.log("toss key", tossPayKey)
     data = createPaymentData()
     var successUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 성공 시 이동할 페이지 -> 변경 필요 (memberId)
     var failUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 실패 시 이동할 페이지 -> 변경 필요 (memberId)

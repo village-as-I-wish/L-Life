@@ -32,8 +32,6 @@
             <div class="standard-container">
                 <div class="standard-product">
                     <div class="cart-sub-title">스탠다드구독상품</div>
-                    <button class="delete-btn all-delete">전체삭제</button>
-                    <button class="delete-btn select-delete">선택삭제</button>
                     <div class="list-item" th:each="product, iterStat  : ${standardCarts}">
                         <input type="hidden" th:class="stId" th:value="${iterStat.index}">
                         <input type="hidden" th:id="'slfId_' + ${iterStat.index}" th:value="${product.lfId}">
@@ -43,17 +41,30 @@
                         <input type="hidden" th:id="'slfstCoin_' + ${iterStat.index}" th:value="${product.lfStCoin}">
                         <input type="hidden" th:id="'slfStSubId_' + ${iterStat.index}" th:value="${session.stSubId}">
                         <input type="hidden" th:id="'slfName_' + ${iterStat.index}" th:value="${product.lfName}">
+                        <input type="hidden" th:id="'stotalCoin_' + ${iterStat.index}" th:value="${product.totalCoin}">
+                        <input type="hidden" th:id="'slfPackageId' + ${iterStat.index}" th:value="${product.lfPackageId}">
 
                         <input type="checkbox" class="standard-checkbox" th:id="'standard-subscription_' + ${iterStat.index}" name="subscription" value="standard">
                         <a class="product-link" th:href="@{'#'}">
                             <img class="product-image" th:src="${product.lfImgMain}"/>
                             <div class="product-details">
+                                <span class="brand-name" th:text="${product.getLfBrandName()}"></span>
                                 <span class="product-name" th:text="${product.lfName}"></span>
-                                <div class="coins">
+                                <div class="coins" th:if="${product.lfPackageId == null}">
                                     <th:block th:each="coins, stat : ${#numbers.sequence(1, product.lfStCoin)}">
                                         <img th:src="@{/img/member/coin.png}"/>
                                     </th:block>
                                 </div>
+                                <div class="discount-wrap">
+                                    <div class="discount" th:if="${product.lfPackageId != null}">⭐️패키지 특가️⭐️</div>
+                                    <div class="discount-coins" th:if="${product.lfPackageId != null}">
+                                        <th:block th:each="coins, stat : ${#numbers.sequence(1, product.totalCoin)}">
+                                            <img th:src="@{/img/member/coin.png}"/>
+                                        </th:block>
+                                    </div>
+                                    <div class="minus-count" th:if="${product.lfPackageId != null}" th:text="'[ 할인 받은 코인: ' + (${product.lfStCoin} - ${product.totalCoin}) + ' ]'"></div>
+                                </div>
+                                <div class="product-option" th:text="'옵션: ' + ${product.getLfOptName()}"></div>
                                 <div class="product-coins" th:text="${product.lfStCoin}" style="display: none;"></div>
                             </div>
                         </a>
@@ -65,13 +76,15 @@
                     <div class="coins"></div>
                     <span></span>
                 </div>
-
-
             </div>
 
             <div class="standard-start">
+                <div class="delete-btns">
+                    <button class="delete-btn all-delete">전체상품 삭제</button>
+                    <button class="delete-btn select-delete">선택상품 삭제</button>
+                </div>
                 <a href="https://livart-life.com/l-life/standard/main" class="standard-add-link">스탠다드상품 추가하기</a>
-                <div class="reminder">L-lile Coin이 <span class="coinAmount" th:text="${session.currentCoin}"></span>개 남았어요!</div>
+                <div class="reminder">H-Coin가 <span class="coinAmount" th:text="${session.currentCoin}"></span>개 남았어요!</div>
                 <a class="custom-button-link">
                     <button class="custom-button" data-bs-toggle="modal" data-bs-target="#standardCartModal">
                         구독 시작하기
@@ -85,8 +98,6 @@
             <div class="premium-container">
                 <div class="premium-product">
                     <div class="cart-sub-title">프리미엄구독상품</div>
-                    <button class="delete-btn all-delete">전체삭제</button>
-                    <button class="delete-btn select-delete">선택삭제</button>
                     <div class="list-item" th:each="product, iterStat : ${premiumCarts}">
                         <input type="hidden" th:id="'lfId_' + ${iterStat.index}" th:value="${product.lfId}">
                         <input type="hidden" th:id="'lfOptId_' + ${iterStat.index}" th:value="${product.lfOptId}">
@@ -96,13 +107,16 @@
                         <input type="hidden" th:id="'lfPrPrice_' + ${iterStat.index}" th:value="${product.lfPrPrice}">
                         <input type="hidden" th:id="'lfPrMinPeriod_' + ${iterStat.index}" th:value="${product.lfPrMinPeriod}">
                         <input type="hidden" th:id="'lfPrSubId_' + ${iterStat.index}" th:value="${session.prSubId}">
+                        <input type="hidden" th:id="'lftotalPrice_' + ${iterStat.index}" th:value="${product.totalPrice}">
 
                         <input type="checkbox" class="premium-checkbox" th:id="'premium-subscription_' + ${iterStat.index}">
                         <a class="product-link" th:href="@{'#'}">
                             <img class="product-image" th:src="${product.lfImgMain}" th:value="${product.lfImgMain}"/>
                             <div class="product-details">
+                                <span class="brand-name" th:text="${product.getLfBrandName()}"></span>
                                 <span class="product-name" th:id="'lfName_' + ${iterStat.index}" th:text="${product.lfName}"></span>
-                                <div class="product-coins"  th:value="${product.lfPrPrice}" style="display: none;"></div>
+                                <div class="product-price" th:text="${product.lfPrPrice}"></div>
+                                <div class="product-option" th:text="'옵션: ' + ${product.getLfOptName()}"></div>
                             </div>
                         </a>
 
@@ -121,6 +135,10 @@
             </div>
 
             <div class="premium-start">
+                <div class="delete-btns">
+                    <button class="delete-btn all-delete">전체상품 삭제</button>
+                    <button class="delete-btn select-delete">선택상품 삭제</button>
+                </div>
                 <a href="https://livart-life.com/l-life/premium/main" class="premium-add-link">프리미엄상품 추가하기</a>
                 <div class="total-premium-price">구독상품금액: </div>
                 <a class="custom-button-link"><button class="custom-button premium-payment">결제하기</button></a>
@@ -146,7 +164,7 @@
                     var lfPrMinPeriod = $('#lfPrMinPeriod_' + id).val();
                     var lfPrSubId =  $('#lfPrSubId_' + id).val();
                     var memberId = $('#memberId').val();
-
+                    var totalPrice = $('#lftotalPrice_'+id).val();
                     selectedProducts.push(
                         {
                             subscriptionId : lfPrSubId,
@@ -158,7 +176,8 @@
                             quantity: quantity,
                             lfBrandName : lfBrandName,
                             lfPrMinPeriod : lfPrMinPeriod,
-                            memberId : memberId
+                            memberId : memberId,
+                            totalPrice: totalPrice
                     });
                     console.log(selectedProducts)
                 });
@@ -209,6 +228,8 @@
                     var lfBrandName = $('#slfBrandName_' + sid).val();
                     var lfStSubId =  $('#slfStSubId_' + sid).val();
                     var memberId = $('#memberId').val();
+                    var totalCoin = $('#stotalCoin_'+ sid).val();
+
                     selectedStProducts.push(
                         {
                             subscriptionId : lfStSubId,
@@ -218,7 +239,8 @@
                             lfImgMain: lfImgMain,
                             lfStCoin: lfStCoin,
                             lfBrandName : lfBrandName,
-                            memberId : memberId
+                            memberId : memberId,
+                            totalCoin: totalCoin
                         });
                     console.log(selectedStProducts)
                 });
@@ -255,9 +277,18 @@
                 const standardCheckboxes = document.querySelectorAll('.standard-checkbox');
                 const premiumCheckboxes = document.querySelectorAll('.premium-checkbox');
                 const coinsRemainingElement = document.querySelector('.coins-remaining .coins');
-                const coinsRemainingTextElement = document.querySelector('.coins-remaining span');
+                const coinsRemainingTextElement = document.querySelector('.coins-remaining > span');
                 const totalPremiumPriceElement = document.querySelector('.total-premium-price');
-
+                const subscriptionPrices = document.querySelectorAll('.subscription-price');
+                subscriptionPrices.forEach(priceElement => {
+                    const currentPrice = parseInt(priceElement.textContent.replace(/[^0-9]/g, ''));
+                    priceElement.textContent = currentPrice.toLocaleString() + '원';
+                });
+                const productPrices = document.querySelectorAll('.product-price');
+                productPrices.forEach(priceElement => {
+                    const currentPrice = parseInt(priceElement.textContent.replace(/[^0-9]/g, ''));
+                    priceElement.textContent = '월 ' + currentPrice.toLocaleString() + '원';
+                });
                 const itemPriceElements = document.querySelectorAll('.item-price');
                 const initialProductPrices = [];
                 const coinAmount = document.querySelector('.coinAmount');
@@ -300,18 +331,28 @@
 
                 standardCheckboxes.forEach(checkbox => {
                     checkbox.addEventListener('change', () => {
-                        const productCoins = parseInt(checkbox.closest('.list-item').querySelector('.product-coins').textContent);
-                        const currentCoins = document.querySelector('.coinAmount').textContent;
+                        const listItem = checkbox.closest('.list-item');
+
+                        let productCoins;
+
+                        // Check if the product has a discount (i.e., lfPackageId is not null)
+                        if (listItem.querySelector('.discount-coins')) {
+                            productCoins = listItem.querySelectorAll('.discount-coins img').length;
+                        } else {
+                            productCoins = parseInt(listItem.querySelector('.product-coins').textContent);
+                        }
+
+                        const currentCoins = parseInt(document.querySelector('.coinAmount').textContent);
 
                         if (checkbox.checked) {
-                            if ((currentCoins - productCoins) < 0 ){
+                            if ((currentCoins - productCoins) < 0) {
                                 checkbox.checked = !checkbox.checked;
                                 Swal.fire({
                                     title: '보유 H코인이 부족합니다.',
                                     text: '리바트 라이프와 함께 해주셔서 감사합니다.',
                                     imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
-                                })
-                                return
+                                });
+                                return;
                             }
                             for (let i = 0; i < productCoins; i++) {
                                 const img = document.createElement('img');
@@ -325,12 +366,11 @@
                         }
 
                         coinsRemainingTextElement.textContent = `${coinsRemainingElement.querySelectorAll('img').length}/${currentCoin}`;
-                        const miusCoin = coinsRemainingElement.querySelectorAll('img').length;
-                        coinAmount.textContent = `${currentCoin -  miusCoin}`;
-
-
+                        const minusCoin = coinsRemainingElement.querySelectorAll('img').length;
+                        coinAmount.textContent = `${currentCoins - minusCoin}`;
                     });
                 });
+
 
                 premiumCheckboxes.forEach(checkbox => {
                     checkbox.addEventListener('change', () => {

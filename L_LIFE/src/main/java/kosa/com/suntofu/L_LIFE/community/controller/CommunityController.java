@@ -28,4 +28,14 @@ public class CommunityController {
     }
 
 
+    @GetMapping("/write")
+    public String loadCommunityWritePage(Model model){
+        return "pages/community/community_write";
+    }
+
+    @GetMapping("/ex")
+    public String Ex(Model model){
+        return "pages/community/book_prac";
+    }
+
 }

@@ -24,4 +24,8 @@ public class PayFurnitureVo {
     private String deliveryDate;
     private String deliveryTime;
     private String deliveryAddress;
+
+    private Integer totalCoin;
+
+    private Integer totalPrice;
 }

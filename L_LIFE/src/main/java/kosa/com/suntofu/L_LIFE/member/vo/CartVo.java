@@ -19,9 +19,10 @@ public class CartVo {
     private String lfOptName;
     private String lfBrandName;
     private int stockAmount;
-
     private String lfPrMinPeriod;
-
+    private Integer totalCoin;
+    private Integer totalPrice;
+    private Integer lfPackageId;
 }
 
 

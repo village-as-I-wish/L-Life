@@ -12,14 +12,14 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping("/{id}")
-    public ChatMessageVo findById(@PathVariable String id) {
-        return messageService.findById(id);
-    }
-
     @PostMapping
     public ChatMessageVo create(@RequestBody ChatMessageVo message) {
         return messageService.save(message);
+    }
+
+    @GetMapping("/{id}")
+    public ChatMessageVo findById(@PathVariable String id) {
+        return messageService.findById(id);
     }
 
     @DeleteMapping("/{id}")

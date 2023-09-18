@@ -1,58 +1,147 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>L-Life Community</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_report.css}"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_main.css}"/>
     <script th:src="@{/js/community/community_main.js}" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
 
-</head>
 <body>
-    <button onclick="test()"> 테스트용 </button>
 
-    <div id="imageContainer">
-        <img id="objectImage" src="https://www.ikea.com/images/2-e4e271bd007a75af466351b6828af61c.jpg" alt="Object Image">
-        <div id="objectOverlay"></div>
-    </div>
+    <!-- 헤더 프래그먼트 삽입 -->
+    <th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
 
-    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    <!-- 서브 헤더 프래그먼트 삽입 -->
+    <th:block th:replace="common/fragment/header/sub_header::subHeaderFragment(0)"></th:block>
 
-    <div class="space-box">
-        <p> 공간 분석 결과
-        </p>
-        <span> Nature</span>
-        <span> 98.8%</span>
-    </div>
-    <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+    <!-- 커뮤니티 배너 부분 -->
+    <section class="community_main">
+        <div class="community-top-banner">
+            <div class="community-main-content hd__inner1400">
+                <div class="first-title">💡새로운 업데이트 💡</div>
+                <div class="second-title">Livart Life 커뮤니티<br>리뉴얼 스토리</div>
+                <div class="third-title">클럽 집테리어와 함께 색다른 공간을 디자인 해보세요</div>
+            </div>
+            <img class="community-img" alt="리바티스트 메인 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/dggdt.png}"/>
+        </div>
+    </section>
+
+    <!-- 리바티스트 부분 -->
+    <section class="livatist-main hd__inner1400">
+        <div class="livatist-main-title">
+            <span class="first-livatist">새로운</span>
+            <span class="second-livatist">리바티스트들</span>
+            <span class="third-livatist">과 가구의 새로움을 알아보세요</span>
+        </div>
+        <div class="livatist-person">
+            <a href="https://www.instagram.com/hyundailivart_official/">
+                <img class="livatist" alt="리바티스트 사진1 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/KakaoTalk_20230809_112743260.jpg}"/>
+            </a>
+            <img class="livatist" alt="리바티스트 사진2 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/%E1%84%87%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB.jpeg}"/>
+            <img class="livatist" alt="리바티스트 사진3 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/%E1%84%89%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%AE.png}"/>
+            <img class="livatist" alt="리바티스트 사진4 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/%E1%84%92%E1%85%A9%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8%E1%84%92%E1%85%A7%E1%86%AB.jpg}"/>
+            <img class="livatist" alt="리바티스트 사진5 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/233AA112-BBCE-4E50-8344-329402D14C19_1_105_c.jpeg}"/>
+            <img class="livatist" alt="리바티스트 사진6 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/143076A6-9946-4AFC-8602-22D7B801540F_1_105_c.jpeg}"/>
+            <img class="livatist" alt="리바티스트 사진7 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/KakaoTalk_Photo_2023-09-18-12-20-43.jpeg}"/>
+        </div>
+    </section>
+
+    <!-- 메가진 부분 -->
+    <section class="styling-main hd__inner1400">
+        <div class="styling-main-title">
+            <span class="first-styling">함께하는 집테리어들의</span>
+            <span class="second-styling">"New Space"</span>
+        </div>
+        <div class="styling-main-content">
+            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
+            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
+            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
+            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
+        </div>
+    </section>
+
+    <!-- 북 -->
+    <section class="book-main hd__inner1400">
+        <div class="book">
+            <div id="pages" class="pages">
+                <div class="page"><p>Open Me, <br>please!</p></div>
+                <div class="page"></div>
+                <div class="page"><p>Hello there!</p></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+                <div class="page"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 프래그먼트 -->
+    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 
 
     <script>
-        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-        var yValues = [55, 49, 44, 24, 15];
-        var barColors = ["red", "green","blue","orange","brown"];
+        var pages = document.getElementsByClassName('page');
+        for(var i = 0; i < pages.length; i++)
+        {
+            var page = pages[i];
+            if (i % 2 === 0)
+            {
+                page.style.zIndex = (pages.length - i);
+            }
+        }
 
-        new Chart("myChart2", {
-            type: "horizontalBar",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-            },
-            options: {
-                legend: {display: false},
-                title: {
-                    display: true,
-                    text: "World Wine Production 2018"
-                },
-                scales: {
-                    xAxes: [{ticks: {min: 10, max:60}}]
+        document.addEventListener('DOMContentLoaded', function(){
+            for(var i = 0; i < pages.length; i++)
+            {
+                //Or var page = pages[i];
+                pages[i].pageNum = i + 1;
+                pages[i].onclick=function()
+                {
+                    if (this.pageNum % 2 === 0)
+                    {
+                        this.classList.remove('flipped');
+                        this.previousElementSibling.classList.remove('flipped');
+                    }
+                    else
+                    {
+                        this.classList.add('flipped');
+                        this.nextElementSibling.classList.add('flipped');
+                    }
                 }
             }
-        });
+        })
     </script>
 </body>
 </html>
+
+
+

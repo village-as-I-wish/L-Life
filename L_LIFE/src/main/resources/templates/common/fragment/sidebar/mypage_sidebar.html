@@ -11,14 +11,14 @@
             <div class="hr"></div>
             <li class="header-title">주문정보
                 <ul>
-                    <li class = "header-list"><a href="/l-life/member/1/mypage/delivery">주문/배송 조회</a></li>
+                    <li class="header-list"><a th:href="@{'/member/' + ${session.existingMember.mId} + '/mypage/delivery'}">주문/배송 조회</a></li>
                 </ul>
             </li>
             <li class="header-title">구독
                 <ul>
-                    <li class = "header-list"><a href="/l-life/member/1/mypage/cart">장바구니</a></li>
-                    <li class = "header-list"><a href="/l-life/member/1/mypage/standard">스탠다드 구독</a></li>
-                    <li class = "header-list"><a href="/l-life/member/1/mypage/premium">프리미엄 구독</a></li>
+                    <li class = "header-list"><a th:href="@{'/member/' + ${session.existingMember.mId} + '/mypage/cart'}">장바구니</a></li>
+                    <li class = "header-list"><a th:href="@{'/member/' + ${session.existingMember.mId} + '/mypage/standard'}">스탠다드 구독</a></li>
+                    <li class = "header-list"><a th:href="@{'/member/' + ${session.existingMember.mId} + '/mypage/premium'}">프리미엄 구독</a></li>
                 </ul>
             </li>
             <li class="header-title">관심상품관리

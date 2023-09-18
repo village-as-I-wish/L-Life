@@ -25,7 +25,7 @@ import java.util.List;
 public class PremiumRestController {
     private final PremiumService premiumService;
 
-    @Operation(summary = "프리미엄 상품 필터 검색", description = "프리미엄 상품 필터 검색")
+    @Operation(summary = "프리미엄 상품 검색", description = "프리미엄 필터를 통해 상품을 검색합니다.")
     @GetMapping("/search")
     public ResponseEntity<List<PremiumVo>> search(PaginationVo paginationVo) {
 
@@ -33,12 +33,14 @@ public class PremiumRestController {
         return new ResponseEntity<>(FilterProducts, HttpStatus.OK);
     }
 
+    @Operation(summary = "프리미엄 재고 확인", description = "프리미엄상품 - 옵션 재고를 확인합니다.")
     @GetMapping("/checkStock/{productId}/{optionId}")
     public ResponseEntity<Integer> loadStockAmount(@PathVariable("optionId") int lfOptId, @PathVariable("productId") int lfId) {
         int stockAmount = premiumService.selectPremiumStockAmount(lfOptId, lfId);
         return ResponseEntity.ok(stockAmount);
     }
 
+    @Operation(summary = "프리미엄 상품 재입고 알림신청", description = "프리미엄상품 재입고 알림신청합니다.")
     @PostMapping("/reservation")
     public ResponseEntity<Integer> insertOptionToReservation(@RequestParam int lfId,
                                                              @RequestParam int lfOptId, @RequestParam int memberId) {
@@ -47,6 +49,7 @@ public class PremiumRestController {
         return ResponseEntity.ok(result);
     }
 
+    @Operation(summary = "프리미엄 상품 장바구니 담기", description = "프리미엄상품을 장바구니에 담습니다.")
     @PostMapping("/cart")
     public ResponseEntity<BasicResponse> insertPremiumProductToCart(CartItemVO cartItemVo) {
         log.info("Premium Product To Cart {} ", cartItemVo);

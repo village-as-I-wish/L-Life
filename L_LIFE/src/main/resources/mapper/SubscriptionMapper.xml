@@ -128,7 +128,7 @@
     <update id="stUpdateSubPoint" parameterType="PayFurnitureVo">
         UPDATE SUBSCRIPTION
         SET
-            SUBSCRIBE_POINT = SUBSCRIBE_POINT - #{lfStCoin}
+            SUBSCRIBE_POINT = SUBSCRIBE_POINT - #{totalCoin}
         WHERE
             SUBSCRIPTION_ID = #{subscriptionId}
     </update>
