@@ -3,16 +3,17 @@
 
 }
 .cart-title {
-    font-size: 20px;
+    font-size: 28px;
     color: #5D493E;
     margin-top: 60px;
 }
 
 .cart-sub-title {
-    font-size: 17px;
+    font-size: 20px;
     color: #5D493E;
     font-weight: bold;
     margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 .standard-section, .standard-product, .premium-product {
@@ -48,7 +49,7 @@
 
 .product-link {
     display: flex;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 .product-image {
@@ -89,6 +90,11 @@ a.product-link {
 
 .product-name {
     color: #333333;
+    font-weight: bold;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 20px;
+
 }
 
 .standard-add-link, .premium-add-link {
@@ -110,6 +116,8 @@ a.product-link {
 
 .coins-remaining {
     margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .standard-container, .premium-container {
@@ -153,7 +161,55 @@ a.product-link {
     border-color: #5D493E;
     border: 0.5px solid #5D493E;
     background-color: white;
-    font-size: 13px;
-    margin: 10px 0px;
+    font-size: 14px;
+    margin: 15px 0px;
+    padding: 8px 14px;
+    padding: 8px 14px;
+    border-radius: 5px;
+}
+
+.discount{
+    border-radius: 10px;
+    color: white;
+    background-color: #f65c60;
+    font-size: 14px;
+    text-align: center;
     padding: 5px 7px;
+    display: flex;
+    align-items: center;
+}
+
+.discount-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.product-option {
+    color: #333333;
+    font-size: 15px;
+}
+
+.product-price {
+    color: #f65c60;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.discount-coins {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.delete-btns {
+    text-align: right;
+    display: block;
+}
+
+.brand-name, .minus-count {
+    color: #666666;
+}
+
+.discount-coins img, .coins img{
+    margin-right: -5px;
 }
