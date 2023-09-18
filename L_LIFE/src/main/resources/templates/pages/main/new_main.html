@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main/new_main.css}"/>
+</head>
+<body>
+
+
+<th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+<!--    <div class="main-top-slide ">-->
+
+
+<div class="main-content">
+    <div class="main-content-info d-flex justify-content-center">
+        <p class="site-txt">리바트 라이프,<br><span style="color: #FF914D">가구</span>를 맛보다</p>
+        <img class="hero__image hero__image--screen fade-in in" th:src="@{/img/standard/new_main_content_screen.png}" style="width: 30%">
+    </div>
+<!--    <div class="hero d-flex justify-content-center">-->
+<!--        <img class="hero__image hero__image&#45;&#45;screen fade-in in" th:src="@{/img/standard/new_main_content_screen.png}" style="width: 50%">-->
+<!--        <img class="hero__image hero__image&#45;&#45;bell fade-in in" th:src="@{/img/standard/new_main_content_bell.webp}">-->
+<!--        <img class="hero__image hero__image&#45;&#45;folder fade-in in" th:src="@{/img/standard/new_main_content_folder.webp}">-->
+<!--        <img class="hero__image hero__image&#45;&#45;unsubscribe fade-in in" th:src="">-->
+<!--        <img class="hero__image hero__image&#45;&#45;bag fade-in in" th:src="">-->
+<!--        <img class="hero__image hero__image&#45;&#45;bag fade-in in" th:src="">-->
+<!--        <img class="hero__image hero__image&#45;&#45;bubble fade-in in" th:src="">-->
+<!--    </div>-->
+    <div class="main-content-info d-flex justify-content-center">
+        <p class="site-middle-txt">색다르게 만나는<br>다양한 가구들</p>
+        <img class="hero__image hero__image--slide fade-in in" th:src="@{/img/standard/new_main_img_slide.png}">
+    </div>
+    <div class="main-content-info d-flex justify-content-center">
+        <p class="site-middle-txt">전부 경험해 볼 수 있으면<br>좋지 않을까요?</p>
+        <p class="site-small-txt"><br>앉은 자리에서 여러 브랜드의 가구를 비교하고<br>
+            내게 꼭 맞는 스타일의 가구를 찾아보세요.<br><br>
+            소파, 의자, 침대, 인테리어소품 모두 가능해요.</p>
+    </div>
+    <div class="main-content-info d-flex justify-content-center">
+        <p class="site-middle-txt">당신을 기다리는<br>500여 개의 가구</p>
+        <p class="site-small-txt"><br>첫 달 무료 구독을 통해<br>
+            어떤 가구가 있는지 확인해보세요.<br><br></p>
+        <div class="promotion-banner">
+            <img class="hero__image hero__image--promotion" th:src="@{/img/standard/new_main_promotion.jpg}" style="width: 100%">
+            <a href="/l-life/member/login" class="promotion-button">첫 달 무료로 시작하기</a>
+            <div class="promotion-login d-flex align-items-center">
+                <span>이미 리바트 라이프 회원이라면? </span>
+                <a href="/l-life/member/login">로그인</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-content-info d-flex justify-content-center">
+        <div class="coin-fall d-flex justify-content-center">
+            <img class="hero__image hero__image--coinfall" th:src="@{/img/standard/new_main_coinfall.gif}" style="width: 80%">
+            <p class="site-middle-txt">생활 타입에 따라<br>즐기는 내 가구 구독</p>
+            <p class="site-small-txt"><br><span style="color: #FF914D">스탠다드</span> 구독으로 다양하게!<br>
+                <span style="color: #FF914D">프리미엄</span> 구독으로 합리적이게!<br><br></p>
+        </div>
+    </div>
+</div>
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+<script>
+    let observer = new IntersectionObserver((e)=>{
+        e.forEach((box)=>{
+            if(box.isIntersecting){
+                box.target.style.opacity = 1;
+            }
+        })
+    })
+    let pElements = document.querySelectorAll('p')
+    pElements.forEach((p) => {
+        observer.observe(p);
+    });
+    let imgElements = document.querySelectorAll('img')
+    imgElements.forEach((img) => {
+        observer.observe(img);
+    })
+</script>
+</body>
+</html>
