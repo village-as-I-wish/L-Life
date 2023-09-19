@@ -12,4 +12,21 @@
         where lf.lf_mood_id = #{lfMoodId} and lf.LF_SUB_TYPE =0
     </select>
 
+
+    <select id ="getProductByCategoryId" parameterType="int">
+        select *
+        from LLIFEFURNITURE lf
+        left join LFURNITUREMOOD lfm on lf.LF_MOOD_ID = lfm.LF_MOOD_ID
+        left join LFURNITUREBRAND lfb on lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+        where lf.lf_category_id = #{categoryId}
+    </select>
+
+
+    <select id ="selectProductByKeyword">
+        SELECT *
+        FROM LLIFEFURNITURE lf
+        LEFT JOIN LFURNITUREMOOD lfm ON lf.LF_MOOD_ID = lfm.LF_MOOD_ID
+        LEFT JOIN LFURNITUREBRAND lfb ON lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+        WHERE lf.lf_name LIKE '%' ||  #{keyword} || '%'
+    </select>
 </mapper>
