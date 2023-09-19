@@ -3,6 +3,7 @@ package kosa.com.suntofu.L_LIFE.community.service;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import kosa.com.suntofu.L_LIFE.community.dao.CommunityDao;
+import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
 import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,5 +46,15 @@ public class CommunityServiceImpl implements  CommunityService{
     @Override
     public List<ProductVo> getProductByStyle(int lfMoodId) {
         return communityDao.selectProductByStyle(lfMoodId);
+    }
+
+    @Override
+    public BookVo selectBookDetailById(int bookId) {
+        return communityDao.selectBookDetailById(bookId);
+    }
+
+    @Override
+    public List<BookVo> selectBooks() {
+        return communityDao.selectBooks();
     }
 }
