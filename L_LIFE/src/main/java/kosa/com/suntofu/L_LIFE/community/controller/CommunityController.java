@@ -1,18 +1,30 @@
 package kosa.com.suntofu.L_LIFE.community.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import kosa.com.suntofu.L_LIFE.community.service.CommunityService;
+import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
+@Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/community")
 public class CommunityController {
 
+    private final CommunityService communityService;
+
     @GetMapping("/main")
-    public String loadCommunityMainPage(Model model){
+    public String loadCommunityMainPage( Model model){
+        List<BookVo> books = communityService.selectBooks();
+        model.addAttribute("books", books);
+        log.info("books {}  : " , books );
+
         return "pages/community/community_main";
     }
 

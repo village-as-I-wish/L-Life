@@ -27,7 +27,4 @@ public class BookFurnitureVo {
     private int lfBrandId;
 
     private String lfBrandName;
-
-    private int lfMoodId;
-    private String lfMoodName;
 }

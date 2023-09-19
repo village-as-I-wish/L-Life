@@ -38,10 +38,12 @@
             <span class="third-livatist">과 가구의 새로움을 알아보세요</span>
         </div>
         <div class="livatist-person">
-            <a href="https://www.instagram.com/hyundailivart_official/">
+            <a href="https://www.instagram.com/p/Cw1Z17_Jh6_/?img_index=7">
                 <img class="livatist" alt="리바티스트 사진1 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/KakaoTalk_20230809_112743260.jpg}"/>
             </a>
-            <img class="livatist" alt="리바티스트 사진2 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/%E1%84%87%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB.jpeg}"/>
+            <a href="https://blog.naver.com/PostView.naver?blogId=hd_livart&logNo=220773044948">
+                <img class="livatist" alt="리바티스트 사진2 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/%E1%84%87%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB.jpeg}"/>
+            </a>
             <img class="livatist" alt="리바티스트 사진3 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/%E1%84%89%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%AE.png}"/>
             <img class="livatist" alt="리바티스트 사진4 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/%E1%84%92%E1%85%A9%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8%E1%84%92%E1%85%A7%E1%86%AB.jpg}"/>
             <img class="livatist" alt="리바티스트 사진5 " th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/233AA112-BBCE-4E50-8344-329402D14C19_1_105_c.jpeg}"/>
@@ -56,44 +58,30 @@
             <span class="first-styling">함께하는 집테리어들의</span>
             <span class="second-styling">"New Space"</span>
         </div>
-        <div class="styling-main-content">
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
+        <div class="styling-main-content slider">
+            <div class="image-box" th:each="book, status : ${books}" th:if="${status.index < 4}">
+                <img class="book-image" alt="메가진 사진" th:src="${book.bookMainImg}"/>
+                <span class="book-title" th:text="${book.pages.get(0).bpTitle}"></span>
+            </div>
         </div>
     </section>
 
     <!-- 북 -->
     <section class="book-main hd__inner1400">
+        <div class="book-main-deco">
+            <div class="book-main-title">가구 구독의 모든 순간, <br> 당신만의 플립북에 담아보세요 🛋️✨</div>
+            <div class="book-main-subtitle">지금, [플립북 타이틀]의 페이지들 속에서 당신만의 스타일을 발견해보세요.</div>
+
+            <div class="characters">
+                <img class="character-1" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/Character_bigman.png}"/>
+                <img class="character-2" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img9.png}"/>
+            </div>
+        </div>
         <div class="book">
             <div id="pages" class="pages">
-                <div class="page"><p>Open Me, <br>please!</p></div>
+                <div class="page"><p>플립북 타이틀!</p></div>
                 <div class="page"></div>
                 <div class="page"><p>Hello there!</p></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
                 <div class="page"></div>
                 <div class="page"></div>
                 <div class="page"></div>
