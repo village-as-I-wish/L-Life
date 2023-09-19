@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    // Page.init();
-
     $('.showroom-slide-wrapper').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
