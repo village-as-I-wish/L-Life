@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface CommunityDao {
     List<ProductVo> selectProductByStyle(int lfMoodId);
+    List<ProductVo> getProductByCategoryId(int categoryId);
 }
