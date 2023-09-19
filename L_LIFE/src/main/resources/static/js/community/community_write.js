@@ -72,5 +72,46 @@ $(document).ready(function(){
         }
     }
 
+    // 카테고리 선택
+    $('#category').change(function () {
+        var selectedCategory = $(this).val();
+        var $productSelect = $('#product'); // product select 요소 선택
+        console.log(selectedCategory)
+
+        $.ajax({
+            type: 'GET',
+            url: '/l-life/api/v1/community/product/'+selectedCategory,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data.result)
+                $productSelect.empty();
+                $.each(data.result, function (index, item) {
+                    console.log(item)
+                    console.log(item.lfId)
+                    console.log(item.lfName)
+                    $productSelect.append($('<option>', {
+                        value: item.lfId, // 상품 ID를 value로 사용
+                        text: item.lfName // 상품 이름을 표시 텍스트로 사용
+                    }));
+                });
+            }
+        })
+    })
+
+
+    // 플립북 작성 버튼 클릭
+    $('.submit-btn').click(function() {
+        const data = 1;
+
+        $.ajax({
+            url: '/l-life/api/v1/community/book/',
+            method: 'POST',
+            data: data,
+            success : function(res) {
+                console.log(res)
+            }
+        })
+    })
+
 
 })
