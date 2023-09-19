@@ -20,4 +20,13 @@
         left join LFURNITUREBRAND lfb on lf.LF_BRAND_ID = lfb.LF_BRAND_ID
         where lf.lf_category_id = #{categoryId}
     </select>
+
+
+    <select id ="selectProductByKeyword">
+        SELECT *
+        FROM LLIFEFURNITURE lf
+        LEFT JOIN LFURNITUREMOOD lfm ON lf.LF_MOOD_ID = lfm.LF_MOOD_ID
+        LEFT JOIN LFURNITUREBRAND lfb ON lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+        WHERE lf.lf_name LIKE '%' ||  #{keyword} || '%'
+    </select>
 </mapper>

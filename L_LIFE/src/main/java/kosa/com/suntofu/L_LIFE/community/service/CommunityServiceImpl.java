@@ -69,6 +69,13 @@ public class CommunityServiceImpl implements  CommunityService{
         return products;
     }
 
+    @Override
+    public List<ProductVo> getProductByKeyword(String keyword) {
+        log.info("KeywordSearch {} ", keyword);
+        List<ProductVo> products = communityDao.selectProductByKeyword(keyword);
+        return products;
+    }
+
     private void cacheProducts(String cacheKey, List<ProductVo> cachingData) {
         redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);  // 하루동안 캐싱
         log.info("[REDIS] Product By CategoryId - Cache 저장 - {}", cacheKey);

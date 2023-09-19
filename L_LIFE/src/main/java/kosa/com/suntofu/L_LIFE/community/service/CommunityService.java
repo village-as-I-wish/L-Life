@@ -12,4 +12,6 @@ public interface CommunityService {
     List<ProductVo> getProductByStyle(int lfMoodId);
 
     List<ProductVo> getProductByCategoryId(int categoryId);
+
+    List<ProductVo> getProductByKeyword(String keyWord);
 }
