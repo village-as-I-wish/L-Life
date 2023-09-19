@@ -10,6 +10,7 @@ import java.util.List;
 public interface CommunityDao {
     List<ProductVo> selectProductByStyle(int lfMoodId);
     BookVo selectBookDetailById(int bookId);
-
     List<BookVo> selectBooks();
+    List<ProductVo> getProductByCategoryId(int categoryId);
+    List<ProductVo> selectProductByKeyword(String keyword);
 }

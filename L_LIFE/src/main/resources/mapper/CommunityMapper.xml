@@ -59,5 +59,20 @@
         LEFT JOIN BookFurniture bf ON b.book_id = bf.book_id
         LEFT JOIN LLifeFurniture blf ON bf.lf_id = blf.lf_id
         LEFT JOIN LFurnitureBrand lfb ON blf.lf_brand_id = lfb.lf_brand_id
+
+    <select id ="getProductByCategoryId" parameterType="int">
+        select *
+        from LLIFEFURNITURE lf
+        left join LFURNITUREMOOD lfm on lf.LF_MOOD_ID = lfm.LF_MOOD_ID
+        left join LFURNITUREBRAND lfb on lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+        where lf.lf_category_id = #{categoryId}
+    </select>
+
+    <select id ="selectProductByKeyword">
+        SELECT *
+        FROM LLIFEFURNITURE lf
+        LEFT JOIN LFURNITUREMOOD lfm ON lf.LF_MOOD_ID = lfm.LF_MOOD_ID
+        LEFT JOIN LFURNITUREBRAND lfb ON lf.LF_BRAND_ID = lfb.LF_BRAND_ID
+        WHERE lf.lf_name LIKE '%' ||  #{keyword} || '%'
     </select>
 </mapper>

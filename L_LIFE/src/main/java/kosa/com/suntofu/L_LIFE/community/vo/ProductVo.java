@@ -12,11 +12,7 @@ public class ProductVo {
 
     private int lfId;
     private int lfSubType;
-
-    private int lfStCoin;
-
     private String lfName;
-
     private int lfBrandId;
     private String lfBrandName;
 

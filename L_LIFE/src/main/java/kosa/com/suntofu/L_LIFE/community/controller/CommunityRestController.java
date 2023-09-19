@@ -3,6 +3,8 @@ package kosa.com.suntofu.L_LIFE.community.controller;
 import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
 import kosa.com.suntofu.L_LIFE.community.service.CommunityService;
 import kosa.com.suntofu.L_LIFE.community.util.Style;
+import kosa.com.suntofu.L_LIFE.community.vo.BookPageVo;
+import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
 import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,4 +44,33 @@ public class CommunityRestController {
 
     }
 
+    @GetMapping("/product/{categoryId}")
+    public ResponseEntity<BasicResponse> getProductByCategoryId(@PathVariable int categoryId){
+        try{
+            List<ProductVo> products = communityService.getProductByCategoryId(categoryId);
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("카테고리별 상품검색 완료").result(products).build(), HttpStatus.OK);
+
+        }catch(Exception e){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("서버에러").result(-1).build(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<BasicResponse> searchProductByKeyWord(String keyword){
+        try{
+            List<ProductVo> products = communityService.getProductByKeyword(keyword);
+            log.info(" Searched Product By Keyword : {} ", products);
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("키워드별 상품검색 완료").result(products).build(), HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("키워드별 상품검색 실패").result(-1).build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/book")
+    public ResponseEntity<BasicResponse> createBook(@RequestBody BookVo bookVo) {
+        log.info("books {} ", bookVo);
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("플립북 생성 완료 ").build(), HttpStatus.OK);
+
+    }
 }
