@@ -12,4 +12,52 @@
         where lf.lf_mood_id = #{lfMoodId} and lf.LF_SUB_TYPE =0
     </select>
 
+    <resultMap id ="selectBookResultMap" type="BookVo">
+        <id property="bookId" column="book_id" />
+        <result property="mId" column="m_id" />
+        <result property="bookMainImg" column="book_main_img" />
+
+        <collection property="pages" ofType="BookPageVo">
+            <id property="bpId" column="bp_id" />
+            <id property="bookId" column="book_id" />
+            <result property="bpTitle" column="bp_title" />
+            <result property="bpContent" column="bp_content" />
+            <result property="bpImg" column="bp_img" />
+            <result property="bpAiImg" column="bp_ai_img" />
+            <result property="bpAiContent" column="bp_ai_content" />
+            <result property="bpTag" column="bp_tag" />
+            <result property="bpPageNum" column="bp_page_num" />
+        </collection>
+
+        <collection property="furnitures" ofType="BookFurnitureVo">
+            <id property="bfId" column="bf_id" />
+            <id property="bookId" column="book_id" />
+            <result property="lfId" column="lf_id" />
+            <result property="lfName" column="lf_name" />
+            <result property="lfImgMain" column="lf_img_main" />
+            <result property="lfStCoin" column="lf_st_coin" />
+            <result property="lfStGrade" column="lf_st_grade" />
+            <result property="lfSubComment" column="lf_sub_comment" />
+            <result property="lfBrandId" column="lf_brand_id" />
+            <result property="lfBrandName" column="lf_brand_name" />
+        </collection>
+    </resultMap>
+
+    <select id="selectBookDetailById" resultMap="selectBookResultMap">
+        SELECT *
+        FROM Book b
+        LEFT JOIN BookPage bp ON b.book_id = bp.book_id
+        LEFT JOIN BookFurniture bf ON b.book_id = bf.book_id
+        LEFT JOIN LLifeFurniture blf ON bf.lf_id = blf.lf_id
+        WHERE b.book_id = #{bookId}
+    </select>
+
+    <select id="selectBooks" resultMap="selectBookResultMap">
+        SELECT *
+        FROM Book b
+        LEFT JOIN BookPage bp ON b.book_id = bp.book_id
+        LEFT JOIN BookFurniture bf ON b.book_id = bf.book_id
+        LEFT JOIN LLifeFurniture blf ON bf.lf_id = blf.lf_id
+        LEFT JOIN LFurnitureBrand lfb ON blf.lf_brand_id = lfb.lf_brand_id
+    </select>
 </mapper>

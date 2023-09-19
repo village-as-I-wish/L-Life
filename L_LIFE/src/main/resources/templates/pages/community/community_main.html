@@ -58,44 +58,30 @@
             <span class="first-styling">함께하는 집테리어들의</span>
             <span class="second-styling">"New Space"</span>
         </div>
-        <div class="styling-main-content">
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
-            <img class="magazine-content" alt="메가진 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/aaaaa.png}"/>
+        <div class="styling-main-content slider">
+            <div class="image-box" th:each="book, status : ${books}" th:if="${status.index < 4}">
+                <img class="book-image" alt="메가진 사진" th:src="${book.bookMainImg}"/>
+                <span class="book-title" th:text="${book.pages.get(0).bpTitle}"></span>
+            </div>
         </div>
     </section>
 
     <!-- 북 -->
     <section class="book-main hd__inner1400">
+        <div class="book-main-deco">
+            <div class="book-main-title">가구 구독의 모든 순간, <br> 당신만의 플립북에 담아보세요 🛋️✨</div>
+            <div class="book-main-subtitle">지금, [플립북 타이틀]의 페이지들 속에서 당신만의 스타일을 발견해보세요.</div>
+
+            <div class="characters">
+                <img class="character-1" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/Character_bigman.png}"/>
+                <img class="character-2" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img9.png}"/>
+            </div>
+        </div>
         <div class="book">
             <div id="pages" class="pages">
-                <div class="page"><p>Open Me, <br>please!</p></div>
+                <div class="page"><p>플립북 타이틀!</p></div>
                 <div class="page"></div>
                 <div class="page"><p>Hello there!</p></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
                 <div class="page"></div>
                 <div class="page"></div>
                 <div class="page"></div>
