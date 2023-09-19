@@ -78,6 +78,12 @@ dependencies {
 	// stomp
 	implementation 'org.webjars:sockjs-client:1.1.2'
 	implementation 'org.webjars:stomp-websocket:2.3.3-1'
+
+//	//monitoring
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+//	implementation 'io.micrometer:micrometer-core'
 }
 
 tasks.named('test') {

@@ -46,14 +46,9 @@ public class CommunityRestController {
 
     @GetMapping("/product/{categoryId}")
     public ResponseEntity<BasicResponse> getProductByCategoryId(@PathVariable int categoryId){
-        try{
             List<ProductVo> products = communityService.getProductByCategoryId(categoryId);
             return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("카테고리별 상품검색 완료").result(products).build(), HttpStatus.OK);
 
-        }catch(Exception e){
-            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("서버에러").result(-1).build(), HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
     }
 
     @GetMapping("/search")
