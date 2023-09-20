@@ -2,6 +2,9 @@ server:
   port: 8080
   servlet:
     context-path: /l-life
+  tomcat: #  tomcat 메트릭 설정 on. 톰캣 메트릭은 tomcat. 으로 시작
+    mbeanregistry: # 톰캣 메트릭을 모두 사용하려면 다음 옵션을 켜야하며, 옵션을 켜지 않으면 tomcat.session. 관련정보만 노출됩니다
+      enabled: true
   ssl:
 #    enabled: false
     enabled: true
@@ -10,6 +13,10 @@ server:
     key-store-password: ${key-store-password}
 
 spring:
+  security:
+    user:
+      name:  ${security-user}
+      password: ${security-password}
   profiles:
     include: config
   datasource:
@@ -24,7 +31,7 @@ spring:
       bootstrap-servers: livart-life.com:9093
   data:
     mongodb:
-      host: mongodb.livart-life.com
+      host: livart-life.com
       port: 27017
       username: llife
       password: kosa1234
@@ -49,7 +56,7 @@ spring:
     redis:
       time-to-live: 3600
       cache-null-values: true
-      host: redis.livart-life.com
+      host: livart-life.com
       port: 6379
 
   servlet:
@@ -71,11 +78,16 @@ spring:
             enable: true
 
   redis:
-    host: redis.livart-life.com
+    host: livart-life.com
     password: ${redis-password}
     port: 6379
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+      base-path: '/secure/actuator'
 
 mybatis:
   type-aliases-package: kosa.com.suntofu.L_LIFE.*.vo

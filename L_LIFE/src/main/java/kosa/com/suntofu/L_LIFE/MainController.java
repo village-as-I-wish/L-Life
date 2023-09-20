@@ -23,6 +23,11 @@ public class MainController {
         return "pages/main/main";
     }
 
+    @GetMapping("/main2")
+    public String loadLlifeNewMainPage(Model model){
+        return "pages/main/new_main";
+    }
+
     @GetMapping("/mail")
     public String loadMail(Model model){
         return "pages/notification/mail_alert";

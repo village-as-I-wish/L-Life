@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao">
     <!-- 프리미엄 상품 리스트 -->
-    <select id="selectPremiumProductList">
+    <select id="selectPremiumProductList" resultType="PremiumVo">
         SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb
@@ -47,7 +47,7 @@
     </select>
 
     <!-- 프리미엄 상품 검색 -->
-    <select id="selectProductByKeyword" parameterType="PaginationVo">
+    <select id="selectProductByKeyword" parameterType="PaginationVo" resultType="PremiumVo">
         SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb
@@ -69,7 +69,7 @@
         OR UPPER(lf.lf_name) LIKE '%' || UPPER(#{keyword}) || '%')
     </select>
 
-    <select id="selectProductByFilter" parameterType="PaginationVo">
+    <select id="selectProductByFilter" parameterType="PaginationVo" resultType="PremiumVo">
         SELECT lf.lf_id, lf.lf_img_main, lfb.lf_brand_name, lf.lf_name, lf.lf_pr_price, lfb.lf_brand_id
         FROM LLifeFurniture lf
         JOIN LFurnitureBrand lfb
@@ -129,7 +129,7 @@
     </select>
 
     <!-- 프리미엄 상품 옵션 -->
-    <select id="selectPremiumOptionById" resultType="PremiumOptionVo">
+    <select id="selectPremiumOptionById" parameterType="PremiumOptionVo" resultType="PremiumOptionVo">
         SELECT s.lf_id, s.stock_amount, lfo.lf_opt_id, lfo.lf_opt_name
         FROM Stock s
         JOIN LFurnitureOption lfo
@@ -138,7 +138,7 @@
     </select>
 
     <!-- 프리미엄 상품 재입고 알림 신청 -->
-    <select id="selectPremiumStockAmount" resultType="PremiumOptionVo">
+    <select id="selectPremiumStockAmount" parameterType="PremiumOptionVo" resultType="PremiumOptionVo">
         SELECT s.lf_opt_id, s.lf_id, s.stock_amount
         FROM Stock s
         WHERE s.lf_opt_id = #{lfOptId}
