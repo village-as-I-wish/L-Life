@@ -24,5 +24,6 @@ public class BookPageRequestVo {
     private int bpPageNum;  // 북페이지 페이지 번호
 
     private MultipartFile file;
+    private MultipartFile aiFile;
 }
 
