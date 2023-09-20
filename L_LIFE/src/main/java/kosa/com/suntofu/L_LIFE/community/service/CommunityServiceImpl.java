@@ -57,15 +57,16 @@ public class CommunityServiceImpl implements  CommunityService{
     }
 
     @Override
-    public BookVo selectBookDetailById(int bookId) {
-        return communityDao.selectBookDetailById(bookId);
-    }
-
-    @Override
     public List<BookVo> selectBooks() {
         List<BookVo> books = communityDao.selectBooks();
         log.info("books returned {}", books);
         return books;
+    }
+
+    @Override
+    public BookVo selectBookDetailById(int bookId) {
+
+        return communityDao.selectBookDetailById(bookId);
     }
 
     @Override

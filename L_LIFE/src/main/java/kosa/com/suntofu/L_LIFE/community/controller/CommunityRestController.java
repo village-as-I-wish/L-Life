@@ -24,6 +24,18 @@ public class CommunityRestController {
 
     private final CommunityService communityService;
 
+    @GetMapping("/books/{bookId}")
+    public ResponseEntity<BasicResponse> selectBookDetailById(@PathVariable int bookId){
+        BookVo bookDetail = communityService.selectBookDetailById(bookId);
+        log.info("북아이디 details for bookId: {}", bookDetail);
+
+        if (bookDetail != null){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("메인 플립북 상세 정보 조회 성공").result(bookDetail).build(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(404).message("메인 플립북 상세 정보 조회 실패").result(null).build(), HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping("/upload-files")
     public ResponseEntity<BasicResponse> uploadFile(@RequestParam("file") MultipartFile file) {
         log.info("[이미지 업로드 ] file : {} ", file);
