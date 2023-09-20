@@ -125,4 +125,12 @@
         where
             sub.SUBSCRIPTION_ID = #{standardSubscriptionId}
     </select>
+
+<!--    SELECT-->
+<!--    *-->
+<!--    FROM-->
+<!--    RESERVATION-->
+<!--    WHERE-->
+<!--    M_ID = #{memberId};-->
+
 </mapper>
