@@ -114,11 +114,43 @@
                 </div>
                 <!-- 4번째 페이지 -->
                 <div class="page page4-1">
-
+                    <div class="row top-row">
+                        <img class="product-image" th:src="${books.get(0).pages.get(0).bpImg}" alt="Image 1">
+                        <img class="product-image" th:src="${books.get(0).pages.get(1).bpImg}" alt="Image 2">
+                    </div>
+                    <div class="row bottom-row">
+                        <img class="product-image" th:src="${books.get(0).pages.get(2).bpImg}" alt="Image 3">
+                    </div>
                 </div>
                 <div class="page page4-2">
+                    <div class="product-introduce">🩷 플립북에서 소개한 상품 🩷</div>
+                    <div class="product-container">
+                        <img class="product-image product-image-0" th:src="${books.get(0).furnitures.get(0).lfImgMain}" alt="상품 메인 이미지">
+                        <div class="product-details">
+                            <div class="product-brand product-brand-0" th:text="${books.get(0).furnitures.get(0).lfBrandName}" ></div>
+                            <div class="product-name product-name-0" th:text="${books.get(0).furnitures.get(0).lfName}" ></div>
+                            <div class="product-grade product-grade-0" th:text="'이 상품의 등급: ' + ${books.get(0).furnitures.get(0).lfStGrade}" ></div>
+                        </div>
+                    </div>
+                    <div class="product-container">
+                        <img class="product-image product-image-1" th:src="${books.get(0).furnitures.get(1).lfImgMain}" alt="상품 메인 이미지">
+                        <div class="product-details">
+                            <div class="product-brand product-brand-1" th:text="${books.get(0).furnitures.get(1).lfBrandName}" ></div>
+                            <div class="product-name product-name-1" th:text="${books.get(0).furnitures.get(1).lfName}" ></div>
+                            <div class="product-grade product-grade-1" th:text="'이 상품의 등급: ' + ${books.get(0).furnitures.get(1).lfStGrade}" ></div>
+                        </div>
+                    </div>
+                    <div class="product-container">
+                        <img class="product-image product-image-2" th:src="${books.get(0).furnitures.get(2).lfImgMain}" alt="상품 메인 이미지">
+                        <div class="product-details">
+                            <div class="product-brand product-brand-2" th:text="${books.get(0).furnitures.get(2).lfBrandName}" ></div>
+                            <div class="product-name product-name-2" th:text="${books.get(0).furnitures.get(2).lfName}" ></div>
+                            <div class="product-grade product-grade-2" th:text="'이 상품의 등급: ' + ${books.get(0).furnitures.get(2).lfStGrade}"></div>
+                        </div>
 
+                    </div>
                 </div>
+
                 <div class="page page5"></div>
 
             </div>
@@ -140,29 +172,38 @@
             }
 
             $.ajax({
-                url: '/l-life/api/v1/community/books/' + bookId,
+                url: '/l-life/api/v1/community/book/' + bookId,
                 type: 'GET',
                 data: data,
                 success: function(response) {
                     console.log(response);
-                        // 1번째 페이지 업데이트
-                        $(".page1-img").attr("src", response.result.bookMainImg);
-                        $(".page-title").text(response.result.pages[0].bpTitle);
-                        $(".page-ai-img").attr("src", response.result.pages[0].bpAiImg);
-                        $(".page-ai-content").text(response.result.pages[0].bpAiContent);
-                        $(".page-content").text(response.result.pages[0].bpContent);
-                        // 2번째 페이지 업데이트
-                        $(".page2-title").text(response.result.pages[1].bpTitle);
-                        $(".page2-content").text(response.result.pages[1].bpContent);
-                        $(".page2-ai-img").attr("src", response.result.pages[1].bpAiImg);
-                        $(".page2-img").attr("src", response.result.pages[1].bpImg);
-                        $(".page2-ai-content").text(response.result.pages[1].bpAiContent);
-                        // 3번째 페이지 업데이트
-                        $(".page3-img").attr("src", response.result.pages[2].bpImg);
-                        $(".page3-title").text(response.result.pages[2].bpTitle);
-                        $(".page3-content").text(response.result.pages[2].bpContent);
-                        $(".page3-ai-content").text(response.result.pages[2].bpAiContent);
-                        $(".page3-ai-img").attr("src", response.result.pages[2].bpAiImg);
+                    // 1번째 페이지 업데이트
+                    $(".page1-img").attr("src", response.result.bookMainImg);
+                    $(".page-title").text(response.result.pages[0].bpTitle);
+                    $(".page-ai-img").attr("src", response.result.pages[0].bpAiImg);
+                    $(".page-ai-content").text(response.result.pages[0].bpAiContent);
+                    $(".page-content").text(response.result.pages[0].bpContent);
+                    // 2번째 페이지 업데이트
+                    $(".page2-title").text(response.result.pages[1].bpTitle);
+                    $(".page2-content").text(response.result.pages[1].bpContent);
+                    $(".page2-ai-img").attr("src", response.result.pages[1].bpAiImg);
+                    $(".page2-img").attr("src", response.result.pages[1].bpImg);
+                    $(".page2-ai-content").text(response.result.pages[1].bpAiContent);
+                    // 3번째 페이지 업데이트
+                    $(".page3-img").attr("src", response.result.pages[2].bpImg);
+                    $(".page3-title").text(response.result.pages[2].bpTitle);
+                    $(".page3-content").text(response.result.pages[2].bpContent);
+                    $(".page3-ai-content").text(response.result.pages[2].bpAiContent);
+                    $(".page3-ai-img").attr("src", response.result.pages[2].bpAiImg);
+                    // 4번째 페이지 업데이트
+                    for (let i = 0; i < 3; i++) {
+                        $(".product-image-" + i).attr("src", response.result.furnitures[i].lfImgMain);
+                        $(".product-brand-" + i).text(response.result.furnitures[i].lfBrandName);
+                        $(".product-name-" + i).text(response.result.furnitures[i].lfName);
+                        $(".product-grade-" + i).text("이 상품의 등급: " + response.result.furnitures[i].lfStGrade);
+                    }
+
+
                 },
                 error: function(err) {
                     console.log(err);

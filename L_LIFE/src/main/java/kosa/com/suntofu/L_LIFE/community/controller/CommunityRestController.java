@@ -24,7 +24,7 @@ public class CommunityRestController {
 
     private final CommunityService communityService;
 
-    @GetMapping("/books/{bookId}")
+    @GetMapping("/book/{bookId}")
     public ResponseEntity<BasicResponse> selectBookDetailById(@PathVariable int bookId){
         BookVo bookDetail = communityService.selectBookDetailById(bookId);
         log.info("북아이디 details for bookId: {}", bookDetail);
