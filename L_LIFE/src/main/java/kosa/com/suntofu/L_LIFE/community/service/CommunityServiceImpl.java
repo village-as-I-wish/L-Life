@@ -3,10 +3,12 @@ package kosa.com.suntofu.L_LIFE.community.service;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import kosa.com.suntofu.L_LIFE.community.dao.CommunityDao;
+import kosa.com.suntofu.L_LIFE.community.vo.BookRequestVo;
 import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
 import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
 import kosa.com.suntofu.L_LIFE.constant.CacheKey;
 import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
+import kosa.com.suntofu.L_LIFE.standard.vo.ReviewImgVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +17,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -85,6 +91,73 @@ public class CommunityServiceImpl implements  CommunityService{
         log.info("KeywordSearch {} ", keyword);
         List<ProductVo> products = communityDao.selectProductByKeyword(keyword);
         return products;
+    }
+
+
+    @Override
+    public int createBook(BookRequestVo bookRequestVo) {
+        // 페이지별 이미지 업로드
+        if (bookRequestVo.getPages() != null){
+            bookRequestVo.getPages().forEach(page -> {
+                if(page.getFile() != null) {
+                    String fileName = "book/" + createFileName(page.getFile().getOriginalFilename());
+
+                    ObjectMetadata objectMetadata = new ObjectMetadata();
+                    objectMetadata.setContentLength(page.getFile().getSize());
+                    objectMetadata.setContentType(page.getFile().getContentType());
+
+                    try (InputStream inputStream = page.getFile().getInputStream()) {
+                        amazonS3Client.putObject(bucket, fileName, page.getFile().getInputStream(), objectMetadata);
+                    } catch (IOException e) {
+                        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+                    }
+                    page.setBpImg(amazonS3Client.getUrl(bucket, fileName).toString());
+                }
+            });
+
+        }
+        try{
+            int bpResult = -1;
+            int bfResult = -1;
+
+            communityDao.insertBook(bookRequestVo);
+            int insertedBookId = bookRequestVo.getBookId();
+            log.info("[책 등록 ] 데이터 삽입 성공 {}", insertedBookId);
+
+            //삽입된 bookId값으로 세팅
+            if(bookRequestVo.getPages() !=null) {
+                bookRequestVo.getPages().forEach(page -> {
+                    page.setBookId(insertedBookId);
+                });
+                bpResult = communityDao.insertBookPages(bookRequestVo.getPages());
+            }
+            if(bookRequestVo.getFurnitures() !=null){
+                bookRequestVo.getFurnitures().forEach(furniture->{
+                    furniture.setBookId(insertedBookId);
+                });
+                bfResult = communityDao.insertBFurniture(bookRequestVo.getFurnitures());
+
+            }
+            log.info("[책 페이지 등록 ] 성공 페이지 수  : {}, 성공 가구 수 : {}  ", bpResult, bfResult );
+            return 1;
+
+        }catch(Exception e) {
+            log.info("[북페이지 & 북 상품 ] 데이터 삽입 오류 {} ", e.getStackTrace());
+            log.info("[북페이지 & 북 상품 ] 데이터 삽입 오류 {} ", e.getMessage());
+            return -1;
+        }
+
+    }
+    private String createFileName(String fileName) {
+        return UUID.randomUUID().toString().concat(getFileExtension(fileName));
+    }
+
+    private String getFileExtension(String fileName) {
+        try {
+            return fileName.substring(fileName.lastIndexOf("."));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
+        }
     }
 
     private void cacheProducts(String cacheKey, List<ProductVo> cachingData) {
