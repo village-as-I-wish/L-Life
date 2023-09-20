@@ -2,7 +2,6 @@
 
 DOCKER_APP_NAME="l_life"
 
-
 # backend 컨테이너 down
 echo "Backend down"
 docker-compose -p ${DOCKER_APP_NAME} -f docker-compose.yml down
