@@ -113,20 +113,7 @@
 .book-image {
     width: 300px;
     height: 350px;
-    z-index: 1;
-}
-
-.book-title {
-    width: 100%;            /* 이미지의 너비와 동일 */
-    height: 100%;           /* 이미지의 높이와 동일 */
-    position: absolute;
-    color: #dc5b5b;
-    padding: 5px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
+    max-width: 100%;
 }
 
 /* 자동 슬라이드 부분 */
@@ -140,7 +127,7 @@ height:200px;
 .image-box {
     width:5280px;
     position: relative;
-height:100%;
+    height:100%;
     display:flex;
     flex-wrap:nowrap;
     animation: bannermove 5s linear infinite;
@@ -205,7 +192,7 @@ p{
     transform-style: preserve-3d;
     cursor: pointer;
     user-select: none;
-    background-color: #f0f0f0;
+    background-color: #f8f8f8;
 }
 .book .page:before {
     content: '';
@@ -323,5 +310,161 @@ p{
     padding-right: 10px;
     margin-top: 20px;
     line-height: 33px;
+}
+
+/* 1 페이지 스타일 */
+.page1-img{
+    width: 450px;
+    height: 660px;
+}
+
+.page1-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.page-title {
+    margin: 40px 0px;
+    font-size: 22px;
+    color: #5d493e;
+}
+
+.page-ai-img {
+    width: 350px;
+    height: 350px;
+}
+
+.page-ai-content {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #0a652f;
+}
+
+.page-content {
+    align-self: flex-end; /* 오른쪽에 맞춤 (플렉스 컨테이너 내에서) */
+    margin-right: 70px;
+    margin-left: 70px;
+    line-height: 20px;
+    font-size: 15px;
+}
+
+/* 2 페이지 스타일 */
+.page2-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.page2-data {
+    display: flex;
+    width: 80%;
+}
+
+.page2-title {
+    flex: 4;
+    height: 200px;
+    margin-top: 70px;
+    font-size: 22px;
+    color: #5d493e;
+}
+
+.page2-content {
+    flex: 6;
+    height: 200px;
+    margin-top: 66px;
+    font-size: 15px;
+    margin-left: 30px;
+    line-height: 21px;
+}
+
+.page2-ai-img {
+    width: 350px;
+    height: 350px;
+    margin-bottom: 60px;
+}
+
+.page2-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.page2-img {
+    margin: 60px 0px;
+    width: 350px;
+    height: 350px;
+}
+
+.page2-ai-content {
+    font-size: 20px;
+    margin: 20px 0px;
+    color: #0a652f;
+}
+
+/* 3 페이지 스타일 */
+.page3-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+.page3-img {
+    height: 350px;
+    width: 350px;
+    margin-top: 60px;
+}
+
+.page3-title {
+    margin-left: 60px;
+    margin-right: 60px;
+    font-size: 22px;
+    color: #5d493e;
+}
+.page3-content {
+    font-size: 15px;
+    margin-bottom: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+    line-height: 20px;
+}
+.page3-ai-content {
+    flex: 4;
+    font-size: 20px;
+    margin-left: 30px;
+    color: #0a652f;
+}
+
+.page3-ai-img {
+    width: 350px;
+    height: 350px;
+    margin-bottom: 60px;
+}
+
+.page3-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
+.page3-ai-content {
+    margin-top: 70px;
+    margin-left: 60px;
+    margin-right: 60px;
+    font-size: 20px;
+    color: #0a652f;
+}
+.page3-ai-img {
+    width: 350px;
+    height: 350px;
+    margin-bottom: 80px;
+}
+/* 4 페이지 스타일 */
