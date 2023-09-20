@@ -15,8 +15,8 @@ server:
 spring:
   security:
     user:
-      name: l-life
-      password: 1234
+      name:  ${security-user}
+      password: ${security-password}
   profiles:
     include: config
   datasource:
