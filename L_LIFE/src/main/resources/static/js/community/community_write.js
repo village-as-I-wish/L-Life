@@ -24,34 +24,60 @@ function chatGPT() {
         prompt: prompt,
     }
 
+    // $.ajax({
+    //     url: "https://api.openai.com/v1/images/generations",
+    //     method: 'POST',
+    //     headers: {
+    //         Authorization: "Bearer " + gptToken,
+    //         'Content-Type': 'application/json',
+    //     },
+    //     data: JSON.stringify(data),
+    // }).then(async function (response) {
+    //     console.log(response.data[0].url)
+    //     // 이미지 URL을 파일로 변환
+    //     const imageFile = await convertURLtoFile(response.data[0].url);
+    //     $('#ai-image-file').val(imageFile)
+    //     console.log("생성된 이미지 파일" + imageFile)
+    //     console.log(imageFile)
+    //     $('#ai-image').attr("src", response.data[0].url)
+    //     $('#loading').hide();
+    // });
+
     $.ajax({
-        url: "https://api.openai.com/v1/images/generations",
-        method: 'POST',
+        url: "https://api.kakaobrain.com/v2/inference/karlo/t2i",
+        type: 'POST',
         headers: {
-            Authorization: "Bearer " + gptToken,
+            Authorization: `KakaoAK ` + kakaoRestApiKey,
             'Content-Type': 'application/json',
         },
-        data: JSON.stringify(data),
-    }).then(async function (response) {
-        console.log(response.data[0].url)
-        // 이미지 URL을 파일로 변환
-        const imageFile = await convertURLtoFile(response.data[0].url);
-        $('#ai-image-file').val(imageFile)
-        console.log("생성된 이미지 파일" + imageFile)
-        console.log(imageFile)
-        $('#ai-image').attr("src", response.data[0].url)
-        $('#loading').hide();
+        data: JSON.stringify({
+            prompt: prompt,
+        }),
+        success: function (response) {
+            // 응답 JSON 형식으로 이미지 URL 획득
+            const imageUrl = response.images[0].image;
+
+            // 이미지 표시 (이미지 다운로드 및 표시 방법에 따라 수정 가능)
+            displayImage(imageUrl);
+            console.log("칼로 이미지 생성" + imageUrl);
+            $('#ai-image').attr("src", response.images[0].image)
+            $('#loading').hide();
+        },
+        error: function (error) {
+            console.error('Error:', error);
+            $('#loading').hide();
+        },
     });
 
     // 줄글 기반 요약문 생성
     const contents = $('.contents').val()
     console.log(contents)
-    const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents + 'Within 20 Korean characters'
+    const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents
 
     const data2 = {
         model: 'gpt-3.5-turbo-instruct',
         prompt: messages,
-        max_tokens: 150,
+        max_tokens: 100,
         temperature: 0.7,
     }
 
