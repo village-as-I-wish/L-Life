@@ -61,7 +61,6 @@
         <div class="styling-main-content slider">
             <div class="image-box" th:each="book : ${books}">
                 <img class="book-image" alt="메가진 사진" th:src="${book.bookMainImg}"/>
-                <span class="book-title" th:text="${book.pages.get(0).bpTitle}"></span>
             </div>
         </div>
     </section>
@@ -79,7 +78,7 @@
         </div>
         <div class="book">
             <div id="pages" class="pages">
-                <div class="page"><p>플립북 타이틀!</p></div>
+                <div class="page page0"></div>
                 <!-- 1번째 페이지 -->
                 <div class="page page1-1">
                     <img class="page1-img" th:src="${books.get(0).pages.get(0).bpImg}" />
@@ -113,8 +112,14 @@
                     <img class="page3-ai-img" th:src="${books.get(0).pages.get(2).bpAiImg}" />
                 </div>
                 <!-- 4번째 페이지 -->
-                <div class="page page4-1"></div>
-                <div class="page page4-2"></div>
+                <div class="page page4-1">
+
+                </div>
+                <div class="page page4-2">
+
+                </div>
+                <div class="page page5"></div>
+
             </div>
         </div>
     </section>
