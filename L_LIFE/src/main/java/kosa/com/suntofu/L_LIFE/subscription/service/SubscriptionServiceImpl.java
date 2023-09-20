@@ -124,8 +124,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-//    @Scheduled(cron = "0 0 0 * * *") // 매일 00시 실행
-    @Scheduled(cron = "0 * * * * *") // 매 분 실행
+    @Scheduled(cron = "0 0 0 * * *") // 매일 00시 실행
+//    @Scheduled(cron = "0 * * * * *") // 매 분 실행
     public int renewStSubscription() {
          subscriptionDao.renewStSubscription();
         return 1;
