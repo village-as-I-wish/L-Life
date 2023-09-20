@@ -133,7 +133,16 @@
             SUBSCRIPTION_ID = #{subscriptionId}
     </update>
 
-
+    <update id="renewStSubscription">
+        <![CDATA[
+            UPDATE
+                SUBSCRIPTION
+            SET
+                SUBSCRIBE_STATUS = 0
+            WHERE
+                SUBSCRIBE_END_DATE < SYSDATE
+        ]]>
+    </update>
 
 
 

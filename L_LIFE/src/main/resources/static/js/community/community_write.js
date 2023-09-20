@@ -73,9 +73,9 @@ $(document).ready(function(){
     }
 
     // 카테고리 선택
-    $('#category').change(function () {
+    $('#category-1').change(function () {
         var selectedCategory = $(this).val();
-        var $productSelect = $('#product'); // product select 요소 선택
+        var $productSelect = $('#product-1'); // product select 요소 선택
         console.log(selectedCategory)
 
         $.ajax({
@@ -90,8 +90,8 @@ $(document).ready(function(){
                     console.log(item.lfId)
                     console.log(item.lfName)
                     $productSelect.append($('<option>', {
-                        value: item.lfId, // 상품 ID를 value로 사용
-                        text: item.lfName // 상품 이름을 표시 텍스트로 사용
+                        value: item.lfId,
+                        text: item.lfName
                     }));
                 });
             }
@@ -101,7 +101,20 @@ $(document).ready(function(){
 
     // 플립북 작성 버튼 클릭
     $('.submit-btn').click(function() {
-        const data = 1;
+        const data = {
+            mId:1,
+            bookMaingImg:"",
+            pages:[
+                {},
+                {},
+                {}
+            ],
+            furnitures:[
+                {},
+                {},
+                {}
+            ],
+        };
 
         $.ajax({
             url: '/l-life/api/v1/community/book/',

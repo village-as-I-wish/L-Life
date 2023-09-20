@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @SpringBootApplication(
@@ -15,6 +16,7 @@ import org.springframework.cache.annotation.EnableCaching;
 		}
 )
 @EnableCaching
+@EnableScheduling
 public class LLifeApplication {
 
 	public static void main(String[] args) {
