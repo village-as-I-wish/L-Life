@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>L-Life Community</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_report.css}"/>
+    <!-- slick 사용을 위함.  -->
+    <script
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script th:src="@{/js/community/community_report.js}" type="text/javascript"></script>
+</head>
+<body>
+<th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment(0)"></th:block>
+
+<div class="cm-top-banner">
+    <img alt="베너 사진1 " th:src="@{/img/community/banner.png}"/>
+</div>
+
+
+<div class="cm-report-container hd__inner1100">
+    <div class="cm-report-header">
+        <span> LIVART REPORT</span>
+        <img alt="베너 사진1 " th:src="@{/img/community/community_character.png}"/>
+    </div>
+    <hr class="hr-first">
+    <hr class="hr-second">
+    <hr class="hr-third">
+
+    <div class="cm-report-photo-section">
+        <div class="cm-report-graph">
+            <p> 리바트 라이프 커뮤니티 리뉴얼 이벤트</p>
+            <p> 만들고픈 공간 & 인테리어 사진을 업로드 해주시면</p>
+            <p><span class="txt-pink">AI를 사용한 이미지 분석</span> 으로 </p>
+            <p><span class="txt-brown">리바트 라이프만의 레포트</span>를 만들어 드립니다.</p>
+        </div>
+        <div class="cm-report-photo-section-right">
+
+            <div class="upload-box">
+                <div id="drop-file" class="drag-file">
+                    <img class="upload-file ex-image" src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
+                         alt="파일 아이콘">
+                    <p class="message">Drag files to upload</p>
+                    <span> 분석할 사진을 드래그 & 선택하여 업로드 해주세요. </span>
+                </div>
+            </div>
+            <div class="imgBtn-box">
+                <input type="file" id="imgUpload" onchange="" style="display:none;"></input>
+                <label class="imgUploadLabel" for="imgUpload">이미지 업로드</label>
+                <button class="rmImg-btn" onclick="requestReport()"> 레포트 생성</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cm-report-info-section">
+        <p class="report-info-header"> 리바트 라이프 Report Sample </p>
+        <hr class="hr-third">
+        <hr class="hr-second">
+        <hr class="hr-first">
+        <div id="imageContainer">
+            <img id="objectImage" class="report-sample-img" alt="베너 사진1 " th:src="@{/img/community/report_sample.png}"/>
+            <div id="objectOverlay"></div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="cm-report-body hd__inner1400">
+    <div class="sp-rp-info">
+        <div class="sp-rp-info-left"> <!--space-->
+            <div class="sp-rp-info-header">
+                <span>LIVART - LIFE</span> <span class="sp-rp-info-header-gray"> 공간 분석 결과 </span>
+            </div>
+            <div class="sp-rp-info-box1">
+                <p> 올려주신 사진을 분석 한 결과 <span id="spaceResult">‘ 거실 ‘ </span> 공간으로 보입니다. <br>상단의 좌측은 사진 속 인테리어에 사용된 가구 & 사물들을 인공지능이 분석 / 추출한 결과를
+                    나타냅니다.<br>
+                    상단의 우측은 인테리어에 사용된 종류 별 가구 수와 분석 정확도를 나타냅니다.</p>
+            </div>
+            <div class="sp-rp-info-box2">
+                해당 인테리어에 가장 많이 사용된 가구는 <span id="#spaceFurniture">‘ ‘, ‘ ‘ , ‘ ‘</span>입니다. <br>
+                전반적 인테리어와 가구의 분위기 분석 결과는 하단을 참조해주세요.
+            </div>
+        </div>
+    </div>
+
+    <div class="cl-rp-info"> <!--color-->
+        <div class="cl-rp-info-left">
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        </div>
+        <div class="cl-rp-info-right">
+            <div class="sp-rp-info-header">
+                <span>LIVART - LIFE</span> <span class="sp-rp-info-header-gray"> 색상 / 스타일 분석 결과 </span>
+            </div>
+            <div class="cl-rp-info-box1">
+                <p>
+                    가장 많이 사용된 색상 5가지를 분석한 결과입니다. <br>
+                    해당 색상들과 어울리는 색, 가구들은 리바트의 매거진을 참조해주세요!<br>
+                </p>
+            </div>
+            <div class="cl-rp-info-box2">
+                <p> 공간 & 인테리어 스타일 분석 결과, 가장 유사한 스타일은 <span id="spaceStyle">' ' , ' ' </span>입니다.  <br>
+                    해당 스타일과 가장 유사한 리바트 라이프 구독 상품들을 하단에 추천드립니다. <br>
+                    리바트 라이프만의 구독서비스와 가구들로 해당 공간과 같이 여러분만의 공간을 디자인해보세요!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hd__inner1100">
+    <p class="report-info-header"> 리바트 라이프가 추천하는 관련 구독 상품 </p>
+    <hr class="hr-first">
+    <hr class="hr-second">
+    <hr class="hr-third">
+    <div class="rec-rp-container">
+        <p class="txt-pink"> * 올려주신 사진 속 공간과 같은 인테리어에 리바트 라이프의 구독 상품들을 활용해보세요! *</p>
+        <div class="rec-product-box">
+            <div class="rec-products-slide">
+                <i class="fas fa-chevron-left rec-prev"></i>
+                <i class="fas fa-chevron-right rec-next"></i>
+                <div class="rec-slide-wrapper">
+                    <div class="rec-product-card" th:each="index :  ${#numbers.sequence(1,5)}">
+                        <img alt="베너 사진1 " th:src="@{/img/standard/product_detail_main_sample.png}"/>
+                        <div class="rec-product-card-info">
+                            <span class="brand-logo">리바트</span><span class="rec-product-name">테스트</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <p class="report-info-header"> 리바트 라이프의 ShowRoom </p>
+    <hr class="hr-third">
+    <hr class="hr-second">
+    <hr class="hr-first">
+    <div class="showroom-rp-container">
+        <p class="txt-pink"> * 분석한 레포트 내용과 가장 비슷한 분위기의 리바트 라이프 쇼룸을 추천드립니다. *</p>
+        <div class="showroom-box-slider">
+            <i class="fas fa-chevron-left show-prev"></i>
+            <i class="fas fa-chevron-right show-next"></i>
+            <div class="showroom-slide-wrapper">
+                <a th:href="@{/community/3d}" class="showroom-card" th:each="index :  ${#numbers.sequence(1,5)}">
+                    <img alt="베너 사진1 " th:src="@{/img/community/showroom_sample.jpeg}"/>
+                    <p class=""></p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+
+</body>
+</html>
