@@ -73,7 +73,7 @@
                             <div class="imgBtn-box">
                                 <input type="file" th:id="'imgUpload0'+${index}" th:onchange="displayImage(this, [[${index}]])" style="display:none;">
                                 <label class="imgUploadLabel" th:for="'imgUpload0'+${index}">이미지 업로드</label>
-                                <button class="Ai-Img-btn" onclick="chatGPT()">AI 이미지 생성</button>
+                                <button class="Ai-Img-btn" th:onclick="chatGPT([[${index}]])">AI 이미지 생성</button>
                             </div>
                         </div>
                         <div class="center-container">
@@ -104,12 +104,12 @@
                                 </select>
                             </div>
                             <div class="input-ai-image">
-                                <img id="ai-image" src="https://cdn.aitimes.com/news/photo/202212/148277_156620_111.png">
+                                <img th:id="'ai-image-'+${index}" src="https://cdn.aitimes.com/news/photo/202212/148277_156620_111.png">
                             </div>
                         </div>
 
-                        <input id="ai-text" type="hidden">
-                        <input id="ai-image-file" type="hidden">
+                        <input th:id="'ai-text'+${index}" type="hidden">
+                        <input th:id="'ai-image-file'+${index}" type="hidden">
 
                     </div>
 

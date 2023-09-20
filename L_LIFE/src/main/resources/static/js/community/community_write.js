@@ -13,7 +13,7 @@ function displayImage(input,page) {
     }
 }
 
-function chatGPT() {
+function chatGPT(index) {
     // 태그 기반 이미지 생성
     const tags = $('.tags').text()
     $('#loading').show();
@@ -36,15 +36,15 @@ function chatGPT() {
         console.log(response.data[0].url)
         // 이미지 URL을 파일로 변환
         const imageFile = await convertURLtoFile(response.data[0].url);
-        $('#ai-image-file').val(imageFile)
+        $('#ai-image-file'+index).val(imageFile)
         console.log("생성된 이미지 파일" + imageFile)
         console.log(imageFile)
-        $('#ai-image').attr("src", response.data[0].url)
+        $('#ai-image-'+index).attr("src", response.data[0].url)
         $('#loading').hide();
     });
 
     // 줄글 기반 요약문 생성
-    const contents = $('.contents').val()
+    const contents = $('#content-'+index).val()
     console.log(contents)
     const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents + 'Within 20 Korean characters'
 
@@ -65,7 +65,7 @@ function chatGPT() {
         data: JSON.stringify(data2),
     }).then(function (response) {
         console.log(response.choices[0].text);
-        $('#ai-text').val(response.choices[0].text);
+        $('#ai-text'+index).val(response.choices[0].text);
     });
 }
 
@@ -153,45 +153,65 @@ $(document).ready(function(){
 
 
 
-
-    // 플립북 작성 버튼 클릭
+// 플립북 작성 버튼 클릭
     $('.submit-btn').click(function() {
+
+        const formData = new FormData();
 
         var pages = []
         var furnitures = []
+        // var files = []
+        // var aifiles = []
         for (let i = 1; i <= 3; i++){
             var inputFile = $('#imgUpload0'+i)
             const selectedFile = inputFile[0].files[0]
+
             let page = {
                 bpTitle: $('#title-'+i).val(),
                 bpContent: $('#content-'+i).val(),
                 bpTag : $('#tag-'+i).val(),
                 bpPageNum: i,
-                bpAiImg: "page_1_ai_image_url",
-                bpAiContent: "Page 1 AI Content",
-                fileBase64: selectedFile
+                bpAiContent: $('#ai-text'+i).val()
+                // aiFile: $('#ai-image-file'+i).val(),
+                // file: selectedFile
             }
 
             let furniture = {
                 lfId: $('#product-'+i).val()
             }
+            formData.append('files', selectedFile);
+            // files.push(selectedFile)
+            // formData.append("aifiles",$('#ai-image-file'+i).val())
+            // aifiles.push($('#ai-image-file'+i).val())
             pages.push(page)
             furnitures.push(furniture)
         }
 
         console.log(pages)
         console.log(furnitures)
+        // console.log(files)
+        // console.log(aifiles)
 
-        const data = {
-            mid: memberId,
-            pages:pages,
-            furnitures:furnitures
-        };
 
+        formData.append("mId",memberId);
+        formData.append("pages",pages)
+        // formData.append("files",files);
+        // formData.append("aifiles",aifiles);
+        // formData.append("pages",pages);
+        // formData.append("furnitures",furnitures);
+
+        console.log(formData)
+        // const data = {
+        //     mid: memberId,
+        //     pages:pages,
+        //     furnitures:furnitures
+        // };
+
+        // console.log(data)
         $.ajax({
-            url: '/l-life/api/v1/community/book/',
+            url: '/l-life/api/v1/community/bookTest/',
             method: 'POST',
-            data: data,
+            data: formData,
             processData: false,
             contentType: false,
             success : function(res) {
