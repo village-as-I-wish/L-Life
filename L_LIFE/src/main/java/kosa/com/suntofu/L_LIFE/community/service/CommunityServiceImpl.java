@@ -44,7 +44,6 @@ public class CommunityServiceImpl implements  CommunityService{
     public String uploadFileImg(MultipartFile file) {
         try {
             String fileName=file.getOriginalFilename();
-            String fileUrl= "https://" + bucket + "/test" +fileName;
             ObjectMetadata metadata= new ObjectMetadata();
             metadata.setContentType(file.getContentType());
             metadata.setContentLength(file.getSize());
@@ -98,23 +97,17 @@ public class CommunityServiceImpl implements  CommunityService{
     public int createBook(BookRequestVo bookRequestVo) {
         // 페이지별 이미지 업로드
         if (bookRequestVo.getPages() != null){
+
             bookRequestVo.getPages().forEach(page -> {
                 if(page.getFile() != null) {
-                    String fileName = "book/" + createFileName(page.getFile().getOriginalFilename());
-
-                    ObjectMetadata objectMetadata = new ObjectMetadata();
-                    objectMetadata.setContentLength(page.getFile().getSize());
-                    objectMetadata.setContentType(page.getFile().getContentType());
-
-                    try (InputStream inputStream = page.getFile().getInputStream()) {
-                        amazonS3Client.putObject(bucket, fileName, page.getFile().getInputStream(), objectMetadata);
-                    } catch (IOException e) {
-                        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
-                    }
-                    page.setBpImg(amazonS3Client.getUrl(bucket, fileName).toString());
+                    String imgUrl = uploadFile(page.getFile(), "L-life-BOOK");
+                    page.setBpImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
+                }
+                if(page.getAiFile() != null){
+                    String imgUrl = uploadFile(page.getAiFile(), "L-life-BOOK-AI");
+                    page.setBpAiImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
                 }
             });
-
         }
         try{
             int bpResult = -1;
@@ -148,6 +141,8 @@ public class CommunityServiceImpl implements  CommunityService{
         }
 
     }
+
+
     private String createFileName(String fileName) {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));
     }
@@ -158,6 +153,20 @@ public class CommunityServiceImpl implements  CommunityService{
         } catch (StringIndexOutOfBoundsException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
         }
+    }
+
+    private String uploadFile(MultipartFile file,String filePath){
+        String fileName = filePath + "/" + createFileName(file.getOriginalFilename());
+
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(file.getSize());
+        objectMetadata.setContentType(file.getContentType());
+        try (InputStream inputStream = file.getInputStream()) {
+            amazonS3Client.putObject(bucket, fileName, file.getInputStream(), objectMetadata);
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "사진 파일 업로드에 실패했습니다.");
+        }
+        return amazonS3Client.getUrl(bucket, fileName).toString();
     }
 
     private void cacheProducts(String cacheKey, List<ProductVo> cachingData) {

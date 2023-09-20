@@ -17,5 +17,4 @@ public interface CommunityService {
     List<ProductVo> getProductByKeyword(String keyWord);
 
     int createBook(BookRequestVo bookRequestVo);
-
 }
