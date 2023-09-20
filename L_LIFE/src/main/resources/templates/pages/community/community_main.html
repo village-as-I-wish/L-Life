@@ -59,7 +59,7 @@
             <span class="second-styling">"New Space"</span>
         </div>
         <div class="styling-main-content slider">
-            <div class="image-box" th:each="book, status : ${books}" th:if="${status.index < 4}">
+            <div class="image-box" th:each="book : ${books}">
                 <img class="book-image" alt="메가진 사진" th:src="${book.bookMainImg}"/>
                 <span class="book-title" th:text="${book.pages.get(0).bpTitle}"></span>
             </div>
@@ -80,14 +80,41 @@
         <div class="book">
             <div id="pages" class="pages">
                 <div class="page"><p>플립북 타이틀!</p></div>
-                <div class="page"></div>
-                <div class="page"><p>Hello there!</p></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
+                <!-- 1번째 페이지 -->
+                <div class="page page1-1">
+                    <img class="page1-img" th:src="${books.get(0).pages.get(0).bpImg}" />
+                </div>
+                <div class="page page1-2">
+                    <div class="page-title" th:text="${books.get(0).pages.get(0).bpTitle}" ></div>
+                    <img class="page-ai-img" th:src="${books.get(0).pages.get(0).bpAiImg}" />
+                    <div class="page-ai-content" th:text="${books.get(0).pages.get(0).bpAiContent}" ></div>
+                    <div class="page-content" th:text="${books.get(0).pages.get(0).bpContent}" ></div>
+                </div>
+                <!-- 2번째 페이지 -->
+                <div class="page page2-1">
+                    <div class="page2-data">
+                        <div class="page2-title" th:text="${books.get(0).pages.get(1).bpTitle}" ></div>
+                        <div class="page2-content" th:text="${books.get(0).pages.get(1).bpContent}" ></div>
+                    </div>
+                    <img class="page2-ai-img" th:src="${books.get(0).pages.get(1).bpAiImg}" />
+                </div>
+                <div class="page page2-2">
+                    <img class="page2-img" th:src="${books.get(0).pages.get(1).bpImg}" />
+                    <div class="page2-ai-content" th:text="${books.get(0).pages.get(1).bpAiContent}" ></div>
+                </div>
+                <!-- 3번째 페이지 -->
+                <div class="page page3-1">
+                    <img class="page3-img" th:src="${books.get(0).pages.get(2).bpImg}" />
+                    <div class="page3-title" th:text="${books.get(0).pages.get(2).bpTitle}" ></div>
+                    <div class="page3-content" th:text="${books.get(0).pages.get(2).bpContent}" ></div>
+                </div>
+                <div class="page page3-2">
+                    <div class="page3-ai-content" th:text="${books.get(0).pages.get(2).bpAiContent}" ></div>
+                    <img class="page3-ai-img" th:src="${books.get(0).pages.get(2).bpAiImg}" />
+                </div>
+                <!-- 4번째 페이지 -->
+                <div class="page page4-1"></div>
+                <div class="page page4-2"></div>
             </div>
         </div>
     </section>
@@ -98,35 +125,33 @@
 
     <script>
         var pages = document.getElementsByClassName('page');
-        for(var i = 0; i < pages.length; i++)
-        {
+        for (var i = 0; i < pages.length; i++) {
             var page = pages[i];
-            if (i % 2 === 0)
-            {
+            if (i % 2 === 0) {
                 page.style.zIndex = (pages.length - i);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function(){
-            for(var i = 0; i < pages.length; i++)
-            {
-                //Or var page = pages[i];
+        document.addEventListener('DOMContentLoaded', function() {
+            for (var i = 0; i < pages.length; i++) {
                 pages[i].pageNum = i + 1;
-                pages[i].onclick=function()
-                {
-                    if (this.pageNum % 2 === 0)
-                    {
+                pages[i].onclick = function() {
+                    if (this.pageNum % 2 === 0) {
                         this.classList.remove('flipped');
                         this.previousElementSibling.classList.remove('flipped');
-                    }
-                    else
-                    {
+                    } else {
                         this.classList.add('flipped');
                         this.nextElementSibling.classList.add('flipped');
                     }
                 }
             }
-        })
+
+            // 1페이지와 2페이지를 flipped 상태로 만들어 2,3페이지가 바로 보이게 함
+            if (pages[0] && pages[1]) {
+                pages[0].classList.add('flipped');
+                pages[1].classList.add('flipped');
+            }
+        });
     </script>
 </body>
 </html>

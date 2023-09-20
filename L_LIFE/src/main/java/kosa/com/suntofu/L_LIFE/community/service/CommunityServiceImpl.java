@@ -63,7 +63,9 @@ public class CommunityServiceImpl implements  CommunityService{
 
     @Override
     public List<BookVo> selectBooks() {
-        return communityDao.selectBooks();
+        List<BookVo> books = communityDao.selectBooks();
+        log.info("books returned {}", books);
+        return books;
     }
 
     @Override
