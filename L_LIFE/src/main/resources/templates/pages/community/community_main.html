@@ -59,8 +59,9 @@
             <span class="second-styling">"New Space"</span>
         </div>
         <div class="styling-main-content slider">
-            <div class="image-box" th:each="book : ${books}">
-                <img class="book-image" alt="메가진 사진" th:src="${book.bookMainImg}"/>
+            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}">
+                <input id="bookId" type="hidden" th:value="${book.bookId}">
+                <img class="book-image" th:id="'book-image'+ ${iterStat.index}" alt="메가진 사진" th:src="${book.bookMainImg}" th:onclick="showBook([[${iterStat.index}]])"/>
             </div>
         </div>
     </section>
@@ -129,6 +130,37 @@
 
 
     <script>
+        function showBook(bookNum) {
+            var findIndex = '#image-box-' + bookNum;
+            var bookId = $(findIndex + '> input').val();
+            console.log("북아이디" + bookId);
+
+            var data = {
+                bookId: bookId
+            }
+
+            $.ajax({
+                url: '/l-life/api/v1/community/books/' + bookId,
+                type: 'GET',
+                data: data,
+                success: function(response) {
+                    console.log(response);
+                    $(".page1-img").attr("src", response.result.bookMainImg);
+                    $(".page-title").text(response.result.pages[0].bpTitle);
+                    $(".page-ai-img").attr("src", response.result.pages[0].bpAiImg);
+                    $(".page-ai-content").text(response.result.pages[0].bpAiContent);
+                    $(".page-content").text(response.result.pages[0].bpContent);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
+
+
+
+
         var pages = document.getElementsByClassName('page');
         for (var i = 0; i < pages.length; i++) {
             var page = pages[i];
