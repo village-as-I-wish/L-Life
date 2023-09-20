@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.beans.factory.annotation.Value;
 import java.util.List;
 
 @Slf4j
@@ -18,6 +18,9 @@ import java.util.List;
 public class CommunityController {
 
     private final CommunityService communityService;
+
+    @Value("${gpt-token}")
+    private String gptToken;
 
     @GetMapping("/main")
     public String loadCommunityMainPage( Model model){
@@ -42,6 +45,7 @@ public class CommunityController {
 
     @GetMapping("/write")
     public String loadCommunityWritePage(Model model){
+        model.addAttribute("gptToken", gptToken);
         return "pages/community/community_write";
     }
 
