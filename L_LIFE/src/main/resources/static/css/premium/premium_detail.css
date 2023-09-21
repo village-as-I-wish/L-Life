@@ -126,8 +126,14 @@ ul.tabs li.current{
     flex-direction: column;
     align-items: center;
 }
-.tab-pr-maininfo-content span{
+.lf-pr-info span{
     display: block;
+    word-break: keep-all;
+    font-size: 22px;
+    font-weight: 500;
+    color: #5d493c;
+    margin: 50px 0px 70px 0px;
+    line-height: 55px;
 }
 
 
@@ -330,16 +336,20 @@ ul.tabs li {
 
 .lf-recommendation-slide-product-img > span {
     font-size: 14px;
-    padding: 5px;
-    width: 100%;
+    display: block;
     margin: 0px 0px 10px 0px !important;
     color: #333333;
+    background: wheat;
+    padding: 3px 10px 3px 10px;
 }
 
 .lf-recommendation-slide-product-img > p {
     font-size: 14px;
-    padding: 5px;
     color: #333333;
+    word-break: keep-all;
+    line-height: 20px;
+    padding: 0px 3px;
+    font-weight: 600;
 }
 
 .lf-pr-options input{
@@ -389,4 +399,8 @@ ul.tabs li {
     display: block;
     position: absolute;
     z-index: 5 !important;
+}
+.pr-rec-price{
+    color: #5d493c !important;
+    font-weight: 400 !important;
 }
