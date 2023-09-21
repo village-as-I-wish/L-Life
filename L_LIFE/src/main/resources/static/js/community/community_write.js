@@ -24,34 +24,55 @@ function chatGPT(index) {
         prompt: prompt,
     }
 
+    // $.ajax({
+    //     url: "https://api.openai.com/v1/images/generations",
+    //     method: 'POST',
+    //     headers: {
+    //         Authorization: "Bearer " + gptToken,
+    //         'Content-Type': 'application/json',
+    //     },
+    //     data: JSON.stringify(data),
+    // }).then(async function (response) {
+    //     console.log(response.data[0].url)
+    //     // 이미지 URL을 파일로 변환
+    //     const imageFile = await convertURLtoFile(response.data[0].url);
+    //     $('#ai-image-file').val(imageFile)
+    //     console.log("생성된 이미지 파일" + imageFile)
+    //     console.log(imageFile)
+    //     $('#ai-image').attr("src", response.data[0].url)
+    //     $('#loading').hide();
+    // });
+
     $.ajax({
-        url: "https://api.openai.com/v1/images/generations",
+        url: "https://api.kakaobrain.com/v2/inference/karlo/t2i",
         method: 'POST',
         headers: {
-            Authorization: "Bearer " + gptToken,
+            Authorization: `KakaoAK ` + kakaoRestApiKey,
             'Content-Type': 'application/json',
         },
         data: JSON.stringify(data),
     }).then(async function (response) {
-        console.log(response.data[0].url)
+        console.log(response.images[0].image)
         // 이미지 URL을 파일로 변환
-        const imageFile = await convertURLtoFile(response.data[0].url);
+        const imageFile = await convertURLtoFile(response.images[0].image);
         $('#ai-image-file'+index).val(imageFile)
         console.log("생성된 이미지 파일" + imageFile)
         console.log(imageFile)
         $('#ai-image-'+index).attr("src", response.data[0].url)
+
         $('#loading').hide();
     });
 
     // 줄글 기반 요약문 생성
+    const contents = $('#content-1').val()
     const contents = $('#content-'+index).val()
     console.log(contents)
-    const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents + 'Within 20 Korean characters'
+    const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents
 
     const data2 = {
         model: 'gpt-3.5-turbo-instruct',
         prompt: messages,
-        max_tokens: 150,
+        max_tokens: 100,
         temperature: 0.7,
     }
 

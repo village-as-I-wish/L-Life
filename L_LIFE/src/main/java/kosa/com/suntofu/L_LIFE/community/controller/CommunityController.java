@@ -23,6 +23,9 @@ public class CommunityController {
     @Value("${gpt-token}")
     private String gptToken;
 
+    @Value("${kakao-rest-api-key}")
+    private String kakaoRestApiKey;
+
     @GetMapping("/main")
     public String loadCommunityMainPage( Model model){
         List<BookVo> books = communityService.selectBooks();
@@ -47,6 +50,7 @@ public class CommunityController {
     @GetMapping("/write")
     public String loadCommunityWritePage(Model model){
         model.addAttribute("gptToken", gptToken);
+        model.addAttribute("kakaoRestApiKey", kakaoRestApiKey);
         return "pages/community/community_write";
     }
 
