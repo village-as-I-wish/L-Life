@@ -213,10 +213,12 @@
     text-decoration: none;
     color: #666666;
 }
+
 .sl-main-sub-product > a:hover {
     text-decoration: none;
     color: inherit;
 }
+
 .sl-main-sub-product-img{
     padding:10px;
 }

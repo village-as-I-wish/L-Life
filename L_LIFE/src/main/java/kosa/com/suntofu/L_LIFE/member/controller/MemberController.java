@@ -28,8 +28,13 @@ public class MemberController {
     @Value("${baseurl}")
     private String baseUrl;
 
+    @Value("${kakao-javascript-key}")
+    private String kakaoJavascriptKey;
+
     @GetMapping("/login")
-    public String loadLoginPage(){ return "pages/member/login"; }
+    public String loadLoginPage(Model model) {
+        model.addAttribute("kakaoJavascriptKey", kakaoJavascriptKey);
+        return "pages/member/login"; }
 
     @PostMapping("/login")
     public String kakaoLogin(@RequestParam String email, @RequestParam String name, @RequestParam String gender, @RequestParam String profile, HttpServletRequest request, Model model){

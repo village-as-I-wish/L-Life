@@ -32,3 +32,9 @@
     color: #E1BFAD;
     transform:scale(1.1);
 }
+
+.cate-header-selected {
+    font-weight: bold;
+    color : #666666 !important;
+    font-size: 22px !important;
+}
