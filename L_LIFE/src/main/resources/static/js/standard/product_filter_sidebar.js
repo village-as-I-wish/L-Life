@@ -2,6 +2,7 @@ function search() {
 
     let lfBrandId = [];
     let lfMoodId = [];
+    let baseUrl = [];
 
     output.innerHTML = slider.value;
 
@@ -43,7 +44,7 @@ function search() {
     }
     queryParams = queryParams.slice(0, -1);
 
-    var url = "https://livart-life.com/l-life/api/v1/standard/search?" + queryParams;
+    var url = baseUrl + "/l-life/api/v1/standard/search?" + queryParams;
 
     $.ajax({
         type: "GET",
