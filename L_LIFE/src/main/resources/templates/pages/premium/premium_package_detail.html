@@ -31,12 +31,34 @@
                     <img alt="상품 사진 "  th:src="@{${packageDetail.lfPackageImg}}"/>
                 </div>
                 <div class="pd-detail-product-list">
-                    <div class="pd-detail-product"  th:each="packageProduct : ${packageDetail.lfPackageProducts}">
-                        <img alt="상품 사진 " th:src="@{${packageProduct.lfImgMain}}"/>
+<!--                    <div class="pd-detail-product"  th:each="packageProduct : ${packageDetail.lfPackageProducts}">-->
+<!--                        <img alt="상품 사진 " th:src="@{${packageProduct.lfImgMain}}"/>-->
+<!--                        <div class="pd-detail-product-info">-->
+<!--                            <span th:text="${packageProduct.lfName}">[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>-->
+<!--                            <p th:text="${packageProduct.lfPrPrice != null} ? ${packageProduct.lfPrPrice} + '원 / 월' : '0원 / 월'"></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="pd-detail-product">
+                        <img class="sale-logo" alt="상품 사진 " th:src="@{/img/premium/sale_logo.png}"/>
+
+                        <img alt="상품 사진 " src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Package/PK_%E1%84%80%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A9%E1%86%B7%E1%84%8F%E1%85%A1%E1%84%91%E1%85%A6.jpeg"/>
                         <div class="pd-detail-product-info">
-                            <span th:text="${packageProduct.lfName}">[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>
-                            <i class="fa-solid fa-heart fill-heart"></i>
-                            <p th:text="${packageProduct.lfPrPrice != null} ? ${packageProduct.lfPrPrice} + '원 / 월' : '0원 / 월'"></p>
+                            <p> 플리시 4인 패브릭 소파 오션리지그레이샌드</p>
+                            <span>[리바트]</span>
+                            <p >0원 / 월</p>
+                        </div>
+                    </div>
+
+                    <div class="pd-detail-product">
+                        <img class="sale-logo" alt="상품 사진 " th:src="@{/img/premium/sale_logo.png}"/>
+
+                        <img alt="상품 사진 " src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Package/PK_%E1%84%80%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A9%E1%86%B7%E1%84%8F%E1%85%A1%E1%84%91%E1%85%A6.jpeg"/>
+                        <div class="pd-detail-product-info">
+                            <p> 플리시 4인 패브릭 소파 오션리지그레이샌드</p>
+                            <span class="pd-detail-brand">리바트</span>
+                            <span> 기간 - 12개월</span>
+                            <p >0원 / 월</p>
                         </div>
                     </div>
                 </div>
