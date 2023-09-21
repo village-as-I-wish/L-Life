@@ -116,21 +116,32 @@
     </select>
 
 
-    <select id="getStandardSubscription" parameterType="java.lang.Integer" resultType="SubscriptionVo">
+    <select id="getStandardSubscription" parameterType="int" resultType="SubscriptionVo">
         -- 스탠다드 구독 정보 가져오기 --
         select
             *
         from
             SUBSCRIPTION sub
         where
-            sub.SUBSCRIPTION_ID = #{standardSubscriptionId}
+            sub.M_ID = #{memberId}
+          and
+            sub.SUBSCRIBE_TYPE = 0
+          and
+            sub.SUBSCRIBE_STATUS = 1
     </select>
 
-<!--    SELECT-->
-<!--    *-->
-<!--    FROM-->
-<!--    RESERVATION-->
-<!--    WHERE-->
-<!--    M_ID = #{memberId};-->
+    <select id="getPremiumSubscription" parameterType="int" resultType="SubscriptionVo">
+        -- 프리미엄 구독 정보 가져오기 --
+        select
+            *
+        from
+            SUBSCRIPTION sub
+        where
+            sub.M_ID = #{memberId}
+          and
+            sub.SUBSCRIBE_TYPE = 1
+          and
+            sub.SUBSCRIBE_STATUS = 1
+    </select>
 
 </mapper>

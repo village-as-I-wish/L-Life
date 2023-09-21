@@ -57,7 +57,7 @@
 
             // REST API 호출
             $.ajax({
-                url: 'https://livart-life.com/l-life/api/v1/member/1/mypage/standard/recent', // API 엔드포인트
+                url: baseUrl + '/l-life/api/v1/member/1/mypage/standard/recent', // API 엔드포인트
                 method: 'GET',
                 data: { startDate: startDate, endDate: endDate },
                 dataType: 'json',
@@ -107,7 +107,7 @@
             const endDate = $("#endDate").text();
 
             $.ajax({
-                url: 'https://livart-life.com/l-life/api/v1/member/1/mypage/standard/recent', // 실제 API 엔드포인트 URL 입력
+                url: baseUrl + '/l-life/api/v1/member/1/mypage/standard/recent',
                 type: 'GET',
                 data: {
                     startDate: startDate,

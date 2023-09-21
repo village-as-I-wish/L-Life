@@ -38,5 +38,7 @@ public interface MemberService {
 
     Integer getPremiumSubscriptionId(int mId);
 
-    SubscriptionVo getStandardSubscription(Integer standardSubscriptionId);
+    SubscriptionVo getStandardSubscription(int memberId);
+
+    SubscriptionVo getPremiumSubscription(int memberId);
 }

@@ -155,8 +155,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public SubscriptionVo getStandardSubscription(Integer standardSubscriptionId) {
-        return memberDao.getStandardSubscription(standardSubscriptionId);
+    public SubscriptionVo getStandardSubscription(int memberId) {
+        return memberDao.getStandardSubscription(memberId);
+    }
+
+    @Override
+    public SubscriptionVo getPremiumSubscription(int memberId) {
+        return memberDao.getPremiumSubscription(memberId);
     }
 }
 
