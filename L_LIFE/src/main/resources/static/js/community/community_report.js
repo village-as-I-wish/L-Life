@@ -3,7 +3,7 @@ let spaceAnalyzeUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/classifier
 let spaceDetectorUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/detector'
 let styleAnalyzeUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/analyzer'
 let colorAnalyzerUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/extractor'
-let skOpenApiKey = 'DACPsMWCZv64OCmI8M2BK4gV9QuunGsp2KDFzC88'
+let skOpenApiKey = 'qhJAJSCI5X6kfEWt7MWHQ7pUwS29uYVL4hDdxrih'
 
 let spaceDict = {
     'livingroom': '거실',
