@@ -94,13 +94,9 @@
     <div id="tab-1" class="tab-content current">
         <div class="tab-pr-maininfo-content">
             <div class="lf-pr-info" th:each="imgUrl : ${premiumDetail.detailImgUrl}">
-
                 <img class="pr-real-img" alt="상품 사진" th:src="${imgUrl.lfImgUrl}">
                 <span th:text="${imgUrl.imgComment}"></span>
-
-
             </div>
-
             <!-- 배송 / 환불 안내 -->
             <div class="lf-pr-delivery">
                 <p> 배송 / 반품 / 교환안내 </p>
@@ -163,7 +159,7 @@
             </div><!-- 배송 파트 종료 -->
 
             <div class="lf-recommendation-product">
-                <p> 비슷한 가격대 상품 </p>
+                <p> 더 많은 가격 대별 추천 상품 </p>
                 <hr>
                 <div class="lf-recommendation-body">
                     <div class="lf-recommendation-page-wrapper">
@@ -171,9 +167,9 @@
                             <div class="lf-recommendation-slide-wrapper">
                                 <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}" th:href="@{'/premium/' + ${product.lfId} + '/detail'}">
                                     <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
-                                    <span th:text="${product.lfBrandName}"></span>
+                                    <span class="pr-rec-brand-name"th:text="${product.lfBrandName}"></span>
                                     <p th:text="${product.lfName}"></p>
-                                    <div><span> 월 <span th:text="${product.lfPrPrice}"></span>원~ </span></div>
+                                    <p class="pr-rec-price"> 월 <span th:text="${product.lfPrPrice}"></span>원~ </p>
                                 </a>
                             </div>
                         </div>
