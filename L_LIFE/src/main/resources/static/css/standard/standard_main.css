@@ -60,13 +60,13 @@
 .sl-main-live-product{
     display: flex;
     justify-content: space-between;
-    width: 250px !important;
-    margin-right: 50px;
+    width: 272px !important;
 }
 .sl-live-slider{
     height: 420px !important;
 }
 .sl-live-box {
+    display: block;
     height: 300px;
     width: 240px;
     position: relative;
@@ -177,15 +177,14 @@
     font-size: 12px;
 }
 .sl-main-sub{
-    margin-top: 80px;
+    margin-top: 30px;
 }
 .sl-main-sub > ul{
     display: flex;
     float: right;
     margin-right: 25px;
-    font-size: 20px;
+    font-size: 16px;
     color: #aeaeae;
-
 }
 .sl-main-sub > ul > li{
     margin-right: 15px;
@@ -201,13 +200,10 @@
 }
 .sl-main-sub-product{
     height: 340px;
-    margin: 0px 30px 40px 0px;
     position: relative;
-    width: 240px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
+    margin-bottom: 40px;
+    margin-right: 16px;
+    width: 250px;
 }
 .sl-main-sub-product >  a{
     text-decoration: none;
@@ -220,7 +216,6 @@
 }
 
 .sl-main-sub-product-img{
-    padding:10px;
 }
 .sl-main-sub-product-img > img{
     width:100%;
@@ -311,4 +306,7 @@
     width: auto;
     border: none;
     background: none;
+}
+.sl-main-sub-product-txt > p{
+    min-height: 48px;
 }
