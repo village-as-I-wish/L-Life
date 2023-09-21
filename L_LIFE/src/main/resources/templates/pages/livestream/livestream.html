@@ -27,7 +27,14 @@
         <img alt="라이브 샘플 사진" th:src="@{/img/livestream/livestream_sample.png}" style="display: none;"/>
         <openvidu-webcomponent style="display: none"></openvidu-webcomponent>
         <!--        <div id="video-container" style="border:1px solid red;"></div>-->
-        <div id="video-container"><p></p>
+        <div id="video-container">
+            <div class="video-container-inner">
+<!--                <img alt="라이브 샘플 사진" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img10.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEPv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgC8WTqJ61XwTDy5PLeXIY7xHRBET9cj3agCipvOMW2RoCIQDTWjKZZ4ClBpH6cCp6%2FAuPqIGvhAqLdzBpZQOkSNxJriqOAwjk%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDIwNjIwNzA0MTEzMyIMvnJJPCCrXZXEAK2tKuICNVsOW5cp8HfB60DVPAATehlmsvPfC4xCxWt1yCe3USkga4dubyK%2FNjpc6ks3E9DvBF4oiIdsQhxL%2B9i7z128b7k1ljxGyCpOxEkrdBuy2udZMxZDkOD25z6nl%2FlWkKebeBfB%2BGqkI6B1LZ6%2BTIQGYRvHLHGeTZJ0WSZOVjTlktLUShkusiu9SgM3Ip%2BuOxYgMt3iKAqf%2FK4hHMIaPbtM6Jl%2B3r1lcg1RL1bu6o34fHOC0JroTqIzO%2FrVc6mHgOmCg8zYHbdaLmigz9eb44QprUz8RP80L5AC8DUvzB%2B0Y1FqiPfQkNdMHoSOPqY6CXXT9j4rx4a7RrCpupO0TUEhKSXmJUq4beuSvtNrszHz3%2BSgDwpKEAb5bxTpQgWEw56tllvDxjoABbuNlSjeyyhZt7KiVZ13bBI7XOLs4aj3bPYO1zlHOsYJuOLUGqxEJHyGkzlNKX0DYa0Ch3v8FVto6Z1hMPPZrqgGOrMCJtwXdVIPlNa1biCXwgbR6QxrZT83tG2q%2FLVLXOgikU9mNsdZdlal6ok9Q4FxPp2zn6Ttm2qFkYqzuAWxtTpFxhWb5%2BrNU6jLFwJH5QD50zKk8uQlLRwzvQsYIK0fjnxj2m3l85YVXT1OFHlaE5Mi7kS23T3w86t78ByoPOPGQpJSdiZmw973pEiKnnGvbR9oGEt6QRHwhkYOVGYoWXxe%2BbJAdJbGKYS2FbZiIpFhcg473jB5S171tKMaORnPSzVfI0aP4grX1zERrMc94e7huubyP%2FK%2BcGwoPNKbl0D9v0wg3lvTCm6PJVBhHZv04%2FDmW7FUtRkdVkwJ8NUFz64mccTIYh0DuAHRdrFqOZD4FE7CgoVSfbFllKChNxmkDZkXC5%2BzoATyji3gTvz%2ByItS%2FIW5kw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230921T033235Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIATAAXFXZWYJLJE4UO%2F20230921%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=6a5dff99d7747bad42c9dce61508ffbc6f3d54bce2afef046d49b82f2c5f0d47">-->
+                <img class="livestream-logo" alt="라이브 샘플 사진" th:src="@{/img/livestream/livestream_logo2.png}" />
+                <p class="video-container-inner-txt"> - 방송 시작 전 입니다 - </p>
+                <p class="video-container-inner-subtxt"> </p>
+
+            </div>
         </div>
 
         <div class="stream-info-txt-box">
@@ -107,6 +114,9 @@
         </div>
         <div class="ad-slide">
             <p> 🔔 패키지 구독 시 각 상품별 코인 1개씩 할인됩니다.🔔</p>
+            <p> 🔔 패키지 구독 시 각 상품별 코인 1개씩 할인됩니다.🔔</p>
+            <p> 🔔 패키지 구독 시 각 상품별 코인 1개씩 할인됩니다.🔔</p>
+
         </div>
 
         <div class="stream-product-name">
@@ -155,7 +165,7 @@
 </body>
 
 <script>
-    var targetTime = new Date().getTime() + 10000; // 초기에 한 번 설정
+    var targetTime = new Date().getTime() + 5000; // 초기에 한 번 설정
 
     // 특정 시간까지 남은 시간을 계산하는 함수
     function calculateTimeRemaining(targetTime) {
@@ -190,7 +200,9 @@
         } else {
             $('.stream-chat-box').addClass("hidden")
             $('.stream-chat-box-onboard').removeClass("hidden")
-
+            $('.video-container-inner p:first').text('방송이 시작되었습니다').addClass('text-pink');
+            $('.video-container-inner-subtxt').text('하단의 버튼을 통해 입장해주세요.').addClass('text-pink');
+            return ;
         }
     }
 

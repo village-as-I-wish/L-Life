@@ -42,7 +42,12 @@ function joinSession(isAdmin) {
     session.on('streamCreated', event => {
 
         var subscriber = session.subscribe(event.stream, 'video-container');
+        var videoContainer = document.querySelector('.video-container-inner');
 
+        // 요소가 존재하면 숨깁니다.
+        if (videoContainer) {
+            videoContainer.style.display = 'none';
+        }
         // When the HTML video has been appended to DOM...
         subscriber.on('videoElementCreated', event => {
 
@@ -139,6 +144,12 @@ function appendUserData(videoElement, connection) {
         userData = JSON.parse(connection.data).clientData;
         nodeId = connection.connectionId;
     }
+    var videoContainer = document.querySelector('.video-container-inner');
+
+    // 요소가 존재하면 숨깁니다.
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+    }
     var dataNode = document.createElement('div');
     dataNode.className = "data-node";
     dataNode.id = "data-" + nodeId;
@@ -182,5 +193,11 @@ function createToken(sessionId) {
 }
 function initMainVideo(videoElement, userData) {
     // 비디오 들어오는 코드 -> 버튼 바꾸기 필요
+    var videoContainer = document.querySelector('.video-container-inner');
+
+    // 요소가 존재하면 숨깁니다.
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+    }
     document.querySelector('#video-container video').srcObject = videoElement.srcObject;
 }
