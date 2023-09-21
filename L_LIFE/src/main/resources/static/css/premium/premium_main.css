@@ -29,6 +29,7 @@ video {
 }
 .pl-search-box{
     margin-top: 50px;
+    margin-right: 30px;
 }
 .pl-search-box > input{
     height: 41px;
@@ -45,7 +46,7 @@ video {
 .pl-main-sub > ul{
     display: flex;
     float: right;
-    margin-right: 5px;
+    margin-right: 25px;
     font-size: 20px;
     color: #aeaeae;
 }

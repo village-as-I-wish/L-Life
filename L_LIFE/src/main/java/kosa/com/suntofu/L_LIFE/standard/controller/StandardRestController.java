@@ -9,8 +9,10 @@ import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +24,15 @@ import java.util.List;
 @Tag(name = "standard", description = "스탠다드 API")
 public class StandardRestController {
 
+    @Value("${baseurl}")
+    private String baseUrl;
     private final StandardService standardService;
 
     @Operation(summary = "스탠다드 상품 검색", description = "스탠다드 필터를 통해 상품을 검색합니다.")
     @GetMapping("/search")
-    public ResponseEntity<List<StandardVo>> search(SearchRequestVo requestVo) {
+    public ResponseEntity<List<StandardVo>> search(SearchRequestVo requestVo, Model model) {
         List<StandardVo> FilterProducts = standardService.getStandardProductByFilter(requestVo);
+        model.addAttribute("baseUrl", baseUrl);
         return new ResponseEntity<>(FilterProducts, HttpStatus.OK);
     }
 

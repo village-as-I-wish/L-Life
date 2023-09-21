@@ -23,7 +23,11 @@
     text-decoration: none;
 }
 
-.banner-user {
+.banner-guide:hover {
+    background-color: white;
+    color: #C1B9A9;
+}
+    .banner-user {
     position: absolute;
     right: 450px;
     top: 125px;
@@ -42,13 +46,13 @@
 
 .sl-main-products {
     margin-left: 100px;
-    width: 100%;
+    width: 1080px;
 
 }
 
 .sl-main-live-products{
     margin-bottom: 100px;
-    width: 1180px !important;
+    width: 1080px !important;
     display: flex !important;
     justify-content: space-between;
     height: 110% !important;
@@ -143,8 +147,8 @@
 
 .sl-live-box-info {
     position: absolute;
-    height: 80px;
-    width: 90%;
+    height: 60px;
+    width: 95%;
     bottom: 75px;
     left: 50%;
     border-radius: 5px;
@@ -155,13 +159,13 @@
 }
 
 .sl-live-box-info-img {
-    width: 30%;
+    width: 25%;
     height: inherit;
     border-radius: 5px 0px 0px 5px;
 }
 
 .sl-live-box-info-title {
-    width: 70%;
+    width: 90%;
     font-color: white;
     color: white;
     padding: 16px;
@@ -170,17 +174,18 @@
 .sl-live-box-info-title > span {
     display: block;
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 12px;
 }
 .sl-main-sub{
-    /*margin-top: 150px;*/
+    margin-top: 80px;
 }
 .sl-main-sub > ul{
     display: flex;
     float: right;
-    margin-right: 5px;
+    margin-right: 25px;
     font-size: 20px;
     color: #aeaeae;
+
 }
 .sl-main-sub > ul > li{
     margin-right: 15px;
@@ -195,10 +200,10 @@
     justify-content: flex-start;
 }
 .sl-main-sub-product{
-    height: 342px;
-    margin: 20px 20px 10px 20px;
+    height: 340px;
+    margin: 0px 30px 40px 0px;
     position: relative;
-    width: 255px;
+    width: 240px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -209,11 +214,18 @@
     color: #666666;
 }
 
+.sl-main-sub-product > a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 .sl-main-sub-product-img{
     padding:10px;
 }
 .sl-main-sub-product-img > img{
     width:100%;
+    object-fit: fill;
+    height: 220px;
 }
 .sl-main-sub-products-txt {
     color: gray;
@@ -224,11 +236,16 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.sl-main-sub-product-price > span {
+    pointer-events: none;
+
+}
 .coin-img-box{
     display: flex;
 }
 .coin-img-box .coin-img{
-    width:17px;
+    width:14px;
     border-radius: 50%;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
@@ -245,11 +262,9 @@
 }
 
 .pl-search-box {
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin: 50px 30px 30px 0;
     display: flex;
     justify-content: flex-end;
-    position: relative;
 }
 .pl-search-box {
     position: relative;

@@ -61,7 +61,7 @@
                                     </th:block>
                                 </div>
                                 <div class="discount-wrap">
-                                    <div class="discount" th:if="${product.lfPackageId != null}">⭐️패키지 특가️⭐️</div>
+                                    <div class="discount" th:if="${product.lfPackageId != null}">가️</div>
                                     <div class="discount-coins" th:if="${product.lfPackageId != null}">
                                         <th:block th:each="coins, stat : ${#numbers.sequence(1, product.totalCoin)}">
                                             <img th:src="@{/img/member/coin.png}"/>

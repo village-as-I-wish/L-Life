@@ -20,7 +20,7 @@
 
 <div class="sl-top-banner">
     <img alt="베너 사진1 " th:src="@{/img/standard/list_top_banner.png}"/>
-    <a class="banner-guide" href="#"> 리바트 라이브 구독 이용 가이드 </a>
+    <a class="banner-guide" th:href="@{/subscription}"> 리바트 라이브 구독 이용 가이드 </a>
     <span class="banner-user"> 리바티스트님, 환영합니다. </span>
 </div>
 
@@ -68,12 +68,13 @@
                                     <span th:if="${LiveList.lfPackageName == null}">상품 준비중</span>
                                     <span th:unless="${LiveList.lfPackageName == null}"
                                           th:text="${LiveList.lfPackageName}">패키지이름</span>
-                                    <div class="coin-img-box">
+                                    <span class="package-discount"️️ th:text="'⭐패키지특가⭐️ H-Coin ' + ${LiveList.lfPackageStCoin} + '개'"></span>
+                                    <!--<div class="coin-img-box">
                                         <th:block
                                                 th:each="coins, stat : ${#numbers.sequence(1, LiveList.lfPackageStCoin)}">
                                             <img class="coin-img" th:src="@{/img/member/coin.png}"/>
                                         </th:block>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <p th:text="${LiveList.lStreamName}">라이브제목</p>

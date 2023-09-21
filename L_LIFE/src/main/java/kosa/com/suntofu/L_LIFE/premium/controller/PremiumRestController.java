@@ -11,8 +11,10 @@ import kosa.com.suntofu.L_LIFE.common.CartReturn;
 import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,13 +25,17 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(name = "premium", description = "프리미엄 API")
 public class PremiumRestController {
+
+    @Value("${baseurl}")
+    private String baseUrl;
     private final PremiumService premiumService;
 
     @Operation(summary = "프리미엄 상품 검색", description = "프리미엄 필터를 통해 상품을 검색합니다.")
     @GetMapping("/search")
-    public ResponseEntity<List<PremiumVo>> search(PaginationVo paginationVo) {
+    public ResponseEntity<List<PremiumVo>> search(PaginationVo paginationVo, Model model) {
 
         List<PremiumVo> FilterProducts = premiumService.selectProductByFilter(paginationVo);
+        model.addAttribute("baseUrl", baseUrl);
         return new ResponseEntity<>(FilterProducts, HttpStatus.OK);
     }
 

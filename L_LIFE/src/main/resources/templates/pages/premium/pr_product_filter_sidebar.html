@@ -2,6 +2,9 @@
 
 <th:block th:fragment="prProductFilterSidebar()">
     <link rel="stylesheet" type="text/css" th:href="@{/css/premium/pr_product_filter_sidebar.css}"/>
+    <script th:inline="javascript">
+        var baseUrl = /*[[${baseUrl}]]*/ null;
+    </script>
 
     <div class="pf-sidebar">
         <div class="pf-brand pf-cate-box">
