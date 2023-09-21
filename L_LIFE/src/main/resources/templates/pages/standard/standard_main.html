@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <title>L-Life Standard</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
+
     <link rel="stylesheet" type="text/css" th:href="@{/css/standard/standard_main.css}"/>
-    <script th:src="@{/js/standard/product_filter_sidebar.js}" type="text/javascript"></script>
+    <script th:src="@{/js/standard/standard_main.js}" type="text/javascript"></script>
+
+<!--    <script th:src="@{/js/standard/standard_main.js}" type="text/javascript"></script>-->
+<!--    <script th:src="@{/js/standard/standard_main.js}" type="text/javascript"></script>-->
+
 </head>
 <body>
+
 <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
 <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 <th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment(0)"></th:block>
@@ -25,51 +31,58 @@
         <div class="sl-main-live">
             <img alt="베너 사진1 " th:src="@{/img/standard/l-life-live-logo.png}"/>
 
-            <div class="sl-main-live-products">
-                <div class="sl-main-live-product" th:each="LiveList : ${standardLiveList}">
+            <div class="sl-live-slider">
+                <div class="sl-main-live-products">
+                    <div class="sl-main-live-product" th:each="LiveList : ${standardLiveList}">
+                        <!-- 방송 시작전 -->
+                        <a th:href="@{'/livestream/' + ${LiveList.lStreamId}}" class="sl-live-box"
+                           th:if="${now.isBefore(LiveList.lStreamTime)}">
 
-                    <!-- 방송 시작전 -->
-                    <a th:href="@{'/livestream/' + ${LiveList.lStreamId}}" class="sl-live-box" th:if="${now.isBefore(LiveList.lStreamTime)}">
+                            <img alt="베너 사진1 " th:src="${LiveList.lStreamImg}"/>
+                            <div class="overlay">
+                                <p class="sl-live-box-day-txt" th:text="${LiveList.streamDate}"></p>
+                                <p class="sl-live-box-time-txt" th:text="${LiveList.streamTime}"></p>
+                                <div class="share-btn-box">
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                    <span class="share-btn-txt">방송 공유하기</span>
+                                </div>
 
-                        <img alt="베너 사진1 " th:src="${LiveList.lStreamImg}"/>
-                        <div class="overlay">
-                            <p class="sl-live-box-day-txt" th:text="${LiveList.streamDate}"></p>
-                            <p class="sl-live-box-time-txt" th:text="${LiveList.streamTime}"></p>
-                            <div class="share-btn-box">
-                                <i class="fa-solid fa-share-nodes"></i>
-                                <span class="share-btn-txt">방송 공유하기</span>
                             </div>
+                            <p th:text="${LiveList.lStreamName}">라이브제목</p>
+                            <div class="sl-live-box-user">
+                                <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
+                                <span> 리바트 라이프 </span>
+                            </div>
+                        </a>
 
-                        </div>
-                        <p th:text="${LiveList.lStreamName}">라이브제목</p>
-                        <div class="sl-live-box-user">
-                            <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
-                            <span> 리바트 라이프 </span>
-                        </div>
-                    </a>
-
-                    <!-- 방송 시작 후 -->
-                    <a th:href="@{'/livestream/' + ${LiveList.lStreamId}}" class="sl-live-box" th:if="${now.isAfter(LiveList.lStreamTime)}">
-                        <img alt="베너 사진1 " th:src="${LiveList.lStreamImg}"/>
-                        <div class="sl-live-box-info d-flex">
-                            <img class="sl-live-box-info-img" th:if="${LiveList.lfPackageImg == null}" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-LiveStream/livart_live_sample.jpeg" />
-                            <img class="sl-live-box-info-img" th:if="${LiveList.lfPackageImg != null}" th:src="@{${LiveList.lfPackageImg}}" />
-                            <div class="sl-live-box-info-title">
-                                <span th:if="${LiveList.lfPackageName == null}">상품 준비중</span>
-                                <span th:unless="${LiveList.lfPackageName == null}" th:text="${LiveList.lfPackageName}">패키지이름</span>
-                                <div class="coin-img-box">
-                                    <th:block th:each="coins, stat : ${#numbers.sequence(1, LiveList.lfPackageStCoin)}">
-                                        <img class="coin-img" th:src="@{/img/member/coin.png}"/>
-                                    </th:block>
+                        <!-- 방송 시작 후 -->
+                        <a th:href="@{'/livestream/' + ${LiveList.lStreamId}}" class="sl-live-box"
+                           th:if="${now.isAfter(LiveList.lStreamTime)}">
+                            <img alt="베너 사진1 " th:src="${LiveList.lStreamImg}"/>
+                            <div class="sl-live-box-info d-flex">
+                                <img class="sl-live-box-info-img" th:if="${LiveList.lfPackageImg == null}"
+                                     src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-LiveStream/livart_live_sample.jpeg"/>
+                                <img class="sl-live-box-info-img" th:if="${LiveList.lfPackageImg != null}"
+                                     th:src="@{${LiveList.lfPackageImg}}"/>
+                                <div class="sl-live-box-info-title">
+                                    <span th:if="${LiveList.lfPackageName == null}">상품 준비중</span>
+                                    <span th:unless="${LiveList.lfPackageName == null}"
+                                          th:text="${LiveList.lfPackageName}">패키지이름</span>
+                                    <div class="coin-img-box">
+                                        <th:block
+                                                th:each="coins, stat : ${#numbers.sequence(1, LiveList.lfPackageStCoin)}">
+                                            <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                                        </th:block>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <p th:text="${LiveList.lStreamName}">라이브제목</p>
-                        <div class="sl-live-box-user">
-                            <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
-                            <span> 리바트 라이프 </span>
-                        </div>
-                    </a>
+                            <p th:text="${LiveList.lStreamName}">라이브제목</p>
+                            <div class="sl-live-box-user">
+                                <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
+                                <span> 리바트 라이프 </span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -123,6 +136,8 @@
     </div>
 </div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
 </body>
 </html>
