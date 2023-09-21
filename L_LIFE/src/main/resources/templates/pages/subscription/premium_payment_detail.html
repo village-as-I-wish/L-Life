@@ -41,7 +41,7 @@
                 <span> 주문자 </span>
             </div>
             <div class="st-payment-username-content">
-                <input type="text" class="st-payment-username-input">
+                <input type="text" class="st-payment-username-input"  th:value="${session.existingMember.mName}">
             </div>
         </div>
 
@@ -290,6 +290,9 @@
         </div>
     </div>
     <input type="hidden" id="memberName" th:value="${session.existingMember.mName}">
+    <input type="hidden" id="premium-subscription-id" th:value="${paymentProduct[0].subscriptionId}">
+
+
 </div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 

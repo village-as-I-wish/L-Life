@@ -476,3 +476,13 @@ input[type="radio"]:checked + label.select-box {
     line-height: 1.2;
     font-weight: 300;
 }
+
+input{
+    padding-left: 10px;
+}
+
+
+
+input[type="checkbox"]:checked + label:after{
+    background-color: #5D493F;
+}

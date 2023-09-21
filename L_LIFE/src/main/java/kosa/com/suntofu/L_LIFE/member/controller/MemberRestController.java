@@ -6,12 +6,14 @@ import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.SubscriptionListVo;
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/member")
@@ -28,6 +30,7 @@ public class MemberRestController {
             @RequestParam String endDate) {
         // 최근 스탠다드 구독내역
         List<SubscriptionListVo> recentStandardSubscriptionList  = memberService.getRecentStandardScriptionList(memberId,startDate,endDate);
+        log.info("recent st: {}", recentStandardSubscriptionList);
         return new ResponseEntity<>(recentStandardSubscriptionList, HttpStatus.OK);
     }
 

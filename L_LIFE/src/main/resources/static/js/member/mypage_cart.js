@@ -71,6 +71,10 @@ $(document).ready(function() {
             title: '보유한 구독권이 없습니다.',
             text: '스탠다드 구독권 구매 후 이용해주세요.',
             imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = baseUrl + '/l-life/subscription/standard/standard_selection'
+            }
         })
     })
 
@@ -150,6 +154,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     productPrices.forEach(priceElement => {
         const currentPrice = parseInt(priceElement.textContent.replace(/[^0-9]/g, ''));
         priceElement.textContent = '월 ' + currentPrice.toLocaleString() + '원';
+    });
+    const productMinimumPeriod = document.querySelectorAll('.product-minium-peroid');
+
+    productMinimumPeriod.forEach(periodElement => {
+        const currentPeriod = parseInt(periodElement.textContent.replace(/[^0-9]/g, ''));
+        periodElement.textContent = '최소구독기간 : ' + currentPeriod.toLocaleString() + '개월';
     });
     const itemPriceElements = document.querySelectorAll('.item-price');
     const initialProductPrices = [];

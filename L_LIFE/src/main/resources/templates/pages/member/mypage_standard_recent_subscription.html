@@ -47,6 +47,8 @@
 
         </tbody>
     </table>
+    <input type="hidden" class="memberId" th:value="${session.existingMember.mId}">
+
 
     <script src="https://unpkg.com/js-datepicker"></script>
     <script>
@@ -54,10 +56,12 @@
         $(document).ready(function() {
             const startDate = $("#startDate").text();
             const endDate = $("#endDate").text();
+            const memberId = $('.memberId').val()
 
             // REST API 호출
             $.ajax({
-                url: baseUrl + '/l-life/api/v1/member/1/mypage/standard/recent', // API 엔드포인트
+
+                url: baseUrl +'/l-life/api/v1/member/' + memberId +'/mypage/standard/recent',
                 method: 'GET',
                 data: { startDate: startDate, endDate: endDate },
                 dataType: 'json',
@@ -68,7 +72,7 @@
                     data.forEach(product => {
                         const row = $("<tr>");
 
-                        const productDateCell = $("<td>").addClass('product_date').text(product.subscribeStartDate);
+                        const productDateCell = $("<td>").addClass('product_date').text(product.subLfStartDate);
 
                         const productInfoCell = $("<td>");
                         const productInfoDiv = $("<div>").addClass('product-info');
@@ -105,9 +109,10 @@
         $("#btnNewOrder").click(function() {
             const startDate = $("#startDate").text();
             const endDate = $("#endDate").text();
+            const memberId = $('.memberId').val()
 
             $.ajax({
-                url: baseUrl + '/l-life/api/v1/member/1/mypage/standard/recent',
+                url: baseUrl +'/l-life/api/v1/member/' + memberId +'/mypage/standard/recent',
                 type: 'GET',
                 data: {
                     startDate: startDate,
@@ -122,7 +127,7 @@
                     response.forEach(product => {
                         const row = $("<tr>");
 
-                        const productDateCell = $("<td>").addClass('product_date').text(product.subscribeStartDate);
+                        const productDateCell = $("<td>").addClass('product_date').text(product.subLfStartDate);
 
                         const productInfoCell = $("<td>");
                         const productInfoDiv = $("<div>").addClass('product-info');

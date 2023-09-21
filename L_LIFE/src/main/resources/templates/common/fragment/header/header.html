@@ -18,7 +18,7 @@
             </div>
             <div class="header-user" th:if="${session.existingMember == null}">
                 <li><a th:href="@{/member/login}">로그인</a></li>
-                <li><a th:href="@{/member/1/mypage}">회원가입</a></li>
+                <li><a th:href="@{/member/${session.existingMember.mId}/mypage}">회원가입</a></li>
                 <li>고객센터</li>
             </div>
             <div class="header-user" th:if="${session.existingMember != null}">
