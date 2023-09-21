@@ -47,7 +47,7 @@ video {
     display: flex;
     float: right;
     margin-right: 25px;
-    font-size: 20px;
+    font-size: 16px;
     color: #aeaeae;
 }
 .pl-main-sub > ul > li{
@@ -65,9 +65,9 @@ video {
 .pl-main-sub-product{
     height: 340px;
     margin-bottom: 40px;
-    margin-right: 30px;
+    margin-right: 16px;
     position: relative;
-    width: 240px;
+    width: 250px;
 }
 .pl-main-sub-product >  a{
     text-decoration: none;
@@ -176,4 +176,7 @@ video {
     width: auto;
     border: none;
     background: none;
+}
+.pl-main-sub-product-txt > p{
+    min-height: 48px;
 }
