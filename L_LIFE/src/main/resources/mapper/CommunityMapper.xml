@@ -19,7 +19,7 @@
 
         <collection property="pages" ofType="BookPageVo">
             <id property="bpId" column="bp_id" />
-            <id property="bookId" column="book_id" />
+            <result property="bookId" column="book_id" />
             <result property="bpTitle" column="bp_title" />
             <result property="bpContent" column="bp_content" />
             <result property="bpImg" column="bp_img" />
@@ -31,7 +31,7 @@
 
         <collection property="furnitures" ofType="BookFurnitureVo">
             <id property="bfId" column="bf_id" />
-            <id property="bookId" column="book_id" />
+            <result property="bookId" column="book_id" />
             <result property="lfId" column="lf_id" />
             <result property="lfName" column="lf_name" />
             <result property="lfImgMain" column="lf_img_main" />
