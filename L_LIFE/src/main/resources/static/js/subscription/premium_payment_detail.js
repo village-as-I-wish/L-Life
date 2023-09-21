@@ -45,6 +45,15 @@ function createPaymentData(){
  * 결제 함수
  */
 function payment(memberId){
+    if ($('#premium-subscription-id').val() == 0){
+        Swal.fire({
+            title: '프리미엄 구독권이 없습니다.',
+            text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+            imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+        })
+        return
+    }
+
     var selectedPaymentMethod = $(".payment-btn-group input[type='radio']:checked").val();
     if (selectedPaymentMethod === "") {
         alert('결제 방식을 선택해주세요');

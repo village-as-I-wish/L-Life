@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/member/cart.css}">
+<link rel="stylesheet" th:href="@{/css/member/mypage_cart.css}">
 
 <head>
     <th:block th:replace="common/fragment/commonHead"></th:block>
@@ -105,7 +105,7 @@
                         구독 시작하기
                     </button>
                     <button th:if="${standardSubscription == null}" class="no-subscription-btn">
-                        구독권 구매하기
+                        구독 시작하기
                     </button>
                 </div>
             </div>
@@ -135,6 +135,7 @@
                                 <span class="brand-name" th:text="${product.getLfBrandName()}"></span>
                                 <span class="product-name" th:id="'lfName_' + ${iterStat.index}" th:text="${product.lfName}"></span>
                                 <div class="product-price" th:text="${product.lfPrPrice}"></div>
+                                <div class="product-minium-peroid" th:text="${product.lfPrMinPeriod}"></div>
                                 <div class="product-option" th:text="'옵션: ' + ${product.getLfOptName()}"></div>
                             </div>
                         </a>

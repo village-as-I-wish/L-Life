@@ -27,7 +27,7 @@
     <section class="delivery-info">
         <div class="delivery-title-wrap">
             <div class="delivery-title">주문배송현황</div>
-            <a href="/l-life/member/1/mypage/delivery">
+            <a th:href="@{'/member/'+ ${session.existingMember.mId} +'/mypage/delivery'}">
                 <button class="delivery-btn">배송현황 보러가기</button>
             </a>
         </div>

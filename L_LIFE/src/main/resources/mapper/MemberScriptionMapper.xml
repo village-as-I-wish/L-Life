@@ -43,8 +43,8 @@
             lf.LF_IMG_MAIN,
             lf_opt.LF_OPT_NAME,
             lf_brand.LF_BRAND_NAME,
-            subscribe.SUBSCRIBE_START_DATE,
-            subscribe.SUBSCRIBE_END_DATE,
+            sub_lf.SUB_LF_START_DATE,
+            sub_lf.SUB_LF_END_DATE,
             subscription_plan.SUBSCRIPTION_PLAN_NAME
         from
             SUBSCRIPTION subscribe
@@ -65,13 +65,13 @@
             lf.LF_SUB_TYPE = 0
           and
             (
-            (#{startDate} <= subscribe.SUBSCRIBE_START_DATE
+            (#{startDate} <= sub_lf.SUB_LF_START_DATE
                 and
-             subscribe.SUBSCRIBE_START_DATE<= #{endDate})
+             sub_lf.SUB_LF_START_DATE<= #{endDate})
             or
-            (#{startDate} <= subscribe.SUBSCRIBE_END_DATE
+            (#{startDate} <= sub_lf.SUB_LF_END_DATE
                 and
-             subscribe.SUBSCRIBE_END_DATE  <= #{endDate})
+             sub_lf.SUB_LF_END_DATE  <= #{endDate})
             )
         ]]>
 
@@ -128,8 +128,8 @@
             lf.LF_IMG_MAIN,
             lf_opt.LF_OPT_NAME,
             lf_brand.LF_BRAND_NAME,
-            subscribe.SUBSCRIBE_START_DATE,
-            subscribe.SUBSCRIBE_END_DATE
+            sub_lf.SUB_LF_START_DATE,
+            sub_lf.SUB_LF_END_DATE
         from
             SUBSCRIPTION subscribe
                 join
@@ -148,14 +148,14 @@
             lf.LF_SUB_TYPE = 1
           and
             (
-            (#{startDate} <= subscribe.SUBSCRIBE_START_DATE
-          and
-             subscribe.SUBSCRIBE_START_DATE<= #{endDate})
-          or
-            (#{startDate} <= subscribe.SUBSCRIBE_END_DATE
-            and
-             subscribe.SUBSCRIBE_END_DATE  <= #{endDate})
-                )
+            (#{startDate} <= sub_lf.SUB_LF_START_DATE
+                and
+             sub_lf.SUB_LF_START_DATE<= #{endDate})
+            or
+            (#{startDate} <= sub_lf.SUB_LF_END_DATE
+                and
+             sub_lf.SUB_LF_END_DATE  <= #{endDate})
+            )
         ]]>
 
     </select>
