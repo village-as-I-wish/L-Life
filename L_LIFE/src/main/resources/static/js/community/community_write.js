@@ -180,7 +180,7 @@ $(document).ready(function(){
 
         const formData = new FormData();
 
-        var pages = []
+        // var pages = []
         var furnitures = []
         // var files = []
         // var aifiles = []
@@ -201,11 +201,12 @@ $(document).ready(function(){
             let furniture = {
                 lfId: $('#product-'+i).val()
             }
+            formData.append("pages",page)
             formData.append('files', selectedFile);
             // files.push(selectedFile)
             // formData.append("aifiles",$('#ai-image-file'+i).val())
             // aifiles.push($('#ai-image-file'+i).val())
-            pages.push(page)
+            // pages.push(page)
             furnitures.push(furniture)
         }
 
@@ -216,7 +217,7 @@ $(document).ready(function(){
 
 
         formData.append("mId",memberId);
-        formData.append("pages",pages)
+        // formData.append("pages",pages)
         // formData.append("files",files);
         // formData.append("aifiles",aifiles);
         // formData.append("pages",pages);

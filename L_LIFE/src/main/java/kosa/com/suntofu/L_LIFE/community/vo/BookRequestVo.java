@@ -18,11 +18,8 @@ public class BookRequestVo {
     private int bookId;
 
     private int mId;
-    @NotNull
     private String bookMainImg;
-    @NotNull
     private List<BookPageRequestVo> pages;
-    @NotNull
     private List<BookFurnitureVo> furnitures;
     private List<MultipartFile> files;
     private List<MultipartFile> aifiles;

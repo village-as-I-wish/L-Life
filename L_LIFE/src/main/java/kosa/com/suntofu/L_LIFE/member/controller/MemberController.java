@@ -42,11 +42,7 @@ public class MemberController {
         int deliveryProgress = memberService.getDeliveryProgressStatus(existingMember.getMId());
         int deliveryComplete = memberService.getDeliveryCompleteStatus(existingMember.getMId());
 
-        Integer standardSubscriptionId = memberService.getStandardSubscriptionId(existingMember.getMId());
-        SubscriptionVo standardSubscription = memberService.getStandardSubscription(standardSubscriptionId);
-        Integer premiumSubscriptionId = memberService.getPremiumSubscriptionId(existingMember.getMId());
 
-        System.out.println(standardSubscription);
         HttpSession session = request.getSession();
         // 세션 저장
         session.setAttribute("existingMember", existingMember);
@@ -55,9 +51,6 @@ public class MemberController {
         session.setAttribute("deliveryReady",deliveryReady);
         session.setAttribute("deliveryProgress",deliveryProgress);
         session.setAttribute("deliveryComplete",deliveryComplete);
-        session.setAttribute("stSubId",standardSubscriptionId);
-        session.setAttribute("stSub",standardSubscription);
-        session.setAttribute("prSubId",premiumSubscriptionId);
 
         return "pages/main/main";
     }
@@ -85,9 +78,9 @@ public class MemberController {
     public String loadMyPageStandard(Model model, @PathVariable int memberId){
         // 스탠다드 구독내역
         List<SubscriptionListVo> standardSubscriptionList  = memberService.getAllStandardScriptionList(memberId);
+        SubscriptionVo standardSubscription = memberService.getStandardSubscription(memberId);
 
-//        System.out.println("standardSubscriptionList" + standardSubscriptionList);
-
+        model.addAttribute("standardSubscription", standardSubscription);
         model.addAttribute("standardSubscriptionList", standardSubscriptionList);
         model.addAttribute("baseUrl",baseUrl);
 
@@ -120,12 +113,19 @@ public class MemberController {
         // 프리미엄 장바구니
         List<CartVo> premiumCarts  = memberService.getAllPremiumCarts(memberId);
 
+
+        SubscriptionVo standardSubscription = memberService.getStandardSubscription(memberId);
+        SubscriptionVo premiumSubscription = memberService.getPremiumSubscription(memberId);
+
         log.info("premium carts : {}",premiumCarts);
         log.info("standard carts : {}",standardCarts);
 
         model.addAttribute("baseUrl",baseUrl);
         model.addAttribute("standardCarts", standardCarts);
         model.addAttribute("premiumCarts", premiumCarts);
+        model.addAttribute("standardSubscription", standardSubscription);
+        model.addAttribute("premiumSubscription", premiumSubscription);
+
         return "pages/member/mypage_cart";
     }
 
