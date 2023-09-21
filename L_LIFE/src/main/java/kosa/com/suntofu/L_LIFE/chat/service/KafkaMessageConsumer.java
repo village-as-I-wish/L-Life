@@ -25,6 +25,7 @@ public class KafkaMessageConsumer {
 
         log.debug("Received message from Kafka: " + message);
 
+
         // 1. MongoDB에 메시지 저장
         ChatMessageVo chatMessageVo = messageRepository.save(message);
         log.info("chatting message saved {} ", chatMessageVo);
