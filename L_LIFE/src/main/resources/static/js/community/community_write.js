@@ -24,6 +24,7 @@ function chatGPT(index) {
         prompt: prompt,
     }
 
+    // GPT
     // $.ajax({
     //     url: "https://api.openai.com/v1/images/generations",
     //     method: 'POST',
@@ -43,6 +44,7 @@ function chatGPT(index) {
     //     $('#loading').hide();
     // });
 
+    // Karlo
     $.ajax({
         url: "https://api.kakaobrain.com/v2/inference/karlo/t2i",
         method: 'POST',
@@ -58,16 +60,15 @@ function chatGPT(index) {
         $('#ai-image-file'+index).val(imageFile)
         console.log("생성된 이미지 파일" + imageFile)
         console.log(imageFile)
-        $('#ai-image-'+index).attr("src", response.data[0].url)
+        $('#ai-image-'+index).attr("src", response.images[0].image)
 
         $('#loading').hide();
     });
 
     // 줄글 기반 요약문 생성
-    const contents = $('#content-1').val()
     const contents = $('#content-'+index).val()
     console.log(contents)
-    const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents
+    const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents + 'within 20 characters.'
 
     const data2 = {
         model: 'gpt-3.5-turbo-instruct',
