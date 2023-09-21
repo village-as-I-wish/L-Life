@@ -102,7 +102,7 @@ img{
     display: flex;
     justify-content: space-between;
     margin-bottom: 180px;
-    animation: slide 40s linear infinite;
+    animation: slide 100s linear infinite;
 }
 
 .main-furniture-slide {
