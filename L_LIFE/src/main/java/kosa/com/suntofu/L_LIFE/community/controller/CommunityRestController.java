@@ -28,6 +28,19 @@ import java.util.List;
 public class CommunityRestController {
 
     private final CommunityService communityService;
+  
+    @Operation(summary = "커뮤니티 메인 - 플립북 조회 ", description = "플립북 정보를 보여줍니다.")
+    @GetMapping("/book/{bookId}")
+    public ResponseEntity<BasicResponse> selectBookDetailById(@PathVariable int bookId){
+        BookVo bookDetail = communityService.selectBookDetailById(bookId);
+        log.info("북아이디 details for bookId: {}", bookDetail);
+
+        if (bookDetail != null){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("메인 플립북 상세 정보 조회 성공").result(bookDetail).build(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(404).message("메인 플립북 상세 정보 조회 실패").result(null).build(), HttpStatus.NOT_FOUND);
+    }
 
     @Operation(summary = "이미지 업로드", description = "S3에 단일 이미지를 업로드합니다.")
     @PostMapping("/upload-files")
