@@ -42,10 +42,19 @@
     height: 700px;
     overflow: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: column-reverse;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: flex-end;*/
+}
+.chat-box::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
 }
 
+.chat-box::-webkit-scrollbar-thumb {
+    background: #5d493c; /* 스크롤바의 색상 */
+    border-radius: 10px;
+}
 .chat {
     padding: 6px;
     font-size: 16px;
@@ -117,13 +126,12 @@
     justify-content: center;
     align-items: center;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-
 }
 .share-btn-box{
     width: 10%;
     border-right: 2px solid white;
 }
-.share-btn-txt{
+.share-btn-txt, .share-btn-txt2{
     width:90%;
 }
 .llife-logo-box{
@@ -263,4 +271,29 @@
 
 .hidden{
     display: none;
+}
+.ad-slide{
+    display: flex;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.ad-slide p{
+    background: lemonchiffon;
+    font-size: 15px;
+    margin-top: 12px;
+    text-align: center;
+    animation: textLoop 20s linear infinite;
+    margin-left: 20px;
+    color: #ed2650;
+}
+@keyframes textLoop {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
 }
