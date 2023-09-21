@@ -4,6 +4,8 @@ package kosa.com.suntofu.L_LIFE.subscription.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
+import kosa.com.suntofu.L_LIFE.notification.service.NotificationService;
+import kosa.com.suntofu.L_LIFE.notification.vo.NotificationMessageVo;
 import kosa.com.suntofu.L_LIFE.subscription.service.SubscriptionService;
 import kosa.com.suntofu.L_LIFE.subscription.util.SubscriptionReturn;
 import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
@@ -26,6 +28,7 @@ import java.util.List;
 public class SubscriptionRestController {
 
     private final SubscriptionService subscriptionService;
+    private final NotificationService notificationService;
 
     @Operation(summary = "스탠다드 구독권 구매", description = "스탠다드 구독권을 구매합니다(33/55)")
     @PostMapping("")
@@ -58,6 +61,8 @@ public class SubscriptionRestController {
         int result = subscriptionService.addPrLFSubcriptoin(payFurnitureList);
         session.removeAttribute("prPaymentProduct");
 
+        NotificationMessageVo notificationMessageVo = new NotificationMessageVo();
+        notificationService.sendMail(notificationMessageVo);
 
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("프리미엄 구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
 

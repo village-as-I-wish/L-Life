@@ -16,8 +16,7 @@ public class StompChatController {
     private final SimpMessagingTemplate template;
 
     // KafkaService 의존성 주입
-    @Autowired
-    private KafkaService kafkaService;
+    private final KafkaService kafkaService;
 
     //Client가 SEND할 수 있는 경로
     //stompConfig에서 설정한 applicationDestinationPrefixes와 @MessageMapping 경로가 병합됨

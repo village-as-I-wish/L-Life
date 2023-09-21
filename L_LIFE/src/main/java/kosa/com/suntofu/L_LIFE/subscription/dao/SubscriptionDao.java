@@ -30,4 +30,6 @@ public interface SubscriptionDao {
     int stDeleteCart(PayFurnitureVo payFurniture);
 
     int stUpdateSubPoint(PayFurnitureVo payFurniture);
+
+    void renewStSubscription();
 }

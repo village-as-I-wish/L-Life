@@ -5,8 +5,8 @@ import kosa.com.suntofu.L_LIFE.chat.service.MessageService;
 import kosa.com.suntofu.L_LIFE.chat.vo.ChatMessageVo;
 import kosa.com.suntofu.L_LIFE.common.util.CartReturn;
 import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +29,7 @@ import io.openvidu.java.client.SessionProperties;
 @Slf4j
 @CrossOrigin(origins = "*")
 @RestController
+@RequiredArgsConstructor
 public class LiveStreamRestController {
 
     @Value("${OPENVIDU_URL}")
@@ -38,8 +39,7 @@ public class LiveStreamRestController {
     private String OPENVIDU_SECRET;
 
     private OpenVidu openvidu;
-    @Autowired
-    private MessageService messageService;
+    private final MessageService messageService;
 
     @PostConstruct
     public void init() {

@@ -10,6 +10,7 @@ import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionPlanVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -119,6 +120,14 @@ public class SubscriptionServiceImpl implements SubscriptionService {
             int res5 = subscriptionDao.stUpdateSubPoint(payFurniture);
 
         }
+        return 1;
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 0 * * *") // 매일 00시 실행
+//    @Scheduled(cron = "0 * * * * *") // 매 분 실행
+    public int renewStSubscription() {
+         subscriptionDao.renewStSubscription();
         return 1;
     }
 }

@@ -1,7 +1,6 @@
 package kosa.com.suntofu.L_LIFE.community.dao;
 
-import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
-import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
+import kosa.com.suntofu.L_LIFE.community.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,4 +12,10 @@ public interface CommunityDao {
     BookVo selectBookDetailById(int bookId);
     List<ProductVo> getProductByCategoryId(int categoryId);
     List<ProductVo> selectProductByKeyword(String keyword);
+
+    void insertBook(BookRequestVo bookRequestVo);
+
+    int insertBookPages(List<BookPageRequestVo> pages);
+
+    int insertBFurniture(List<BookFurnitureVo> furnitures);
 }

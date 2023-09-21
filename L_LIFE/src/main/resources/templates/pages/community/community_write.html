@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
     <script th:src="@{/js/community/community_write.js}" type="text/javascript"></script>
-
+    <script th:inline="javascript">
+        var gptToken = /*[[${gptToken}]]*/ null;
+        var kakaoRestApiKey = /*[[${kakaoRestApiKey}]]*/ null;
+    </script>
 </head>
 <body>
     <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
@@ -52,21 +55,26 @@
     <div class="hd__inner1100 write-box">
         <div class="write-box-slider">
 
-                <div class="write-slide-wrapper">
-                    <div class="write-container">
+            <!--  로딩 바  -->
+            <div id="loading">
+                <img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/loading/vllo+2.gif">
+            </div>
+
+                <div class="write-slide-wrapper" >
+                    <div class="write-container" th:each="index : ${#numbers.sequence(1, 3)}">
                         <div class="left-container">
                             <div class="upload-box">
                                 <div  class="drag-file">
-                                    <img class="upload-file-1 ex-image" src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
+                                    <img th:class="'upload-file-'+${index} +' ex-image'" src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
                                          alt="파일 아이콘">
                                     <p class="message">Files to upload</p>
                                     <span> 사진을 선택하여 업로드 해주세요. </span>
                                 </div>
                             </div>
                             <div class="imgBtn-box">
-                                <input type="file" id="imgUpload01" onchange="displayImage(this,1)" style="display:none;">
-                                <label class="imgUploadLabel" for="imgUpload01">이미지 업로드</label>
-                                <button class="Ai-Img-btn" onclick="">AI 이미지 생성</button>
+                                <input type="file" th:id="'imgUpload0'+${index}" th:onchange="displayImage(this, [[${index}]])" style="display:none;">
+                                <label class="imgUploadLabel" th:for="'imgUpload0'+${index}">이미지 업로드</label>
+                                <button class="Ai-Img-btn" th:onclick="chatGPT([[${index}]])">AI 이미지 생성</button>
                             </div>
                         </div>
                         <div class="center-container">
@@ -74,16 +82,16 @@
                         </div>
                         <div class="right-container">
                             <div class="input-group">
-                                <input type="text"placeholder="제목을 입력해주세요.">
+                                <input th:id="'title-'+${index}" type="text"placeholder="제목을 입력해주세요.">
                             </div>
                             <div class="input-group">
-                                <textarea rows="6" placeholder="내용을 입력해주세요."></textarea>
+                                <textarea th:id="'content-'+${index}" class="contents" name="contents" rows="6" placeholder="내용을 입력해주세요."></textarea>
                             </div>
                             <div class="input-group">
-                                <input type="text" placeholder="태그를 입력해주세요.">
+                                <input th:id="'tag-'+${index}" class="tags" name="tags" type="text" placeholder="태그를 입력해주세요.">
                             </div>
                             <div class="input-group">
-                                <select id="category" name="category">
+                                <select th:id="'category-'+${index}" name="category">
                                     <option value="0">카테고리 선택</option>
                                     <option value="1">소파</option>
                                     <option value="2">테이블</option>
@@ -92,126 +100,24 @@
                                     <option value="5">침대</option>
                                     <option value="6">수납</option>
                                 </select>
-                                <select id="product" name="product">
+                                <select th:id="'product-'+${index}" name="product">
                                     <option value="기본값">선택해주세요</option>
-                                    <option value="가구1">리바트가구1</option>
                                 </select>
                             </div>
                             <div class="input-ai-image">
-                                <img src="https://cdn.aitimes.com/news/photo/202212/148277_156620_111.png">
+                                <img th:id="'ai-image-'+${index}" src="https://cdn.aitimes.com/news/photo/202212/148277_156620_111.png">
                             </div>
-<!--                            <div class="input-page">-->
-<!--                                1페이지 / 3페이지-->
-<!--                            </div>-->
                         </div>
-                    </div>
 
-                    <div class="write-container">
-                        <div class="left-container">
-                            <div class="upload-box">
-                                <div  class="drag-file">
-                                    <img class="upload-file-2 ex-image" src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
-                                         alt="파일 아이콘">
-                                    <p class="message">Files to upload</p>
-                                    <span> 사진을 선택하여 업로드 해주세요. </span>
-                                </div>
-                            </div>
-                            <div class="imgBtn-box">
-                                <input type="file" id="imgUpload02" onchange="displayImage(this,2)" style="display:none;">
-                                <label class="imgUploadLabel" for="imgUpload02">이미지 업로드</label>
-                                <button class="Ai-Img-btn" onclick="">AI 이미지 생성</button>
-                            </div>
-                        </div>
-                        <div class="center-container">
+                        <input th:id="'ai-text'+${index}" type="hidden">
+                        <input th:id="'ai-image-file'+${index}" type="hidden">
 
-                        </div>
-                        <div class="right-container">
-                            <div class="input-group">
-                                <input type="text"placeholder="제목을 입력해주세요.">
-                            </div>
-                            <div class="input-group">
-                                <textarea rows="6" placeholder="내용을 입력해주세요."></textarea>
-                            </div>
-                            <div class="input-group">
-                                <input type="text" placeholder="태그를 입력해주세요.">
-                            </div>
-                            <div class="input-group">
-                                <select name="category">
-                                    <option value="카테고리">카테고리 선택</option>
-                                    <option value="소파">소파</option>
-                                    <option value="테이블">테이블</option>
-                                    <option value="조명">조명</option>
-                                    <option value="의자">의자</option>
-                                    <option value="침대">침대</option>
-                                    <option value="수납">수납</option>
-                                </select>
-                                <select>
-                                    <option value="기본값">선택해주세요</option>
-                                    <option value="가구1">리바트가구1</option>
-                                </select>
-                            </div>
-                            <div class="input-ai-image">
-                                <img src="https://cdn.aitimes.com/news/photo/202212/148277_156620_111.png">
-                            </div>
-<!--                            <div class="input-page">-->
-<!--                                2페이지 / 3페이지-->
-<!--                            </div>-->
-                        </div>
-                    </div>
-                    <div class="write-container">
-                        <div class="left-container">
-                            <div class="upload-box">
-                                <div  class="drag-file">
-                                    <img class="upload-file-3 ex-image" src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
-                                         alt="파일 아이콘">
-                                    <p class="message">Files to upload</p>
-                                    <span> 사진을 선택하여 업로드 해주세요. </span>
-                                </div>
-                            </div>
-                            <div class="imgBtn-box">
-                                <input type="file" id="imgUpload03" onchange="displayImage(this,3)" style="display:none;">
-                                <label class="imgUploadLabel" for="imgUpload03">이미지 업로드</label>
-                                <button class="Ai-Img-btn" onclick="">AI 이미지 생성</button>
-                            </div>
-                        </div>
-                        <div class="center-container">
-
-                        </div>
-                        <div class="right-container">
-                            <div class="input-group">
-                                <input type="text"placeholder="제목을 입력해주세요.">
-                            </div>
-                            <div class="input-group">
-                                <textarea rows="6" placeholder="내용을 입력해주세요."></textarea>
-                            </div>
-                            <div class="input-group">
-                                <input type="text" placeholder="태그를 입력해주세요.">
-                            </div>
-                            <div class="input-group">
-                                <select name="category">
-                                    <option value="카테고리">카테고리 선택</option>
-                                    <option value="소파">소파</option>
-                                    <option value="테이블">테이블</option>
-                                    <option value="조명">조명</option>
-                                    <option value="의자">의자</option>
-                                    <option value="침대">침대</option>
-                                    <option value="수납">수납</option>
-                                </select>
-                                <select>
-                                    <option value="기본값">선택해주세요</option>
-                                    <option value="가구1">리바트가구1</option>
-                                </select>
-                            </div>
-                            <div class="input-ai-image">
-                                <img src="https://cdn.aitimes.com/news/photo/202212/148277_156620_111.png">
-                            </div>
-<!--                            <div class="input-page">-->
-<!--                                3페이지 / 3페이지-->
-<!--                            </div>-->
-                        </div>
                     </div>
 
                 </div>
+<!--            <input type="hidden" id="memberId" th:value="${session.existingMember.mId}">-->
+            <input type="hidden" id="memberId" th:value=1>
+
             <div class="current-page-num">1페이지 / 3페이지</div>
             <div class="input-btn">
                 <button class="show-prev">이전 페이지</button>

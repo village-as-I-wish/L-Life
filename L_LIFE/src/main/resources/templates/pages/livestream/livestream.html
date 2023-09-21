@@ -53,7 +53,7 @@
 
             </button>
 
-            <button className="livestream-sharebtn" name="commit" value="Join!" th:if="${session.existingMember.mIsAdmin == 0}" th:onclick="'joinSession(' + ${session.existingMember.mIsAdmin} + ')'">
+            <button class="livestream-sharebtn" name="commit" value="Join!" th:if="${session.existingMember.mIsAdmin == 0}" th:onclick="'joinSession(' + ${session.existingMember.mIsAdmin} + ')'">
                 <div class="share-btn-box">
                     <i class="fa-solid fa-share-nodes"></i>
                 </div>
@@ -105,12 +105,15 @@
         <div class="stream-product-box-header">
             <p> 판매 상품 </p>
         </div>
+        <div class="ad-slide">
+            <p> 🔔 패키지 구독 시 각 상품별 코인 1개씩 할인됩니다.🔔</p>
+        </div>
 
         <div class="stream-product-name">
-            <span class="dark-brown"> 패키지 상품명 </span>: <span th:text="${liveStreamDetail.getLfPackage().lfPackageName}"> </span>
+            <span class="dark-brown"> 패키지 </span>: <span th:text="${liveStreamDetail.getLfPackage().lfPackageName}"> </span>
         </div>
         <div class="stream-product-price">
-            <span class="stream-product-price-txt"> 판매 ( 할인 ) 코인 :  </span>
+            <span class="stream-product-price-txt"> 패키지 구독 코인 :  </span>
             <span> L-life Coin <span th:text="${liveStreamDetail.getLfPackage().getLfPackageStCoin()}">0</span>개 </span>
             <button class="stream-product-cart-btn dark-brown" th:onclick="packageToCart()"> 패키지 담기</button>
         </div>

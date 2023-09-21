@@ -1,7 +1,12 @@
-
-/*
-* 패키지 상품 할인 ! 장바구니 담기!
-* */
+$(document).ready(function() {
+    const scrollableDiv = document.getElementById("msgArea");
+    console.log("scroll", scrollableDiv.scrollHeight);
+// 스크롤이 맨 아래로 내려가도록 설정합니다.
+    scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
+})
+    /*
+    * 패키지 상품 할인 ! 장바구니 담기!
+    * */
 function packageToCart(){
     var existingMemberId =parseInt($('#existingMember').text())
     console.log("testing Package to cart", existingMemberId)
