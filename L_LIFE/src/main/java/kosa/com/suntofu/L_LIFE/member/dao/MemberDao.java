@@ -43,5 +43,7 @@ public interface MemberDao {
 
     Integer getPrSubId(int mId);
 
-    SubscriptionVo getStandardSubscription(Integer standardSubscriptionId);
+    SubscriptionVo getStandardSubscription(int memberId);
+
+    SubscriptionVo getPremiumSubscription(int memberId);
 }

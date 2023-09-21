@@ -81,3 +81,17 @@ a.product-link {
     padding-bottom: 10px;
     margin-top: 10px;
 }
+
+
+
+.no-subscription-btn{
+    background-color: #5D493E;
+    opacity: 50%;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    text-decoration-line: none;
+}

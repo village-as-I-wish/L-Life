@@ -19,7 +19,7 @@
 
         <collection property="pages" ofType="BookPageVo">
             <id property="bpId" column="bp_id" />
-            <id property="bookId" column="book_id" />
+            <result property="bookId" column="book_id" />
             <result property="bpTitle" column="bp_title" />
             <result property="bpContent" column="bp_content" />
             <result property="bpImg" column="bp_img" />
@@ -31,7 +31,7 @@
 
         <collection property="furnitures" ofType="BookFurnitureVo">
             <id property="bfId" column="bf_id" />
-            <id property="bookId" column="book_id" />
+            <result property="bookId" column="book_id" />
             <result property="lfId" column="lf_id" />
             <result property="lfName" column="lf_name" />
             <result property="lfImgMain" column="lf_img_main" />
@@ -75,4 +75,24 @@
         LEFT JOIN LFURNITUREBRAND lfb ON lf.LF_BRAND_ID = lfb.LF_BRAND_ID
         WHERE lf.lf_name LIKE '%' ||  #{keyword} || '%'
     </select>
+
+    <insert id="insertBook" parameterType="BookRequestVo">
+        <selectKey keyProperty="bookId" resultType="int" order="BEFORE">
+            select book_id_seq.nextval FROM DUAL
+        </selectKey>
+        insert into book(book_id, m_id) values (#{bookId},#{mId})
+    </insert>
+
+    <insert id="insertBookPages" parameterType="java.util.List">
+        INSERT INTO bookpage (book_id, bp_title, bp_content, bp_img, bp_ai_img, bp_ai_content, bp_tag, bp_page_num)
+        <foreach collection="list" item="item" separator="UNION ALL">
+            SELECT #{item.bookId}, #{item.bpTitle, jdbcType=VARCHAR}, #{item.bpContent, jdbcType=VARCHAR} ,#{item.bpImg, jdbcType=VARCHAR}, #{item.bpAiImg, jdbcType=VARCHAR},#{item.bpAiContent, jdbcType=VARCHAR}, #{item.bpTag, jdbcType=VARCHAR},#{item.bpPageNum} FROM DUAL
+        </foreach>
+    </insert>
+    <insert id="insertBFurniture" parameterType="List">
+        INSERT INTO bookfurniture (book_id, lf_id)
+        <foreach collection="list" item="item" separator="UNION ALL">
+            SELECT #{item.bookId}, #{item.lfId} FROM DUAL
+        </foreach>
+    </insert>
 </mapper>

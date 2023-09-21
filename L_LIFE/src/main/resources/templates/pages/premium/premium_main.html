@@ -13,8 +13,14 @@
 <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 <th:block th:replace="common/fragment/header/sub_cate_header :: subCateHeaderFragment(1)"></th:block>
 
+<!--<div class="sl-top-banner">-->
+<!--    <img alt="베너 사진1 " th:src="@{/img/premium/list_top_banner.png}"/>-->
+<!--</div>-->
+
 <div class="sl-top-banner">
-    <img alt="베너 사진1 " th:src="@{/img/premium/list_top_banner.png}"/>
+    <video muted autoplay loop>
+        <source th:src="@{/img/premium/리바트_영상.mp4}" type="video/mp4">
+    </video>
 </div>
 
 <div class="pl-main-content">
@@ -52,7 +58,7 @@
                                 <span th:text="${product.lfBrandName}"></span>
                                 <div class="coin-img-box">
                                     월
-                                    <span th:text="${product.lfPrPrice}"></span>
+                                    <span th:text="|${#numbers.formatInteger(product.lfPrPrice, 0, 'COMMA')}원|">15,000원</span>
                                 </div>
                             </div>
                         </div>

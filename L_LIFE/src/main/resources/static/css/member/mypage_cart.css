@@ -220,3 +220,31 @@ a.product-link {
     color: #f65c60;
     font-weight: bold;
 }
+
+.no-subscription-btn{
+    background-color: #5D493F;
+    opacity: 100%;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    text-decoration-line: none;
+    width: 250px;
+    margin-top: 7px;
+}
+
+
+.standard-add-link:hover,
+.premium-add-link:hover{
+    color: black;
+}
+a:hover{
+    color: black;
+}
+.product-minium-peroid{
+    color: #5d493e;
+    margin-bottom: 10px;
+    font-size: 15px;
+}

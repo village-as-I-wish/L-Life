@@ -57,11 +57,18 @@
                         <input type="hidden" class="form-control" id="t_key" name="t_key" placeholder="제공받은 APIKEY" th:value="${deliveryKey}">
                     </div>
                     <div class="form-group">
-                        <input type="hidden" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="05">
+                        <input type="hidden" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="04">
                     </div>
                     <div class="form-group">
-                        <label for="t_invoice">CJ 대한통운</label>
-                        <input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" th:value="${product.deliveryCode}"  th:disabled>
+                        <label for="t_invoice"
+                               th:text="${product.deliveryCode != null} ? 'CJ 대한통운' : ''"
+                        ></label>
+                        <input type="hidden" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" th:value="${product.deliveryCode}"  th:disabled>
+                    </div>
+                    <div class="form-group">
+                        <span placeholder="택배사 코드"
+                              th:text="${product.deliveryCode != null} ? ${product.deliveryCode} : '배송이 준비중입니다.'"
+                              value="05"></span>
                     </div>
                     <button type="submit" class="btn custom-button">조회하기</button>
                 </form>

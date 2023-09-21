@@ -1,6 +1,8 @@
-Kakao.init('853107fcd1d77eb702ba6624f015df5b');
-console.log(Kakao.isInitialized()); // sdk 초기화 판단 여부
+$(document).ready(function() {
 
+    Kakao.init(kakaoJavascriptKey);
+    console.log(Kakao.isInitialized()); // sdk 초기화 판단 여부
+})
 function kakaoLogin() {
     Kakao.Auth.login({
         success: function (response) {

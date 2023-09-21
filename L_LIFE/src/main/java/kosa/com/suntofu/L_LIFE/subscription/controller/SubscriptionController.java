@@ -104,7 +104,7 @@ public class SubscriptionController {
         HttpSession session = request.getSession();
         session.setAttribute("prPaymentProduct",selectedProducts);
         Map<String, String> response = new HashMap<>();
-        response.put("redirectUrl", "https://livart-life.com/l-life/subscription/premium/payment_detail");
+        response.put("redirectUrl", request.getContextPath() + "/subscription/premium/payment_detail");
 
         return response;
     }

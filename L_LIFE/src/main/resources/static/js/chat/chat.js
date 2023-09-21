@@ -53,7 +53,8 @@ $(document).ready(function(){
             var str = "<p class='chat'>";
             str += "<span class='chat-user'>" + writer + "</span>" + " : " + chat.message+ "</p>";
         }
-        $("#msgArea").append(str);
+        $("#msgArea").prepend(str);
+
     }
 
     // Fetch chat messages from the API and appends them to the chat display.
@@ -67,6 +68,7 @@ $(document).ready(function(){
                         appendChatMessage(chat);
                     });
                 }
+
             },
             error: function(err) {
                 console.error("Error fetching chat messages:", err);
@@ -76,4 +78,8 @@ $(document).ready(function(){
 
     // Initial call to fetch and display existing messages
     fetchChatMessages();
+//     const scrollableDiv = document.getElementById("msgArea");
+//     console.log("scroll", scrollableDiv.scrollHeight);
+// // 스크롤이 맨 아래로 내려가도록 설정합니다.
+//     scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 });

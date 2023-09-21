@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.community.service;
 
+import kosa.com.suntofu.L_LIFE.community.vo.BookRequestVo;
 import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
 import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,4 +15,6 @@ public interface CommunityService {
     List<BookVo> selectBooks();
     List<ProductVo> getProductByCategoryId(int categoryId);
     List<ProductVo> getProductByKeyword(String keyWord);
+
+    int createBook(BookRequestVo bookRequestVo);
 }

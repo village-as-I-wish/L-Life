@@ -18,12 +18,12 @@ public class MainController {
         return "pages/main/livart_main";
     }
 
-    @GetMapping("/main")
+    @GetMapping("/main2")
     public String loadLlifeMainPage(Model model){
         return "pages/main/main";
     }
 
-    @GetMapping("/main2")
+    @GetMapping("/main")
     public String loadLlifeNewMainPage(Model model){
         return "pages/main/new_main";
     }

@@ -25,6 +25,7 @@
                 <div class="first-title">💡새로운 업데이트 💡</div>
                 <div class="second-title">Livart Life 커뮤니티<br>리뉴얼 스토리</div>
                 <div class="third-title">클럽 집테리어와 함께 색다른 공간을 디자인 해보세요</div>
+                <a class="book-make-button" href="/l-life/community/write"> 플립북 만들기 </a>
             </div>
             <img class="community-img" alt="리바티스트 메인 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/dggdt.png}"/>
         </div>
@@ -59,9 +60,9 @@
             <span class="second-styling">"New Space"</span>
         </div>
         <div class="styling-main-content slider">
-            <div class="image-box" th:each="book, status : ${books}" th:if="${status.index < 4}">
-                <img class="book-image" alt="메가진 사진" th:src="${book.bookMainImg}"/>
-                <span class="book-title" th:text="${book.pages.get(0).bpTitle}"></span>
+            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}">
+                <input id="bookId" type="hidden" th:value="${book.bookId}">
+                <img class="book-image" th:id="'book-image'+ ${iterStat.index}" alt="메가진 사진" th:src="${book.bookMainImg}" th:onclick="showBook([[${iterStat.index}]])"/>
             </div>
         </div>
     </section>
@@ -71,23 +72,85 @@
         <div class="book-main-deco">
             <div class="book-main-title">가구 구독의 모든 순간, <br> 당신만의 플립북에 담아보세요 🛋️✨</div>
             <div class="book-main-subtitle">지금, [플립북 타이틀]의 페이지들 속에서 당신만의 스타일을 발견해보세요.</div>
-
             <div class="characters">
                 <img class="character-1" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/Character_bigman.png}"/>
                 <img class="character-2" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img9.png}"/>
             </div>
         </div>
         <div class="book">
+            <img class="character-3" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img4.png}">
             <div id="pages" class="pages">
-                <div class="page"><p>플립북 타이틀!</p></div>
-                <div class="page"></div>
-                <div class="page"><p>Hello there!</p></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
-                <div class="page"></div>
+                <div class="page page0"></div>
+                <!-- 1번째 페이지 -->
+                <div class="page page1-1">
+                    <img class="page1-img" th:src="${books.get(0).pages.get(0).bpImg}" />
+                </div>
+                <div class="page page1-2">
+                    <div class="page-title" th:text="${books.get(0).pages.get(0).bpTitle}" ></div>
+                    <img class="page-ai-img" th:src="${books.get(0).pages.get(0).bpAiImg}" />
+                    <div class="page-ai-content" th:text="${books.get(0).pages.get(0).bpAiContent}" ></div>
+                    <div class="page-content" th:text="${books.get(0).pages.get(0).bpContent}" ></div>
+                </div>
+                <!-- 2번째 페이지 -->
+                <div class="page page2-1">
+                    <div class="page2-data">
+                        <div class="page2-title" th:text="${books.get(0).pages.get(1).bpTitle}" ></div>
+                        <div class="page2-content" th:text="${books.get(0).pages.get(1).bpContent}" ></div>
+                    </div>
+                    <img class="page2-ai-img" th:src="${books.get(0).pages.get(1).bpAiImg}" />
+                </div>
+                <div class="page page2-2">
+                    <img class="page2-img" th:src="${books.get(0).pages.get(1).bpImg}" />
+                    <div class="page2-ai-content" th:text="${books.get(0).pages.get(1).bpAiContent}" ></div>
+                </div>
+                <!-- 3번째 페이지 -->
+                <div class="page page3-1">
+                    <img class="page3-img" th:src="${books.get(0).pages.get(2).bpImg}" />
+                    <div class="page3-title" th:text="${books.get(0).pages.get(2).bpTitle}" ></div>
+                    <div class="page3-content" th:text="${books.get(0).pages.get(2).bpContent}" ></div>
+                </div>
+                <div class="page page3-2">
+                    <div class="page3-ai-content" th:text="${books.get(0).pages.get(2).bpAiContent}" ></div>
+                    <img class="page3-ai-img" th:src="${books.get(0).pages.get(2).bpAiImg}" />
+                </div>
+                <!-- 4번째 페이지 -->
+                <div class="page page4-1">
+                    <div class="top-row">
+                        <img class="product-image-left-1" th:src="${books.get(0).pages.get(0).bpImg}" alt="Image 1">
+                        <img class="product-image-left-1" th:src="${books.get(0).pages.get(1).bpImg}" alt="Image 2">
+                    </div>
+                    <div class="bottom-row">
+                        <img class="product-image-left-2" th:src="${books.get(0).pages.get(2).bpImg}" alt="Image 3">
+                    </div>
+                </div>
+                <div class="page page4-2">
+                    <div class="product-introduce">🩷 플립북에서 소개한 상품 🩷</div>
+                    <div class="product-container">
+                        <img class="product-image product-image-0" th:src="${books.get(0).furnitures.get(0).lfImgMain}" alt="상품 메인 이미지">
+                        <div class="product-details">
+                            <div class="product-brand product-brand-0" th:text="${books.get(0).furnitures.get(0).lfBrandName}" ></div>
+                            <div class="product-name product-name-0" th:text="${books.get(0).furnitures.get(0).lfName}" ></div>
+                        </div>
+                    </div>
+                    <div class="product-container">
+                        <img class="product-image product-image-1" th:src="${books.get(0).furnitures.get(1).lfImgMain}" alt="상품 메인 이미지">
+                        <div class="product-details">
+                            <div class="product-brand product-brand-1" th:text="${books.get(0).furnitures.get(1).lfBrandName}" ></div>
+                            <div class="product-name product-name-1" th:text="${books.get(0).furnitures.get(1).lfName}" ></div>
+                        </div>
+                    </div>
+                    <div class="product-container">
+                        <img class="product-image product-image-2" th:src="${books.get(0).furnitures.get(2).lfImgMain}" alt="상품 메인 이미지">
+                        <div class="product-details">
+                            <div class="product-brand product-brand-2" th:text="${books.get(0).furnitures.get(2).lfBrandName}" ></div>
+                            <div class="product-name product-name-2" th:text="${books.get(0).furnitures.get(2).lfName}" ></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="page page5"></div>
+
             </div>
         </div>
     </section>
@@ -97,36 +160,87 @@
 
 
     <script>
+        function showBook(bookNum) {
+            var findIndex = '#image-box-' + bookNum;
+            var bookId = $(findIndex + '> input').val();
+            console.log("북아이디" + bookId);
+
+            var data = {
+                bookId: bookId
+            }
+
+            $.ajax({
+                url: '/l-life/api/v1/community/book/' + bookId,
+                type: 'GET',
+                data: data,
+                success: function(response) {
+                    console.log(response);
+                    // 1번째 페이지 업데이트
+                    $(".page1-img").attr("src", response.result.bookMainImg);
+                    $(".page-title").text(response.result.pages[0].bpTitle);
+                    $(".page-ai-img").attr("src", response.result.pages[0].bpAiImg);
+                    $(".page-ai-content").text(response.result.pages[0].bpAiContent);
+                    $(".page-content").text(response.result.pages[0].bpContent);
+                    // 2번째 페이지 업데이트
+                    $(".page2-title").text(response.result.pages[1].bpTitle);
+                    $(".page2-content").text(response.result.pages[1].bpContent);
+                    $(".page2-ai-img").attr("src", response.result.pages[1].bpAiImg);
+                    $(".page2-img").attr("src", response.result.pages[1].bpImg);
+                    $(".page2-ai-content").text(response.result.pages[1].bpAiContent);
+                    // 3번째 페이지 업데이트
+                    $(".page3-img").attr("src", response.result.pages[2].bpImg);
+                    $(".page3-title").text(response.result.pages[2].bpTitle);
+                    $(".page3-content").text(response.result.pages[2].bpContent);
+                    $(".page3-ai-content").text(response.result.pages[2].bpAiContent);
+                    $(".page3-ai-img").attr("src", response.result.pages[2].bpAiImg);
+                    // 4번째 페이지 업데이트
+                    for (let i = 0; i < 3; i++) {
+                        $(".product-image-" + i).attr("src", response.result.furnitures[i].lfImgMain);
+                        $(".product-brand-" + i).text(response.result.furnitures[i].lfBrandName);
+                        $(".product-name-" + i).text(response.result.furnitures[i].lfName);
+                        $(".product-grade-" + i).text("이 상품의 등급: " + response.result.furnitures[i].lfStGrade);
+                    }
+
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
+
+
+
+
         var pages = document.getElementsByClassName('page');
-        for(var i = 0; i < pages.length; i++)
-        {
+        for (var i = 0; i < pages.length; i++) {
             var page = pages[i];
-            if (i % 2 === 0)
-            {
+            if (i % 2 === 0) {
                 page.style.zIndex = (pages.length - i);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function(){
-            for(var i = 0; i < pages.length; i++)
-            {
-                //Or var page = pages[i];
+        document.addEventListener('DOMContentLoaded', function() {
+            for (var i = 0; i < pages.length; i++) {
                 pages[i].pageNum = i + 1;
-                pages[i].onclick=function()
-                {
-                    if (this.pageNum % 2 === 0)
-                    {
+                pages[i].onclick = function() {
+                    if (this.pageNum % 2 === 0) {
                         this.classList.remove('flipped');
                         this.previousElementSibling.classList.remove('flipped');
-                    }
-                    else
-                    {
+                    } else {
                         this.classList.add('flipped');
                         this.nextElementSibling.classList.add('flipped');
                     }
                 }
             }
-        })
+
+            // 1페이지와 2페이지를 flipped 상태로 만들어 2,3페이지가 바로 보이게 함
+            if (pages[0] && pages[1]) {
+                pages[0].classList.add('flipped');
+                pages[1].classList.add('flipped');
+            }
+        });
     </script>
 </body>
 </html>

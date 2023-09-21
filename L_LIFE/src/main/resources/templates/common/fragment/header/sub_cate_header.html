@@ -2,30 +2,31 @@
 
 <th:block th:fragment="subCateHeaderFragment(lfSubType)">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common/header/sub_cate_header.css}"/>
+    <script th:src="@{/js/common/sub_cate_header.js}" type="text/javascript"></script>
 
     <div class="sub-cate-header">
         <div class="sub-cate-header-main hd__inner1400">
-            <ul>
+            <ul id="sub-cate-menu">
                 <li>
-                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/1' : '/l-life/premium/category/1'">소파</a>
+                    <a id="sofa" th:href="${lfSubType == 0} ? '/l-life/standard/category/1' : '/l-life/premium/category/1'">소파</a>
                 </li>
                 <li>
-                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/2' : '/l-life/premium/category/2'">테이블</a>
+                    <a id="table" th:href="${lfSubType == 0} ? '/l-life/standard/category/2' : '/l-life/premium/category/2'">테이블</a>
                 </li>
                 <li>
-                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/3' : '/l-life/premium/category/3'">조명</a>
+                    <a id="lamp" th:href="${lfSubType == 0} ? '/l-life/standard/category/3' : '/l-life/premium/category/3'">조명</a>
                 </li>
                 <li>
-                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/4' : '/l-life/premium/category/4'">의자</a>
+                    <a id="chair" th:href="${lfSubType == 0} ? '/l-life/standard/category/4' : '/l-life/premium/category/4'">의자</a>
                 </li>
                 <li>
-                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/5' : '/l-life/premium/category/5'">침대</a>
+                    <a id="bed" th:href="${lfSubType == 0} ? '/l-life/standard/category/5' : '/l-life/premium/category/5'">침대</a>
                 </li>
                 <li>
-                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/6' : '/l-life/premium/category/6'">수납</a>
+                    <a id="closet" th:href="${lfSubType == 0} ? '/l-life/standard/category/6' : '/l-life/premium/category/6'">수납</a>
                 </li>
                 <li>
-                    <a th:href="${lfSubType == 0} ? '/l-life/standard/category/7' : '/l-life/premium/category/7'">패키지</a>
+                    <a id="st-package" th:href="${lfSubType == 0} ? '/l-life/standard/category/7' : '/l-life/premium/category/7'">패키지</a>
                 </li>
             </ul>
         </div>

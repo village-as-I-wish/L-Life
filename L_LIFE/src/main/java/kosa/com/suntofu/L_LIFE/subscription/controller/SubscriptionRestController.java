@@ -61,8 +61,8 @@ public class SubscriptionRestController {
         int result = subscriptionService.addPrLFSubcriptoin(payFurnitureList);
         session.removeAttribute("prPaymentProduct");
 
-        NotificationMessageVo notificationMessageVo = new NotificationMessageVo();
-        notificationService.sendMail(notificationMessageVo);
+//        NotificationMessageVo notificationMessageVo = new NotificationMessageVo();
+//        notificationService.sendMail(notificationMessageVo);
 
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("프리미엄 구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
 
