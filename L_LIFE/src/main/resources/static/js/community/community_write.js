@@ -45,32 +45,25 @@ function chatGPT() {
 
     $.ajax({
         url: "https://api.kakaobrain.com/v2/inference/karlo/t2i",
-        type: 'POST',
+        method: 'POST',
         headers: {
             Authorization: `KakaoAK ` + kakaoRestApiKey,
             'Content-Type': 'application/json',
         },
-        data: JSON.stringify({
-            prompt: prompt,
-        }),
-        success: function (response) {
-            // 응답 JSON 형식으로 이미지 URL 획득
-            const imageUrl = response.images[0].image;
-
-            // 이미지 표시 (이미지 다운로드 및 표시 방법에 따라 수정 가능)
-            displayImage(imageUrl);
-            console.log("칼로 이미지 생성" + imageUrl);
-            $('#ai-image').attr("src", response.images[0].image)
-            $('#loading').hide();
-        },
-        error: function (error) {
-            console.error('Error:', error);
-            $('#loading').hide();
-        },
+        data: JSON.stringify(data),
+    }).then(async function (response) {
+        console.log(response.images[0].image)
+        // 이미지 URL을 파일로 변환
+        const imageFile = await convertURLtoFile(response.images[0].image);
+        $('#ai-image-file').val(imageFile)
+        console.log("생성된 이미지 파일" + imageFile)
+        console.log(imageFile)
+        $('#ai-image').attr("src", response.images[0].image)
+        $('#loading').hide();
     });
 
     // 줄글 기반 요약문 생성
-    const contents = $('.contents').val()
+    const contents = $('#content-1').val()
     console.log(contents)
     const messages = 'Make one sentence of promotional text in Korean using the following sentences. ' + contents
 
