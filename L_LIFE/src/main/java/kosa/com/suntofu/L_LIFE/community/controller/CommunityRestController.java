@@ -99,11 +99,10 @@ public class CommunityRestController {
     public ResponseEntity<BasicResponse> createBookTest(BookRequestVo bookRequestVo) {
         log.info("[플립북 생성] 요청 VO {} ", bookRequestVo);
         log.info("[플립북 생성] 요청 file {} ", bookRequestVo.getFiles());
-        for (int i = 0; i < 3; i++) {
-            System.out.println(bookRequestVo.getFiles().get(i));
-        }
-
         log.info("[플립북 생성] 요청 aifile {} ", bookRequestVo.getAifiles());
+
+        int result = communityService.createBook(bookRequestVo);
+
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("플립북 생성 완료 ").result(1).build(), HttpStatus.OK);
 
     }

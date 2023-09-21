@@ -12,10 +12,9 @@
     font-size: 80px;
     font-weight: bold;
     line-height: 85px;
-    letter-spacing: -5px;
     margin-bottom: 18px;
-    -webkit-animation: tracking-in-expand 5s cubic-bezier(0.215, 0.610, 0.355, 1.000)  infinite both;
-    animation: tracking-in-expand 3s cubic-bezier(0.215, 0.610, 0.355, 1.000)  infinite both;
+    -webkit-animation: tracking-in-expand 6s cubic-bezier(0.215, 0.610, 0.355, 1.000)  infinite both;
+    animation: tracking-in-expand 5s cubic-bezier(0.215, 0.610, 0.355, 1.000)  infinite both;
 }
 
 p{
@@ -27,11 +26,97 @@ img{
     transition: all 2.5s;
 }
 
+.main-content-info:first-child{
+    position: relative;
+}
+
+.hero{
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+.main-furniture{
+    width: 150px; /* 이미지의 가로 크기 조절 */
+    height: auto; /* 세로 크기는 자동으로 조절 (비율 유지) */
+    animation: falling 1.5s ease-in-out;
+}
+
+#mf-pink-sofa {
+    position: absolute;
+    top: 80px;
+    left: 300px;
+    opacity: 0;
+    transition: all 3.5s;
+    width: 250px; /* 이미지의 가로 크기 조절 */
+    height: auto;
+    filter: blur(1.5px);
+    transform: rotate(10deg);
+}
+
+#mf-camel-closet {
+    position: absolute;
+    top: 380px;
+    left: 300px;
+    opacity: 0;
+    transition: all 3s;
+    filter: blur(0.5px);
+    transform: rotate(325deg);
+}
+
+#mf-lamp {
+    position: absolute;
+    top: 520px;
+    left: 1200px;
+    opacity: 0;
+    transition: all 5s;
+    filter: blur(3px);
+    transform: rotate(345deg);
+}
+
+#mf-table {
+    position: absolute;
+    top: 650px;
+    left: 500px;
+    opacity: 0;
+    transition: all 6s;
+    width: 180px; /* 이미지의 가로 크기 조절 */
+    height: auto;
+    filter: blur(1px);
+    transform: rotate(10deg);
+}
+
+#mf-brown-sofa {
+    position: absolute;
+    top: 50px;
+    left: 1150px;
+    opacity: 0;
+    transition: all 5s;
+    width: 200px; /* 이미지의 가로 크기 조절 */
+    height: auto;
+    filter: blur(1px);
+    transform: rotate(15deg);
+}
+
+.main-slide {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 180px;
+    animation: slide 100s linear infinite;
+}
+
+.main-furniture-slide {
+    opacity: 1;
+    width: 150px;
+    height: auto;
+    margin-top: 80px;
+    margin-right: 20px;
+}
+
 .site-middle-txt{
     font-size: 50px;
     font-weight: bold;
     line-height: 60px;
-    letter-spacing: -5px;
     margin-bottom: 18px;
     text-align: center;
 }
@@ -40,7 +125,6 @@ img{
     font-size: 25px;
     font-weight: bold;
     line-height: 40px;
-    letter-spacing: -2px;
     margin-bottom: 18px;
     text-align: center;
     color: #666666;
@@ -102,7 +186,6 @@ img{
 .site-small-title {
     font-size: 25px;
     font-weight: bold;
-    letter-spacing: -2px;
     margin-bottom: 18px;
     color: #FF914D;
 }
@@ -117,7 +200,6 @@ img{
     font-size: 50px;
     font-weight: bold;
     line-height: 60px;
-    letter-spacing: -5px;
     margin-bottom: 18px;
 }
 
@@ -130,15 +212,22 @@ img{
     font-size: 40px;
     font-weight: bold;
     line-height: 60px;
-    letter-spacing: -5px;
 }
 
 .site-small-end-txt {
     font-size: 26px;
     font-weight: bold;
     color: #666666;
-    margin-top: 18px;
-    letter-spacing: -2px;
+}
+
+.main-ar-gif {
+    position: relative;
+    margin-top: 30px;
+}
+
+.main-ar-txt {
+    position: absolute;
+    text-align: right; /* 텍스트 우측 정렬을 위한 설정 */
 }
 
 .main-content-square-info {
@@ -147,6 +236,19 @@ img{
     flex-direction: column;
     display: flex;
     align-items: center;
+}
+
+.start-button {
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #FF914D;
+    color: white !important;
+    font-weight: bold;
+    width: 240px;
+    height: 48px;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
 }
 
 /* 애니메이션 */
@@ -161,5 +263,25 @@ img{
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes falling {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(10deg);
+    }
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
     }
 }
