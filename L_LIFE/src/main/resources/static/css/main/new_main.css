@@ -103,6 +103,7 @@ img{
     justify-content: space-between;
     margin-bottom: 180px;
     animation: slide 100s linear infinite;
+    overflow: hidden;
 }
 
 .main-furniture-slide {
