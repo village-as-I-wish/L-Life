@@ -98,20 +98,30 @@ public class CommunityServiceImpl implements  CommunityService{
 
     @Override
     public int createBook(BookRequestVo bookRequestVo) {
-        // 페이지별 이미지 업로드
-        if (bookRequestVo.getPages() != null){
 
-            bookRequestVo.getPages().forEach(page -> {
-                if(page.getFile() != null) {
-                    String imgUrl = uploadFile(page.getFile(), "L-life-BOOK");
-                    page.setBpImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
-                }
-                if(page.getAiFile() != null){
-                    String imgUrl = uploadFile(page.getAiFile(), "L-life-BOOK-AI");
-                    page.setBpAiImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
-                }
-            });
+
+        // List에 있는 거 만큼 추가 + 이미지 업로드 후 세팅
+        for(int i =0; i< bookRequestVo.getFiles().size(); i++){
+            String imgUrl = uploadFile(bookRequestVo.getFiles().get(i), "L-life-BOOK");
+            bookRequestVo.getPages().get(i).setBpImg(imgUrl);
         }
+        for(int i =0; i< bookRequestVo.getAifiles().size(); i++){
+            String imgUrl = uploadFile(bookRequestVo.getAifiles().get(i), "L-life-BOOK-AI");
+            bookRequestVo.getPages().get(i).setBpAiImg(imgUrl);
+        }
+//        // 페이지별 이미지 업로드
+//        if (bookRequestVo.getPages() != null){
+//            bookRequestVo.getPages().forEach(page -> {
+//                if(page.getFile() != null) {
+//                    String imgUrl = uploadFile(page.getFile(), "L-life-BOOK");
+//                    page.setBpImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
+//                }
+//                if(page.getAiFile() != null){
+//                    String imgUrl = uploadFile(page.getAiFile(), "L-life-BOOK-AI");
+//                    page.setBpAiImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
+//                }
+//            });
+//        }
         try{
             int bpResult = -1;
             int bfResult = -1;

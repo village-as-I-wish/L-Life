@@ -10,13 +10,15 @@
                 <a th:href="@{'#'}" class="product-link">
                     <img class="product-image" th:src="${product.lfImgMain}" />
                     <div class="product-details">
+                        <div class="brand-name" th:text="${product.lfBrandName}"></div>
                         <span class="product-name" th:text="${product.lfName}"></span>
                         <span class="product-price" th:text="${product.lfPrPrice} + '원'"></span>
                     </div>
+                    <div class="product-option" th:text="'옵션: ' + ${product.lfOptName}"></div>
                 </a>
             </div>
             <div class="subscribe-info-wrap">
-                <div class="subscribe-info first-subscribe-info">다음 구독료 결제일은 ${2023년 8월 23일 (수)}입니다.</div>
+                <div class="subscribe-info first-subscribe-info">다음 구독료 결제일은 <span th:text="${product.subLfStartDate}"></span>입니다.</div>
                 <div class="subscribe-info">구독 만료일 ${23/10/23(수)}</div>
                 <div class="buttons">
                     <a href="#" class="custom-button">구독연장</a>
