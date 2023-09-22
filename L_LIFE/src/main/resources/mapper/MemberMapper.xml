@@ -119,9 +119,19 @@
     <select id="getStandardSubscription" parameterType="int" resultType="SubscriptionVo">
         -- 스탠다드 구독 정보 가져오기 --
         select
-            *
+            sub.subscription_id,
+            sub.subscribe_type as subscription_type,
+            sub.m_id,
+            sub.subscribe_start_date as subscription_start_date,
+            sub.subscribe_end_date as subscription_end_date,
+            sub.subscription_plan_id,
+            sub.subscribe_point as subscription_point,
+            sub.subscribe_status as subscription_status,
+            plan.subscription_plan_name,
+            plan.subscription_plan_price
         from
             SUBSCRIPTION sub
+                join SUBSCRIPTIONPLAN plan on sub.SUBSCRIPTION_PLAN_ID = plan.SUBSCRIPTION_PLAN_ID
         where
             sub.M_ID = #{memberId}
           and

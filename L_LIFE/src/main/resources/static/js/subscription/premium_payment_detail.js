@@ -299,6 +299,7 @@ function dayChecked(i){
     var dateString = checkedMonth + '.' + checkedDay;
     console.log(dateString);
     $('.checkedDay').text(dateString);
+    $('.selected-date-text').text(dateString);
 
 }
 
@@ -311,5 +312,6 @@ function timeChecked(button){
     console.log('data-value:', time);
 
     $('.checkedTime').text(time);
+    $('.selected-time-text').text(time);
 
 }

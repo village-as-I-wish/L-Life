@@ -24,4 +24,8 @@ public class SubscriptionVo {
 
     private Integer subscriptionStatus;
 
+    private String subscriptionPlanName;
+
+    private Integer subscriptionPlanPrice;
+
 }
