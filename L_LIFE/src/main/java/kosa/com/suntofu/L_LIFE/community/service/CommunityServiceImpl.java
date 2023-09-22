@@ -148,7 +148,6 @@ public class CommunityServiceImpl implements  CommunityService{
             return 1;
 
         }catch(Exception e) {
-            log.info("[북페이지 & 북 상품 ] 데이터 삽입 오류 {} ", e.getStackTrace());
             log.info("[북페이지 & 북 상품 ] 데이터 삽입 오류 {} ", e.getMessage());
             return -1;
         }
