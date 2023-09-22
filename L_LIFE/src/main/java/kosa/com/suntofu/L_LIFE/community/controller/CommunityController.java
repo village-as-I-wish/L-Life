@@ -26,6 +26,9 @@ public class CommunityController {
     @Value("${kakao-rest-api-key}")
     private String kakaoRestApiKey;
 
+    @Value("{urbanbase-key}")
+    private String urbanbaseKey;
+
     @GetMapping("/main")
     public String loadCommunityMainPage( Model model){
         List<BookVo> books = communityService.selectBooks();
@@ -37,6 +40,7 @@ public class CommunityController {
 
     @GetMapping("/report")
     public String loadReportPage(Model model){
+        model.addAttribute("urbanbaseKey", urbanbaseKey);
         return "pages/community/community_report";
     }
 

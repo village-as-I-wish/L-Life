@@ -5,6 +5,11 @@
     <title>L-Life Community</title>
     <th:block th:replace="common/fragment/commonHead"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_report.css}"/>
+
+    <script th:inline="javascript">
+        var gptToken = /*[[${gptToken}]]*/ null;
+        var urbanbaseKey = /*[[${urbanbaseKey}]]*/ null;
+    </script>
     <!-- slick 사용을 위함.  -->
     <script
             src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
