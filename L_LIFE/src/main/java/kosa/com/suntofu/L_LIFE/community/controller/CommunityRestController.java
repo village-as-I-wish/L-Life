@@ -96,7 +96,7 @@ public class CommunityRestController {
     }
 
     @PostMapping("/bookTest")
-    public ResponseEntity<BasicResponse> createBookTest(BookRequestVo bookRequestVo) {
+    public ResponseEntity<BasicResponse> createBookTest(@RequestBody BookRequestVo bookRequestVo) {
         log.info("[플립북 생성] 요청 VO {} ", bookRequestVo);
         log.info("[플립북 생성] 요청 file {} ", bookRequestVo.getFiles());
         log.info("[플립북 생성] 요청 aifile {} ", bookRequestVo.getAifiles());
