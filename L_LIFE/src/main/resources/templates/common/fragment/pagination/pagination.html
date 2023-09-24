@@ -17,10 +17,17 @@
             <i class="fa-solid fa-angle-left"></i>
         </button>
         <div class="links">
-            <th:block th:each="pageNum : ${#numbers.sequence(1, paginationNum)}">
-                <a th:href="@{|${#httpServletRequest.requestURI.replaceAll('/l-life', '')}?page=${pageNum}|}"
-                   th:class="${pageNum == page} ? 'link active' : 'link'">
-                    [[${pageNum}]]
+            <th:block th:if="${paginationNum > 0}">
+                <th:block th:each="pageNum : ${#numbers.sequence(1, paginationNum)}">
+                    <a th:href="@{|${#httpServletRequest.requestURI.replaceAll('/l-life', '')}?page=${pageNum}|}"
+                       th:class="${pageNum == page} ? 'link active' : 'link'">
+                        [[${pageNum}]]
+                    </a>
+                </th:block>
+            </th:block>
+            <th:block th:unless="${paginationNum > 0}">
+                <a th:href="@{|${#httpServletRequest.requestURI.replaceAll('/l-life', '')}?page=1|}" class="link active">
+                    [[1]]
                 </a>
             </th:block>
         </div>
