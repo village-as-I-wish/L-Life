@@ -101,7 +101,11 @@
             <span> * 리퍼 상품이란 ?   </span>
             <span> 소비자의 단순 변심 등으로 인해 반품된 제품을 재입고 하여 재 점검한 후 현재 판매되고 있는 제품보다 저렴한 가격에 공급하는 상품입니다.</span>
             <span> 본 제품의 기능과 성능은 새 제품과 동일하며 리퍼 상품 특성상 외관에 약간의 흠집이 있을 수 있습니다. </span>
-            <span class="pr-grade">이 상품은 “<span class="pr-grade" th:text="${standardDetail.lfStGrade}"></span>” 등급 상품입니다.</span>
+            <div>
+                <span>이 상품은 </span>
+                <span class="pr-grade-value" th:text="${standardDetail.lfStGrade} + '등급 '"></span>
+                <span> 상품입니다.</span>
+            </div>
             <div class="page-wrapper">
                 <div class="lf-pr-slider">
                     <h1 class="lf-pr-slider-title"> 실제 상품 사진 </h1>
