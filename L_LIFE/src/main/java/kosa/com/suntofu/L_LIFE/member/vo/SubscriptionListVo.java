@@ -13,6 +13,7 @@ public class SubscriptionListVo {
     private String lfName;
     private int lfStCoin;
     private int lfPrPrice;
+    private int lfPrMinPeriod;
     private String lfImgMain;
     private String lfOptName;
     private String lfBrandName;

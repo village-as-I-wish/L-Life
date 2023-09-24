@@ -98,7 +98,6 @@ public class MemberController {
         List<SubscriptionListVo> premiumSubscriptionList = memberService.getAllpremiumScriptionList(memberId);
         model.addAttribute("premiumSubscriptionList",premiumSubscriptionList);
         model.addAttribute("baseUrl",baseUrl);
-        System.out.println("프리미엄" + premiumSubscriptionList);
         return "pages/member/mypage_premium";
     }
 

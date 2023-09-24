@@ -95,6 +95,9 @@
             sub_lf.SUB_LF_ID,
             lf.LF_NAME,
             lf.LF_PR_PRICE,
+            lf.LF_PR_MIN_PERIOD,
+            sub_lf.SUB_LF_START_DATE,
+            sub_lf.SUB_LF_END_DATE,
             lf.LF_IMG_MAIN,
             lf_opt.LF_OPT_NAME,
             lf_brand.LF_BRAND_NAME
