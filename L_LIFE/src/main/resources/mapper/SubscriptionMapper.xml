@@ -42,6 +42,39 @@
             END
         }
     </insert>
+    <insert id="insertPremiumSubscription" parameterType="int">
+        {CALL
+            DECLARE
+            v_today DATE := TRUNC(SYSDATE);
+            v_member_id NUMBER := #{mId};
+            v_subscription_count NUMBER := 0;
+            BEGIN
+            SELECT COUNT(*)
+            INTO v_subscription_count
+                FROM SUBSCRIPTION
+                WHERE M_ID = v_member_id AND SUBSCRIBE_END_DATE >= v_today and subscribe_status = 1 and subscribe_type = 1;
+
+                IF v_subscription_count > 0 THEN
+                RAISE_APPLICATION_ERROR(-20001, 'Subscription already exists');
+                ELSE
+                INSERT INTO SUBSCRIPTION (
+                SUBSCRIBE_TYPE,
+                    M_ID,
+                    SUBSCRIBE_START_DATE,
+                    SUBSCRIBE_END_DATE,
+                    SUBSCRIBE_STATUS
+                )
+            VALUES (
+                1,
+                v_member_id,
+                v_today,
+                ADD_MONTHS(SYSDATE, 1),
+                1
+            );
+            END IF;
+            END
+            }
+    </insert>
 
 
 <!-- 프리미엄 결제 로직  -->

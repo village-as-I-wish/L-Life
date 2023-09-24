@@ -1,6 +1,7 @@
 package kosa.com.suntofu.L_LIFE.subscription.controller;
 
 
+import com.amazonaws.Response;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
@@ -43,6 +44,20 @@ public class SubscriptionRestController {
         }else{
             return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("[구독 플랜 ] - 데이터 처리 서버 오류 발생 ").build(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("plan/premium")
+    public ResponseEntity<BasicResponse> subscribePremiumPlan(int mId){
+        log.info("testing plan premium {} ", mId);
+        int result = subscriptionService.subscribePremiumPlan(mId);
+        if(result==SubscriptionReturn.SUBSCRIPTION_SUCCESS){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
+        }else if(result == SubscriptionReturn.SUBSCRIPTION_ALREADY_EXISTS){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("이미 구독중인 상태입니다.").result(-1).build(), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("[프리미엄 구독 ] - 데이터 처리 서버 오류 발생 ").build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
     @Operation(summary = "프리미엄 가구 구독", description = "프리미엄 가구 구독")
     @PostMapping("premium")
