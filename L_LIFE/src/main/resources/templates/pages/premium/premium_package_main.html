@@ -20,24 +20,123 @@
 <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 
 <div class="sl-top-banner">
-<!--    <img alt="베너 사진1 " th:src="@{/img/premium/main_top_banner.png}"/>-->
-<!--    <a class="banner-guide" th:href="@{/subscription}"> 리바트 라이브 구독 이용 가이드 </a>-->
-<!--    <span class="banner-user"> 리바티스트님, <span class="banner-user-sm"> 환영합니다. </span></span>-->
-    <video muted autoplay loop>
-        <source th:src="@{/img/premium/리바트_영상.mp4}" type="video/mp4">
-    </video>
+    <div class="top-banner-left">
+        <div class="left-content">
+            <div class="thumb">
+                <div class="inner-content">
+                    <h4>We Are Hexashop</h4>
+                    <span>Awesome, clean &amp; creative HTML5 Template</span>
+                    <div class="main-border-button">
+                        <a href="#">Purchase Now!</a>
+                    </div>
+                </div>
+
+                <img alt="베너 사진1 " th:src="@{/img/premium/banner-right-image-01.jpg}"/>
+            </div>
+        </div>
+    </div>
+    <div class="top-banner-right">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="right-first-image">
+                    <div class="thumb">
+                        <div class="inner-content">
+                            <h4>Women</h4>
+                            <span>Best Clothes For Women</span>
+                        </div>
+                        <div class="hover-content">
+                            <div class="inner">
+                                <h4>Women</h4>
+                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                <div class="main-border-button">
+                                    <a href="#">Discover More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <img alt="베너 사진1 " th:src="@{/img/premium/banner-right-image-01.jpg}"/>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-first-image">
+                    <div class="thumb">
+                        <div class="inner-content">
+                            <h4>Men</h4>
+                            <span>Best Clothes For Men</span>
+                        </div>
+                        <div class="hover-content">
+                            <div class="inner">
+                                <h4>Men</h4>
+                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                <div class="main-border-button">
+                                    <a href="#">Discover More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <img alt="베너 사진1 " th:src="@{/img/premium/banner-right-image-02.jpg}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-first-image">
+                    <div class="thumb">
+                        <div class="inner-content">
+                            <h4>Kids</h4>
+                            <span>Best Clothes For Kids</span>
+                        </div>
+                        <div class="hover-content">
+                            <div class="inner">
+                                <h4>Kids</h4>
+                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                <div class="main-border-button">
+                                    <a href="#">Discover More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <img alt="베너 사진1 " th:src="@{/img/premium/banner-right-image-03.jpg}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-first-image">
+                    <div class="thumb">
+                        <div class="inner-content">
+                            <h4>Accessories</h4>
+                            <span>Best Trend Accessories</span>
+                        </div>
+                        <div class="hover-content">
+                            <div class="inner">
+                                <h4>Accessories</h4>
+                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                <div class="main-border-button">
+                                    <a href="#">Discover More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <img alt="베너 사진1 " th:src="@{/img/premium/banner-right-image-04.jpg}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="premium_pk_container hd__inner1400">
+<div class="premium_pk_container">
     <div class="pr-container-inner">
-        <div class="pr-md-pick-list">
+        <div class="pr-md-pick-list hd__inner1400">
             <div class="pr-md-pick-header">
-                <h1 class="lf-pr-slider-title"> MD PICK</h1>
-                <a th:href="@{/premium/main}"> 가구 둘러보기 ></a>
+                <div class="pr-md-pick-header-first">
+                    <h1 class="lf-pr-slider-title"> MD PICK</h1>
+                    <a th:href="@{/premium/main}"> 가구 둘러보기 ></a>
+                </div>
+                <p>Details to details is what makes Hexashop different from the other themes.</p>
+
             </div>
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
+
             <div class="lf-pr-slider">
-                <i class="fas fa-chevron-left prev"></i>
-                <i class="fas fa-chevron-right next"></i>
                 <div class="lf-pr-slide-wrapper">
                     <a th:href="@{'/premium/package/' + ${package.lfPackageId} + '/detail'}" th:each="package : ${MDPickPackages}">
                         <div class="lf-pr-slide-product-img">
@@ -51,14 +150,17 @@
                 </div>
             </div>
         </div>
+        <div class="hr-pr"></div>
 
-        <div class="pr-promotion-list">
+        <div class="pr-promotion-list hd__inner1400">
             <div class="pr-promotion-header">
-                <h1 class="lf-pr-slider-title"> 이달의 프로모션 </h1>
+                <h1 class="lf-pr-slider-title"> Latest Promotion </h1>
+                <p>Details to details is what makes Hexashop different from the other themes.</p>
             </div>
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
             <div class="lf-pr-promotion-slider">
-                <i class="fas fa-chevron-left prev"></i>
-                <i class="fas fa-chevron-right next"></i>
+
                 <div class="lf-pr-promotion-slide-wrapper">
                     <div class="lf-pr-slide-product-img" th:each="package : ${PromotionPackages}">
                         <img class="lf-pr-img" alt="패키지 사진 " th:src="@{${package.lfPackageImg}}"/>
@@ -66,10 +168,16 @@
                 </div>
             </div>
         </div>
+        <div class="hr-pr"></div>
 
-        <div class="pr-popular-list">
+        <div class="hd__inner1400">
+
+
+        </div>
+
+        <div class="pr-popular-list hd__inner1400">
             <div class="pr-popular-header">
-                <h1 class="lf-pr-slider-title"> 지금 인기 많아요 </h1>
+                <h1 class="lf-pr-slider-title"> Hottest Product </h1>
             </div>
             <div class="lf-pr-popular-slider">
                 <i class="fas fa-chevron-left prev"></i>

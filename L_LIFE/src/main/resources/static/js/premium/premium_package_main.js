@@ -1,25 +1,25 @@
 $(document).ready(function(){
 
     $('.lf-pr-slide-wrapper').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        nextArrow:$('.next'),
-        prevArrow:$('.prev'),
-    });
-
-    $('.lf-pr-promotion-slide-wrapper').slick({
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 2000,
-        nextArrow:$('.lf-pr-promotion-slider .next'),
-        prevArrow:$('.lf-pr-promotion-slider .prev'),
+        nextArrow:$('.pr-md-pick-list .next'),
+        prevArrow:$('.pr-md-pick-list .prev'),
+    });
+
+    $('.lf-pr-promotion-slide-wrapper').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 2000,
+        nextArrow:$('.pr-promotion-list .next'),
+        prevArrow:$('.pr-promotion-list .prev'),
     });
 
     $('.lf-pr-popular-slide-wrapper').slick({
-        slidesToShow: 4,
+        slidesToShow: 6,
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 2000,
