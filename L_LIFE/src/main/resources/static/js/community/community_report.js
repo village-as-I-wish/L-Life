@@ -63,6 +63,7 @@ var colorDataSample = [
     }
 ]
 $(document).ready(function () {
+    $('#loading').hide();
     const $dropbox = $('.drag-file');
     const $input_filename = $('.message');
     const $previewImage = $('.upload-file');
@@ -224,7 +225,7 @@ function uploadImage() {
 function requestReport() {
     console.log("testing")
     console.log("file", file)
-
+    $('#loading').show();
 
     var imgUrlResponse = uploadImage()
     $.when(imgUrlResponse).done(function (imgUrlUploaded) {
@@ -246,7 +247,7 @@ function requestReport() {
 
         $.when(spaceAnalyze, furnitureAnalyze, styleAnalyze, colorAnalyze).done(function (spaceResponse, spaceDetectorResponse, styleResponse, colorResponse) {
             console.log('모든 AJAX 요청이 완료되었습니다.');
-
+            $('#loading').hide();
             var data1 = spaceResponse[0].data.results[0].results;
             var data2 = spaceDetectorResponse[0].data.results[0].results;
             var data3 = styleResponse[0].data.results[0].results;
