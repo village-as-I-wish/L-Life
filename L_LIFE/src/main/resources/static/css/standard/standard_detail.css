@@ -534,3 +534,7 @@ ul.tabs li.current{
 .lf-recommendation-product span {
     margin: -3px;
 }
+
+.tab-disabled {
+    pointer-events: none;
+}
