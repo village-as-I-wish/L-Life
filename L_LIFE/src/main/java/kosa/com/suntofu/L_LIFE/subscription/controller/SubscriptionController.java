@@ -38,7 +38,9 @@ public class SubscriptionController {
      * @return String
      */
     @GetMapping()
-    public String loadGuidePage(){
+    public String loadGuidePage(Model model){
+
+        model.addAttribute("baseUrl", baseUrl);
         return "pages/subscription/subscription_guide";
     }
 

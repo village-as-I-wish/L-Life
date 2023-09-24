@@ -17,4 +17,7 @@ public interface SubscriptionService {
 
     @Scheduled
     int renewStSubscription();
+
+    int subscribePremiumPlan(int mId);
+
 }

@@ -130,4 +130,28 @@ public class SubscriptionServiceImpl implements SubscriptionService {
          subscriptionDao.renewStSubscription();
         return 1;
     }
+
+    @Override
+    public int subscribePremiumPlan(int mId) {
+        try{
+            subscriptionDao.insertPremiumSubscription(mId);
+            return SubscriptionReturn.SUBSCRIPTION_SUCCESS;
+        }catch(Exception e){
+            if (e.getCause() instanceof SQLException) {
+                SQLException sqlException = (SQLException) e.getCause();
+                int oracleErrorCode = sqlException.getErrorCode();
+                if (oracleErrorCode == 20001) {
+                    log.info("[프리미엄 구독 가입 - 플랜 ] 이미 가입된 상태");
+                    return SubscriptionReturn.SUBSCRIPTION_ALREADY_EXISTS;
+                } else {
+                    log.info("[프리미엄 구독 가입 - 플랜 ] 데이터 삽입 오류 발생 ");
+
+                    return SubscriptionReturn.SUBSCRIPTION_ERROR;
+                }
+            }
+            log.info("[프리미엄 구독 가입 - 플랜 ] 데이터 삽입 오류 발생 ");
+            return SubscriptionReturn.SUBSCRIPTION_ERROR;
+        }
+
+    }
 }
