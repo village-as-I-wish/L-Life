@@ -35,7 +35,7 @@
         <hr>
         <div class="lf-pr-summary-detail">
             <div class="lf-pr-point d-flex">
-                <span class="lf-pr-point-txt text-sm f-bold" th:text="'포인트 ' + ${standardDetail.lfStCoin} + '개'"></span>
+                <span class="lf-pr-point-txt text-sm f-bold" th:text="'코인 ' + ${standardDetail.lfStCoin} + '개'"></span>
                 <th:block
                         th:each="coinNumber : ${#numbers.sequence(1, standardDetail.lfStCoin)}">
                         <span class="hidden" id="lfStCoin" th:text="${standardDetail.lfStCoin}"></span>
