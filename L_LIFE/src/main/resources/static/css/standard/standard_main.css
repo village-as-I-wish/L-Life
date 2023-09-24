@@ -125,17 +125,25 @@
 }
 .sl-live-box-day-txt{
     position: absolute;
-    top: 40%;
-    left: 30%;
+    top: 30%;
+    left: 35%;
     font-size: 25px;
     font-weight: bold;
     color: white;
 }
 .sl-live-box-time-txt{
     position: absolute;
-    left: 26%;
-    top: 53%;
+    left: 30%;
+    top: 43%;
     font-size: 35px;
+    color: white;
+    font-weight: bold;
+}
+.sl-live-box-ex-txt{
+    position: absolute;
+    left: 38%;
+    top: 58%;
+    font-size: 16px;
     color: white;
     font-weight: bold;
 }
