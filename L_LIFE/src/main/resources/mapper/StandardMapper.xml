@@ -323,7 +323,6 @@
         <selectKey keyProperty="lfReviewId" resultType="int" order="AFTER">
             SELECT lf_review_id FROM review WHERE m_id = #{mId} and lf_id = #{lfId}
         </selectKey>
-
     </insert>
 
     <insert id="insertReviewImg">
@@ -357,7 +356,7 @@
                  LEFT JOIN REVIEWIMAGE i ON r.LF_REVIEW_ID = i.LF_REVIEW_ID
                  LEFT JOIN MEMBER m ON r.M_ID = m.M_ID
         WHERE r.LF_ID = #{lfId}
-        ORDER BY r.LF_REVIEW_DATE DESC
+        ORDER BY r.LF_REVIEW_DATE DESC, i.R_IMG_ID
     </select>
 
     <!-- 리뷰와 이미지를 매핑하는 resultMap -->
@@ -380,6 +379,29 @@
     </resultMap>
 
 
+    <!-- 리뷰 아이디로 가져오기 -->
+    <select id="selectReviewById" resultMap="ReviewWithImages">
+        SELECT
+            r.LF_REVIEW_ID,
+            r.LF_REVIEW_TITLE,
+            r.LF_REVIEW_CONTENT,
+            r.M_ID,
+            m.M_NAME,
+            r.LF_REVIEW_TYPE,
+            r.LF_REVIEW_DATE,
+            r.LF_ID,
+            r.LF_REVIEW_RATING,
+            r.LF_REVIEW_SER_RATING,
+            r.LF_REVIEW_DEL_RATING,
+            i.R_IMG_ID,
+            i.R_IMG_URL
+        FROM REVIEW r
+                 LEFT JOIN REVIEWIMAGE i ON r.LF_REVIEW_ID = i.LF_REVIEW_ID
+                 LEFT JOIN MEMBER m ON r.M_ID = m.M_ID
+        WHERE r.LF_REVIEW_ID = #{lfReviewId}
+        ORDER BY r.LF_REVIEW_DATE DESC, i.R_IMG_ID
+
+    </select>
     <!-- 리뷰 삭제 -->
     <delete id="deleteReview" parameterType="int">
         delete from REVIEW where lf_review_id =#{lfReviewId}
