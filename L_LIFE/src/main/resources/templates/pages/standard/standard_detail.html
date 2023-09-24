@@ -35,7 +35,7 @@
         <hr>
         <div class="lf-pr-summary-detail">
             <div class="lf-pr-point d-flex">
-                <span class="lf-pr-point-txt text-sm f-bold" th:text="'포인트 ' + ${standardDetail.lfStCoin} + '개'"></span>
+                <span class="lf-pr-point-txt text-sm f-bold" th:text="'코인 ' + ${standardDetail.lfStCoin} + '개'"></span>
                 <th:block
                         th:each="coinNumber : ${#numbers.sequence(1, standardDetail.lfStCoin)}">
                     <span class="hidden" id="lfStCoin" th:text="${standardDetail.lfStCoin}"></span>
@@ -92,8 +92,8 @@
     <ul class="main-tab tabs">
         <li class="tab-link current" data-tab="tab-1">상품 정보</li>
         <li class="tab-link" data-tab="tab-2">상품리뷰</li>
-        <li class="tab-link" data-tab="tab-3">상품 Q & A</li>
-        <li class="tab-link" data-tab="tab-3">배송 정보</li>
+        <li class="tab-link tab-disabled" data-tab="tab-3">상품 Q & A</li>
+        <li class="tab-link tab-disabled" data-tab="tab-4">배송 정보</li>
     </ul>
 
     <div id="tab-1" class="tab-content current">
@@ -101,7 +101,11 @@
             <span> * 리퍼 상품이란 ?   </span>
             <span> 소비자의 단순 변심 등으로 인해 반품된 제품을 재입고 하여 재 점검한 후 현재 판매되고 있는 제품보다 저렴한 가격에 공급하는 상품입니다.</span>
             <span> 본 제품의 기능과 성능은 새 제품과 동일하며 리퍼 상품 특성상 외관에 약간의 흠집이 있을 수 있습니다. </span>
-            <span class="pr-grade">이 상품은 “<span class="pr-grade" th:text="${standardDetail.lfStGrade}"></span>” 등급 상품입니다.</span>
+            <div>
+                <span>이 상품은 </span>
+                <span class="pr-grade-value" th:text="${standardDetail.lfStGrade} + '등급 '"></span>
+                <span> 상품입니다.</span>
+            </div>
             <div class="page-wrapper">
                 <div class="lf-pr-slider">
                     <h1 class="lf-pr-slider-title"> 실제 상품 사진 </h1>
@@ -187,7 +191,10 @@
         <!-- 배송 / 환불 안내 종료 -->
 
         <div class="lf-recommendation-product">
-            <p> 카테고리 BEST </p>
+            <p>
+                <span th:style="'color: #f65c60;'" th:text="${standardDetail.lfMoodName} + '분위기'"></span>
+                <span th:text="'를 완성해줄 상품을 찾으시나요?'"></span>
+            </p>
             <hr>
             <div class="lf-recommendation-body">
                 <div class="lf-recommendation-page-wrapper">
