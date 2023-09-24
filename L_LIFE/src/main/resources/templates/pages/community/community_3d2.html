@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Livart Life</title>
+    <th:block th:replace="common/fragment/commonHead"></th:block>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_3d.css}"/>
+
+</head>
+<body>
+<p id="livart-title"> Livart Life </p>
+<iframe src="" id="api-frame" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport
+        execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true">
+</iframe>
+    <script>
+        // iframe 내의 웹페이지 스타일 변경
+        // $(document).ready(function () {
+        //     const iframe = $('.titlebar'); // 여기서 'yourIframeId'는 iframe 요소의 ID입니다.
+        //     const iframeDocument = iframe.contents();
+        //     // console.log(iframe)
+        //
+        //     // 스타일 변경
+        //     $('.titlebar').css('display', 'none');
+        //     var color = $(".titlebar").css("display");
+        //     // console.log("color", color)
+        //     iframe.addClass('hidden');
+        // });
+        var iframe = document.getElementById('api-frame');
+        var uid = 'e22204e404414f6599991098d4919355';
+
+        // By default, the latest version of the viewer API will be used.
+        var client = new Sketchfab(iframe);
+
+        // Alternatively, you can request a specific version.
+        // var client = new Sketchfab( '1.12.1', iframe );
+
+        client.init(uid, {
+            success: function onSuccess(api) {
+                api.start();
+                api.addEventListener('viewerready', function () {
+
+                    // API is ready to use
+                    // Insert your code here
+                    console.log('Viewer is ready');
+                    const titlebar = $('.titlebar'); // 여기서 'yourIframeId'는 iframe 요소의 ID입니다.
+                    titlebar.addClass('hidden');
+
+                    let $apiFrame = $('.titlebar');
+                    $apiFrame.addClass('hidden'); // Remove hidden class
+
+                });
+            },
+            error: function onError() {
+                console.log('Viewer error');
+            }
+        });
+
+    </script>
+
+</body>
+</html>
