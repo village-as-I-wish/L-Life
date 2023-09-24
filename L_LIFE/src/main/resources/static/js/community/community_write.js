@@ -1,4 +1,3 @@
-
 function displayImage(input,page) {
     const $previewImage = $('.upload-file-'+page);
     if (input.files && input.files[0]) {
@@ -180,13 +179,10 @@ $(document).ready(function(){
 
         const formData = new FormData();
 
-        var pages = []
-        var furnitures = []
-        // var files = []
-        // var aifiles = []
         for (let i = 1; i <= 3; i++){
             var inputFile = $('#imgUpload0'+i)
             const selectedFile = inputFile[0].files[0]
+            const aiImageFile = inputFile[0].files[0]
 
             let page = {
                 bpTitle: $('#title-'+i).val(),
@@ -194,45 +190,27 @@ $(document).ready(function(){
                 bpTag : $('#tag-'+i).val(),
                 bpPageNum: i,
                 bpAiContent: $('#ai-text'+i).val()
-                // aiFile: $('#ai-image-file'+i).val(),
-                // file: selectedFile
             }
             pages.push(page)
             let furniture = {
-                lfId: $('#product-'+i).val()
+                lfId: parseInt($('#product-'+i).val())
             }
+
+            formData.append("pages",JSON.stringify(page))
             formData.append('files', selectedFile);
-            // files.push(selectedFile)
-            // formData.append("aifiles",$('#ai-image-file'+i).val())
-            // aifiles.push($('#ai-image-file'+i).val())
-            // pages.push(page)
-            furnitures.push(furniture)
+            formData.append("aifiles",aiImageFile)
+            formData.append("furnitures",JSON.stringify(furniture))
+            formData.append("mId",memberId)
         }
         formData.append("pages",pages)
         formData.append("furnitures", furnitures)
 
 
-        console.log(pages)
-        console.log(furnitures)
-        // console.log(files)
-        // console.log(aifiles)
-
-
-        formData.append("mId",memberId);
-        // formData.append("pages",pages)
-        // formData.append("files",files);
-        // formData.append("aifiles",aifiles);
-        // formData.append("pages",pages);
-        // formData.append("furnitures",furnitures);
-
         console.log(formData)
-        // const data = {
-        //     mid: memberId,
-        //     pages:pages,
-        //     furnitures:furnitures
-        // };
+        for (let key of formData.keys()) {
+            console.log(key, ":", formData.get(key));
+        }
 
-        // console.log(data)
         $.ajax({
             url: '/l-life/api/v1/community/bookTest/',
             method: 'POST',
