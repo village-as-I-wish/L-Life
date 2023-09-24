@@ -276,6 +276,10 @@ function submitReview(memberId){
                     imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        // 작성 완료된 리뷰 업데이트 하기 + 모달창 CLose
+                        // Rest Controller에서 리뷰 객체 리턴 & 리뷰 이미지 리턴해주어야 함.
+                        // Review Response Dto 만들어서 넣어 두기
+                        addReviewCard(res.result);
                     }
                 })
         },
@@ -286,7 +290,6 @@ function submitReview(memberId){
                 imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
             }).then((result) => {
                 if (result.isConfirmed) {
-
                 }
             });
         }
@@ -319,6 +322,10 @@ function deleteReview(reviewId){
                         if (result.isConfirmed) {
                             var className = "review-card-" + reviewId;
                             $("." + className).remove();
+                            var currentReviewCount = parseInt($('#reviewCount').text());
+
+                            var newReviewCount = currentReviewCount - 1;
+                            $('#reviewCount').text(newReviewCount);
                         }
                     })
                 },
@@ -337,4 +344,75 @@ function deleteReview(reviewId){
         }
     });
 
+}
+
+function addReviewCard(reviewData) {
+    // 리뷰 카드 HTML 생성
+    var reviewProductName = $('.lf-pr-name').text()
+    console.log("reviewData", reviewData)
+    console.log("reviewProductName", )
+    var reviewCardHtml = `
+    <div class="review-card review-card-${reviewData.lfReviewId}">
+        <span class="review-logo">리바트 라이프</span><span>${reviewProductName}</span> |
+        <span>스탠다드 구독</span> | <span>리바트 라이브 고객 후기</span>
+        <div class="review-writer-box">
+            <span class="review-writer">${' ' + reviewData.mname + ' | ' + reviewData.lfReviewDate}</span>
+            <span>
+                <i class="fa-solid fa-trash" style="cursor: pointer;" onclick="deleteReview('${reviewData.lfReviewId}')"></i>
+            </span>
+        </div>
+        <div class="review-card-content">
+            <div class="review-card-img">
+                <img alt="리뷰 사진" src="/img/standard/review_main_logo.png" ${reviewData.lfReviewImgs.length !== 0 ? 'style="display:none;"' : ''}/>
+                <img alt="리뷰 사진" src="${reviewData.lfReviewImgs.length > 0 ? reviewData.lfReviewImgs[0].rimgUrl : ''}" ${reviewData.lfReviewImgs.length === 0 ? 'style="display:none;"' : ''}/>
+            </div>
+            <div class="review-card-body">
+                <div class="review-card-body-top">
+                    <div class="review-card-sub-imgs">
+                        <div class="review-card-sub-img">
+                            ${reviewData.lfReviewImgs.slice(1).map(function(image, index) {
+        return `<img alt="리뷰 사진" src="${image.rimgUrl}" />`;
+    }).join('')}
+                        </div>
+                    </div>
+                    <div class="review-ratings">
+                        <p class="total-review-rating">총 점 : 
+                            <span>
+                                ${Array.from({ length: reviewData.lfReviewRating }, function(_, index) {
+        return `<i class="fa-solid fa-star"></i>`;
+    }).join('')}
+                            </span>
+                        </p>
+                        <p> 구독 서비스 : 
+                            <span>
+                                ${Array.from({ length: reviewData.lfReviewSerRating }, function(_, index) {
+        return `<i class="fa-solid fa-star"></i>`;
+    }).join('')}
+                            </span>
+                        </p>
+                        <p> 배송 서비스 : 
+                            <span>
+                                ${Array.from({ length: reviewData.lfReviewDelRating }, function(_, index) {
+        return `<i class="fa-solid fa-star"></i>`;
+    }).join('')}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <p class="review-body-content-title">${reviewData.lfReviewTitle}</p>
+                <p class="review-body-content">${reviewData.lfReviewContent}</p>
+            </div>
+        </div>
+    </div>
+    `;
+
+    var currentReviewCount = parseInt($('#reviewCount').text());
+
+    var newReviewCount = currentReviewCount + 1;
+    $('#reviewCount').text(newReviewCount);
+
+    $('#exampleModal').modal('hide');
+
+    // 맨 앞에 리뷰 카드를 추가
+    $('#review-list').prepend(reviewCardHtml);
 }

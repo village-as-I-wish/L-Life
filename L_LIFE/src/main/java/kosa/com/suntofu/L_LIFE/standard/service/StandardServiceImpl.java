@@ -160,7 +160,7 @@ public class StandardServiceImpl implements StandardService {
     }
     @Transactional
     @Override
-    public int createReview(ReviewRequestVo reviewRequestVo) {
+    public ReviewVo createReview(ReviewRequestVo reviewRequestVo) throws Exception {
         List<String> fileNameList = new ArrayList<>();
 
         reviewRequestVo.getFiles().forEach(file -> {
@@ -189,12 +189,13 @@ public class StandardServiceImpl implements StandardService {
                 for( String reviewImgUrl : fileNameList){
                     reviewImgList.add(ReviewImgVo.builder().rImgUrl(reviewImgUrl).lfReviewId(insertedReviewId).build());
                 }
-                return standardDAO.insertReviewImg(reviewImgList);
+                standardDAO.insertReviewImg(reviewImgList);
             }
-            return 1;
+            ReviewVo reviewVo = standardDAO.selectReviewById(insertedReviewId);
+            return reviewVo;
         }catch(Exception e) {
             log.info("[리뷰 등록 ] 데이터 삽입 오류 {} ", e.getStackTrace().toString());
-            return -1;
+            throw new Exception("데이터 삽입 오류");
         }
     }
 

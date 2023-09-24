@@ -33,8 +33,11 @@ public interface StandardDAO {
 
     List<ReviewVo> selectAllReviews(int lfId);
 
+    ReviewVo selectReviewById(int insertedReviewId);
+
     int deleteReview(int lfReviewId);
 
     int insertProductsToCart(Map<String, Object> carts);
+
 }
 
