@@ -258,7 +258,7 @@ video{
     transition: all .3s;
     text-decoration: none !important;
 }
-.pr-md-pick-header > p, .pr-promotion-header >p{
+.pr-md-pick-header > p, .pr-promotion-header >p,.pr-popular-header >p{
     font-size: 14px;
     color: #a1a1a1;
     font-style: italic;
@@ -267,4 +267,24 @@ video{
 .hr-pr{
     padding-bottom: 90px;
     border-bottom: 3px dotted #eee;
+}
+.package-ad-sec{
+    padding: 0px 0px 0px 60px
+}
+.package-ad{
+    background-image: url(../../img/premium/package_banner.png);
+    height: 280px;
+    /* padding: 100px; */
+    background-repeat: round;
+    margin-top: 90px;
+}
+.package-ad-row{
+    padding: 12px;
+}
+.package-ad-col{
+    padding: 0;
+}
+.package-ad-col img{
+    height:200px;
+    width: inherit;
 }

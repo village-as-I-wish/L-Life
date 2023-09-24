@@ -27,7 +27,7 @@
                     <h4>We Are Hexashop</h4>
                     <span>Awesome, clean &amp; creative HTML5 Template</span>
                     <div class="main-border-button">
-                        <a href="#">Purchase Now!</a>
+                        <a th:href="@{/premium/main}">Purchase Now!</a>
                     </div>
                 </div>
 
@@ -170,14 +170,26 @@
         </div>
         <div class="hr-pr"></div>
 
-        <div class="hd__inner1400">
+        <section class="package-ad-sec hd__inner1400">
+            <div class="package-ad">
+            </div>
+            <div class="package-ad-row row">
+                <div class="col package-ad-col">
+                    <img alt="베너 사진1 " th:src="@{/img/premium/img_sample.png}"/>
+                </div>
+                <div class="col package-ad-col">
+                    <img alt="베너 사진1 " th:src="@{/img/premium/img_sample2.png}"/>
 
+                </div>
 
-        </div>
+            </div>
+        </section>
 
         <div class="pr-popular-list hd__inner1400">
             <div class="pr-popular-header">
                 <h1 class="lf-pr-slider-title"> Hottest Product </h1>
+                <p>Details to details is what makes Hexashop different from the other themes.</p>
+
             </div>
             <div class="lf-pr-popular-slider">
                 <i class="fas fa-chevron-left prev"></i>
