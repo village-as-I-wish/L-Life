@@ -187,7 +187,10 @@
         <!-- 배송 / 환불 안내 종료 -->
 
         <div class="lf-recommendation-product">
-            <p> 카테고리 BEST </p>
+            <p>
+                <span th:style="'color: #f65c60;'" th:text="${standardDetail.lfMoodName} + '분위기'"></span>
+                <span th:text="'를 완성해줄 상품을 찾으시나요?'"></span>
+            </p>
             <hr>
             <div class="lf-recommendation-body">
                 <div class="lf-recommendation-page-wrapper">

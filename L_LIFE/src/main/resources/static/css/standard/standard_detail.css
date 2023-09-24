@@ -518,3 +518,7 @@ ul.tabs li.current{
     color: #5d493c;
     margin: 50px 0px 70px 0px;
 }
+
+.lf-recommendation-product span {
+    margin: -3px;
+}

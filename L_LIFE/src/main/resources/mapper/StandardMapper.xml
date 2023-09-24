@@ -177,6 +177,7 @@
         <result property="lfSubComment" column="lf_sub_comment" />
         <result property="lfStGrade" column="lf_st_grade" />
         <result property="lfMoodId" column="lf_mood_id"/>
+        <result property="lfMoodName" column="lf_mood_name"/>
         <collection property="refurImgUrl" ofType="RefurImgVo">
             <id property="refurImgId" column="refur_img_id" />
             <result property="refurImgUrl" column="refur_img_url" />
@@ -204,7 +205,8 @@
             lfImg.lf_img_id,
             lfImg.lf_img_url,
             lfImg.img_comment,
-            lf.lf_mood_id
+            lf.lf_mood_id,
+            lfmood.lf_mood_name
         FROM
             LLifeFurniture lf
         LEFT JOIN
@@ -213,6 +215,8 @@
             LfurnitureImage lfImg on lf.lf_id = lfImg.lf_id
         LEFT JOIN
             RefurbishImage rfImg ON lf.lf_id = rfImg.lf_id
+        LEFT JOIN
+            LfurnitureMood lfmood ON lf.lf_mood_id = lfmood.lf_mood_id
         WHERE
             lf_sub_type = 0
         AND
