@@ -7,6 +7,11 @@
     font-size: 24px;
     margin-bottom: 15px;
 }
+.first-title-2 {
+    color: #004C8C;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
 
 .second-title {
     font-weight: bold;
@@ -20,17 +25,29 @@
     color: #f65c60;
 }
 
-.community-top-banner {
+.third-title-2 {
+    font-size: 20px;
+    color: #DAA520;
+    /*color: #8B0000;*/
+}
+
+.community-top-banner-1 {
     width: 100%;
     height: 350px;
     position: relative;
     background-color: #FFFBF0;
 }
+.community-top-banner-2 {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    background-color: #DDEEF6;
+}
 
 .community-main-content {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 43%;
+    left: 55%;
     transform: translate(-50%, -50%);
 }
 
@@ -45,10 +62,15 @@
     font-size: 17px;
 }
 
+.urbanbase {
+    background-color: #004C8C;
+    color: #ffffff;
+}
+
 .community-img {
     position: absolute;
     top: 0px;
-    right: 250px;
+    right: 120px;
     height: 100%;
 }
 
@@ -145,14 +167,18 @@ height:200px;
     animation: bannermove 5s linear infinite;
 }
 
-/*@keyframes bannermove {
+@keyframes bannermove {
     0% {
         transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-25%, 0);
     }
     100% {
         transform: translate(-50%, 0);
     }
-}*/
+}
+
 
 /* 북 부분 */
 .book {
@@ -332,6 +358,7 @@ p{
     padding-right: 10px;
     margin-top: 20px;
     line-height: 33px;
+    word-break: keep-all;
 }
 
 /* 1 페이지 스타일 */
@@ -369,11 +396,12 @@ p{
 }
 
 .page-content {
-    align-self: flex-end; /* 오른쪽에 맞춤 (플렉스 컨테이너 내에서) */
+    align-self: flex-end;
     margin-right: 50px;
     margin-left: 50px;
     line-height: 20px;
     font-size: 15px;
+    word-break: keep-all;
 }
 
 /* 2 페이지 스타일 */
@@ -405,6 +433,7 @@ p{
     font-size: 15px;
     margin-left: 30px;
     line-height: 21px;
+    word-break: keep-all;
 }
 
 .page2-ai-img {
@@ -461,6 +490,7 @@ p{
     margin-left: 50px;
     margin-right: 50px;
     line-height: 20px;
+    word-break: keep-all;
 }
 .page3-ai-content {
     flex: 4;
@@ -502,7 +532,7 @@ p{
 }
 
 .top-row {
-    position: relative; /* 상대적 위치를 설정 */
+    position: relative;
     width: 450px;
     height: 330px;
     display: flex;
@@ -511,17 +541,17 @@ p{
 }
 
 .product-image-left-1:first-child {
-    position: absolute; /* 절대 위치를 설정 */
-    top: 15px;  /* 상단에 붙임 */
-    left: 15px; /* 왼쪽에 붙임 */
+    position: absolute;
+    top: 15px;
+    left: 15px;
     width: 200px;
     height: 250px;
 }
 
 .product-image-left-1:last-child {
-    position: absolute; /* 절대 위치를 설정 */
-    bottom: 0; /* 하단에 붙임 */
-    right: 15px;  /* 오른쪽에 붙임 */
+    position: absolute;
+    bottom: 0;
+    right: 15px;
     width: 200px;
     height: 250px;
 }
@@ -550,13 +580,14 @@ p{
 
 .product-container {
     display: flex;
-    align-items: center; /* 이미지와 상세 정보를 수직 중앙 정렬 */
+    align-items: center;
 }
 
 .product-details {
     display: flex;
-    flex-direction: column; /* 세로로 나열 */
-    margin-left: 10px; /* 이미지와 상세 정보 사이의 간격 */
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .product-container {
