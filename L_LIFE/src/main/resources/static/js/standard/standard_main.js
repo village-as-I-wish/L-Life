@@ -8,4 +8,5 @@ $(document).ready(function() {
         nextArrow: $('.next'),
         prevArrow: $('.prev'),
     });
+
 });

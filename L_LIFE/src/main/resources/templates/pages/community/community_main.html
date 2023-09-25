@@ -9,10 +9,19 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_main.css}"/>
     <script th:src="@{/js/community/community_main.js}" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<body>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- slick 사용을 위함.  -->
+    <script
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+
+    <body>
 
     <!-- 헤더 프래그먼트 삽입 -->
     <th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
@@ -23,15 +32,14 @@
     <!-- 커뮤니티 배너 부분 -->
     <div class="swiper-container community_main">
         <div class="swiper-wrapper">
-
             <!-- 첫 번째 배너 -->
             <div class="swiper-slide">
                 <div class="community-top-banner-1">
                     <div class="community-main-content hd__inner1400">
                         <div class="first-title"> 🌟 인테리어 스토리 공유 🌟</div>
-                        <div class="second-title">가구 구독의 순간들을<br>플립북으로 특별하게!</div>
+                        <div class="second-title">가구 구독의 순간들을<br>Livart Book으로 특별하게!</div>
                         <div class="third-title">GPT & Karlo의 도움으로 나만의 공간을 빛내보세요.🎨</div>
-                        <a class="book-make-button" th:href="@{/community/write}"> 플립북 만들기 </a>
+                        <a class="book-make-button" th:href="@{/community/write}"> Livart Book 만들기 </a>
                     </div>
                     <img class="community-img" alt="커뮤니티 배너 1" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/dggdt.png}"/>
                 </div>
@@ -243,9 +251,6 @@
                 }
             });
         }
-
-
-
 
 
         var pages = document.getElementsByClassName('page');
