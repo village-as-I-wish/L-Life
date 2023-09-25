@@ -19,7 +19,7 @@
 </head>
 <body>
     <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
-
+    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
     <div class="hd__inner1400 write-header">
         <div class="community_write-title">LIVART-BOOK 만들기</div>
     </div>
@@ -115,8 +115,7 @@
                     </div>
 
                 </div>
-<!--            <input type="hidden" id="memberId" th:value="${session.existingMember.mId}">-->
-            <input type="hidden" id="memberId" th:value=1>
+            <input type="hidden" id="memberId" th:value="${session.existingMember?.mId}">
 
             <div class="current-page-num">1페이지 / 3페이지</div>
             <div class="input-btn">

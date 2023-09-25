@@ -1,5 +1,6 @@
 package kosa.com.suntofu.L_LIFE.community.service;
 
+import kosa.com.suntofu.L_LIFE.community.vo.BookPageRequestVo;
 import kosa.com.suntofu.L_LIFE.community.vo.BookRequestVo;
 import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
 import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
@@ -17,4 +18,5 @@ public interface CommunityService {
     List<ProductVo> getProductByKeyword(String keyWord);
 
     int createBook(BookRequestVo bookRequestVo);
+    int createPage(BookPageRequestVo bookPageRequestVo);
 }

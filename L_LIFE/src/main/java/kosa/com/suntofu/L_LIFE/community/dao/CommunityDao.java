@@ -15,7 +15,7 @@ public interface CommunityDao {
 
     void insertBook(BookRequestVo bookRequestVo);
 
-    int insertBookPages(List<BookPageRequestVo> pages);
+    int insertBookPage(BookPageRequestVo bookPageRequestVo);
 
-    int insertBFurniture(List<BookFurnitureVo> furnitures);
+    int insertBFurniture(BookPageRequestVo bookPageRequestVo);
 }
