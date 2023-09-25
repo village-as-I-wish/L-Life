@@ -228,7 +228,6 @@ video{
 .right-first-image .inner-content span{
     font-size: 16px;
     color: #fff;
-    font-style: italic;
 }
 .left-content .inner-content h4{
     color: #fff;
@@ -243,7 +242,6 @@ video{
     font-size: 16px;
     color: #fff;
     font-weight: 400;
-    font-style: italic;
     display: block;
     margin-bottom: 30px;
 }
