@@ -238,10 +238,27 @@
 .stream-sub-product-name{
     display: flex;
     align-items: flex-start;
-    font-size: 18px;
+    font-size: 13px;
     margin-top: 7px;
     flex-direction: column;
 }
+
+.stream-sub-product-brand{
+    padding: 3px;
+    border-radius: 5px;
+    border: solid 1px;
+    margin-right: 5px;
+}
+
+.stream-sub-product-title{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.stream-sub-product-option{
+    margin-top: 5px;
+}
+
 .stream-sub-product-card{
     width: 100%;
     display: flex;
@@ -264,7 +281,7 @@
 }
 .stream-sub-product-cart-btn,.stream-product-cart-btn{
     height: 35px;
-    padding: 10px;
+    /*padding: 10px;*/
     background: white;
     border: 1px solid lightgray;
     border-radius: 10px;
@@ -272,6 +289,10 @@
     margin-left:10px;
 }
 
+.stream-sub-product-cart-btn:hover{
+    background-color: #5D493F;
+    color: white;
+}
 .hidden{
     display: none;
 }

@@ -120,6 +120,11 @@ function joinSession(isAdmin) {
     } else {
         createToken(mySessionId).then(token => {
 
+            $('.livestream-sharebtn').attr('disabled', true);
+            $('.livestream-sharebtn').css("background-color", "#db0d36");
+            $('.share-btn-txt2').text("ON-AIR")
+
+            console.log("disable")
             // First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
             // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
             session.connect(token, {clientData: myUserName})
