@@ -9,10 +9,15 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/community/community_main.css}"/>
     <script th:src="@{/js/community/community_main.js}" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<body>
+    <!-- slick 사용을 위함.  -->
+    <script
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+
+    <body>
 
     <!-- 헤더 프래그먼트 삽입 -->
     <th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
@@ -23,7 +28,6 @@
     <!-- 커뮤니티 배너 부분 -->
     <div class="swiper-container community_main">
         <div class="swiper-wrapper">
-
             <!-- 첫 번째 배너 -->
             <div class="swiper-slide">
                 <div class="community-top-banner-1">
@@ -243,9 +247,6 @@
                 }
             });
         }
-
-
-
 
 
         var pages = document.getElementsByClassName('page');
