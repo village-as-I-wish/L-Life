@@ -35,15 +35,17 @@
     <div class="swiper-wrapper">
         <!-- 첫 번째 배너 -->
         <div class="swiper-slide">
+            <a th:href="@{/subscription}">
             <div class="standard-top-banner-1">
-                <div class="standard-main-content hd__inner1400">
+                <div class="standard-main-content hd__inner1400" th:href="@{/subscription}">
                     <div class="first-title"> 🌷 "삼삼오오"로 인테리어 변신 🌷</div>
                     <div class="second-title">33구독과 55구독으로<br>매월 새로운 가구를 선택하세요!</div>
                     <div class="third-title">한 달마다 달라지는 우리 집의 스타일을 즐겨보세요.</div>
-<!--                    <a class="book-make-button" th:href="@{/subscription}"> 구독 서비스 시작하기 </a>-->
+<!--                    <a class="sub-start-button" th:href="@{/subscription}"> 구독 서비스 시작하기 > </a>-->
                 </div>
                 <img class="standard-img" alt="커뮤니티 배너 1" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/L-coins.png}"/>
             </div>
+            </a>
         </div>
         <div class="swiper-slide">
             <div class="standard-top-banner-2">
@@ -185,6 +187,10 @@
         draggable: true,
         resistance: true,
         resistanceRatio: 0.85,
+        autoplay: {
+            delay: 5000, // 5초 후에 자동으로 다음 슬라이드로 넘어갑니다.
+            disableOnInteraction: false // 사용자가 슬라이드를 드래그하거나 다른 상호작용을 할 때 autoplay를 중지하지 않도록 설정합니다.
+        }
     });
 </script>
 </body>

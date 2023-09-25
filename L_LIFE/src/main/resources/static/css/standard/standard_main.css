@@ -53,13 +53,10 @@
     transform: translate(-50%, -50%);
 }
 
-.book-make-button {
+.sub-start-button {
     position: absolute;
     top: 212px;
-    background-color: #5d493e;
-    color: #ffffff;
-    padding: 5px  40px;
-    border-radius: 20px;
+    color: #000000;
     text-decoration: none;
     font-size: 17px;
     margin-top: 7px;
@@ -67,11 +64,7 @@
 .book-make-button:hover {
     color: #ffffff;
 }
-.urbanbase {
-    background-color: #004C8C;
-    color: #ffffff;
-    margin-top: 7px;
-}
+
 
 .standard-img {
     position: absolute;
