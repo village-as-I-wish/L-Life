@@ -63,6 +63,9 @@
 .chat-blue{
     color:blue
 }
+.md-color {
+    color: #d37840;
+}
 .chat-user{
     font-weight: bold;
     margin-right: 5px;
