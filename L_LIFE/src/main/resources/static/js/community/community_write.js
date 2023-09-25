@@ -1,4 +1,4 @@
-const imageFiles = [];
+// const imageFiles = [];
 
 function displayImage(input,page) {
     const $previewImage = $('.upload-file-'+page);
@@ -23,6 +23,7 @@ function chatGPT(index) {
 
     const data = {
         prompt: prompt,
+        image_format: 'jpeg'
     }
 
     // GPT
@@ -57,11 +58,11 @@ function chatGPT(index) {
     }).then(async function (response) {
         console.log(response.images[0].image)
         // 이미지 URL을 파일로 변환
-        const imageFile = await convertURLtoFile(response.images[0].image);
-        $('#ai-image-file'+index).val(imageFile)
-        console.log("생성된 이미지 파일" + imageFile)
-        console.log(imageFile)
-        imageFiles[index] = imageFile;
+        // const imageFile = await convertURLtoFile(response.images[0].image);
+        $('#ai-image-'+index).val(response.images[0].image)
+        // console.log("생성된 이미지 파일" + imageFile)
+        // console.log(imageFile)
+        // imageFiles[index] = imageFile;
         $('#ai-image-'+index).attr("src", response.images[0].image)
 
         $('#loading').hide();
@@ -94,22 +95,22 @@ function chatGPT(index) {
 }
 
 // GPT에게 받은 이미지 URL -> 파일
-const convertURLtoFile = async (url) => {
-    // 임시방편
-    const response = await fetch("https://cors-anywhere.herokuapp.com/"+url);
-    const data = await response.blob();
-
-    // URL에서 확장자 추출
-    const extMatch = url.match(/\.(\w+)(\?|$)/);
-    const ext = extMatch ? extMatch[1] : 'jpg'; // 기본 확장자를 jpg로 설정하거나 원하는 확장자로 변경할 수 있습니다.
-
-    // URL에서 파일 이름 추출
-    const filenameMatch = url.match(/\/([^/]+)(\?|$)/);
-    const filename = filenameMatch ? filenameMatch[1] : 'image'; // 기본 파일 이름을 'image'로 설정하거나 원하는 파일 이름으로 변경할 수 있습니다.
-
-    const metadata = { type: `image/${ext}` };
-    return new File([data], `${filename}.${ext}`, metadata);
-};
+// const convertURLtoFile = async (url) => {
+//     // 임시방편
+//     const response = await fetch("https://cors-anywhere.herokuapp.com/"+url);
+//     const data = await response.blob();
+//
+//     // URL에서 확장자 추출
+//     const extMatch = url.match(/\.(\w+)(\?|$)/);
+//     const ext = extMatch ? extMatch[1] : 'jpg'; // 기본 확장자를 jpg로 설정하거나 원하는 확장자로 변경할 수 있습니다.
+//
+//     // URL에서 파일 이름 추출
+//     const filenameMatch = url.match(/\/([^/]+)(\?|$)/);
+//     const filename = filenameMatch ? filenameMatch[1] : 'image'; // 기본 파일 이름을 'image'로 설정하거나 원하는 파일 이름으로 변경할 수 있습니다.
+//
+//     const metadata = { type: `image/${ext}` };
+//     return new File([data], `${filename}.${ext}`, metadata);
+// };
 
 
 $(document).ready(function(){
@@ -207,9 +208,9 @@ $(document).ready(function(){
                             (function (i) {
                                 var formData = new FormData()
                                 var inputFile = $('#imgUpload0' + i)
-                                var aiFile = $('#ai-image-file-'+i)
+                                var aiFile = $('#ai-image-'+i).val()
                                 const selectedFile = inputFile[0].files[0]
-                                const aiImageFile = imageFiles[i]
+                                // const aiImageFile = aiFile
 
                                 formData.append('bookId', res.result);
                                 formData.append('bpTitle', $('#title-' + i).val());
@@ -219,7 +220,8 @@ $(document).ready(function(){
                                 formData.append('bpAiContent', $('#ai-text' + i).val())
                                 formData.append('file', selectedFile)
                                 formData.append('lfId', $('#product-' + i).val())
-                                formData.append('aiImageFile',aiImageFile)
+                                formData.append('aiImageFile',aiFile)
+                                console.log(aiFile)
 
                                 $.ajax({
                                     method: 'POST',

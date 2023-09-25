@@ -81,7 +81,7 @@
             <span class="second-styling">"Livart Book"</span>
         </div>
         <div class="styling-main-content slider-container">
-            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}" th:if="${iterStat.index} < 4">
+            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}" th:if="${iterStat.index} < 10">
                 <input id="bookId" type="hidden" th:value="${book.bookId}">
 <!--                <img class="book-image" th:id="'book-image'+ ${iterStat.index}" alt="메가진 사진" th:src="${book.bookMainImg}" th:onclick="showBook([[${iterStat.index}]])"/>-->
                 <img class="book-image"
