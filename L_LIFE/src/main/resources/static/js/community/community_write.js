@@ -1,3 +1,5 @@
+const imageFiles = [];
+
 function displayImage(input,page) {
     const $previewImage = $('.upload-file-'+page);
     if (input.files && input.files[0]) {
@@ -59,6 +61,7 @@ function chatGPT(index) {
         $('#ai-image-file'+index).val(imageFile)
         console.log("생성된 이미지 파일" + imageFile)
         console.log(imageFile)
+        imageFiles[index] = imageFile;
         $('#ai-image-'+index).attr("src", response.images[0].image)
 
         $('#loading').hide();
@@ -176,50 +179,98 @@ $(document).ready(function(){
 
 // 플립북 작성 버튼 클릭
     $('.submit-btn').click(function() {
+        const memberId = $('#memberId').val();
+        console.log("memberId", memberId)
+        if(memberId === null || memberId ==='undefined' || memberId==''){
+            Swal.fire({
+                title: '로그인이 필요한 페이지 입니다.',
+                text: '로그인 후 다시 이용해주세요.',
+                imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
+                confirmButtonText: '확인',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/l-life/member/login";
+                }
+            });
 
-        const formData = new FormData();
+        }else{
+            $.ajax({
+                data: {
+                    mId: memberId
+                },
+                method: 'POST',
+                url: '/l-life/api/v1/community/book/',
+                success: function (res) {
+                    console.log("Book Inserted ", res.result)
+                    if (res.result !== -1) {
+                        for (let i = 1; i <= 3; i++) {
+                            (function (i) {
+                                var formData = new FormData()
+                                var inputFile = $('#imgUpload0' + i)
+                                var aiFile = $('#ai-image-file-'+i)
+                                const selectedFile = inputFile[0].files[0]
+                                const aiImageFile = imageFiles[i]
 
-        for (let i = 1; i <= 3; i++){
-            var inputFile = $('#imgUpload0'+i)
-            const selectedFile = inputFile[0].files[0]
-            const aiImageFile = inputFile[0].files[0]
+                                formData.append('bookId', res.result);
+                                formData.append('bpTitle', $('#title-' + i).val());
+                                formData.append('bpContent', $('#content-' + i).val());
+                                formData.append('bpTag', $('#tag-' + i).val());
+                                formData.append('bpPageNum', i);
+                                formData.append('bpAiContent', $('#ai-text' + i).val())
+                                formData.append('file', selectedFile)
+                                formData.append('lfId', $('#product-' + i).val())
+                                formData.append('aiImageFile',aiImageFile)
 
-            let page = {
-                bpTitle: $('#title-'+i).val(),
-                bpContent: $('#content-'+i).val(),
-                bpTag : $('#tag-'+i).val(),
-                bpPageNum: i,
-                bpAiContent: $('#ai-text'+i).val()
-            }
+                                $.ajax({
+                                    method: 'POST',
+                                    url: '/l-life/api/v1/community/bookPage/',
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    async: false,
+                                    success: function (result) {
+                                        console.log("페이지 생성 성공",result);
+                                    },
+                                    error: function (e) { // bookPage 에러
+                                        Swal.fire({
+                                            title: '플립북 페이지 생성이 오류가 발생하였습니다.',
+                                            text: '잠시 후 다시 이용해주세요.',
+                                            confirmButtonText: '확인',
+                                        }).then((res) => {
+                                            if (res.isConfirmed) {
+                                                window.location.href = "/l-life/community/main";
+                                            }
+                                        });
+                                    },
+                                });
+                            })(i);
+                        }
+                        Swal.fire({
+                            title: '플립북 생성이 완료 되었습니다.',
+                            text: '커뮤니티 메인페이지로 이동합니다.',
+                            confirmButtonText: '확인',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                               window.location.href = "/l-life/community/main";
+                            }
+                        });
+                    }else{// 북 생성 오류
+                        Swal.fire({
+                            title: '플립북 생성에 오류가 발생하였습니다.',
+                            text: '잠시후 다시 이용해주세요.',
+                            confirmButtonText: '확인',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/l-life/community/main";
+                            }
+                        });
+                    }
 
-            let furniture = {
-                lfId: parseInt($('#product-'+i).val())
-            }
-
-            formData.append("pages",JSON.stringify(page))
-            formData.append('files', selectedFile);
-            formData.append("aifiles",aiImageFile)
-            formData.append("furnitures",JSON.stringify(furniture))
-            formData.append("mId",memberId)
+                },
+            })
         }
 
-        console.log(formData)
-        for (let key of formData.keys()) {
-            console.log(key, ":", formData.get(key));
-        }
-
-        $.ajax({
-            url: '/l-life/api/v1/community/bookTest/',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success : function(res) {
-                console.log(res)
-            }
-        })
     })
-
 
 
     // 임시 카테고리 함수
@@ -300,6 +351,4 @@ $(document).ready(function(){
             }
         })
     })
-
-
 })

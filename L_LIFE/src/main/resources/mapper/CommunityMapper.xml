@@ -51,6 +51,7 @@
         LEFT JOIN LLifeFurniture blf ON bf.lf_id = blf.lf_id
         LEFT JOIN LFurnitureBrand lfb ON blf.lf_brand_id = lfb.lf_brand_id
         WHERE b.book_id = #{bookId}
+        order by b.book_id, bp.bp_page_num
     </select>
 
     <select id="selectBooks" resultMap="selectBookResultMap">
@@ -84,16 +85,11 @@
         insert into book(book_id, m_id) values (#{bookId},#{mId})
     </insert>
 
-    <insert id="insertBookPages" parameterType="java.util.List">
+    <insert id="insertBookPage" parameterType="BookPageRequestVo">
         INSERT INTO bookpage (book_id, bp_title, bp_content, bp_img, bp_ai_img, bp_ai_content, bp_tag, bp_page_num)
-        <foreach collection="list" item="item" separator="UNION ALL">
-            SELECT #{item.bookId}, #{item.bpTitle, jdbcType=VARCHAR}, #{item.bpContent, jdbcType=VARCHAR} ,#{item.bpImg, jdbcType=VARCHAR}, #{item.bpAiImg, jdbcType=VARCHAR},#{item.bpAiContent, jdbcType=VARCHAR}, #{item.bpTag, jdbcType=VARCHAR},#{item.bpPageNum} FROM DUAL
-        </foreach>
+        values(#{bookId}, #{bpTitle, jdbcType = VARCHAR}, #{bpContent, jdbcType = VARCHAR}, #{bpImg, jdbcType = VARCHAR}, #{bpAiImg,jdbcType = VARCHAR}, #{bpAiContent, jdbcType = VARCHAR}, #{bpTag, jdbcType = VARCHAR}, #{bpPageNum})
     </insert>
-    <insert id="insertBFurniture" parameterType="List">
-        INSERT INTO bookfurniture (book_id, lf_id)
-        <foreach collection="list" item="item" separator="UNION ALL">
-            SELECT #{item.bookId}, #{item.lfId} FROM DUAL
-        </foreach>
+    <insert id="insertBFurniture" parameterType="BookPageRequestVo">
+        INSERT INTO bookfurniture (book_id, lf_id) values(#{bookId}, #{lfId})
     </insert>
 </mapper>

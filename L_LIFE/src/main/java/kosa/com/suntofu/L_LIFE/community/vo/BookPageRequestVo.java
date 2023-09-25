@@ -12,8 +12,8 @@ import java.io.File;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookPageRequestVo {
-    private int bookId;
-    private int bpId;
+    private Integer bookId;
+    private Integer bpId;
 
     private String bpTitle; // 북 페이지 제목
     private String bpContent; // 북페이지 내용
@@ -21,9 +21,11 @@ public class BookPageRequestVo {
     private String bpAiImg; //북페이지 ai 사진
     private String bpAiContent;  //북페이지 ai 내용
     private String bpTag;  // 북페이지 태그
-    private int bpPageNum;  // 북페이지 페이지 번호
+    private Integer bpPageNum;  // 북페이지 페이지 번호
+
+    private Integer lfId;
 
     private MultipartFile file;
-    private MultipartFile aiFile;
+    private MultipartFile aiImageFile;
 }
 
