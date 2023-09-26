@@ -21,6 +21,10 @@
     transform: translate(-50%, -50%);
 }
 
+.cm-report-container{
+    margin-top: 200px;
+}
+
 .cm-top-banner img{
     transform: scaleX(-1);
     width: 100%;
@@ -108,10 +112,12 @@
 .rmImg-btn{
     margin-top: 10px;
     background: white;
-    border: 1px solid #5d493c;
+    border: 1.5px solid #5d493c;
     text-align: center;
     height: 64px;
     width: 50%;
+    color: #5d493c;
+    font-weight: bold;
 }
 
 .imgBtn-box{
@@ -123,14 +129,14 @@
 }
 #drop-file > span{
     margin-top:10px;
-    color:#f76b8a;
+    color:red;
 }
 
 .cm-report-graph{
     width: 50%;
     height: unset;
     background-size: 130% 100%;
-    background-image: url(../../img/community/캐릭터3.png);
+    background-image: url(../../img/community/report_image_01.jpg);
     display: flex;
     text-align: center;
     background-attachment: initial;
@@ -146,7 +152,7 @@
 .cm-report-graph > p:first-child{
     display: block;
     color: white;
-    background: green;
+    background: #FF914D;
     width: fit-content;
     text-align: center;
     padding: 15px;
@@ -157,7 +163,7 @@
     margin-bottom:20px;
 }
 .txt-pink{
-    color: #ed2650;
+    color: red;
     font-size: 16px;
     font-weight: bold;
 }

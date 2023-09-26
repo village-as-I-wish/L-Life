@@ -9,7 +9,7 @@
             </div>
             <div class="user-info-box-list">
                 <div class="user-info-box">
-                    <span th:text="${session.existingMember.mPoint}"></span>
+                    <span th:text="${#numbers.formatInteger(session.existingMember.mPoint, 0, 'COMMA')}"></span>
                     <span>H.Point</span>
                 </div>
                 <div class="user-info-box">
@@ -18,7 +18,7 @@
                     <span>찜한 상품</span>
                 </div>
                 <div class="user-info-box">
-                    <span th:text="${restock}"></span>
+                    <span th:text="3"></span>
                     <span>재입고 알림</span>
                 </div>
             </div>

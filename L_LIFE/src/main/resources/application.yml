@@ -6,11 +6,11 @@ server:
     mbeanregistry: # 톰캣 메트릭을 모두 사용하려면 다음 옵션을 켜야하며, 옵션을 켜지 않으면 tomcat.session. 관련정보만 노출됩니다
       enabled: true
   ssl:
-#    enabled: false
-    enabled: true
-    key-store: classpath:ssl/keystore.p12
-    key-store-type: PKCS12
-    key-store-password: ${key-store-password}
+    enabled: false
+#    enabled: true
+#    key-store: classpath:ssl/keystore.p12
+#    key-store-type: PKCS12
+#    key-store-password: ${key-store-password}
 
 spring:
   security:

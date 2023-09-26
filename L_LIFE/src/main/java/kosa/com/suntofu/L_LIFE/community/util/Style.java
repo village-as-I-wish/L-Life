@@ -6,7 +6,6 @@ public enum Style {
     CLASSIC("classic",3 ),
     ROMANTIC("romantic",4),
     VINTAGE("vintage",5 ),
-
     MODERN("modern",6);
 
     private final String value;
