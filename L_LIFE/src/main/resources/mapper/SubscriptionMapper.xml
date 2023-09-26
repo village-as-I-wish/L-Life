@@ -113,7 +113,7 @@
             SELECT NVL(MAX(sub_lf_id), 0) FROM LFSUBSCRIPTIONLIST
         </selectKey>
         INSERT INTO DELIVERY (SUB_LF_ID, M_ID, DELIVERY_DATE, DELIVERY_TIME)
-        VALUES ( #{subLfId}, #{memberId}, #{deliveryDate}, #{deliveryTime})
+        VALUES ( #{subLfId}, #{memberId}, TO_DATE(#{deliveryDate},'YYYY-MM-DD'), #{deliveryTime})
     </insert>
 
 
@@ -154,7 +154,7 @@
             SELECT NVL(MAX(sub_lf_id), 0) FROM LFSUBSCRIPTIONLIST
         </selectKey>
         INSERT INTO DELIVERY (SUB_LF_ID, M_ID, DELIVERY_DATE, DELIVERY_TIME, DELIVERY_ADDRESS)
-        VALUES ( #{subLfId}, #{memberId}, #{deliveryDate}, #{deliveryTime}, #{deliveryAddress})
+        VALUES ( #{subLfId}, #{memberId}, TO_DATE(#{deliveryDate},'YYYY-MM-DD'), #{deliveryTime}, #{deliveryAddress})
     </insert>
 
     <!-- 구독 포인트 업데이트-->
