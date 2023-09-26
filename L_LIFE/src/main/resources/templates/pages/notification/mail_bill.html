@@ -80,13 +80,13 @@
             <div style="display: flex">
                 <div class="mail-to-info" style="text-align: left;">
                     <p style="margin:0;" class="mail-head-txt"> Invoice To</p>
-                    <p style="margin:20px 0px 0px 0px;"> 김승주 </p>
-                    <p style="margin:10px 0px 0px 0px; text-decoration: none; color:black;"> seoungjoo01@naver.com</p>
+                    <p style="margin:20px 0px 0px 0px;" th:text="${member.mName}"></p>
+                    <p style="margin:10px 0px 0px 0px; text-decoration: none; color:black;" th:text="${member.mEmail}"></p>
 
                 </div>
                 <div class="mail-date" style="text-align: right;">
                     <p class="mail-head-big-txt"> 구독 내역</p>
-                    <p style="color:black"> Invoice Date 01/09/23 </p>
+                    <p style="color:black"> Invoice Date 11/10/23 </p>
                 </div>
             </div>
             <div class="invoice-content">
@@ -95,30 +95,19 @@
                     <th style="border-bottom: 1px solid black;">가격 </th>
                     <th style="border-bottom: 1px solid black;">수량</th>
                     <th style="border-bottom: 1px solid black;">총 가격  </th>
-                    <tr>
+                    <tr th:each="product, iterStat : ${furniture}">
                         <td style="display: flex">
-                            <img style="width: 80px" class="top-banner" alt="메일 상단배너" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/product.png"/>
+                            <img style="width: 80px" class="top-banner" alt="메일 상단배너" th:src="${product.lfImgMain}"/>
                             <div class="product-box">
-                                <p class="product-name">Bedrooms (35 sqm)</p>
-                                <p class="product-info">구독료 : 월 2000원</p>
+                                <p class="product-name" th:text="${product.lfName}"></p>
+                                <p class="product-info">구독료 : 월 <span th:text="${product.lfPrPrice}"></span>원</p>
                             </div>
                         </td>
-                        <td>20000원</td>
-                        <td>1</td>
-                        <td>20000원</td>
+                        <td ><p class="product-info"><span th:text="${product.lfPrPrice}"></span>원</p></td>
+                        <td><p class="product-info"><span th:text="${product.quantity}"></span>개</p></td>
+                        <td><p class="product-info"><span th:text="${product.quantity} * ${product.lfPrPrice}"></span>원</p></td>
                     </tr>
-                    <tr>
-                        <td style="display: flex">
-                            <img style="width: 80px" class="top-banner" alt="메일 상단배너" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/product.png"/>
-                            <div class="product-box">
-                                <p class="product-name">Bedrooms (35 sqm)</p>
-                                <p class="product-info">구독료 : 월 2000원</p>
-                            </div>
-                        </td>
-                        <td>20000원</td>
-                        <td>1</td>
-                        <td>20000원</td>
-                    </tr>
+
                 </table>
 
                 <div class="total-price-box">
@@ -127,7 +116,7 @@
                 <div class="payment-information">
                     <p style="font-weight: bold;">Payment Information</p>
                     <p> Livart Life Inc.</p>
-                    <p> Livart Life Site : livart-life.com:8080/life/</p>
+                    <p> Livart Life Site : livart-life.com/l-life/</p>
                 </div>
 
             </div>

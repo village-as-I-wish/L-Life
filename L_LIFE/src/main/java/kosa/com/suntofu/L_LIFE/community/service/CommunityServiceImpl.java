@@ -139,7 +139,6 @@ public class CommunityServiceImpl implements  CommunityService{
                 throw new RuntimeException(e);
             }
             String AIimgUrl = uploadNormalFile(file);
-            System.out.println("생성된 AI url : "+AIimgUrl);
 
 //            String AIimgUrl = uploadFile(bookPageRequestVo.getAiImageFile(), "L-life-BOOK-AI");
             bookPageRequestVo.setBpAiImg(AIimgUrl);

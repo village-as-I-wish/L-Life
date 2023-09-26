@@ -4,6 +4,7 @@ package kosa.com.suntofu.L_LIFE.subscription.controller;
 import com.amazonaws.Response;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
 import kosa.com.suntofu.L_LIFE.notification.service.NotificationService;
 import kosa.com.suntofu.L_LIFE.notification.vo.NotificationMessageVo;
@@ -16,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,7 +31,9 @@ import java.util.List;
 @Tag(name = "subscription", description = "구독 API")
 public class SubscriptionRestController {
 
+    private final MemberService memberService;
     private final SubscriptionService subscriptionService;
+    private final TemplateEngine templateEngine;
     private final NotificationService notificationService;
 
     @Operation(summary = "스탠다드 구독권 구매", description = "스탠다드 구독권을 구매합니다(33/55)")
@@ -62,6 +67,7 @@ public class SubscriptionRestController {
     @Operation(summary = "프리미엄 가구 구독", description = "프리미엄 가구 구독")
     @PostMapping("premium")
     public ResponseEntity<BasicResponse> subscribePremium(HttpServletRequest request,
+                                                          @RequestParam int memberId,
                                                           @RequestParam String checkedDay,
                                                           @RequestParam String checkedTime){ //세션에서 memberId 가져올 예정
         HttpSession session = request.getSession();
@@ -74,10 +80,20 @@ public class SubscriptionRestController {
         }
 
         int result = subscriptionService.addPrLFSubcriptoin(payFurnitureList);
-        session.removeAttribute("prPaymentProduct");
+        // 빌지 메일 발송
+        MemberVo member = memberService.selectMemberById(memberId);
 
-//        NotificationMessageVo notificationMessageVo = new NotificationMessageVo();
-//        notificationService.sendMail(notificationMessageVo);
+        Context context = new Context();
+        context.setVariable("member", member);
+        context.setVariable("furniture", payFurnitureList);
+
+        String message = templateEngine.process("pages/notification/mail_bill", context);
+        NotificationMessageVo notificationMessageVo = new NotificationMessageVo(member.getMEmail(), member.getMName() + "에게 ", message);
+
+        notificationService.sendMail(notificationMessageVo);
+
+
+        session.removeAttribute("prPaymentProduct");
 
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("프리미엄 구독이 완료되었습니다.").result(1).build(), HttpStatus.OK);
 

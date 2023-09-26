@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface MemberService {
     MemberVo insertOrSelectMember(MemberVo memberVo);
+    MemberVo selectMemberById(int memberId);
     List<MemberVo> getAllProducts();
 
     List<CartVo> getAllStandardCarts(int memberId);
