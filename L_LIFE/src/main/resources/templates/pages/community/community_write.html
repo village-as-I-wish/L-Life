@@ -70,17 +70,6 @@
                                 <label class="imgUploadLabel" th:for="'imgUpload0'+${index}">이미지 업로드</label>
                                 <button class="Ai-Img-btn" th:onclick="chatGPT([[${index}]])">AI 이미지 생성</button>
                             </div>
-                        </div>
-                        <div class="center-container">
-
-                        </div>
-                        <div class="right-container">
-                            <div class="input-group">
-                                <input th:id="'title-'+${index}" type="text"placeholder="제목을 입력해주세요.">
-                            </div>
-                            <div class="input-group">
-                                <textarea th:id="'content-'+${index}" class="contents" name="contents" rows="6" placeholder="내용을 입력해주세요."></textarea>
-                            </div>
                             <div class="input-group">
                                 <input th:id="'tag-'+${index}" class="tags" name="tags" type="text" placeholder="태그를 입력해주세요.">
                             </div>
@@ -98,9 +87,22 @@
                                     <option value="기본값">선택해주세요</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="center-container">
+
+                        </div>
+                        <div class="right-container">
                             <div class="input-ai-image">
-                                <img th:id="'ai-image-'+${index}" src="https://cdn.aitimes.com/news/photo/202212/148277_156620_111.png">
+                                <img th:id="'ai-image-'+${index}">
                             </div>
+                            <div class="input-group">
+                                <input th:id="'title-'+${index}" type="text"placeholder="제목을 입력해주세요.">
+                            </div>
+                            <div class="input-group">
+                                <textarea th:id="'content-'+${index}" class="contents" name="contents" rows="6" placeholder="내용을 입력해주세요."></textarea>
+                            </div>
+
+
                         </div>
 
                         <input th:id="'ai-text'+${index}" type="hidden">

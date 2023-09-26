@@ -208,6 +208,13 @@
     font-weight: 600;
     margin-right: 5px;
 }
+
+.stream-product-coin{
+    color: #FF914D;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .stream-product-price button{
     position: absolute;
     right: 18px;
@@ -249,7 +256,6 @@
     /*border-radius: 5px;*/
     /*border: solid 1px;*/
     /*margin-right: 5px;*/
-    border-bottom: 1px solid;
     margin-right: 5px;
 }
 
@@ -289,7 +295,6 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     font-weight: bold;
-    margin-left:10px;
 }
 
 .stream-sub-product-cart-btn:hover, .stream-product-cart-btn:hover{

@@ -126,7 +126,7 @@
         </div>
         <div class="stream-product-price">
             <span class="stream-product-price-txt"> 패키지 구독 코인  </span>
-            <span><span th:text="${liveStreamDetail.getLfPackage().getLfPackageStCoin()}">0</span>개 </span>
+            <span><span class="stream-product-coin" th:text="${liveStreamDetail.getLfPackage().getLfPackageStCoin()}">0</span>개 </span>
             <button class="stream-product-cart-btn dark-brown" th:onclick="packageToCart()"> 패키지 담기</button>
         </div>
         <hr>
