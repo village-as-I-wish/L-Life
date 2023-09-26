@@ -31,7 +31,7 @@ $(document).ready(function() {
     });
     $('.header-logo a').click(function(e){
         localStorage.removeItem('selectedCateItem');
-        $('sub-cate-menu li a.cate-header-selected').removeClass('cate-header-selected');
+        $('#sub-cate-menu li a.cate-header-selected').removeClass('cate-header-selected');
 
     });
 

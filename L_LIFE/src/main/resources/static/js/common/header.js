@@ -26,12 +26,19 @@ $(document).ready(function() {
         localStorage.removeItem('selectedItem');
         // 선택한 항목을 로컬 스토리지에 저장합니다.
         localStorage.setItem('selectedItem', $(this).attr('id'));
+
+        localStorage.removeItem('selectedCateItem');
+        $('#sub-cate-menu li a.cate-header-selected').removeClass('cate-header-selected');
+
         window.location.href = $(this).attr('href');
 
     });
     $('.header-logo a').click(function(e){
         localStorage.removeItem('selectedItem');
         $('#menu li a.header-selected').removeClass('header-selected');
+        localStorage.removeItem('selectedCateItem');
+        $('#sub-cate-menu li a.cate-header-selected').removeClass('cate-header-selected');
+
 
     });
 
