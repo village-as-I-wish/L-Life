@@ -13,6 +13,7 @@ $(document).ready(function() {
         var addressDetail = $('#addr_dtl').val();
         var deliveryAddress = address + addressDetail
         data =  {
+            memberId: memberId,
             checkedDay: checkedDay,
             checkedTime: checkedTime,
             deliveryAddress : deliveryAddress
@@ -49,6 +50,17 @@ $(document).ready(function() {
             }
         });
 
+        // $.ajax({
+        //     type : "POST",
+        //     data : data,
+        //     url : baseUrl +"/l-life/notification/mail/bill/" + memberId,
+        //     success : function(res){
+        //         console.log("청구서 메일 성공")
+        //     },
+        //     error : function(XMLHttpRequest, textStatus, errorThrown){
+        //         alert("청구서 메일 실패.")
+        //     }
+        // });
     })
 })
 

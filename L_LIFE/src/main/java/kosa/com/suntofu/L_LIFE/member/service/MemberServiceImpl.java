@@ -31,6 +31,11 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    @Override
+    public MemberVo selectMemberById(int memberId) {
+        return memberDao.selectMemberById(memberId);
+    }
+
     public List<MemberVo> getAllProducts() {
 
         return memberDao.findAllProducts();
