@@ -26,6 +26,6 @@ public class BookPageRequestVo {
     private Integer lfId;
 
     private MultipartFile file;
-    private MultipartFile aiImageFile;
+    private String aiImageFile;
 }
 

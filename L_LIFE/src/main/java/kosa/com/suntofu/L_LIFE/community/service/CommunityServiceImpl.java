@@ -2,6 +2,9 @@ package kosa.com.suntofu.L_LIFE.community.service;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.util.IOUtils;
 import kosa.com.suntofu.L_LIFE.community.dao.CommunityDao;
 import kosa.com.suntofu.L_LIFE.community.vo.BookPageRequestVo;
 import kosa.com.suntofu.L_LIFE.community.vo.BookRequestVo;
@@ -21,12 +24,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import org.apache.commons.io.FileUtils;
 
 @Slf4j
 @Service
@@ -125,8 +132,15 @@ public class CommunityServiceImpl implements  CommunityService{
             bookPageRequestVo.setBpImg(imgUrl);
         }
         if(bookPageRequestVo.getAiImageFile() != null){
-            String AIimgUrl = uploadFile(bookPageRequestVo.getAiImageFile(), "L-life-BOOK-AI");
-            log.info("AI IMAGE", AIimgUrl);
+            File file = new File(bookPageRequestVo.getBpTitle());
+            try {
+                FileUtils.copyURLToFile(new URL(bookPageRequestVo.getAiImageFile()), file);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String AIimgUrl = uploadNormalFile(file);
+
+//            String AIimgUrl = uploadFile(bookPageRequestVo.getAiImageFile(), "L-life-BOOK-AI");
             bookPageRequestVo.setBpAiImg(AIimgUrl);
         }
 
@@ -175,6 +189,26 @@ public class CommunityServiceImpl implements  CommunityService{
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "사진 파일 업로드에 실패했습니다.");
         }
         return amazonS3Client.getUrl(bucket, fileName).toString();
+    }
+
+    public String uploadNormalFile(File file) {
+        String fileName = "ai/" + file.getName();
+
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(file.length()); // 파일 크기 설정
+        // 파일의 MIME 타입 설정 (예: image/jpeg)
+        // MIME 타입을 정확하게 알고 있다면 수동으로 설정할 수 있습니다.
+         objectMetadata.setContentType("image/jpeg");
+        try (InputStream inputStream = new FileInputStream(file)) {
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, fileName, inputStream, objectMetadata);
+            PutObjectResult putObjectResult = amazonS3Client.putObject(putObjectRequest);
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+        }
+
+        // 업로드된 파일의 URL 생성
+        String fileUrl = amazonS3Client.getUrl(bucket, fileName).toString();
+        return fileUrl;
     }
 
     private void cacheProducts(String cacheKey, List<ProductVo> cachingData) {

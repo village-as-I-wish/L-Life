@@ -33,7 +33,11 @@
         알림 신청하신 상품이 입고되었습니다.<br>
         상품 관련 링크는 하단의 링크를 참조해주시기 바랍니다.
       </p>
-      <p style="font-size:30px; line-height: 40px; margin-bottom: 20px; "> 상품 링크 : <span> livart-life.com:8080/</span></p>
+      <p style="font-size:30px; line-height: 40px; margin-bottom: 20px;">
+        <img th:src="${furniture.lfImgMain}"><br>
+        재입고 상품명 <span style="font-weight: bold" th:text="${furniture.lfName}"></span>
+      </p>
+      <p style="font-size:30px; line-height: 40px; margin-bottom: 20px; "> 상품 링크 : <span> livart-life.com/l-life/main</span></p>
       <p style="font-size:30px; line-height: 40px; margin-bottom: 20px; margin:20px 0px 80px 0px; color: #666666;">
         해당 상품은 선착순으로 구독 신청이 가능합니다. <br>
         다시 한번 L-Life와 함께해주셔서 감사합니다. <span style="float:right;color: black;">L-life.com</span>

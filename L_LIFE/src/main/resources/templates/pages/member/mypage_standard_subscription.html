@@ -11,7 +11,7 @@
     </span>
     </div>
     <ul>
-        <li th:each="product : ${standardSubscriptionList}" class="list-item">
+        <li th:each="product, iterStat : ${standardSubscriptionList}" class="list-item">
             <div class="product-item">
                 <!-- a 태그안에 경로와 제품id를 넣어서 제품의 상세페이지로 이동하게 하기 - 일단 #
                 <a th:href="@{'/productDetails/' + ${product.id}}"> -->
@@ -31,11 +31,17 @@
             </div>
             <div class="buttons">
                 <a href="#" class="custom-button">구독연장</a>
-                <button class="custom-button return-button"
+                <button class="custom-button return-button" th:onclick="mail([[${iterStat.index}]])"
                    th:attr="data-product-id=${product.subLfId}">반납</button>
                 <a href="#" class="custom-button">케어신청</a>
                 <a href="#" class="custom-button">배송조회</a>
             </div>
+            <input type="hidden" th:class="'lfId_'+ ${iterStat.index}" th:value="${product.lfId}">
+            <input type="hidden" th:class="'lfOptName_' + ${iterStat.index}" th:value="${product.lfOptName}">
+            <input type="hidden" th:class="'lfBrandName_' + ${iterStat.index}" th:value="${product.lfBrandName}">
+            <input type="hidden" th:class="'lfName_' + ${iterStat.index}" th:value="${product.lfName}">
+            <input type="hidden" th:class="'lfImgMain_' + ${iterStat.index}" th:value="${product.lfImgMain}">
+
         </li>
     </ul>
 

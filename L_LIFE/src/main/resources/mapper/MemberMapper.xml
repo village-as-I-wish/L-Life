@@ -9,6 +9,12 @@
         values (#{mEmail}, #{mName}, #{mGender}, #{mProfile})
     </insert>
 
+    <select id="selectMemberById" parameterType="int" resultType="MemberVo">
+        select *
+        from member
+        where m_id = #{memberId}
+    </select>
+
     <select id="selectMemberByEmail" parameterType="String" resultType="MemberVo">
         select * from member
         where m_email = #{mEmail}

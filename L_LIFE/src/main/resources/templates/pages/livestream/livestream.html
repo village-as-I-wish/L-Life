@@ -7,6 +7,7 @@
 
     <script th:inline="javascript">
         var baseUrl = /*[[${baseUrl}]]*/ null;
+        var lStreamId = /*[[${lStreamId}]]*/ null;
     </script>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/livestream/livestream.css}"/>
@@ -38,11 +39,11 @@
         </div>
 
         <div class="stream-info-txt-box">
-            <span class="dark-brown"> 오늘 저녁 6시  </span>
-            <div class="livestream-name">
+            <span class="dark-brown" th:text="${liveStreamDetail.lStreamTime}"> 오늘 저녁 6시  </span>
+            <div class="livestream-name" th:text="${liveStreamDetail.lStreamName}">
                 ❤️ 리바트 라이프 LIVE ❤️ 8/27 (일) 주방&욕실 스탠다드 구독!
             </div>
-            <div class="livestream-packinfo">
+            <div class="livestream-packinfo" th:text="${liveStreamDetail.lStreamComment}">
                 스탠다드 구독관 편 - L-COIN 5
             </div>
             <div class="livestream-tags">
@@ -142,9 +143,9 @@
             <div class="stream-sub-product">
                 <div class="stream-sub-product-name">
                     <div>
-                        <span th:text="${lsProduct.lfBrandName}"> 브랜드 </span><span th:text="${lsProduct.lfName}"> 상품 준비중  </span>
+                        <span class="stream-sub-product-brand" th:text="${lsProduct.lfBrandName}"> 브랜드 </span><span class="stream-sub-product-title" th:text="${lsProduct.lfName}"> 상품 준비중  </span>
                     </div>
-                    <p th:utext="'[옵션] ' + ${lsProduct.lfOptName}" th:if="${lsProduct.lfOptName != null}">옵션 준비중</p>
+                    <p class="stream-sub-product-option" th:utext="'[옵션] ' + ${lsProduct.lfOptName}" th:if="${lsProduct.lfOptName != null}">옵션 준비중</p>
                 </div>
                 <div class="stream-sub-product-info">
                     <div class="stream-sub-product-coins">
@@ -152,8 +153,8 @@
                              class="coin" alt="리바트 라이프 코인" th:src="@{/img/livestream/coin.png}"/>
                     </div>
                     <div class="stream-sub-product-btns">
-                        <i class="fa-regular fa-heart fa-xl dark-brown"></i>
-                        <button class="stream-sub-product-cart-btn dark-brown" th:onclick="productToCart([[${i.index}]])"> 상품 담기 </button>
+                        <button class="stream-sub-product-cart-btn dark-brown" > 상품 보기 </button>
+                        <button class="stream-sub-product-cart-btn dark-brown" th:onclick=" productToCart([[${i.index}]])"> 상품 담기 </button>
                     </div>
                 </div>
             </div>

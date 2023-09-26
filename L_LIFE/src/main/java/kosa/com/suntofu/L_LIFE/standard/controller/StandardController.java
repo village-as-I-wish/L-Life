@@ -88,6 +88,7 @@ public class StandardController {
         model.addAttribute("stkeyword", stProductListByKeyword);
         model.addAttribute("standardList", stProductListByKeyword);
         model.addAttribute("productCount", stProductListByKeyword.size());
+        model.addAttribute("totalNum", totalNum);
 
         List<StandardLiveVo> standardLiveList = standardService.getAllLiveStream();
         model.addAttribute("standardLiveList", standardLiveList);
