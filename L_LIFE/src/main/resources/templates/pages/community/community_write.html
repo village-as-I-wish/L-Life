@@ -19,7 +19,7 @@
 </head>
 <body>
     <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
-
+    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
     <div class="hd__inner1400 write-header">
         <div class="community_write-title">LIVART-BOOK 만들기</div>
     </div>
@@ -31,22 +31,16 @@
         </div>
         <div class="book">
             <div id="pages" class="pages">
-                <div class="page">
-                    <p><img class="book-guide-img" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/NewSpace/NewSpace%2C+%EB%82%98%EB%A7%8C%EC%9D%98+%EC%9E%A1%EC%A7%80+%EB%A7%8C%EB%93%A4%EA%B8%B02.png"/></p>
-                </div>
-                <div class="page"><p>Hello</p></div>
-                <div class="page"><p>Hello there!</p></div>
-                <div class="page">
-                    <p><img class="bb-item-img" src="https://d33wubrfki0l68.cloudfront.net/91ed41706514200a7ef212ebfeead7471354e622/01dcc/images/books/design-systems--large-opt.png" alt="image01"/></p>
-                </div>
-                <div class="page">
-                    <p><img class="bb-item-img" src="https://d33wubrfki0l68.cloudfront.net/91ed41706514200a7ef212ebfeead7471354e622/01dcc/images/books/design-systems--large-opt.png" alt="image01"/></p>
-                </div>
-                <div class="page"><p>3</p></div>
-                <div class="page"><p>3</p></div>
-                <div class="page"><p>4</p></div>
-                <div class="page"><p>4</p></div>
-                <div class="page"><p>end</p></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/9.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/9.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/2.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/3.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/4.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/5.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/6.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/7.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/8.png"/></div>
+                <div class="page"><img src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/9.png"/></div>
             </div>
         </div>
 
@@ -115,8 +109,7 @@
                     </div>
 
                 </div>
-<!--            <input type="hidden" id="memberId" th:value="${session.existingMember.mId}">-->
-            <input type="hidden" id="memberId" th:value=1>
+            <input type="hidden" id="memberId" th:value="${session.existingMember?.mId}">
 
             <div class="current-page-num">1페이지 / 3페이지</div>
             <div class="input-btn">
@@ -130,6 +123,35 @@
         </div>
     </div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+<script>
+    var pages = document.getElementsByClassName('page');
+    for (var i = 0; i < pages.length; i++) {
+        var page = pages[i];
+        if (i % 2 === 0) {
+            page.style.zIndex = (pages.length - i);
+        }
+    }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].pageNum = i + 1;
+            pages[i].onclick = function() {
+                if (this.pageNum % 2 === 0) {
+                    this.classList.remove('flipped');
+                    this.previousElementSibling.classList.remove('flipped');
+                } else {
+                    this.classList.add('flipped');
+                    this.nextElementSibling.classList.add('flipped');
+                }
+            }
+        }
+
+        // 1페이지와 2페이지를 flipped 상태로 만들어 2,3페이지가 바로 보이게 함
+        if (pages[0] && pages[1]) {
+            pages[0].classList.add('flipped');
+            pages[1].classList.add('flipped');
+        }
+    });
+</script>
 </body>
 </html>

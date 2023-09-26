@@ -15,6 +15,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 0px;
+    width: 100%;
 }
 
 .subscribe-buttons-wrapper {
@@ -32,13 +33,16 @@
     background-color: #5D493E;
     opacity: 50%;
     color: white;
-    padding: 10px 20px;
+    padding: 5px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, opacity 0.3s;
     text-decoration-line: none;
 
+}
+.product-item{
+    width: 100%;
 }
 
 .custom-button:hover {
@@ -50,8 +54,8 @@
 
 a.product-link {
     display: flex;
-    align-items: center;
     text-decoration: none;
+    width: 100%;
 }
 
 .product-name {
@@ -94,4 +98,20 @@ a.product-link {
     cursor: pointer;
     transition: background-color 0.3s, opacity 0.3s;
     text-decoration-line: none;
+}
+.product-details-first{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.product-details-second{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.product-details-third{
+    display: flex;
+    width: 100%;
 }

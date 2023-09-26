@@ -2,7 +2,11 @@ package kosa.com.suntofu.L_LIFE.community.service;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.util.IOUtils;
 import kosa.com.suntofu.L_LIFE.community.dao.CommunityDao;
+import kosa.com.suntofu.L_LIFE.community.vo.BookPageRequestVo;
 import kosa.com.suntofu.L_LIFE.community.vo.BookRequestVo;
 import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
 import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
@@ -16,15 +20,20 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import org.apache.commons.io.FileUtils;
 
 @Slf4j
 @Service
@@ -97,31 +106,8 @@ public class CommunityServiceImpl implements  CommunityService{
 
 
     @Override
-    public int createBook(BookRequestVo bookRequestVo) {
+    public int createBook(BookRequestVo bookRequestVo){
 
-
-        // List에 있는 거 만큼 추가 + 이미지 업로드 후 세팅
-        for(int i =0; i< bookRequestVo.getFiles().size(); i++){
-            String imgUrl = uploadFile(bookRequestVo.getFiles().get(i), "L-life-BOOK");
-            bookRequestVo.getPages().get(i).setBpImg(imgUrl);
-        }
-        for(int i =0; i< bookRequestVo.getAifiles().size(); i++){
-            String imgUrl = uploadFile(bookRequestVo.getAifiles().get(i), "L-life-BOOK-AI");
-            bookRequestVo.getPages().get(i).setBpAiImg(imgUrl);
-        }
-//        // 페이지별 이미지 업로드
-//        if (bookRequestVo.getPages() != null){
-//            bookRequestVo.getPages().forEach(page -> {
-//                if(page.getFile() != null) {
-//                    String imgUrl = uploadFile(page.getFile(), "L-life-BOOK");
-//                    page.setBpImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
-//                }
-//                if(page.getAiFile() != null){
-//                    String imgUrl = uploadFile(page.getAiFile(), "L-life-BOOK-AI");
-//                    page.setBpAiImg(amazonS3Client.getUrl(bucket, imgUrl).toString());
-//                }
-//            });
-//        }
         try{
             int bpResult = -1;
             int bfResult = -1;
@@ -129,31 +115,55 @@ public class CommunityServiceImpl implements  CommunityService{
             communityDao.insertBook(bookRequestVo);
             int insertedBookId = bookRequestVo.getBookId();
             log.info("[책 등록 ] 데이터 삽입 성공 {}", insertedBookId);
+            return insertedBookId;
 
-            //삽입된 bookId값으로 세팅
-            if(bookRequestVo.getPages() !=null) {
-                bookRequestVo.getPages().forEach(page -> {
-                    page.setBookId(insertedBookId);
-                });
-                bpResult = communityDao.insertBookPages(bookRequestVo.getPages());
+        }catch(Exception e) {
+            log.info("[책등록 ] 데이터 삽입 오류 {} ", e.getMessage());
+            return -1;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int createPage(BookPageRequestVo bookPageRequestVo) {
+
+        if(bookPageRequestVo.getFile() != null){
+            String imgUrl = uploadFile(bookPageRequestVo.getFile(), "L-life-BOOK");
+            bookPageRequestVo.setBpImg(imgUrl);
+        }
+        if(bookPageRequestVo.getAiImageFile() != null){
+            File file = new File(bookPageRequestVo.getBpTitle());
+            try {
+                FileUtils.copyURLToFile(new URL(bookPageRequestVo.getAiImageFile()), file);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            if(bookRequestVo.getFurnitures() !=null){
-                bookRequestVo.getFurnitures().forEach(furniture->{
-                    furniture.setBookId(insertedBookId);
-                });
-                bfResult = communityDao.insertBFurniture(bookRequestVo.getFurnitures());
+            String AIimgUrl = uploadNormalFile(file);
 
+//            String AIimgUrl = uploadFile(bookPageRequestVo.getAiImageFile(), "L-life-BOOK-AI");
+            bookPageRequestVo.setBpAiImg(AIimgUrl);
+        }
+
+        try{
+            int bpResult = -1;
+            int bfResult = 0;
+
+            bpResult = communityDao.insertBookPage(bookPageRequestVo);
+
+            if(bookPageRequestVo.getLfId() != null){
+                bfResult = communityDao.insertBFurniture(bookPageRequestVo);
+            }
+
+            if(bpResult == -1 || bfResult == -1){
+                throw new Exception("[북페이지 등록] 데이터 삽입 오류");
             }
             log.info("[책 페이지 등록 ] 성공 페이지 수  : {}, 성공 가구 수 : {}  ", bpResult, bfResult );
             return 1;
-
         }catch(Exception e) {
             log.info("[북페이지 & 북 상품 ] 데이터 삽입 오류 {} ", e.getMessage());
             return -1;
         }
-
     }
-
 
     private String createFileName(String fileName) {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));
@@ -179,6 +189,26 @@ public class CommunityServiceImpl implements  CommunityService{
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "사진 파일 업로드에 실패했습니다.");
         }
         return amazonS3Client.getUrl(bucket, fileName).toString();
+    }
+
+    public String uploadNormalFile(File file) {
+        String fileName = "ai/" + file.getName();
+
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(file.length()); // 파일 크기 설정
+        // 파일의 MIME 타입 설정 (예: image/jpeg)
+        // MIME 타입을 정확하게 알고 있다면 수동으로 설정할 수 있습니다.
+         objectMetadata.setContentType("image/jpeg");
+        try (InputStream inputStream = new FileInputStream(file)) {
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, fileName, inputStream, objectMetadata);
+            PutObjectResult putObjectResult = amazonS3Client.putObject(putObjectRequest);
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+        }
+
+        // 업로드된 파일의 URL 생성
+        String fileUrl = amazonS3Client.getUrl(bucket, fileName).toString();
+        return fileUrl;
     }
 
     private void cacheProducts(String cacheKey, List<ProductVo> cachingData) {

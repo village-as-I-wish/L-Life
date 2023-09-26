@@ -36,6 +36,11 @@ public class PremiumController {
         return "pages/premium/premium_package_main";
     }
 
+    @GetMapping("/package")
+    public String loadPremiumPackagePage(){
+        return "pages/premium/premium_package_main2";
+
+    }
     @GetMapping("/package/{lfPackageId}/detail")
     public String loadPremiumPackageDetail(@PathVariable int lfPackageId, Model model){
         PackageDetailVo packageDetail = premiumService.getPremiumPackageDetail(lfPackageId);

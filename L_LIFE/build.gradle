@@ -83,6 +83,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'io.micrometer:micrometer-registry-prometheus'
 //	implementation 'io.micrometer:micrometer-core'
+
+	implementation 'commons-io:commons-io:2.13.0'
 }
 
 tasks.named('test') {

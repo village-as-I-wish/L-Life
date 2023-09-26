@@ -18,7 +18,8 @@ $(document).ready(function() {
     // 누적된 총 합계를 결과 요소에 표시합니다.
     $('.sum-price-num').text(totalPrice.toLocaleString() + '원');
     $('.price-num').text(totalPrice.toLocaleString() + '원');
-    $('.final-price-num').text(totalPrice.toLocaleString() + '원');
+    $('#final-price').text(totalPrice.toLocaleString());
+    $('#final-price-hidden').text(totalPrice);
 
     var paymentProduct = sessionStorage.getItem('paymentProduct');
 });
@@ -26,7 +27,7 @@ $(document).ready(function() {
 
 /* 결제 관련 */
 function createPaymentData(){
-    var amount =  $('.final-price-num').text(); // 주문 금액
+    var amount =  $('#final-price-hidden').text(); // 주문 금액
     var orderId =  createOrderNum() // 주문 ID -> 변경 필요
     var orderName = 'Livart-Life' // 상품명으로 바꿔야 함.
     // var customerName = '김승주'
@@ -112,6 +113,7 @@ function paymentToss(tossPayKey, memberId){
     var tossPayments = TossPayments(tossPayKey)
     console.log("toss key", tossPayKey)
     data = createPaymentData()
+    console.log("data",data)
     var successUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 성공 시 이동할 페이지 -> 변경 필요 (memberId)
     var failUrl = baseUrl + '/l-life/member/1/mypage'; // 결제 실패 시 이동할 페이지 -> 변경 필요 (memberId)
     tossPayments.requestPayment('카드', {
@@ -140,6 +142,7 @@ function paymentSuccess(memberId){
     console.log(checkedTime)
 
     data =  {
+        memberId: memberId,
         checkedDay: checkedDay,
         checkedTime: checkedTime,
     }
@@ -299,6 +302,7 @@ function dayChecked(i){
     var dateString = checkedMonth + '.' + checkedDay;
     console.log(dateString);
     $('.checkedDay').text(dateString);
+    $('.selected-date-text').text(dateString);
 
 }
 
@@ -311,5 +315,6 @@ function timeChecked(button){
     console.log('data-value:', time);
 
     $('.checkedTime').text(time);
+    $('.selected-time-text').text(time);
 
 }

@@ -10,7 +10,18 @@
     <script th:src="@{/js/community/community_main.js}" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
 
-<body>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- slick 사용을 위함.  -->
+    <script
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+
+    <body>
 
     <!-- 헤더 프래그먼트 삽입 -->
     <th:block th:replace="common/fragment/header/header::headerFragment(0)"></th:block>
@@ -19,17 +30,35 @@
     <th:block th:replace="common/fragment/header/sub_header::subHeaderFragment(0)"></th:block>
 
     <!-- 커뮤니티 배너 부분 -->
-    <section class="community_main">
-        <div class="community-top-banner">
-            <div class="community-main-content hd__inner1400">
-                <div class="first-title">💡새로운 업데이트 💡</div>
-                <div class="second-title">Livart Life 커뮤니티<br>리뉴얼 스토리</div>
-                <div class="third-title">클럽 집테리어와 함께 색다른 공간을 디자인 해보세요</div>
-                <a class="book-make-button" href="/l-life/community/write"> 플립북 만들기 </a>
+    <div class="swiper-container community_main">
+        <div class="swiper-wrapper">
+            <!-- 첫 번째 배너 -->
+            <div class="swiper-slide">
+                <div class="community-top-banner-1">
+                    <div class="community-main-content hd__inner1400">
+                        <div class="first-title"> 🌟 인테리어 스토리 공유 🌟</div>
+                        <div class="second-title">가구 구독의 순간들을<br>Livart Book으로 특별하게!</div>
+                        <div class="third-title">GPT & Karlo의 도움으로 나만의 공간을 빛내보세요.🎨</div>
+                        <a class="book-make-button" th:href="@{/community/write}"> Livart Book 만들기 </a>
+                    </div>
+                    <img class="community-img" alt="커뮤니티 배너 1" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/dggdt.png}"/>
+                </div>
             </div>
-            <img class="community-img" alt="리바티스트 메인 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/livatist/dggdt.png}"/>
+            <div class="swiper-slide">
+                <div class="community-top-banner-2">
+                    <div class="community-main-content hd__inner1400">
+                        <div class="first-title-2">🔍 Vision AI로 공간 재발견 🔍</div>
+                        <div class="second-title">스마트한 분석, <br> 실내의 모든 것을 한눈에!</div>
+                        <div class="third-title-2">가구부터 색상까지, 완벽한 인테리어 추천을 받아보세요.</div>
+                        <a class="book-make-button urbanbase" th:href="@{/community/report}"> 스타일 분석 시작하기 </a>
+                    </div>
+                    <img class="community-img-2" alt="커뮤니티 배너 2" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/banner/%E1%84%87%E1%85%A2%E1%84%82%E1%85%A5%E1%84%8B%E1%85%A6+%E1%84%83%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%A5%E1%84%80%E1%85%A1%E1%86%AF+%E1%84%89%E1%85%A1%E1%84%8C%E1%85%B5%E1%86%AB+(1).gif}"/>
+                    <img class="community-img-3" alt="커뮤니티 배너 2" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/KakaoTalk_Photo_2023-09-25-14-05-47-1.png}"/>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+
 
     <!-- 리바티스트 부분 -->
     <section class="livatist-main hd__inner1400">
@@ -57,12 +86,17 @@
     <section class="styling-main hd__inner1400">
         <div class="styling-main-title">
             <span class="first-styling">함께하는 집테리어들의</span>
-            <span class="second-styling">"New Space"</span>
+            <span class="second-styling">"Livart Book"</span>
         </div>
-        <div class="styling-main-content slider">
-            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}">
+        <div class="styling-main-content slider-container">
+            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}" th:if="${iterStat.index} < 10">
                 <input id="bookId" type="hidden" th:value="${book.bookId}">
-                <img class="book-image" th:id="'book-image'+ ${iterStat.index}" alt="메가진 사진" th:src="${book.bookMainImg}" th:onclick="showBook([[${iterStat.index}]])"/>
+<!--                <img class="book-image" th:id="'book-image'+ ${iterStat.index}" alt="메가진 사진" th:src="${book.bookMainImg}" th:onclick="showBook([[${iterStat.index}]])"/>-->
+                <img class="book-image"
+                     th:id="'book-image'+ ${iterStat.index}"
+                     alt="메가진 사진"
+                     th:src="${book.bookMainImg != null && !book.bookMainImg.isEmpty() ? book.bookMainImg : 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Package/PK_%E1%84%8C%E1%85%A9%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%B7.jpeg'}"
+                     th:onclick="showBook([[${iterStat.index}]])"/>
             </div>
         </div>
     </section>
@@ -71,7 +105,7 @@
     <section class="book-main hd__inner1400">
         <div class="book-main-deco">
             <div class="book-main-title">가구 구독의 모든 순간, <br> 당신만의 플립북에 담아보세요 🛋️✨</div>
-            <div class="book-main-subtitle">지금, [플립북 타이틀]의 페이지들 속에서 당신만의 스타일을 발견해보세요.</div>
+            <div class="book-main-subtitle" th:text="'지금, ' + ${books.get(0).pages.get(0).bpTitle} + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.'"></div>
             <div class="characters">
                 <img class="character-1" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/Character_bigman.png}"/>
                 <img class="character-2" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img9.png}"/>
@@ -84,12 +118,14 @@
                 <!-- 1번째 페이지 -->
                 <div class="page page1-1">
                     <img class="page1-img" th:src="${books.get(0).pages.get(0).bpImg}" />
+                    <div class="page-number">-1-</div>
                 </div>
                 <div class="page page1-2">
                     <div class="page-title" th:text="${books.get(0).pages.get(0).bpTitle}" ></div>
                     <img class="page-ai-img" th:src="${books.get(0).pages.get(0).bpAiImg}" />
                     <div class="page-ai-content" th:text="${books.get(0).pages.get(0).bpAiContent}" ></div>
                     <div class="page-content" th:text="${books.get(0).pages.get(0).bpContent}" ></div>
+                    <div class="page-number">- 2 -</div>
                 </div>
                 <!-- 2번째 페이지 -->
                 <div class="page page2-1">
@@ -98,20 +134,24 @@
                         <div class="page2-content" th:text="${books.get(0).pages.get(1).bpContent}" ></div>
                     </div>
                     <img class="page2-ai-img" th:src="${books.get(0).pages.get(1).bpAiImg}" />
+                    <div class="page-number">- 3 -</div>
                 </div>
                 <div class="page page2-2">
                     <img class="page2-img" th:src="${books.get(0).pages.get(1).bpImg}" />
                     <div class="page2-ai-content" th:text="${books.get(0).pages.get(1).bpAiContent}" ></div>
+                    <div class="page-number">- 4 -</div>
                 </div>
                 <!-- 3번째 페이지 -->
                 <div class="page page3-1">
                     <img class="page3-img" th:src="${books.get(0).pages.get(2).bpImg}" />
                     <div class="page3-title" th:text="${books.get(0).pages.get(2).bpTitle}" ></div>
                     <div class="page3-content" th:text="${books.get(0).pages.get(2).bpContent}" ></div>
+                    <div class="page-number">- 5 -</div>
                 </div>
                 <div class="page page3-2">
                     <div class="page3-ai-content" th:text="${books.get(0).pages.get(2).bpAiContent}" ></div>
                     <img class="page3-ai-img" th:src="${books.get(0).pages.get(2).bpAiImg}" />
+                    <div class="page-number">- 6 -</div>
                 </div>
                 <!-- 4번째 페이지 -->
                 <div class="page page4-1">
@@ -122,6 +162,7 @@
                     <div class="bottom-row">
                         <img class="product-image-left-2" th:src="${books.get(0).pages.get(2).bpImg}" alt="Image 3">
                     </div>
+                    <div class="page-number">- 7 -</div>
                 </div>
                 <div class="page page4-2">
                     <div class="product-introduce">🩷 플립북에서 소개한 상품 🩷</div>
@@ -145,12 +186,9 @@
                             <div class="product-brand product-brand-2" th:text="${books.get(0).furnitures.get(2).lfBrandName}" ></div>
                             <div class="product-name product-name-2" th:text="${books.get(0).furnitures.get(2).lfName}" ></div>
                         </div>
-
                     </div>
+                    <div class="page-number">- 8 -</div>
                 </div>
-
-                <div class="page page5"></div>
-
             </div>
         </div>
     </section>
@@ -175,8 +213,13 @@
                 data: data,
                 success: function(response) {
                     console.log(response);
+                    console.log(response.result.furnitures)
+
+                    var subtitleText = '지금, ' + response.result.pages[0].bpTitle + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.';
+                    $(".book-main-subtitle").text(subtitleText);
+
                     // 1번째 페이지 업데이트
-                    $(".page1-img").attr("src", response.result.bookMainImg);
+                    $(".page1-img").attr("src", response.result.pages[0].bpImg);
                     $(".page-title").text(response.result.pages[0].bpTitle);
                     $(".page-ai-img").attr("src", response.result.pages[0].bpAiImg);
                     $(".page-ai-content").text(response.result.pages[0].bpAiContent);
@@ -194,23 +237,20 @@
                     $(".page3-ai-content").text(response.result.pages[2].bpAiContent);
                     $(".page3-ai-img").attr("src", response.result.pages[2].bpAiImg);
                     // 4번째 페이지 업데이트
+                    $(".page4-1 .top-row .product-image-left-1").eq(0).attr("src", response.result.pages[0].bpImg);
+                    $(".page4-1 .top-row .product-image-left-1").eq(1).attr("src", response.result.pages[1].bpImg);
+                    $(".page4-1 .bottom-row .product-image-left-2").attr("src", response.result.pages[2].bpImg);
                     for (let i = 0; i < 3; i++) {
                         $(".product-image-" + i).attr("src", response.result.furnitures[i].lfImgMain);
                         $(".product-brand-" + i).text(response.result.furnitures[i].lfBrandName);
                         $(".product-name-" + i).text(response.result.furnitures[i].lfName);
-                        $(".product-grade-" + i).text("이 상품의 등급: " + response.result.furnitures[i].lfStGrade);
                     }
-
-
                 },
                 error: function(err) {
                     console.log(err);
                 }
             });
         }
-
-
-
 
 
         var pages = document.getElementsByClassName('page');
@@ -240,6 +280,17 @@
                 pages[0].classList.add('flipped');
                 pages[1].classList.add('flipped');
             }
+        });
+
+
+        const swiper = new Swiper('.swiper-container', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            draggable: true,
+            resistance: true,
+            resistanceRatio: 0.85,
         });
     </script>
 </body>

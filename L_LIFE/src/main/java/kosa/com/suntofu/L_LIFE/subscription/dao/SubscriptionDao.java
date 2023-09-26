@@ -32,4 +32,6 @@ public interface SubscriptionDao {
     int stUpdateSubPoint(PayFurnitureVo payFurniture);
 
     void renewStSubscription();
+
+    int insertPremiumSubscription(int mId);
 }

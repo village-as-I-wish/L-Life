@@ -24,7 +24,7 @@ public interface StandardService {
     int putOptionToReservation(StandardOptionVo standardOptionVo);
     int putProductToCart(CartItemVO cartItemVO);
 
-    int createReview(ReviewRequestVo reviewRequestVo);
+    ReviewVo createReview(ReviewRequestVo reviewRequestVo) throws Exception;
 
     List<ReviewVo> getReviews(int lfId);
 

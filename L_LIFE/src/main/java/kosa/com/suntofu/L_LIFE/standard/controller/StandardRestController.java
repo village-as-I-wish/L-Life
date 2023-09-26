@@ -86,11 +86,13 @@ public class StandardRestController {
     @ResponseBody
     public ResponseEntity<BasicResponse> createReview(ReviewRequestVo reviewRequestVo){
         log.info("[리뷰 등록 ] 요청 VO {} ", reviewRequestVo);
-        int result  = standardService.createReview(reviewRequestVo);
-        if(result < 1){
-            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("리뷰 등록 실패").build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        try{
+            ReviewVo result = standardService.createReview(reviewRequestVo);
+            log.info("[리뷰 등록 완료 ] 결과 vo {} ", result);
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("리뷰 작성완료").result(result).build(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("리뷰 등록 실패").result(-1).build(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("리뷰 작성완료").build(), HttpStatus.OK);
     }
 
     @Operation(summary = "스탠다드 상품 리뷰 삭제 ", description = "스탠상품 리뷰를 삭제합니다.")

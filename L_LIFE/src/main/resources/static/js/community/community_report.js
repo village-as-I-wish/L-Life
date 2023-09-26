@@ -18,6 +18,16 @@ let spaceDict = {
 }
 
 let furnitureDict = {
+    'ottoman' : '오토만 의자',
+    'table' : '테이블',
+    'sofa' : '소파',
+    'potted plant' : '화분',
+    'chair' : '의자',
+    'lighting' : '조명',
+    'curtain' : '커튼',
+    'accent table' : '사이드 테이블',
+    'window' : '창문',
+    'rug' : '러그'
 
 }
 
@@ -63,6 +73,7 @@ var colorDataSample = [
     }
 ]
 $(document).ready(function () {
+    $('#loading').hide();
     const $dropbox = $('.drag-file');
     const $input_filename = $('.message');
     const $previewImage = $('.upload-file');
@@ -105,7 +116,7 @@ $(document).ready(function () {
             $input_filename.addClass('error');
         }
     });
-    createColorChart(colorDataSample);
+    //createColorChart(colorDataSample);
 
     $('.rec-slide-wrapper').slick({
         slidesToShow: 4,
@@ -125,22 +136,56 @@ $(document).ready(function () {
     });
 });
 
+function handleFileUpload(input) {
+    const dropFile = document.getElementById("drop-file");
+    const message = dropFile.querySelector(".message");
+    const imagePreview = dropFile.querySelector(".ex-image");
+
+    if (input.files && input.files[0]) {
+        file = input.files[0]; // 선택한 파일을 변수에 할당
+
+        const reader = new FileReader();
+        const $previewImage = $('.upload-file');
+
+
+        reader.onload = function (e) {
+            $previewImage.attr('src', e.target.result);
+            $previewImage.removeClass('ex-image');
+            $previewImage.addClass('dr-image');
+        };
+
+        reader.readAsDataURL(file);
+    }else {
+        // 이미지 파일이 아닌 경우 에러 메시지 표시
+        $input_filename.html('Only image files are allowed');
+        $input_filename.addClass('error');
+    }
+}
+
+
 /**
  * 색상 차트 생성 함수
  */
 function createColorChart(data) {
-
-
-    const yValues = data.map(item => item.proportion * 100);
-
+    const yValues = data.map(item => (item.proportion * 100).toFixed(2));
     const barColors = data.map(item => `rgb(${item.r},${item.g},${item.b})`);
+    const xLabels = data.map((item, index) => `rgba(${item.r},${item.g},${item.b}) - Color ${(index + 1).toFixed(2)}`);
 
-    console.log(yValues);
-    console.log(barColors);
 
-    new Chart("myChart", {
+    const img = document.querySelector(".cl-rp-info-left img");
+    img.classList.add("hidden");
+
+    const canvas = document.getElementById("myChart");
+    canvas.classList.remove("hidden");
+
+    const context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 새로운 차트 생성
+    new Chart(canvas, {
         type: "doughnut",
         data: {
+            labels: xLabels, // x-labels 추가
             datasets: [{
                 backgroundColor: barColors,
                 data: yValues
@@ -150,6 +195,9 @@ function createColorChart(data) {
             title: {
                 display: false,
                 text: "Colors In Picture"
+            },
+            legend: {
+                display: false // legend 숨기기
             }
         }
     });
@@ -225,48 +273,63 @@ function requestReport() {
     console.log("testing")
     console.log("file", file)
 
+    if (typeof file === "undefined" || file === null) {
+        console.log("testing null")
+        Swal.fire({
+            title: '사진을 업로드해주세요.',
+            text: '사진 업로드 시 레포트 생성이 가능합니다.',
+            imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+        }).then((result) => {
+            if (result.isConfirmed) { // 알림창 확인 시
+                return;
+            }
+        })
+    }else {
+        $('#loading').show();
 
-    var imgUrlResponse = uploadImage()
-    $.when(imgUrlResponse).done(function (imgUrlUploaded) {
-        console.log("uploaded Image", imgUrlUploaded);
-        var objectImage = $('.report-sample-img');
-        objectImage.attr('src', imgUrlUploaded.result);
+        var imgUrlResponse = uploadImage()
+        $.when(imgUrlResponse).done(function (imgUrlUploaded) {
+            console.log("uploaded Image", imgUrlUploaded);
+            var objectImage = $('.report-sample-img');
+            objectImage.attr('src', imgUrlUploaded.result);
 
-        // 공간 분석 API
-        var spaceAnalyze = sendAnalyzeRequest(spaceAnalyzeUrl, imgUrlUploaded.result)
+            // 공간 분석 API
+            var spaceAnalyze = sendAnalyzeRequest(spaceAnalyzeUrl, imgUrlUploaded.result)
 
-        // 사물 분석 API
-        var furnitureAnalyze = sendAnalyzeRequest(spaceDetectorUrl, imgUrlUploaded.result)
+            // 사물 분석 API
+            var furnitureAnalyze = sendAnalyzeRequest(spaceDetectorUrl, imgUrlUploaded.result)
 
-        // 스타일 분석 API
-        var styleAnalyze = sendAnalyzeRequest(styleAnalyzeUrl, imgUrlUploaded.result)
+            // 스타일 분석 API
+            var styleAnalyze = sendAnalyzeRequest(styleAnalyzeUrl, imgUrlUploaded.result)
 
-        // 색상 분석 API
-        var colorAnalyze = sendAnalyzeRequest(colorAnalyzerUrl, imgUrlUploaded.result)
+            // 색상 분석 API
+            var colorAnalyze = sendAnalyzeRequest(colorAnalyzerUrl, imgUrlUploaded.result)
 
-        $.when(spaceAnalyze, furnitureAnalyze, styleAnalyze, colorAnalyze).done(function (spaceResponse, spaceDetectorResponse, styleResponse, colorResponse) {
-            console.log('모든 AJAX 요청이 완료되었습니다.');
+            $.when(spaceAnalyze, furnitureAnalyze, styleAnalyze, colorAnalyze).done(function (spaceResponse, spaceDetectorResponse, styleResponse, colorResponse) {
+                console.log('모든 AJAX 요청이 완료되었습니다.');
+                $('#loading').hide();
+                var data1 = spaceResponse[0].data.results[0].results; // 공간 분석
+                var data2 = spaceDetectorResponse[0].data.results[0].results; // 사물 분석
+                var data3 = styleResponse[0].data.results[0].results;
+                var data4 = colorResponse[0].data.results[0].results;
 
-            var data1 = spaceResponse[0].data.results[0].results;
-            var data2 = spaceDetectorResponse[0].data.results[0].results;
-            var data3 = styleResponse[0].data.results[0].results;
-            var data4 = colorResponse[0].data.results[0].results;
+                // let Report = createReport(data1, data2, data3, data4)
+                console.log(data1, data2, data3, data4)
 
-            // let Report = createReport(data1, data2, data3, data4)
-            console.log(data1, data2, data3, data4)
+                let Report = createReport(data1, data2, data3, data4)
 
-            let Report = createReport(data1, data2, data3, data4)
+                var getRecProducts = requestRecProducts(data3[0].label);
+                $.when(getRecProducts).done(function (products) {
+                    loadRecProducts(products.result);
 
-            var getRecProducts = requestRecProducts(data3[0].label);
-            $.when(getRecProducts).done(function (products) {
-                loadRecProducts(products.result);
+                })
+            });
 
-            })
+
         });
 
 
-    });
-
+    }
 
 }
 
@@ -384,6 +447,39 @@ function createReport(data1, data2, data3, data4) {
         objectOverlay.appendChild(pickerBox);
     }
 
+    // 가구 개수
+    // 라벨별 가구 개수를 저장할 객체 초기화
+    var furnitureCount = {};
+
+// 결과 배열을 순회하며 가구 라벨별 개수를 세기
+    for (var i = 0; i < data2.length; i++) {
+        var label = data2[i].label;
+        if (furnitureCount[label]) {
+            furnitureCount[label]++;
+        } else {
+            furnitureCount[label] = 1;
+        }
+    }
+    var topFurniture = Object.keys(furnitureCount)
+        .sort(function (a, b) {
+            return furnitureCount[b] - furnitureCount[a];
+        })
+        .slice(0, 3);
+
+    var furnitureTxt = ''
+    console.log('가장 많이 사용된 가구 라벨 3개:');
+    for (var j = 0; j < topFurniture.length; j++) {
+        console.log(topFurniture[j]);
+        furnitureTxt += furnitureDict[topFurniture[j]] +', '
+    }
+    furnitureTxt = furnitureTxt.slice(0, -2);
+    $('#spaceFurniture').text(furnitureTxt)
+
+    const img = $('#report-sample-img');
+    img.addClass("hidden")
+
+    const img2 = $('#report-sample-img2-box');
+    img2.removeClass("hidden")
     return 'testing Success'
 
 }

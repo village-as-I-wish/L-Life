@@ -1,12 +1,10 @@
 package kosa.com.suntofu.L_LIFE.member.controller;
 
-import kosa.com.suntofu.L_LIFE.member.SessionConst;
 import kosa.com.suntofu.L_LIFE.member.service.MemberService;
 import kosa.com.suntofu.L_LIFE.member.vo.*;
 import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -98,7 +96,6 @@ public class MemberController {
         List<SubscriptionListVo> premiumSubscriptionList = memberService.getAllpremiumScriptionList(memberId);
         model.addAttribute("premiumSubscriptionList",premiumSubscriptionList);
         model.addAttribute("baseUrl",baseUrl);
-        System.out.println("프리미엄" + premiumSubscriptionList);
         return "pages/member/mypage_premium";
     }
 

@@ -1,14 +1,14 @@
 package kosa.com.suntofu.L_LIFE.community.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.common.vo.BasicResponse;
 import kosa.com.suntofu.L_LIFE.community.service.CommunityService;
 import kosa.com.suntofu.L_LIFE.community.util.Style;
-import kosa.com.suntofu.L_LIFE.community.vo.BookPageVo;
-import kosa.com.suntofu.L_LIFE.community.vo.BookRequestVo;
-import kosa.com.suntofu.L_LIFE.community.vo.BookVo;
-import kosa.com.suntofu.L_LIFE.community.vo.ProductVo;
+import kosa.com.suntofu.L_LIFE.community.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -83,27 +84,39 @@ public class CommunityRestController {
         }
     }
 
-    @Operation(summary = "커뮤니티 플립북 - 플립북 생성 ", description = "플립북을 생성합니다.")
+//    @Operation(summary = "커뮤니티 플립북 - 플립북 생성 ", description = "플립북을 생성합니다.")
+//    @PostMapping("/book")
+//    public ResponseEntity<BasicResponse> createBook(BookRequestVo bookRequestVo) {
+//        log.info("[플립북 생성] 요청 VO {} ", bookRequestVo);
+//        int result = communityService.createBook(bookRequestVo);
+//        if (result==1){
+//            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("플립북 생성 완료 ").result(1).build(), HttpStatus.OK);
+//        }else{
+//            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("플립북 생성 실패 ").result(-1).build(), HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
     @PostMapping("/book")
-    public ResponseEntity<BasicResponse> createBook(BookRequestVo bookRequestVo) {
-        log.info("[플립북 생성] 요청 VO {} ", bookRequestVo);
-        int result = communityService.createBook(bookRequestVo);
-        if (result==1){
-            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("플립북 생성 완료 ").result(1).build(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("플립북 생성 실패 ").result(-1).build(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<BasicResponse> createBook(int mId){
+        log.info("mId {} ", mId);
+        int insertedBookId = communityService.createBook(BookRequestVo.builder().mId(mId).build());
+        if(insertedBookId != -1){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("플립북 생성 완료 ").result(insertedBookId).build(), HttpStatus.OK);
         }
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("플립북 생성 실패 ").result(insertedBookId).build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PostMapping("/bookTest")
-    public ResponseEntity<BasicResponse> createBookTest(BookRequestVo bookRequestVo) {
-        log.info("[플립북 생성] 요청 VO {} ", bookRequestVo);
-        log.info("[플립북 생성] 요청 file {} ", bookRequestVo.getFiles());
-        log.info("[플립북 생성] 요청 aifile {} ", bookRequestVo.getAifiles());
+    @PostMapping("/bookPage")
+    @ResponseBody
+    public ResponseEntity<BasicResponse> createBookTest(BookPageRequestVo bookPageRequestVo){
+        log.info("[플립북 생성] 요청 VO {} ", bookPageRequestVo);
 
-        int result = communityService.createBook(bookRequestVo);
-
-        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("플립북 생성 완료 ").result(1).build(), HttpStatus.OK);
-
+        int result = communityService.createPage(bookPageRequestVo);
+        if(result != -1){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("플립북 페이지 생성 완료 ").result(result).build(), HttpStatus.OK);
+        }
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("플립북 페이지 생성 실패  ").result(result).build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
 }

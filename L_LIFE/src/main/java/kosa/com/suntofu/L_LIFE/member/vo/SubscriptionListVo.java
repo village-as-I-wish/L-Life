@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubscriptionListVo {
-
+    private int lfId;
     private int subLfId;
     private String lfName;
     private int lfStCoin;
     private int lfPrPrice;
+    private int lfPrMinPeriod;
     private String lfImgMain;
     private String lfOptName;
     private String lfBrandName;

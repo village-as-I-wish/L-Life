@@ -6,6 +6,8 @@
 
     <script th:inline="javascript">
         var kakaoJavascriptKey = /*[[${kakaoJavascriptKey}]]*/ null;
+
+        localStorage.removeItem('selectedItem');
     </script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/member/login.css}"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

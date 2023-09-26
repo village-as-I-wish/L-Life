@@ -11,9 +11,17 @@ $(document).ready(() => {
 });
 
 function closeSession(){
-    console.log("close!")
-    alert("방송이 종료되었습니다.")
     session.disconnect()
+
+    Swal.fire({
+        title: '방송이 종료되었습니다.',
+        text: '이전 화면으로 돌아갑니다.',
+    })
+
+    $('.livestream-sharebtn').attr('disabled', true);
+    $('.livestream-sharebtn').css("background-color", "#db0d36");
+    $('.share-btn-txt').text("방송 종료")
+
 }
 
 function joinSession(isAdmin) {
@@ -23,8 +31,8 @@ function joinSession(isAdmin) {
     $('#openSession').on("click", closeSession);
     $('.share-btn-txt').text("방송 종료하기");
 
-    var mySessionId = "dev-sskong2"
-    var myUserName = "sskong"
+    var mySessionId = "livestream" + lStreamId
+    var myUserName = $('#existingMember').text()
 
     // Check if the user is an admin
 
@@ -119,6 +127,10 @@ function joinSession(isAdmin) {
         });
     } else {
         createToken(mySessionId).then(token => {
+
+            $('.livestream-sharebtn').attr('disabled', true);
+            $('.livestream-sharebtn').css("background-color", "#db0d36");
+            $('.share-btn-txt2').text("ON-AIR")
 
             // First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
             // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
