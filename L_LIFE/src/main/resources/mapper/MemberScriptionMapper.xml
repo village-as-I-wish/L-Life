@@ -7,6 +7,7 @@
     <select id="getAllStandardScriptionList" parameterType="int" resultType="SubscriptionListVo">
         -- 스탠다드 구독 내역 조회 --
         select
+            lf.LF_ID,
             sub_lf.SUB_LF_ID,
             lf.LF_NAME,
             lf.LF_ST_COIN,
@@ -37,6 +38,7 @@
         -- 최근 스탠다드 구독 내역 조회 --
         <![CDATA[
         select
+            lf.LF_ID,
             sub_lf.SUB_LF_ID,
             lf.LF_NAME,
             lf.LF_ST_COIN,
@@ -92,6 +94,7 @@
     <select id="getAllPremiumScriptionList" parameterType="int" resultType="SubscriptionListVo">
         -- 프리미엄 구독 내역 조회 --
         select
+            lf.LF_ID,
             sub_lf.SUB_LF_ID,
             lf.LF_NAME,
             lf.LF_PR_PRICE,
@@ -125,6 +128,7 @@
         <![CDATA[
         -- 프리미엄 최근 구독 내역 조회 --
         select
+            lf.LF_ID,
             sub_lf.SUB_LF_ID,
             lf.LF_NAME,
             lf.LF_PR_PRICE,
