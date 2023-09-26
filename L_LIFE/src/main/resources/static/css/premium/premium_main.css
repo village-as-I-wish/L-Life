@@ -71,7 +71,7 @@ video {
 }
 .pl-main-sub-product >  a{
     text-decoration: none;
-    color: #666666;
+    color: #333333;
 }
 
 .pl-main-sub-product > a:hover {
@@ -91,7 +91,6 @@ video {
     object-fit: fill;
     height: 220px;
     animation: kenburns 2s infinite alternate; /* Ken Burns 애니메이션을 적용합니다. */
-
 }
 @keyframes kenburns {
     0% {
@@ -101,8 +100,6 @@ video {
         transform: scale(1.1) translate(-5%, -5%);
     }
 }
-
-
 .pl-main-sub-product-img > img:hover {
     transform: scale(1.1);
 }
@@ -179,4 +176,5 @@ video {
 }
 .pl-main-sub-product-txt > p{
     min-height: 48px;
+    color: #333333;
 }
