@@ -49,7 +49,7 @@ public class CommunityController {
 
     @GetMapping("/3d")
     public String load3dPage(Model model){
-        return "pages/community/community_3d2";
+        return "pages/community/community_3d";
     }
 
 

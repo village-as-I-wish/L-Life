@@ -126,6 +126,7 @@ public class CommunityServiceImpl implements  CommunityService{
         }
         if(bookPageRequestVo.getAiImageFile() != null){
             String AIimgUrl = uploadFile(bookPageRequestVo.getAiImageFile(), "L-life-BOOK-AI");
+            log.info("AI IMAGE", AIimgUrl);
             bookPageRequestVo.setBpAiImg(AIimgUrl);
         }
 
