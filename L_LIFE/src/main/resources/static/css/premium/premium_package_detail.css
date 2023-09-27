@@ -22,7 +22,7 @@
 
 }
 .pr-main-left{
-    width: 45%;
+    width: 50%;
     min-height: 500px;
     padding-right:30px;
     display: flex;
@@ -30,7 +30,7 @@
 
 }
 .pr-main-right{
-    width: 45%;
+    width: 50%;
     min-height: 500px;
 
 }
@@ -66,7 +66,7 @@ video{
     object-fit: unset;
 }
 .body-content{
-    height:110%;
+    height:120%;
 }
 .pr-package-product{
     width: 100%;
@@ -74,8 +74,6 @@ video{
     margin-top : 80px;
 }
 .pr-pack-slider{
-    padding-left: 50px;
-    padding-right: 50px;
 }
 .pr-pack-slider-wrapper{
     display: flex;
