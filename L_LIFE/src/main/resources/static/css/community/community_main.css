@@ -56,7 +56,7 @@
 .book-make-button {
     position: absolute;
     top: 212px;
-    background-color: #FF914D;
+    background-color: #ff4800;
     color: #ffffff;
     padding: 5px  40px;
     border-radius: 20px;
@@ -99,7 +99,7 @@
 }
 
 .first-livatist {
-    color: #f65c60;
+    color: #ff4800;
     font-size: 24px;
     margin-right: 5px;
 }
@@ -147,7 +147,7 @@
 
 .second-styling {
     font-size: 47px;
-    color: #f65c60;
+    color: #ff4800;
     margin-right: 10px;
 }
 
@@ -377,7 +377,7 @@ p{
     word-break: keep-all;
 }
 .highlighted-text {
-    color: #FF914D;
+    color: #ff4800;
 }
 
 /* 1 페이지 스타일 */
