@@ -2,12 +2,11 @@
     margin-top: 175px !important;
 }
 .user-info {
-    background-color: #5D493E;
-    opacity: 0.5;
+    background-color: #fff5eb;
     border-radius: 15px;
-    padding: 0px 20px 0px 20px;
+    padding: 0px 40px 0px 40px;
     height: 130px;
-    color: white;
+    color: #333333;
     margin-top: 35px;
     display: flex;
     align-items: center;
@@ -57,7 +56,7 @@
     width: 100px;
     align-items: center;
     padding: 10px;
-    border-right: 1px solid white;
+    border-right: 1px solid #333333;
     position: relative;
     margin-left: 10px;
 }
@@ -118,6 +117,7 @@
 
 .delivery-title {
     font-size: 20px;
+    font-weight: bold;
     color: #5D493E;
 }
 
@@ -143,7 +143,7 @@
     color: white;
     font-size: 15px;
     height: 35px;
-    padding: 10px;
+    padding: 0 10px 0 10px;
     border: #5D493F;
     font-weight: normal;
 }

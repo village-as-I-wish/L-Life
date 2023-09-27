@@ -159,7 +159,7 @@
             </div><!-- 배송 파트 종료 -->
 
             <div class="lf-recommendation-product">
-                <p> 더 많은 가격 대별 추천 상품 </p>
+                <p> 비슷한 가격대의 상품을 찾으시나요? </p>
                 <hr>
                 <div class="lf-recommendation-body">
                     <div class="lf-recommendation-page-wrapper">
@@ -167,7 +167,7 @@
                             <div class="lf-recommendation-slide-wrapper">
                                 <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}" th:href="@{'/premium/' + ${product.lfId} + '/detail'}">
                                     <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
-                                    <span class="pr-rec-brand-name"th:text="${product.lfBrandName}"></span>
+                                    <span th:text="${product.lfBrandName}"></span>
                                     <p th:text="${product.lfName}"></p>
                                     <p class="pr-rec-price"> 월 <span th:text="${product.lfPrPrice}"></span>원~ </p>
                                 </a>
