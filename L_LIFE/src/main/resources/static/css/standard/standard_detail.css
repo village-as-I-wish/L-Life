@@ -199,7 +199,7 @@ ul.tabs li.current{
 .tab-pr-maininfo-content span{
     display: block;
     margin: 10px 0px 10px 0px;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .tab-pr-maininfo-content > div {
@@ -364,9 +364,9 @@ ul.tabs li.current{
     width: 100%;
 
 }
-.lf-recommendation-slide-product-img > span{
+.lf-recommendation-slide-product-img > span {
     font-size: 14px;
-    padding: 5px;
+    border-bottom: 1px solid #333333;
     width: 45%;
     text-align: center;
     margin: 0px 0px 10px 0px !important;
@@ -374,8 +374,11 @@ ul.tabs li.current{
 }
 .lf-recommendation-slide-product-img > p {
     font-size: 14px;
-    padding: 5px;
     color: #333333;
+    word-break: keep-all;
+    line-height: 20px;
+    padding: 0px 3px;
+    font-weight: 600;
 }
 
 .coin-wrap {

@@ -128,13 +128,12 @@
     color: #5e5d49;
 }
 .lf-st-stsubtxt{
-    margin-bottom: 14px;
+    margin-bottom: 6px;
     font-size: 14px;
     color: #5e5d49;
 }
 .lf-st-stsubtxt2{
     margin-top:13px;
-    font-family: 'Libre Baskerville', serif;
 
 }
 .coin-img{
@@ -152,7 +151,6 @@
 }
 .lf-st-section-2 span{
     text-align: center;
-    font-family: 'Libre Baskerville', serif;
 
 }
 .lf-st-sec2-maintxt{
@@ -185,10 +183,9 @@
 .lf-st-sec3-maintxt{
     display: block;
     font-size: 65px;
+    font-weight: bold;
     color: #5e5d49;
     line-height: 70px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
 }
 
 .lf-st-sec3-banner-img{
@@ -211,7 +208,6 @@
     color: #5e5d49;
     font-weight: bold;
     font-size: 17px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
 }
 .sub-btn-img{
     width: 7%;
@@ -237,34 +233,23 @@
     animation-duration: 3s;
 }
 .lf-st-sec3-maintxt{
- font-family: 'Libre Baskerville', serif !important;
 
 }
 .lf-st-stname{
-    font-family: 'Libre Baskerville', serif;
     font-size: 35px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
-
+    font-weight: bold;
 }
  .lf-st-section-3 .lf-st-stname{
      display: block;
      font-size: 35px;
      text-align: right;
-     font-family: 'Libre Baskerville', serif;
      color:#5e5d49;
-     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
 
- }
- .lf-st-sec2-maintxt,
-.lf-st-sec2-subtxt ,
- .lf-st-stsubtxt{
-     font-family: 'Libre Baskerville', serif;
  }
  .contact-txt{
      margin-top: 115px;
      font-size: 42px;
      line-height: 50px;
-     font-family: 'Libre Baskerville', serif;
      color:white;
  }
  .contact-line{
@@ -322,5 +307,4 @@
     font-weight: bold;
     font-size: 17px;
     justify-content: flex-end;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
 }

@@ -1,20 +1,23 @@
 <th:block th:fragment="mypageMainWishlistFragment()">
     <link rel="stylesheet" th:href="@{/css/member/mypage_main_wishlist.css}">
 
-    <div class="wishlist-title">찜한상품</div>
+    <div class="wishlist-title">찜한 상품</div>
 
     <div class="wishlist-section">
         <div class="wishlist-header">
             <div class="wishlist-sub-title">프리미엄 상품</div>
             <div class="wishlist-header-right">
                 <div class="add">더보기</div>
-                <img class="add-img" th:src="@{/img/member/down.png}">
             </div>
         </div>
         <div class = "product-list">
-            <div th:each="product : ${products}" class="product-item">
-                <img class = "product-img" th:src="@{'/img/member/' + ${product.image}}">
-                <span th:text="${product.name}"></span>
+            <div class="product-item">
+                <img class = "product-img" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Standard/%EB%88%84%EB%B2%A0+%EC%86%8C%ED%8C%8C+%ED%8C%A8%EB%B8%8C%EB%A6%AD+4%EC%9D%B8+%EC%9D%BC%EB%B0%98%ED%98%95(2%EC%83%89)0.jpeg">
+                <span>누베 소파 패브릭 4인 일반형</span>
+            </div>
+            <div class="product-item">
+                <img class = "product-img" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Standard/%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8B%E1%85%A5%E1%86%B7%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%B3%E1%86%AF10.jpeg">
+                <span>모노디 확장형 티테이블</span>
             </div>
         </div>
     </div>
@@ -24,13 +27,20 @@
             <div class="wishlist-sub-title">스탠다드 상품</div>
             <div class="wishlist-header-right">
                 <div class="add">더보기</div>
-                <img class="add-img" th:src="@{/img/member/down.png}">
             </div>
         </div>
         <div class = "product-list">
-            <div th:each="product : ${products}" class="product-item">
-                <img class = "product-img" th:src="@{'/img/member/' + ${product.image}}">
-                <span th:text="${product.name}"></span>
+            <div class="product-item">
+                <img class = "product-img" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Standard/%E1%84%8C%E1%85%A9%E1%84%86%E1%85%A7%E1%86%BC_%E1%84%92%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B5%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%86%E1%85%A5%E1%84%89%E1%85%B1%E1%84%85%E1%85%AE%E1%86%B70.jpeg">
+                <span>홀리데이 머쉬룸 미니 단스탠드 버섯 조명</span>
+            </div>
+            <div class="product-item">
+                <img class = "product-img" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Standard/table/sttable10-0.jpeg">
+                <span>비아 모듈가구 800B</span>
+            </div>
+            <div class="product-item">
+                <img class = "product-img" src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Standard/%E1%84%92%E1%85%AA%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%83%E1%85%A2_%E1%84%8F%E1%85%A9%E1%84%90%E1%85%B3%E1%86%AB0.jpeg">
+                <span>코튼2 수납 콘솔 화장대</span>
             </div>
         </div>
     </div>
