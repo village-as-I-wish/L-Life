@@ -152,9 +152,10 @@
 }
 
 .styling-main-content {
-    display: flex;
+    display: grid;
+    overflow: hidden;
     justify-content: space-between;
-    margin-bottom: 180px;
+
 }
 
 .image-box {
@@ -177,12 +178,12 @@ height:200px;
 }
 
 .image-box {
-    width:5280px;
+    width: 300px;
     position: relative;
-    height:100%;
-    display:flex;
-    flex-wrap:nowrap;
-    animation: bannermove 5s linear infinite;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    /*animation: bannermove 5s linear infinite;*/
 }
 
 @keyframes bannermove {
@@ -638,4 +639,13 @@ p{
     transform: translateX(-50%);
     z-index: 10;
     font-size: 13px;
+}
+.swiper-container{
+    overflow:hidden;
+}
+.book-swiper-wrapper {
+    transition-timing-function: linear;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 180px;
 }

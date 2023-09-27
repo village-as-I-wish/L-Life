@@ -39,7 +39,7 @@ public class MemberController {
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"",0);
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
 
-        Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
+//        Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
         int orderCount = memberService.getOrderCount(existingMember.getMId());
         int deliveryReady = memberService.getDeliveryReadyStatus(existingMember.getMId());
         int deliveryProgress = memberService.getDeliveryProgressStatus(existingMember.getMId());
@@ -49,7 +49,7 @@ public class MemberController {
         HttpSession session = request.getSession();
         // 세션 저장
         session.setAttribute("existingMember", existingMember);
-        session.setAttribute("currentCoin", currentCoin);
+//        session.setAttribute("currentCoin", currentCoin);
         session.setAttribute("orderCount",orderCount);
         session.setAttribute("deliveryReady",deliveryReady);
         session.setAttribute("deliveryProgress",deliveryProgress);

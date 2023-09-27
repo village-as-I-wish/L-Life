@@ -98,3 +98,12 @@
     height: 80px;
     border-radius: 5px;
 }
+
+.brand-name{
+    border-bottom: 1px solid;
+}
+
+.product-name{
+    font-weight: bold;
+    color: #5D493F;
+}
