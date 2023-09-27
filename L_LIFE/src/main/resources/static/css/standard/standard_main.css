@@ -1,5 +1,10 @@
 
 /* 스탠다드 베너 */
+.swiper-container {
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
 .standard_main {
     margin-top: 240px;
 }
@@ -368,6 +373,7 @@
 }
 .coin-img-box{
     display: flex;
+    margin-right: 5px;
 }
 .coin-img-box .coin-img{
     width:18px;
@@ -441,4 +447,7 @@
     min-height: 48px;
     color: #333333;
 }
-
+.second-title > img {
+    margin-right: -6px;
+    width: 30px;
+}

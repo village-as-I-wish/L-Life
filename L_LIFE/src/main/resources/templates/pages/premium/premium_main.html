@@ -18,16 +18,18 @@
 <!--</div>-->
 
 <div class="sl-top-banner">
-    <video muted autoplay loop>
+    <!--<video muted autoplay loop>
         <source th:src="@{/img/premium/리바트_영상.mp4}" type="video/mp4">
-    </video>
+    </video>-->
+    <img th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/pr_main_3.jpeg}" />
+/    <!--<div class="pr-banner-title">프리미엄 가구로 펼치는 <br>아름다운 이야기,<br> 지금 시작하세요!</div>
+    <img th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/strds.jpeg}" />-->
 </div>
 
 <div class="pl-main-content">
     <th:block th:replace="pages/premium/pr_product_filter_sidebar :: prProductFilterSidebar()"></th:block>
     <div class="pl-main-products">
         <div class="pl-main-sub">
-
             <form th:action="@{/premium/search}" method="get">
                 <div class="pl-search-box">
                     <input type="text" name="keyword" placeholder="상품명으로 검색">
