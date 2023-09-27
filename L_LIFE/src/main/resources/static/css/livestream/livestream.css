@@ -381,3 +381,9 @@
     font-weight: bold;
     margin-right: 5px;
 }
+
+.stream-sub-product-coins > img {
+    width: 25px;
+    height: 25px;
+    margin-right: -4px;
+}

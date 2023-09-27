@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     productMinimumPeriod.forEach(periodElement => {
         const currentPeriod = parseInt(periodElement.textContent.replace(/[^0-9]/g, ''));
-        periodElement.textContent = '최소구독기간 : ' + currentPeriod.toLocaleString() + '개월';
+        periodElement.textContent = '구독기간 : ' + currentPeriod.toLocaleString() + '개월';
     });
     const itemPriceElements = document.querySelectorAll('.item-price');
     const initialProductPrices = [];
