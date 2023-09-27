@@ -265,22 +265,27 @@ video{
     border-bottom: 3px dotted #eee;
 }
 .package-ad-sec{
-    padding: 0px 0px 0px 60px
+    padding: 0px 95px 0px 95px
 }
 .package-ad{
-    background-image: url(../../img/premium/package_banner.png);
-    height: 280px;
-    /* padding: 100px; */
+    height: 300px;
     background-repeat: round;
     margin-top: 90px;
 }
+
 .package-ad-row{
-    padding: 12px;
+    padding: 20px;
 }
 .package-ad-col{
     padding: 0;
 }
 .package-ad-col img{
-    height:200px;
+    height: 230px;
     width: inherit;
+}
+.package-ad-col:not(:last-child) img {
+    padding-right: 10px; /* 오른쪽 간격 */
+}
+.package-ad-col:last-child img {
+    padding-left: 10px; /* 오른쪽 간격 */
 }

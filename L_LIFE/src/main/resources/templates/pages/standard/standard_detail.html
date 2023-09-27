@@ -35,11 +35,11 @@
         <hr>
         <div class="lf-pr-summary-detail">
             <div class="lf-pr-point d-flex">
-                <span class="lf-pr-point-txt text-sm f-bold" th:text="'코인 ' + ${standardDetail.lfStCoin} + '개'"></span>
+                <span class="lf-pr-point-txt text-sm f-bold" th:text="'H-Coin ' + ${standardDetail.lfStCoin} + '개'"></span>
                 <th:block
                         th:each="coinNumber : ${#numbers.sequence(1, standardDetail.lfStCoin)}">
                     <span class="hidden" id="lfStCoin" th:text="${standardDetail.lfStCoin}"></span>
-                    <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                    <img class="coin-img" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>
                 </th:block>
             </div>
             <div class="lf-pr-etc-infos">
@@ -192,7 +192,7 @@
 
         <div class="lf-recommendation-product">
             <p>
-                <span th:style="'color: #f65c60;'" th:text="${standardDetail.lfMoodName} + '분위기'"></span>
+                <span th:style="'color: #ff4800;'" th:text="${standardDetail.lfMoodName} + '분위기'"></span>
                 <span th:text="'를 완성해줄 상품을 찾으시나요?'"></span>
             </p>
             <hr>
@@ -207,7 +207,7 @@
                                 <p th:text="${product.lfName}"></p>
                                 <div class="coin-wrap">
                                     <th:block th:each="coins : ${#numbers.sequence(1, product.lfStCoin)}">
-                                        <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                                        <img class="coin-img" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>
                                     </th:block>
                                 </div>
                             </a>
