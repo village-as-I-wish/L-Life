@@ -10,6 +10,7 @@
 .sl-top-banner img{
     width: 100%;
     height: inherit;
+    filter: brightness(0.7);
 }
 .banner-guide{
     position: absolute;
@@ -42,7 +43,7 @@
 }
 .pr-md-pick-list .prev, .pr-promotion-list .prev{
     position: absolute;
-    top: 50%;
+    top: 55%;
     cursor: pointer;
     z-index: 1;
     color: #2a2a2a;
@@ -53,13 +54,12 @@
     height: 50px;
     background-color: transparent;
     line-height: 48px;
-    border: 1px solid #2a2a2a;
     text-align: center;
     left: 20px;
 }
 .pr-md-pick-list .next, .pr-promotion-list .next {
     position: absolute;
-    top: 50%;
+    top: 55%;
     right: 0;
     font-size: 3em;
     cursor: pointer;
@@ -72,7 +72,6 @@
     height: 50px;
     background-color: transparent;
     line-height: 48px;
-    border: 1px solid #2a2a2a;
     text-align: center;
 
 }
@@ -109,11 +108,11 @@
 }
 .pr-md-pick-header a{
     padding: 10px;
-    border-radius: 50px;
+    border-radius: 10px;
     background: #5D493F;
     color: white !important;
     font-weight: bold;
-    width: 150px;
+    width: 220px;
     text-decoration: none;
     text-align: center;
 }
@@ -247,20 +246,19 @@ video{
 }
 
 .main-border-button a {
-    font-size: 13px;
+    font-size: 16px;
     color: #fff;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     padding: 12px 25px;
     display: inline-block;
-    font-weight: 500;
+    font-weight: bold;
     transition: all .3s;
     text-decoration: none !important;
 }
 .pr-md-pick-header > p, .pr-promotion-header >p,.pr-popular-header >p{
-    font-size: 14px;
-    color: #a1a1a1;
-    font-style: italic;
-    font-weight: 400;
+    font-size: 18px;
+    color: #5d493f;
+    font-weight: bold;
 }
 .hr-pr{
     padding-bottom: 90px;
