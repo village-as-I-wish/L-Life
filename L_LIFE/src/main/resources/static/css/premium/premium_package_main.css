@@ -231,7 +231,7 @@ video{
     color: #fff;
 }
 .left-content .inner-content h4{
-    color: #5d493f;
+    color: #fff;
     margin-top: -10px;
     font-size: 52px;
     font-weight: 700;
@@ -241,7 +241,7 @@ video{
 
 .left-content .inner-content span{
     font-size: 16px;
-    color: #5d493f;
+    color: #fff;
     font-weight: 400;
     display: block;
     margin-bottom: 30px;
