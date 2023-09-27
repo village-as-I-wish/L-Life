@@ -1,17 +1,12 @@
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #5D493F;
+    background-color: #FF914D;
     color: #ffffff;
     text-align: center;
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 10px;
     transition: background-color 0.3s ease-in-out;
-}
-
-.btn:hover {
-    background-color: #F4EDE3;
-    color: #5D493F;
 }
 
 .btn-container, .img-container {

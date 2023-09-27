@@ -136,10 +136,10 @@ img{
 }
 
 .promotion-button {
-    padding: 15px;
+    padding: 12px;
     position: absolute;
-    border-radius: 50px;
-    background-color: #FF914D;
+    border-radius: 10px;
+    background-color: #FF4800;
     color: white !important;
     font-weight: bold;
     width: 240px;
@@ -154,7 +154,7 @@ img{
 .promotion-login {
     position: absolute;
     top: 720px;
-    left: 700px;
+    left: 715px;
 }
 
 .promotion-login > span {
@@ -240,9 +240,9 @@ img{
 }
 
 .start-button {
-    padding: 10px;
-    border-radius: 50px;
-    background-color: #FF914D;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #FF4800;
     color: white !important;
     font-weight: bold;
     width: 240px;
