@@ -217,18 +217,13 @@ ul.tabs li.current{
     margin-right: 0;
 }
 .pr-grade-value {
-    color: #f65c60;
+    color: #ff4800;
 }
 .pr-grade{
     margin-top:30px !important;
     font-size: 18px !important;
     display: inline-flex !important;
     align-items: baseline !important;
-}
-
-.detail-pont {
-    color: #B38D74;
-    font-weight: bold;
 }
 
 /* slider css */
@@ -389,9 +384,7 @@ ul.tabs li.current{
 }
 
 .coin-img{
-    display: inline-block;
-    width:20px !important;
-    height: auto;
+    width:30px !important;
 }
 
 /*tab 2*/
@@ -483,7 +476,7 @@ ul.tabs li.current{
 }
 .fa-star:before {
     content: "\f005";
-    color: #5D493F;
+    color: #FF914D;
 }
 .review-ratings span{
     width: 105px;
@@ -493,7 +486,7 @@ ul.tabs li.current{
 .total-review-rating{
     font-size: 18px;
     font-weight: bold;
-    color: #735F4C;
+    /*color: #735F4C;*/
     margin-bottom: 5px;
 }
 .review-body-content{

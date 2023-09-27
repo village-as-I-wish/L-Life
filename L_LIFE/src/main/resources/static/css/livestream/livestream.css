@@ -120,7 +120,7 @@
 }
 .livestream-sharebtn{
     height: 40px;
-    background: #AEA49F;
+    background: #5D493E;
     border-radius: 10px;
     border: none;
     color: white;
@@ -206,7 +206,15 @@
 .stream-product-price-txt{
     font-size: 17px;
     font-weight: 600;
+    margin-right: 5px;
 }
+
+.stream-product-coin{
+    color: #FF914D;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .stream-product-price button{
     position: absolute;
     right: 18px;
@@ -244,9 +252,10 @@
 }
 
 .stream-sub-product-brand{
-    padding: 3px;
-    border-radius: 5px;
-    border: solid 1px;
+    /*padding: 3px;*/
+    /*border-radius: 5px;*/
+    /*border: solid 1px;*/
+    /*margin-right: 5px;*/
     margin-right: 5px;
 }
 
@@ -286,13 +295,13 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     font-weight: bold;
-    margin-left:10px;
 }
 
-.stream-sub-product-cart-btn:hover{
+.stream-sub-product-cart-btn:hover, .stream-product-cart-btn:hover{
     background-color: #5D493F;
     color: white;
 }
+
 .hidden{
     display: none;
 }
@@ -304,15 +313,17 @@
 }
 .ad-slide p{
     background: lemonchiffon;
-    font-size: 15px;
+    font-size: 18px;
     margin-top: 12px;
     text-align: center;
     animation: textLoop 20s linear infinite;
     margin-left: 20px;
-    color: #ed2650;
+    font-weight: bold;
+    color: red;
 }
 .text-pink{
-    color: #ed2650;
+    color: #FF914D;
+    font-weight: bold;
 }
 
 .video-container-inner {
@@ -336,7 +347,7 @@
     margin-top: 25px;
 }
 .video-container-inner-subtxt{
-    color : #ed2650;
+    color : #FF914D;
 }
 @keyframes textLoop {
     0% {
@@ -366,3 +377,7 @@
 }
 
 
+.stream-product-package-txt{
+    font-weight: bold;
+    margin-right: 5px;
+}

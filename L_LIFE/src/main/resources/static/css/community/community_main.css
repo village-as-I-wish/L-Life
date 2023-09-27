@@ -1,3 +1,6 @@
+.swiper-slide {
+    overflow: hidden;
+}
 .community_main {
     margin-top: 200px;
 }
@@ -53,7 +56,7 @@
 .book-make-button {
     position: absolute;
     top: 212px;
-    background-color: #FF914D;
+    background-color: #ff4800;
     color: #ffffff;
     padding: 5px  40px;
     border-radius: 20px;
@@ -96,7 +99,7 @@
 }
 
 .first-livatist {
-    color: #f65c60;
+    color: #ff4800;
     font-size: 24px;
     margin-right: 5px;
 }
@@ -144,7 +147,7 @@
 
 .second-styling {
     font-size: 47px;
-    color: #f65c60;
+    color: #ff4800;
     margin-right: 10px;
 }
 
@@ -368,13 +371,14 @@ p{
 
 .book-main-subtitle {
     font-size: 22px;
-    display: flex;
-    justify-content: space-between;
     color: #333333;
     padding-right: 10px;
     margin-top: 20px;
     line-height: 33px;
     word-break: keep-all;
+}
+.highlighted-text {
+    color: #ff4800;
 }
 
 /* 1 페이지 스타일 */
@@ -408,7 +412,7 @@ p{
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 15px;
-    color: #0a652f;
+    color: #0a3065;
     margin-right: 50px;
     margin-left: 50px;
 }
@@ -516,7 +520,7 @@ p{
     flex: 4;
     font-size: 20px;
     margin-left: 30px;
-    color: #0a652f;
+    color: #0a3065;
 }
 
 .page3-ai-img {

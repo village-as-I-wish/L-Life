@@ -1,16 +1,26 @@
 
 /* 스탠다드 베너 */
+.swiper-container {
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
 .standard_main {
     margin-top: 240px;
 }
 
 .first-title {
-    color: #5D493E;
+    color: #555555;
     font-size: 24px;
     margin-bottom: 15px;
 }
 .first-title-2 {
     color: #DAA520;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+.first-title-3 {
+    color: #5D493E;
     font-size: 24px;
     margin-bottom: 15px;
 }
@@ -24,7 +34,7 @@
 
 .third-title {
     font-size: 20px;
-    color: #f65c60;
+    color: #007B00;
 }
 
 .third-title-2 {
@@ -32,20 +42,28 @@
     /*color: #DAA520;*/
     color: #004c8c;
 }
-
+.third-title-3 {
+    font-size: 20px;
+    color: #f65c60;
+}
 .standard-top-banner-1 {
     width: 100%;
     height: 350px;
     position: relative;
-    background-color: #fff4fb;
+    background-color: #2e8d1c14;
 }
 .standard-top-banner-2 {
     width: 100%;
     height: 350px;
     position: relative;
-    background-color: #f1f4ff;
+    background-color: #e7ebfc;
 }
-
+.standard-top-banner-3 {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    background-color: #fff4fb;
+}
 .standard-main-content {
     position: absolute;
     top: 49%;
@@ -68,14 +86,21 @@
 
 .standard-img {
     position: absolute;
-    top: -524px;
+    top: -544px;
     right: 150px;
-    height: 1200px;
+    height: 1240px;
 }
 .standard-img-2 {
     width: 300px;
     position: absolute;
     top: -80px;
+    right: 200px;
+}
+
+.standard-img-3 {
+    width: 500px;
+    position: absolute;
+    top: -295px;
     right: 200px;
 }
 
@@ -130,7 +155,10 @@
     width: 1080px;
 
 }
-
+.sl-main-live > img {
+    height: 70px;
+    margin-left: 10px;
+}
 .sl-main-live-products{
     margin-bottom: 100px;
     width: 1080px !important;
@@ -166,13 +194,14 @@
 .sl-live-box-user > span{
     margin-left: 10px;
     font-size: 15px;
-    color: darkgray;
+    color: #333333;
 }
 .sl-live-box >p{
     font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
     line-height: 20px;
+    color: #333333;
 }
 .overlay{
     position: absolute;
@@ -295,21 +324,39 @@
 }
 .sl-main-sub-product >  a{
     text-decoration: none;
-    color: #666666;
+    color: #333333;
 }
 
 .sl-main-sub-product > a:hover {
     text-decoration: none;
     color: inherit;
 }
-
 .sl-main-sub-product-img{
+    overflow: hidden;
 }
 .sl-main-sub-product-img > img{
     width:100%;
     object-fit: fill;
     height: 220px;
 }
+.sl-main-sub-product-img > img:hover{
+    width: 100%;
+    object-fit: fill;
+    height: 220px;
+    animation: kenburns 2s infinite alternate; /* Ken Burns 애니메이션을 적용합니다. */
+}
+@keyframes kenburns {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.1) translate(-5%, -5%);
+    }
+}
+.sl-main-sub-product-img > img:hover {
+    transform: scale(1.1);
+}
+
 .sl-main-sub-products-txt {
     color: gray;
     font-size: 24px;
@@ -324,16 +371,23 @@
     pointer-events: none;
 
 }
+
+.sl-main-sub-product-name{
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .coin-img-box{
     display: flex;
+    margin-right: 5px;
 }
 .coin-img-box .coin-img{
-    width:14px;
+    width:18px;
     border-radius: 50%;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 .txt-pink {
-    color: #ED2650;
+    color: #ff4800;
 }
 
 .sub-product-card {
@@ -397,4 +451,9 @@
 }
 .sl-main-sub-product-txt > p{
     min-height: 48px;
+    color: #333333;
+}
+.second-title > img {
+    margin-right: -6px;
+    width: 30px;
 }

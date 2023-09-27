@@ -6,7 +6,7 @@
     <th:block th:replace="common/fragment/commonHead"></th:block>
     <script th:inline="javascript">
         var loggedInMemberInfo = /*[[${loggedInMemberInfo}]]*/ null;
-        var currentCoin = [[${session.currentCoin}]];
+        // var currentCoin = [[${session.currentCoin}]];
         var standardSubscription = /*[[${standardSubscription}]]*/ null;
         var baseUrl = /*[[${baseUrl}]]*/ null;
     </script>
@@ -135,7 +135,7 @@
                                 <span class="brand-name" th:text="${product.getLfBrandName()}"></span>
                                 <span class="product-name" th:id="'lfName_' + ${iterStat.index}" th:text="${product.lfName}"></span>
                                 <div class="product-price" th:text="${product.lfPrPrice}"></div>
-                                <div class="product-minium-peroid" th:text="${product.lfPrMinPeriod}"></div>
+                                <div class="product-minimum-period" th:text="${product.lfPrMinPeriod}"></div>
                                 <div class="product-option" th:text="'옵션: ' + ${product.getLfOptName()}"></div>
                             </div>
                         </a>

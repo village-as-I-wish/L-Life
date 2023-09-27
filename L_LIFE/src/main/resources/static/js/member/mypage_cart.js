@@ -139,86 +139,81 @@ $(document).ready(function() {
         });
     });
 });
-document.addEventListener('DOMContentLoaded', (event) => {
-    const standardCheckboxes = document.querySelectorAll('.standard-checkbox');
-    const premiumCheckboxes = document.querySelectorAll('.premium-checkbox');
-    const coinsRemainingElement = document.querySelector('.coins-remaining .coins');
-    const coinsRemainingTextElement = document.querySelector('.coins-remaining > span');
-    const totalPremiumPriceElement = document.querySelector('.total-premium-price');
-    const subscriptionPrices = document.querySelectorAll('.subscription-price');
-    subscriptionPrices.forEach(priceElement => {
-        const currentPrice = parseInt(priceElement.textContent.replace(/[^0-9]/g, ''));
-        priceElement.textContent = currentPrice.toLocaleString() + '원';
-    });
-    const productPrices = document.querySelectorAll('.product-price');
-    productPrices.forEach(priceElement => {
-        const currentPrice = parseInt(priceElement.textContent.replace(/[^0-9]/g, ''));
-        priceElement.textContent = '월 ' + currentPrice.toLocaleString() + '원';
-    });
-    const productMinimumPeriod = document.querySelectorAll('.product-minium-peroid');
 
-    productMinimumPeriod.forEach(periodElement => {
-        const currentPeriod = parseInt(periodElement.textContent.replace(/[^0-9]/g, ''));
-        periodElement.textContent = '최소구독기간 : ' + currentPeriod.toLocaleString() + '개월';
+$(document).ready(function() {
+    const standardCheckboxes = $('.standard-checkbox');
+    const premiumCheckboxes = $('.premium-checkbox');
+    const coinsRemainingElement = $('.coins-remaining .coins');
+    // const coinsRemainingTextElement = $('.coins-remaining > span');
+    const totalPremiumPriceElement = $('.total-premium-price');
+    const subscriptionPrices = $('.subscription-price');
+    subscriptionPrices.each(function() {
+        const currentPrice = parseInt($(this).text().replace(/[^0-9]/g, ''));
+        $(this).text(currentPrice.toLocaleString() + '원');
     });
-    const itemPriceElements = document.querySelectorAll('.item-price');
+    const productPrices = $('.product-price');
+    productPrices.each(function() {
+        const currentPrice = parseInt($(this).text().replace(/[^0-9]/g, ''));
+        $(this).text('월 ' + currentPrice.toLocaleString() + '원');
+    });
+    const productMinimumPeriod = $('.product-minimum-period');
+    productMinimumPeriod.each(function() {
+        const currentPeriod = $(this).text();
+        $(this).text('최소구독기간 : ' + currentPeriod + '개월');
+    });
+
+    const itemPriceElements = $('.item-price');
     const initialProductPrices = [];
-    const coinAmount = document.querySelector('.coinAmount');
+    const coinAmount = $('.coinAmount');
 
-    itemPriceElements.forEach((itemPriceElement, index) => {
-        const decrementButton = itemPriceElement.querySelector('.decrement');
-        const incrementButton = itemPriceElement.querySelector('.increment');
-        const quantityInput = itemPriceElement.querySelector('.quantity');
-        const subscriptionPriceElement = itemPriceElement.querySelector('.subscription-price');
-        initialProductPrices[index] = parseInt(subscriptionPriceElement.textContent.replace(/[^0-9]/g, ''));
+    itemPriceElements.each(function(index) {
+        const decrementButton = $(this).find('.decrement');
+        const incrementButton = $(this).find('.increment');
+        const quantityInput = $(this).find('.quantity');
+        const subscriptionPriceElement = $(this).find('.subscription-price');
+        initialProductPrices[index] = parseInt(subscriptionPriceElement.text().replace(/[^0-9]/g, ''));
 
-        decrementButton.addEventListener('click', () => {
-            const quantity = parseInt(quantityInput.value);
+        decrementButton.click(function() {
+            const quantity = parseInt(quantityInput.val());
             if (quantity > 0) {
-                quantityInput.value = quantity - 1;
+                quantityInput.val(quantity - 1);
                 updateTotalPrice();
             }
         });
 
-        incrementButton.addEventListener('click', () => {
-            const quantity = parseInt(quantityInput.value);
-
-            const stockAmount = document.querySelector('.stockAmount').value; // 상품 수량 가져오기
+        incrementButton.click(function() {
+            const quantity = parseInt(quantityInput.val());
+            const stockAmount = parseInt($('.stockAmount').val());
             if (quantity < stockAmount) {
-                quantityInput.value = quantity + 1;
+                quantityInput.val(quantity + 1);
                 updateTotalPrice();
             } else {
                 Swal.fire({
                     title: '재고 수량을 초과하였습니다.',
                     text: '리바트 라이프와 함께 해주셔서 감사합니다.',
                     imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
-                })
+                });
             }
         });
 
-        quantityInput.addEventListener('change', () => {
+        quantityInput.change(function() {
             updateTotalPrice();
         });
     });
 
-    standardCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            const listItem = checkbox.closest('.list-item');
-
+    standardCheckboxes.each(function() {
+        $(this).change(function() {
+            const listItem = $(this).closest('.list-item');
             let productCoins;
-
-            // Check if the product has a discount (i.e., lfPackageId is not null)
-            if (listItem.querySelector('.discount-coins')) {
-                productCoins = listItem.querySelectorAll('.discount-coins img').length;
+            if (listItem.find('.discount-coins').length > 0) {
+                productCoins = listItem.find('.discount-coins img').length;
             } else {
-                productCoins = parseInt(listItem.querySelector('.product-coins').textContent);
+                productCoins = parseInt(listItem.find('.product-coins').text());
             }
-
-            const currentCoins = parseInt(document.querySelector('.coinAmount').textContent);
-
-            if (checkbox.checked) {
+            const currentCoins = parseInt($('.coinAmount').text());
+            if ($(this).prop('checked')) {
                 if ((currentCoins - productCoins) < 0) {
-                    checkbox.checked = !checkbox.checked;
+                    $(this).prop('checked', false);
                     Swal.fire({
                         title: '보유 H코인이 부족합니다.',
                         text: '리바트 라이프와 함께 해주셔서 감사합니다.',
@@ -227,45 +222,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     return;
                 }
                 for (let i = 0; i < productCoins; i++) {
-                    const img = document.createElement('img');
-                    img.src = 'https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png';
-                    coinsRemainingElement.appendChild(img);
+                    const img = $('<img>').attr('src', 'https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png');
+                    coinsRemainingElement.append(img);
                 }
             } else {
                 for (let i = 0; i < productCoins; i++) {
-                    coinsRemainingElement.removeChild(coinsRemainingElement.lastChild);
+                    coinsRemainingElement.children().last().remove();
                 }
             }
-
-            coinsRemainingTextElement.textContent = `${coinsRemainingElement.querySelectorAll('img').length}/${currentCoin}`;
-            const minusCoin = coinsRemainingElement.querySelectorAll('img').length;
-            coinAmount.textContent = `${currentCoins - minusCoin}`;
+            // coinsRemainingTextElement.text(`${coinsRemainingElement.find('img').length}/${currentCoin}`);
+            const minusCoin = coinsRemainingElement.find('img').length;
+            coinAmount.text(`${currentCoins - minusCoin}`);
         });
     });
 
-
-    premiumCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
+    premiumCheckboxes.each(function() {
+        $(this).change(function() {
             updateTotalPrice();
         });
     });
 
     function updateTotalPrice() {
         let currentTotalPrice = 0;
-
-        itemPriceElements.forEach((itemPriceElement, index) => {
-            const quantityInput = itemPriceElement.querySelector('.quantity');
-            const subscriptionPriceElement = itemPriceElement.querySelector('.subscription-price');
-            const checkbox = itemPriceElement.closest('.list-item').querySelector('.premium-checkbox');
-
-            const quantity = parseInt(quantityInput.value);
-            subscriptionPriceElement.textContent = (initialProductPrices[index] * quantity).toLocaleString() + '원';
-
-            if (checkbox.checked) {
+        itemPriceElements.each(function(index) {
+            const quantityInput = $(this).find('.quantity');
+            const subscriptionPriceElement = $(this).find('.subscription-price');
+            const checkbox = $(this).closest('.list-item').find('.premium-checkbox');
+            const quantity = parseInt(quantityInput.val());
+            subscriptionPriceElement.text((initialProductPrices[index] * quantity).toLocaleString() + '원');
+            if (checkbox.prop('checked')) {
                 currentTotalPrice += initialProductPrices[index] * quantity;
             }
         });
-
-        totalPremiumPriceElement.textContent = `구독상품금액: ${currentTotalPrice.toLocaleString()}원`;
+        totalPremiumPriceElement.text(`구독상품금액: ${currentTotalPrice.toLocaleString()}원`);
     }
 });
