@@ -105,7 +105,9 @@
     <section class="book-main hd__inner1400">
         <div class="book-main-deco">
             <div class="book-main-title">가구 구독의 모든 순간, <br> 당신만의 플립북에 담아보세요 🛋️✨</div>
-            <div class="book-main-subtitle" th:text="'지금, ' + ${books.get(0).pages.get(0).bpTitle} + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.'"></div>
+            <div class="book-main-subtitle">
+                지금, <span th:text="${books.get(0).pages.get(0).bpTitle}" class="highlighted-text"></span>의 페이지들 속에서 당신만의 스타일을 발견해보세요.
+            </div>
             <div class="characters">
                 <img class="character-1" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/Character_bigman.png}"/>
                 <img class="character-2" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img9.png}"/>
