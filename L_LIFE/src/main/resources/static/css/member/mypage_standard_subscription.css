@@ -9,6 +9,11 @@
     margin-top: 10px;
 }
 
+.subscribe-sub-name{
+    font-weight: bold;
+    color: #5D493F;
+}
+
 .product-item {
     display: flex;
     align-items: column;
