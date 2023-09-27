@@ -1,165 +1,111 @@
+$(document).ready(function () {
 
-let spaceAnalyzeUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/classifier'
-let spaceDetectorUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/detector'
-let styleAnalyzeUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/analyzer'
-let colorAnalyzerUrl = 'https://apis.openapi.sk.com/urbanbase/v1/space/extractor'
-let skOpenApiKey = 'DACPsMWCZv64OCmI8M2BK4gV9QuunGsp2KDFzC88'
-function sendAnalyzeRequest(requestUrl, imgUrl){
-    var headers = {
-        'accept': 'application/json',
-        'appkey': skOpenApiKey
-    };
+    const swiper = new Swiper('.swiper-container', {
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        draggable: true,
+        resistance: true,
+        resistanceRatio: 0.85,
+    });
+
+    const bookSwiper = new Swiper('.book-swiper', {
+        autoplay: {
+            delay: 0, //add
+            disableOnInteraction: false,
+        },
+        delay:0,
+        speed: 5000,
+        loop: true,
+        loopAdditionalSlides: 1,
+        slidesPerView: 4,
+        mousewheel: true,
+    });
+
+});
+    function showBook(bookNum) {
+    var findIndex = '#image-box-' + bookNum;
+    var bookId = $(findIndex + '> input').val();
+    console.log("북아이디" + bookId);
 
     var data = {
-        'image_path': imgUrl
-    };
-
-    return $.ajax({
-        url: requestUrl,
-        type: 'POST',
-        headers: headers,
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        success: function(response) {
-        },
-        error: function(error) {
-        }
-    });
-}
-
-function test(){
-    let imgUrl = 'https://www.ikea.com/images/2-e4e271bd007a75af466351b6828af61c.jpg'
-    // 공간 분석 API
-    var spaceAnalyze = sendAnalyzeRequest(spaceAnalyzeUrl,imgUrl)
-
-
-    // 사물 분석 API
-    var furnitureAnalyze  = sendAnalyzeRequest(spaceDetectorUrl,imgUrl)
-
-    // 스타일 분석 API
-    var styleAnalyze = sendAnalyzeRequest(styleAnalyzeUrl,imgUrl)
-
-    // 색상 분석 API
-    var colorAnalyze = sendAnalyzeRequest(colorAnalyzerUrl,imgUrl)
-
-
-    $.when(spaceAnalyze, furnitureAnalyze,styleAnalyze,colorAnalyze).done(function(spaceResponse, spaceDetectorResponse, styleResponse, colorResponse) {
-        console.log('모든 AJAX 요청이 완료되었습니다.');
-
-        var data1 = spaceResponse[0].data.results[0].results;
-        var data2 = spaceDetectorResponse[0].data.results[0].results;
-        var data3 = styleResponse[0].data.results[0].results;
-        var data4 = colorResponse[0].data.results[0].results;
-
-        let Report = createReport(data1, data2, data3, data4)
-        console.log(Report)
-    });
-
-
-}
-
-function createReport(data1, data2, data3,data4){
-
-    console.log(data1)
-    console.log(data2) // 사물 검출
-    console.log(data3)
-    console.log(data4)
-
-    var objectImage = document.getElementById('objectImage');
-    var objectOverlay = document.getElementById('objectOverlay');
-
-    // 이미지에 좌표 띄우기
-    for (var i = 0; i < data2.length; i++) {
-        var objectData = data2[i]; // 현재 객체 가져오기
-
-        // 이미지 크기 가져오기
-        var imageWidth = objectImage.width;
-        var imageHeight = objectImage.height;
-
-        // 좌표를 이미지 크기에 맞게 변환
-        var xmin = ((objectData.xmin + objectData.xmax)/2) * imageWidth;
-        var ymin = ((objectData.ymin + objectData.ymax)/2) * imageHeight;
-
-        // 오버레이 엘리먼트에 좌표와 라벨 추가
-        var pickerBox = document.createElement('div');
-        pickerBox.className = 'picker-box';
-        pickerBox.style.left = xmin + 'px';
-        pickerBox.style.top = ymin + 'px';
-
-        var pickerLabel = document.createElement('span');
-        pickerLabel.className = 'picker-label';
-        pickerLabel.textContent = objectData.label;
-
-        var pickerImage = document.createElement('img');
-        pickerImage.alt = 'picker';
-        pickerImage.src = 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Community/c_img_picker.png'; // 이미지 경로를 설정해야 합니다.
-
-        pickerBox.appendChild(pickerLabel);
-        pickerBox.appendChild(pickerImage);
-        objectOverlay.appendChild(pickerBox);
+        bookId: bookId
     }
 
-    return 'testing Success'
+    $.ajax({
+        url: '/l-life/api/v1/community/book/' + bookId,
+        type: 'GET',
+        data: data,
+        success: function(response) {
+            console.log(response);
+            console.log(response.result.furnitures)
 
-}
+            var subtitleText = '지금, ' + response.result.pages[0].bpTitle + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.';
+            $(".book-main-subtitle").text(subtitleText);
 
-function createColorChart(){
-
-    var data=[
-        {
-            "r": 122,
-            "g": 115,
-            "b": 95,
-            "proportion": 0.24352575231481483
-        },
-        {
-            "r": 233,
-            "g": 233,
-            "b": 230,
-            "proportion": 0.2077907986111111
-        },
-        {
-            "r": 29,
-            "g": 32,
-            "b": 22,
-            "proportion": 0.1951316550925926
-        },
-        {
-            "r": 62,
-            "g": 75,
-            "b": 54,
-            "proportion": 0.18214699074074073
-        },
-        {
-            "r": 174,
-            "g": 167,
-            "b": 155,
-            "proportion": 0.17140480324074073
-        }
-    ]
-
-    const yValues = data.map(item => item.proportion * 100);
-
-    const barColors = data.map(item => `rgb(${item.r},${item.g},${item.b})`);
-    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-
-    console.log(yValues);
-    console.log(barColors);
-
-    new Chart("myChart", {
-        type: "doughnut",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Colors In Picture"
+            // 1번째 페이지 업데이트
+            $(".page1-img").attr("src", response.result.pages[0].bpImg);
+            $(".page-title").text(response.result.pages[0].bpTitle);
+            $(".page-ai-img").attr("src", response.result.pages[0].bpAiImg);
+            $(".page-ai-content").text(response.result.pages[0].bpAiContent);
+            $(".page-content").text(response.result.pages[0].bpContent);
+            // 2번째 페이지 업데이트
+            $(".page2-title").text(response.result.pages[1].bpTitle);
+            $(".page2-content").text(response.result.pages[1].bpContent);
+            $(".page2-ai-img").attr("src", response.result.pages[1].bpAiImg);
+            $(".page2-img").attr("src", response.result.pages[1].bpImg);
+            $(".page2-ai-content").text(response.result.pages[1].bpAiContent);
+            // 3번째 페이지 업데이트
+            $(".page3-img").attr("src", response.result.pages[2].bpImg);
+            $(".page3-title").text(response.result.pages[2].bpTitle);
+            $(".page3-content").text(response.result.pages[2].bpContent);
+            $(".page3-ai-content").text(response.result.pages[2].bpAiContent);
+            $(".page3-ai-img").attr("src", response.result.pages[2].bpAiImg);
+            // 4번째 페이지 업데이트
+            $(".page4-1 .top-row .product-image-left-1").eq(0).attr("src", response.result.pages[0].bpImg);
+            $(".page4-1 .top-row .product-image-left-1").eq(1).attr("src", response.result.pages[1].bpImg);
+            $(".page4-1 .bottom-row .product-image-left-2").attr("src", response.result.pages[2].bpImg);
+            for (let i = 0; i < 3; i++) {
+                $(".product-image-" + i).attr("src", response.result.furnitures[i].lfImgMain);
+                $(".product-brand-" + i).text(response.result.furnitures[i].lfBrandName);
+                $(".product-name-" + i).text(response.result.furnitures[i].lfName);
             }
+        },
+        error: function(err) {
+            console.log(err);
         }
     });
 }
+
+
+var pages = document.getElementsByClassName('page');
+for (var i = 0; i < pages.length; i++) {
+    var page = pages[i];
+    if (i % 2 === 0) {
+        page.style.zIndex = (pages.length - i);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].pageNum = i + 1;
+        pages[i].onclick = function() {
+            if (this.pageNum % 2 === 0) {
+                this.classList.remove('flipped');
+                this.previousElementSibling.classList.remove('flipped');
+            } else {
+                this.classList.add('flipped');
+                this.nextElementSibling.classList.add('flipped');
+            }
+        }
+    }
+
+    // 1페이지와 2페이지를 flipped 상태로 만들어 2,3페이지가 바로 보이게 함
+    if (pages[0] && pages[1]) {
+        pages[0].classList.add('flipped');
+        pages[1].classList.add('flipped');
+    }
+});
+
+
