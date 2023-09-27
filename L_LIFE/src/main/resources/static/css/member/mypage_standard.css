@@ -147,3 +147,11 @@
     border: #5D493F;
     font-weight: normal;
 }
+
+a:hover{
+    color: black;
+}
+
+.product-option{
+    font-size: 13px;
+}
