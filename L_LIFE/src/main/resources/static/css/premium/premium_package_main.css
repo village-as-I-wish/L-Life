@@ -1,10 +1,11 @@
 .sl-top-banner{
-    width: 100%;
-    /*height: 500px;*/
+    /* width: 100%; */
+    /* height: 500px; */
     margin-bottom: 70px;
     margin-top: 150px;
     display: flex;
-    padding: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     border-bottom: 3px dotted #eee;
 }
 .sl-top-banner img{
@@ -204,11 +205,13 @@ video{
     visibility: hidden;
     transition: all 0.5s;
 }
+.left-content{
+    position: relative;
+}
 .left-content .inner-content {
     position: absolute;
-    left: 100px;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 55px;
+    top: 65px;
 }
 .right-first-image .thumb .inner-content {
     position: absolute;
