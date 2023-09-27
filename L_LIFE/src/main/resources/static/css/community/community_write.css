@@ -247,7 +247,7 @@ p {
 
 .write-box-slider{
     position: relative;
-    margin-top: 50px;
+    margin-top: 10px;
     border: solid 1px ;
     border-radius: 10px;
     /*background-color:rgba(0, 0, 0, 0.2);*/
@@ -470,4 +470,10 @@ select{
 .ai-box .input-ai-image .message {
     margin-bottom: 0;
     margin-top: 10px;
+}
+
+
+.writ-title-main{
+    font-size: 30px;
+    font-weight: bold;
 }
