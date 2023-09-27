@@ -47,6 +47,8 @@
     </div>
 
     <div class="hd__inner1100 write-box">
+        <div class="writ-title-main">리바트 북 작성하기</div>
+
         <div class="write-box-slider">
 
             <!--  로딩 바  -->
@@ -68,19 +70,20 @@
                             <div class="imgBtn-box">
                                 <input type="file" th:id="'imgUpload0'+${index}" th:onchange="displayImage(this, [[${index}]])" style="display:none;">
                                 <label class="imgUploadLabel" th:for="'imgUpload0'+${index}">이미지 업로드</label>
-                                <button class="Ai-Img-btn" th:onclick="chatGPT([[${index}]])">AI 이미지 생성</button>
                             </div>
-                        </div>
-                        <div class="center-container">
-
-                        </div>
-                        <div class="right-container">
                             <div class="input-group">
                                 <input th:id="'title-'+${index}" type="text"placeholder="제목을 입력해주세요.">
                             </div>
                             <div class="input-group">
                                 <textarea th:id="'content-'+${index}" class="contents" name="contents" rows="6" placeholder="내용을 입력해주세요."></textarea>
                             </div>
+                        </div>
+
+                        <div class="center-container">
+
+                        </div>
+
+                        <div class="right-container">
                             <div class="input-group">
                                 <input th:id="'tag-'+${index}" class="tags" name="tags" type="text" placeholder="태그를 입력해주세요.">
                             </div>
@@ -98,9 +101,18 @@
                                     <option value="기본값">선택해주세요</option>
                                 </select>
                             </div>
-                            <div class="input-ai-image">
-                                <img class="input-ai-image-img"  th:id="'ai-image-'+${index}">
+
+                            <div class="ai-box">
+                                <div class="input-ai-image">
+                                    <img class="input-ai-image-img" th:id="'ai-image-'+${index}" th:src="@{/img/community/ai-icon.png}"
+                                         alt="파일 아이콘">
+                                    <p class="message">AI Image</p>
+                                    <span> AI로 생성된 이미지가 보여질 곳 입니다. </span>
+                                </div>
                             </div>
+
+                            <button class="Ai-Img-btn" th:onclick="chatGPT([[${index}]])">AI 이미지 생성</button>
+
                         </div>
 
                         <input th:id="'ai-text'+${index}" type="hidden">
@@ -121,6 +133,9 @@
             <button class="back-btn"><a th:href="@{/community/main}">돌아가기</a></button>
             <button class="submit-btn">작성하기</button>
         </div>
+    </div>
+
+
     </div>
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 <script>
