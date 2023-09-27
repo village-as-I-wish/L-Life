@@ -7,7 +7,7 @@
 }
 
 .header-logo img {
-    max-width: 200px;
+    max-width: 300px;
     max-height: 100px;
 }
 
@@ -183,7 +183,6 @@ h5{
 }
 
 .final-price{
-    height: 150px;
     background-color: #f2f2f2;
     position: relative; /* 부모 요소에 상대적인 위치 설정 */
 }
