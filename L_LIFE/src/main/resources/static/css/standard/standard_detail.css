@@ -476,7 +476,7 @@ ul.tabs li.current{
 }
 .fa-star:before {
     content: "\f005";
-    color: #5D493F;
+    color: #FF914D;
 }
 .review-ratings span{
     width: 105px;
@@ -486,7 +486,7 @@ ul.tabs li.current{
 .total-review-rating{
     font-size: 18px;
     font-weight: bold;
-    color: #735F4C;
+    /*color: #735F4C;*/
     margin-bottom: 5px;
 }
 .review-body-content{

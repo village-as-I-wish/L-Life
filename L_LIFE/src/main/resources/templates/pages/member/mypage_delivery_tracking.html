@@ -23,9 +23,9 @@
         <tbody>
         <tr th:each="product : ${deliveryList}">
             <td>
-                <span th:text="${product.subscribeStartDate}"></span>
+                <span th:text="${#strings.substring(product.subscribeStartDate,0,10)}"></span>
                 <br>
-                <span th:text="${product.subLfId}"></span>
+                주문번호 : <span th:text="${product.subLfId}"></span>
             </td>
             <td>
                 <div class="product-info">
@@ -45,7 +45,7 @@
                     </th:block>
                     <th:block th:if="${product.lfSubType == 1}">
                         <div>
-                            <span th:text="${product.lfPrPrice}"></span><span>원</span>
+                            <span th:text="${#numbers.formatInteger(product.lfPrPrice, 0, 'COMMA')}"></span><span>원</span>
                         </div>
                     </th:block>
                 </div>

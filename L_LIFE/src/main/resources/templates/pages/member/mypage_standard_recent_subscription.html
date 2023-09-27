@@ -72,7 +72,7 @@
                     data.forEach(product => {
                         const row = $("<tr>");
 
-                        const productDateCell = $("<td>").addClass('product_date').text(product.subLfStartDate);
+                        const productDateCell = $("<td>").addClass('product_date').text(product.subLfStartDate.substring(0, 10));
 
                         const productInfoCell = $("<td>");
                         const productInfoDiv = $("<div>").addClass('product-info');
@@ -80,8 +80,7 @@
                         const productImg = $("<img>").addClass('product-img').attr('src', product.lfImgMain);
 
                         const productDetails = $("<div>").addClass('product-details');
-                        const productName = $("<span>").text(product.lfName);
-
+                        const productName = $("<span>").text(product.lfName).css("font-weight", "bold").css("color","#5D493F");
                         const productScriptionTypeCell = $("<td>");
                         const productScriptionTypeDiv = $("<div>");
 
@@ -127,7 +126,7 @@
                     response.forEach(product => {
                         const row = $("<tr>");
 
-                        const productDateCell = $("<td>").addClass('product_date').text(product.subLfStartDate);
+                        const productDateCell = $("<td>").addClass('product_date').text(product.subLfStartDate.substring(0, 10));
 
                         const productInfoCell = $("<td>");
                         const productInfoDiv = $("<div>").addClass('product-info');
@@ -135,8 +134,8 @@
                         const productImg = $("<img>").addClass('product-img').attr('src', product.lfImgMain);
 
                         const productDetails = $("<div>").addClass('product-details');
-                        const productName = $("<span>").text(product.lfName);
-
+                        const productName = $("<span>").text(product.lfName).css("font-weight", "bold").css("color","#5D493F");
+q
                         const productScriptionTypeCell = $("<td>");
                         const productScriptionTypeDiv = $("<div>");
 

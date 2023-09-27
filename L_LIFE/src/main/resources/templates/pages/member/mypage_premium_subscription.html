@@ -26,13 +26,15 @@
 
                     </div>
                 </a>
-                <a href="#" class="custom-button">구독연장</a>
-                <button class="custom-button return-button"
-                        th:attr="data-product-id=${product.subLfId}">반납</button>
-                <a href="#" class="custom-button">케어신청</a>
-                <a href="#" class="custom-button">배송조회</a>
             </div>
-<!--            <div class="subscribe-info-wrap">-->
+            <div class="buttons">
+                <a href="#" class="custom-button">구독연장</a>
+                    <button class="custom-button return-button"
+                            th:attr="data-product-id=${product.subLfId}">반납</button>
+                    <a href="#" class="custom-button">케어신청</a>
+                    <a href="#" class="custom-button">배송조회</a>
+            </div>
+            <!--            <div class="subscribe-info-wrap">-->
 <!--                <div class="subscribe-info first-subscribe-info">최소 구독 기간은 <span th:text="${product.lfPrMinPeriod}"></span>개월 입니다.</div>-->
 <!--                <div class="subscribe-info">구독 만료일 </span><span th:text="${product.subLfEndDate}"></span></div>-->
 <!--                <div class="buttons">-->
