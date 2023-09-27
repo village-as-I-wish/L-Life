@@ -156,10 +156,12 @@ $(document).ready(function() {
         const currentPrice = parseInt($(this).text().replace(/[^0-9]/g, ''));
         $(this).text('월 ' + currentPrice.toLocaleString() + '원');
     });
-    const productMinimumPeriod = $('.product-minimum-period');
-    productMinimumPeriod.each(function() {
-        const currentPeriod = $(this).text();
-        $(this).text('최소구독기간 : ' + currentPeriod + '개월');
+    const productMinimumPeriod = document.querySelectorAll('.product-minium-peroid');
+
+    productMinimumPeriod.forEach(periodElement => {
+        const currentPeriod = parseInt(periodElement.textContent.replace(/[^0-9]/g, ''));
+        periodElement.textContent = '구독기간 : ' + currentPeriod.toLocaleString() + '개월';
+
     });
 
     const itemPriceElements = $('.item-price');

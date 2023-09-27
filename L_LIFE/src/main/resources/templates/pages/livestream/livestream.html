@@ -150,7 +150,7 @@
                 <div class="stream-sub-product-info">
                     <div class="stream-sub-product-coins">
                         <img th:each="coinNum : ${#numbers.sequence(1, lsProduct.lfStCoin)}"
-                             class="coin" alt="리바트 라이프 코인" th:src="@{/img/livestream/coin.png}"/>
+                             class="coin" alt="리바트 라이프 코인" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>
                     </div>
                     <div class="stream-sub-product-btns">
                         <button class="stream-sub-product-cart-btn dark-brown" > 상품 보기 </button>

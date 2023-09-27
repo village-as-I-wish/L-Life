@@ -188,8 +188,7 @@ a.product-link {
 }
 
 .product-price {
-    color: #f65c60;
-    margin-bottom: 10px;
+    color: #ff4800;
     font-size: 15px;
 }
 
@@ -218,7 +217,7 @@ a.product-link {
 
 .coinAmount {
     font-size: 20px;
-    color: #f65c60;
+    color: #ff4800;
     font-weight: bold;
 }
 
@@ -245,7 +244,10 @@ a:hover{
     color: black;
 }
 .product-minium-peroid{
-    color: #5d493e;
-    margin-bottom: 10px;
     font-size: 15px;
+    color: #333333;
+}
+.product-minium-peroid:hover{
+    font-size: 15px;
+    color: #333333;
 }
