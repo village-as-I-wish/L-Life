@@ -30,6 +30,7 @@
 }
 .lf-pr-name{
     font-size: 30px;
+    word-break: keep-all;
 }
 .lf-pr-summary-detail{
     margin-top: 20px;
@@ -405,7 +406,4 @@ ul.tabs li {
 }
 .color-change {
     color: #ff4800;
-}
-.color-change {
-    margin-right: -5px;
 }

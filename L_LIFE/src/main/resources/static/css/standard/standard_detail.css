@@ -58,8 +58,8 @@
     margin-right:10px;
 }
 .lf-pr-point img{
-    width:20px;
-    height:auto;
+    width:25px;
+    height: 25px;
     background: none;
     border-radius: 50%;
     margin: 0px 1px 0px 1px;
@@ -383,10 +383,6 @@ ul.tabs li.current{
     padding: 3px;
 }
 
-.coin-img{
-    width:30px !important;
-}
-
 /*tab 2*/
 .review-banner-img{
     width: 100%;
@@ -476,7 +472,7 @@ ul.tabs li.current{
 }
 .fa-star:before {
     content: "\f005";
-    color: #5D493F;
+    color: #FF914D;
 }
 .review-ratings span{
     width: 105px;
@@ -486,7 +482,7 @@ ul.tabs li.current{
 .total-review-rating{
     font-size: 18px;
     font-weight: bold;
-    color: #735F4C;
+    /*color: #735F4C;*/
     margin-bottom: 5px;
 }
 .review-body-content{
@@ -533,4 +529,11 @@ ul.tabs li.current{
 
 .tab-disabled {
     pointer-events: none;
+}
+.detail-pont {
+    color: #ff4800;
+}
+.coin-img {
+    width: 25px;
+    height: 25px;
 }

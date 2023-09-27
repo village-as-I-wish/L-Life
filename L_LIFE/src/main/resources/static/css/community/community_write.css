@@ -399,6 +399,11 @@ p {
     justify-content: space-between;
 }
 
+.input-ai-image-img{
+    display: inline-block;
+    content: "";
+}
+
 
 
 /* 로딩 css*/
