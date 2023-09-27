@@ -17,76 +17,84 @@
 
 </head>
 <body>
-    <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
 
-    <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
+<th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>
 
+<th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 
-    <div class="hd__inner1100 pd-container">
-        <div class="pd-detail-container">
-            <p class="pd-main-package-name" th:text="${packageDetail.lfPackageName}"> 우드 & 화이트 감성 <br> 리빙 인테리어 </p>
-            <hr>
-            <div class="pd-detail-box">
-                <div class="pd-detail-img">
-                    <img alt="상품 사진 "  th:src="@{${packageDetail.lfPackageImg}}"/>
+<div class="body-content">
+    <div class="pr-top-banner">
+
+        <div class="pr-main-content hd__inner1100">
+            <div class="pr-main-content-top">
+                <div class="pr-main-left">
+                    <div class="pr-left-top">
+                        <p class="brand"> 리바트 라이프 </p>
+                        <p class="package-name"> 프리미엄 패키지 샘플 </p>
+                    </div>
+                    <div class="pr-left-bottom">
+                        <video muted autoplay loop>
+                            <source th:src="@{/img/premium/premium-video.mp4}" type="video/mp4">
+                        </video>
+                    </div>
+
                 </div>
-                <div class="pd-detail-product-list">
-<!--                    <div class="pd-detail-product"  th:each="packageProduct : ${packageDetail.lfPackageProducts}">-->
-<!--                        <img alt="상품 사진 " th:src="@{${packageProduct.lfImgMain}}"/>-->
-<!--                        <div class="pd-detail-product-info">-->
-<!--                            <span th:text="${packageProduct.lfName}">[리바트] 플리시 4인 패브릭 소파 오션리지그레이샌드</span>-->
-<!--                            <p th:text="${packageProduct.lfPrPrice != null} ? ${packageProduct.lfPrPrice} + '원 / 월' : '0원 / 월'"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-                    <div class="pd-detail-product">
-                        <img class="sale-logo" alt="상품 사진 " th:src="@{/img/premium/sale_logo.png}"/>
-
-                        <img alt="상품 사진 " src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Package/PK_%E1%84%80%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A9%E1%86%B7%E1%84%8F%E1%85%A1%E1%84%91%E1%85%A6.jpeg"/>
-                        <div class="pd-detail-product-info">
-                            <p> 플리시 4인 패브릭 소파 오션리지그레이샌드</p>
-                            <span>[리바트]</span>
-                            <p >0원 / 월</p>
-                        </div>
+                <div class="pr-main-right">
+                    <div class="pr-right-top">
+                        <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
                     </div>
-
-                    <div class="pd-detail-product">
-                        <img class="sale-logo" alt="상품 사진 " th:src="@{/img/premium/sale_logo.png}"/>
-
-                        <img alt="상품 사진 " src="https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Package/PK_%E1%84%80%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A9%E1%86%B7%E1%84%8F%E1%85%A1%E1%84%91%E1%85%A6.jpeg"/>
-                        <div class="pd-detail-product-info">
-                            <p> 플리시 4인 패브릭 소파 오션리지그레이샌드</p>
-                            <span class="pd-detail-brand">리바트</span>
-                            <span> 기간 - 12개월</span>
-                            <p >0원 / 월</p>
-                        </div>
+                    <div class="pr-right-bottom">
+                        <p> 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명
+                            패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명</p>
                     </div>
+                    <a>프리미엄 구독관 이동</a>
+
                 </div>
             </div>
-        </div>
-        <hr>
+            <div class="pr-package-product">
+<!--                <i class="fas fa-chevron-left prev"></i>-->
+<!--                <i class="fas fa-chevron-right next"></i>-->
 
-        <div class="pd-more-container">
-            <p class="pd-more-header"> PACKAGE 더보기 </p>
+                <div class="pr-pack-slider">
+                    <div class="pr-pack-slider-wrapper">
+                        <a class="pr-pack-product">
+                            <div class="lf-pr-slide-product-img">
+                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
+                                <p> 상품명 </p>
+                            </div>
+                        </a>
+                        <a class="pr-pack-product">
+                            <div class="lf-pr-slide-product-img">
+                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
+                                <p> 상품명 </p>
+                            </div>
+                        </a>
+                        <a class="pr-pack-product">
+                            <div class="lf-pr-slide-product-img">
+                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
+                                <p> 상품명 </p>
+                            </div>
+                        </a>
+                        <a class="pr-pack-product">
+                            <div class="lf-pr-slide-product-img">
+                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
+                                <p> 상품명 </p>
+                            </div>
+                        </a>
 
-            <div class="pd-more-list">
-                <div class="pd-more-slider">
-                    <i class="fas fa-chevron-left prev"></i>
-                    <i class="fas fa-chevron-right next"></i>
-                    <div class="pd-more-slide-wrapper">
-                        <div class="pd-more-product-img" th:each="i : ${#numbers.sequence(1, 5)}">
-                            <img  alt="상품 사진 "
-                                 th:src="@{'/img/premium/premium_promotion_sample' + ${i} + '.png'}"/>
-                            <p> 사랑스러운 조명으로 <br> 분위기 업</p>
-                        </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
+
     </div>
+</div>
 
 
-    <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
+<th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 
 </body>
 </html>
