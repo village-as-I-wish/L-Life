@@ -57,19 +57,19 @@
                                 <span class="product-name" th:text="${product.lfName}"></span>
                                 <div class="coins" th:if="${product.lfPackageId == null}">
                                     <th:block th:each="coins, stat : ${#numbers.sequence(1, product.lfStCoin)}">
-                                        <img th:src="@{/img/member/coin.png}"/>
+                                        <img th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>
                                     </th:block>
                                 </div>
                                 <div class="discount-wrap">
                                     <div class="discount" th:if="${product.lfPackageId != null}">🌟패키지특가🌟</div>
                                     <div class="discount-coins" th:if="${product.lfPackageId != null}">
                                         <th:block th:each="coins, stat : ${#numbers.sequence(1, product.totalCoin)}">
-                                            <img th:src="@{/img/member/coin.png}"/>
+                                            <img th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>
                                         </th:block>
                                     </div>
                                     <div class="minus-count" th:if="${product.lfPackageId != null}" th:text="'[ 할인 받은 코인: ' + (${product.lfStCoin} - ${product.totalCoin}) + ' ]'"></div>
                                 </div>
-                                <div class="product-option" th:text="'옵션: ' + ${product.getLfOptName()}"></div>
+                                <div class="product-option" th:text="'[옵션] ' + ${product.getLfOptName()}"></div>
                                 <div class="product-coins" th:text="${product.lfStCoin}" style="display: none;"></div>
                             </div>
                         </a>
@@ -136,7 +136,7 @@
                                 <span class="product-name" th:id="'lfName_' + ${iterStat.index}" th:text="${product.lfName}"></span>
                                 <div class="product-price" th:text="${product.lfPrPrice}"></div>
                                 <div class="product-minium-peroid" th:text="${product.lfPrMinPeriod}"></div>
-                                <div class="product-option" th:text="'옵션: ' + ${product.getLfOptName()}"></div>
+                                <div class="product-option" th:text="'[옵션] ' + ${product.getLfOptName()}"></div>
                             </div>
                         </a>
 

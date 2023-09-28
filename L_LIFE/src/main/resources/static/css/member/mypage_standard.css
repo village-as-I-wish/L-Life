@@ -2,16 +2,13 @@
     margin-top: 175px !important;
 }
 .user-info {
-    background-color: #5D493E;
-    opacity: 0.5;
-    border-radius: 15px;
-    padding: 0px 20px 0px 20px;
     height: 130px;
-    color: white;
+    color: #333333;
     margin-top: 35px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1.5px solid #333333;
 }
 
 .user-info > div:first-child {
@@ -57,9 +54,8 @@
     width: 100px;
     align-items: center;
     padding: 10px;
-    border-right: 1px solid white;
+    border-right: 1px solid #333333;
     position: relative;
-    margin-left: 10px;
 }
 .user-info-box:last-child{
     border:none;
@@ -118,6 +114,7 @@
 
 .delivery-title {
     font-size: 20px;
+    font-weight: bold;
     color: #5D493E;
 }
 
@@ -139,11 +136,19 @@
 
 .delivery-btn {
     background-color: #5D493F;
-    border-radius: 5px;
+    border-radius: 10px;
     color: white;
     font-size: 15px;
     height: 35px;
-    padding: 10px;
+    padding: 0 10px 0 10px;
     border: #5D493F;
     font-weight: normal;
+}
+
+a:hover{
+    color: black;
+}
+
+.product-option{
+    font-size: 13px;
 }

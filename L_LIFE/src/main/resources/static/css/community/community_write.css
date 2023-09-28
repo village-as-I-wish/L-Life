@@ -201,7 +201,7 @@ p {
 }
 
 .center-container{
-    width: 20px;
+    width: 0px;
 }
 
 .input-group {
@@ -213,7 +213,7 @@ p {
 }
 
 .input-group input, .input-group textarea {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -235,7 +235,6 @@ p {
 .input-ai-image img{
     margin-left: 10px;
     width: 100%;
-    height: 125px;
 }
 
 .input-page{
@@ -248,7 +247,7 @@ p {
 
 .write-box-slider{
     position: relative;
-    margin-top: 50px;
+    margin-top: 10px;
     border: solid 1px ;
     border-radius: 10px;
     /*background-color:rgba(0, 0, 0, 0.2);*/
@@ -376,19 +375,23 @@ p {
 .imgUploadLabel{
     margin-top: 10px;
     padding: 20px;
-    background: #5d493c;
-    width: 50%;
+    background: #FF914D;
+    width: 100%;
+    opacity: 80%;
     height: 56px;
     text-align: center;
     color: white;
 }
+
 .Ai-Img-btn{
     margin-top: 10px;
-    background: white;
-    border: 1px solid #5d493c;
+    background: #7ED957;
+    opacity: 80%;
+    border: none;
     text-align: center;
     height: 56px;
-    width: 50%;
+    width: 95%;
+    color: white;
 }
 
 .imgBtn-box{
@@ -397,6 +400,11 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.input-ai-image-img{
+    display: inline-block;
+    content: "";
 }
 
 
@@ -422,4 +430,50 @@ p {
     z-index: 100;
     width: 30%;
     transform: translate(-50%, -50%);
+}
+
+
+
+select{
+    width: 47.5%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-size: 10% 10%;
+}
+
+.ai-box {
+    width: calc(100% - 15px);
+    box-sizing: border-box;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ai-box .input-ai-image {
+    width: 100%;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed #dbdbdb;
+}
+.ai-box .input-ai-image.highlight {
+    border: 3px dashed red;
+}
+.ai-box .input-ai-image .input-ai-image-img {
+    width: 40px;
+}
+
+.ai-box .input-ai-image .message {
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+
+.writ-title-main{
+    font-size: 30px;
+    font-weight: bold;
 }

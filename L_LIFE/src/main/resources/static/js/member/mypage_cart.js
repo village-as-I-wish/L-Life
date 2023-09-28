@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     productMinimumPeriod.forEach(periodElement => {
         const currentPeriod = parseInt(periodElement.textContent.replace(/[^0-9]/g, ''));
-        periodElement.textContent = '최소구독기간 : ' + currentPeriod.toLocaleString() + '개월';
+        periodElement.textContent = '[구독기간] ' + currentPeriod.toLocaleString() + '개월';
     });
     const itemPriceElements = document.querySelectorAll('.item-price');
     const initialProductPrices = [];
@@ -201,13 +201,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 
+    let checkboxStates = new Map();
+
     standardCheckboxes.forEach(checkbox => {
+        // 초기 체크박스 상태 설정
+        checkboxStates.set(checkbox, checkbox.checked);
+
         checkbox.addEventListener('change', () => {
             const listItem = checkbox.closest('.list-item');
-
             let productCoins;
 
-            // Check if the product has a discount (i.e., lfPackageId is not null)
             if (listItem.querySelector('.discount-coins')) {
                 productCoins = listItem.querySelectorAll('.discount-coins img').length;
             } else {
@@ -217,29 +220,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const currentCoins = parseInt(document.querySelector('.coinAmount').textContent);
 
             if (checkbox.checked) {
-                if ((currentCoins - productCoins) < 0) {
-                    checkbox.checked = !checkbox.checked;
-                    Swal.fire({
-                        title: '보유 H코인이 부족합니다.',
-                        text: '리바트 라이프와 함께 해주셔서 감사합니다.',
-                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
-                    });
-                    return;
-                }
-                for (let i = 0; i < productCoins; i++) {
-                    const img = document.createElement('img');
-                    img.src = 'https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png';
-                    coinsRemainingElement.appendChild(img);
+                if (!checkboxStates.get(checkbox)) {
+                    checkboxStates.set(checkbox, true);
+                    if ((currentCoins - productCoins) < 0) {
+                        checkbox.checked = !checkbox.checked;
+                        Swal.fire({
+                            title: '보유 H코인이 부족합니다.',
+                            text: '리바트 라이프와 함께 해주셔서 감사합니다.',
+                            imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                        });
+                        return;
+                    }
+                    coinAmount.textContent = `${currentCoins - productCoins}`;
                 }
             } else {
-                for (let i = 0; i < productCoins; i++) {
-                    coinsRemainingElement.removeChild(coinsRemainingElement.lastChild);
+                if (checkboxStates.get(checkbox)) {
+                    checkboxStates.set(checkbox, false);
+                    coinAmount.textContent = `${parseInt(coinAmount.textContent) + productCoins}`;
                 }
             }
-
-            coinsRemainingTextElement.textContent = `${coinsRemainingElement.querySelectorAll('img').length}/${currentCoin}`;
-            const minusCoin = coinsRemainingElement.querySelectorAll('img').length;
-            coinAmount.textContent = `${currentCoins - minusCoin}`;
         });
     });
 

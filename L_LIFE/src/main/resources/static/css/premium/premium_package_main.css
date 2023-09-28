@@ -1,15 +1,17 @@
 .sl-top-banner{
-    width: 100%;
-    /*height: 500px;*/
+    /* width: 100%; */
+    /* height: 500px; */
     margin-bottom: 70px;
     margin-top: 150px;
     display: flex;
-    padding: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     border-bottom: 3px dotted #eee;
 }
 .sl-top-banner img{
     width: 100%;
     height: inherit;
+    filter: brightness(0.7);
 }
 .banner-guide{
     position: absolute;
@@ -42,7 +44,7 @@
 }
 .pr-md-pick-list .prev, .pr-promotion-list .prev{
     position: absolute;
-    top: 50%;
+    top: 55%;
     cursor: pointer;
     z-index: 1;
     color: #2a2a2a;
@@ -53,13 +55,12 @@
     height: 50px;
     background-color: transparent;
     line-height: 48px;
-    border: 1px solid #2a2a2a;
     text-align: center;
     left: 20px;
 }
 .pr-md-pick-list .next, .pr-promotion-list .next {
     position: absolute;
-    top: 50%;
+    top: 55%;
     right: 0;
     font-size: 3em;
     cursor: pointer;
@@ -72,7 +73,6 @@
     height: 50px;
     background-color: transparent;
     line-height: 48px;
-    border: 1px solid #2a2a2a;
     text-align: center;
 
 }
@@ -109,11 +109,11 @@
 }
 .pr-md-pick-header a{
     padding: 10px;
-    border-radius: 50px;
+    border-radius: 10px;
     background: #5D493F;
     color: white !important;
     font-weight: bold;
-    width: 150px;
+    width: 220px;
     text-decoration: none;
     text-align: center;
 }
@@ -204,11 +204,13 @@ video{
     visibility: hidden;
     transition: all 0.5s;
 }
+.left-content{
+    position: relative;
+}
 .left-content .inner-content {
     position: absolute;
-    left: 100px;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 55px;
+    top: 65px;
 }
 .right-first-image .thumb .inner-content {
     position: absolute;
@@ -247,42 +249,46 @@ video{
 }
 
 .main-border-button a {
-    font-size: 13px;
+    font-size: 16px;
     color: #fff;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     padding: 12px 25px;
     display: inline-block;
-    font-weight: 500;
+    font-weight: bold;
     transition: all .3s;
     text-decoration: none !important;
 }
 .pr-md-pick-header > p, .pr-promotion-header >p,.pr-popular-header >p{
-    font-size: 14px;
-    color: #a1a1a1;
-    font-style: italic;
-    font-weight: 400;
+    font-size: 18px;
+    color: #5d493f;
+    font-weight: bold;
 }
 .hr-pr{
     padding-bottom: 90px;
     border-bottom: 3px dotted #eee;
 }
 .package-ad-sec{
-    padding: 0px 0px 0px 60px
+    padding: 0px 95px 0px 95px
 }
 .package-ad{
-    background-image: url(../../img/premium/package_banner.png);
-    height: 280px;
-    /* padding: 100px; */
+    height: 300px;
     background-repeat: round;
     margin-top: 90px;
 }
+
 .package-ad-row{
-    padding: 12px;
+    padding: 20px;
 }
 .package-ad-col{
     padding: 0;
 }
 .package-ad-col img{
-    height:200px;
+    height: 230px;
     width: inherit;
+}
+.package-ad-col:not(:last-child) img {
+    padding-right: 10px; /* 오른쪽 간격 */
+}
+.package-ad-col:last-child img {
+    padding-left: 10px; /* 오른쪽 간격 */
 }

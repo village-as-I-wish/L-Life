@@ -39,7 +39,7 @@ public class MemberController {
         MemberVo memberVo = new MemberVo(1,name,gender,0,0,"",email,profile,"",0);
         MemberVo existingMember = memberService.insertOrSelectMember(memberVo);
 
-        Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
+//        Integer currentCoin = memberService.getCurrentCoin(existingMember.getMId());
         int orderCount = memberService.getOrderCount(existingMember.getMId());
         int deliveryReady = memberService.getDeliveryReadyStatus(existingMember.getMId());
         int deliveryProgress = memberService.getDeliveryProgressStatus(existingMember.getMId());
@@ -49,7 +49,7 @@ public class MemberController {
         HttpSession session = request.getSession();
         // 세션 저장
         session.setAttribute("existingMember", existingMember);
-        session.setAttribute("currentCoin", currentCoin);
+//        session.setAttribute("currentCoin", currentCoin);
         session.setAttribute("orderCount",orderCount);
         session.setAttribute("deliveryReady",deliveryReady);
         session.setAttribute("deliveryProgress",deliveryProgress);
@@ -67,13 +67,13 @@ public class MemberController {
     @GetMapping("/{memberId}/mypage")
     public String loadMyPage(Model model){
 
-        List<TestVo> products = new ArrayList<>();
-        products.add(new TestVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", 28000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", 54000,19970526, 12341234, 12));
-        products.add(new TestVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", 15000,19970526, 12341234, 6));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
-        model.addAttribute("products", products);
+//        List<TestVo> products = new ArrayList<>();
+//        products.add(new TestVo("2023-08-20", "product1_sample.jpeg", "제품1", 3, "월33,000", 28000,19970526, 12341234, 24));
+//        products.add(new TestVo("2023-08-20", "product2_sample.jpeg", "제품2", 5, "월33,000", 54000,19970526, 12341234, 12));
+//        products.add(new TestVo("2023-08-20", "product3_sample.jpeg", "제품3", 1, "월33,000", 15000,19970526, 12341234, 6));
+//        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
+//        products.add(new TestVo("2023-08-20", "product4_sample.jpeg", "제품4", 4, "월33,000", 48000,19970526, 12341234, 24));
+//        model.addAttribute("products", products);
         return "pages/member/mypage_main";
     }
 

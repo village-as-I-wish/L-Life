@@ -39,13 +39,13 @@
 
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span><span class="detail-pont"
-                                th:text="${premiumDetail.lfPrMinPeriod}"></span><span>개월 사용 후 구매/반납/연장 할 수 있어요.</span></span>
+                    <span><span class="color-change" th:text="${premiumDetail.lfPrMinPeriod + '개월'}"></span> 사용 후 구매/반납/연장 할 수 있어요.</span>
                 </div>
                 <div class="lr-pr-etc-info">
                     <i class="fa-regular fa-circle-check"></i>
-                    <span class="detail-pont">한 번도 사용되지 않은 새 제품 이에요.</span>
+                    <span class="detail-pont">한 번도 사용되지 않은 <span class="color-change">새 제품</span>이에요.</span>
                 </div>
+
                 <p class="lr-pr-etc-subtxt">
                     * 프리미엄 구독 상품은 ? <br>
                     리바트 라이프의 프리미엄 구독 상품들은 모두 새 제품으로 구성되어 있습니다. <br>
@@ -159,7 +159,8 @@
             </div><!-- 배송 파트 종료 -->
 
             <div class="lf-recommendation-product">
-                <p> 더 많은 가격 대별 추천 상품 </p>
+                <span class="color-change">비슷한 가격대</span>
+                <span>의 상품을 찾으시나요? </span>
                 <hr>
                 <div class="lf-recommendation-body">
                     <div class="lf-recommendation-page-wrapper">
@@ -167,7 +168,7 @@
                             <div class="lf-recommendation-slide-wrapper">
                                 <a class="lf-recommendation-slide-product-img" th:each="product : ${recommendProducts}" th:href="@{'/premium/' + ${product.lfId} + '/detail'}">
                                     <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
-                                    <span class="pr-rec-brand-name"th:text="${product.lfBrandName}"></span>
+                                    <span th:text="${product.lfBrandName}"></span>
                                     <p th:text="${product.lfName}"></p>
                                     <p class="pr-rec-price"> 월 <span th:text="${product.lfPrPrice}"></span>원~ </p>
                                 </a>

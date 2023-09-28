@@ -58,8 +58,8 @@
     margin-right:10px;
 }
 .lf-pr-point img{
-    width:20px;
-    height:auto;
+    width:25px;
+    height: 25px;
     background: none;
     border-radius: 50%;
     margin: 0px 1px 0px 1px;
@@ -199,7 +199,7 @@ ul.tabs li.current{
 .tab-pr-maininfo-content span{
     display: block;
     margin: 10px 0px 10px 0px;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .tab-pr-maininfo-content > div {
@@ -217,18 +217,13 @@ ul.tabs li.current{
     margin-right: 0;
 }
 .pr-grade-value {
-    color: #f65c60;
+    color: #ff4800;
 }
 .pr-grade{
     margin-top:30px !important;
     font-size: 18px !important;
     display: inline-flex !important;
     align-items: baseline !important;
-}
-
-.detail-pont {
-    color: #B38D74;
-    font-weight: bold;
 }
 
 /* slider css */
@@ -364,9 +359,9 @@ ul.tabs li.current{
     width: 100%;
 
 }
-.lf-recommendation-slide-product-img > span{
+.lf-recommendation-slide-product-img > span {
     font-size: 14px;
-    padding: 5px;
+    border-bottom: 1px solid #333333;
     width: 45%;
     text-align: center;
     margin: 0px 0px 10px 0px !important;
@@ -374,8 +369,11 @@ ul.tabs li.current{
 }
 .lf-recommendation-slide-product-img > p {
     font-size: 14px;
-    padding: 5px;
     color: #333333;
+    word-break: keep-all;
+    line-height: 20px;
+    padding: 0px 3px;
+    font-weight: 600;
 }
 
 .coin-wrap {
@@ -383,12 +381,6 @@ ul.tabs li.current{
     align-items: center;
     justify-content: flex-start;
     padding: 3px;
-}
-
-.coin-img{
-    display: inline-block;
-    width:20px !important;
-    height: auto;
 }
 
 /*tab 2*/
@@ -480,7 +472,7 @@ ul.tabs li.current{
 }
 .fa-star:before {
     content: "\f005";
-    color: #5D493F;
+    color: #FF914D;
 }
 .review-ratings span{
     width: 105px;
@@ -490,7 +482,7 @@ ul.tabs li.current{
 .total-review-rating{
     font-size: 18px;
     font-weight: bold;
-    color: #735F4C;
+    /*color: #735F4C;*/
     margin-bottom: 5px;
 }
 .review-body-content{
@@ -537,4 +529,11 @@ ul.tabs li.current{
 
 .tab-disabled {
     pointer-events: none;
+}
+.detail-pont {
+    color: #ff4800;
+}
+.coin-img {
+    width: 25px;
+    height: 25px;
 }
