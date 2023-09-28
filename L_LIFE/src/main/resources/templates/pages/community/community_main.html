@@ -217,8 +217,12 @@
                     console.log(response);
                     console.log(response.result.furnitures)
 
-                    var subtitleText = '지금, ' + response.result.pages[0].bpTitle + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.';
-                    $(".book-main-subtitle").text(subtitleText);
+                    // bpTitle 값을 span 태그로 감싸서 색상을 변경
+                    var highlightedBpTitle = '<span class="highlighted-text">' + response.result.pages[0].bpTitle + '</span>';
+                    // 문자열 템플릿으로 전체 텍스트 구성
+                    var subtitleText = '지금, ' + highlightedBpTitle + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.';
+                    $(".book-main-subtitle").html(subtitleText);
+
 
                     // 1번째 페이지 업데이트
                     $(".page1-img").attr("src", response.result.pages[0].bpImg);

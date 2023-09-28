@@ -210,7 +210,7 @@
 }
 
 .stream-product-coin{
-    color: #FF914D;
+    color: #ff4800;
     font-size: 20px;
     font-weight: bold;
 }
@@ -265,7 +265,9 @@
 }
 
 .stream-sub-product-option{
-    margin-top: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 13px;
 }
 
 .stream-sub-product-card{
@@ -289,12 +291,14 @@
     height:20px;
 }
 .stream-sub-product-cart-btn,.stream-product-cart-btn{
-    height: 35px;
+    height: 30px;
     /*padding: 10px;*/
     background: white;
     border: 1px solid lightgray;
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
+    color: #5D493F;
+    font-size: 13px;
 }
 
 .stream-sub-product-cart-btn:hover, .stream-product-cart-btn:hover{
@@ -383,7 +387,7 @@
 }
 
 .stream-sub-product-coins > img {
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
     margin-right: -4px;
 }
