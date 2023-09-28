@@ -110,12 +110,17 @@
 .pr-md-pick-header a{
     padding: 10px;
     border-radius: 10px;
-    background: #5D493F;
-    color: white !important;
+    border: 1.5px solid #5D493F;
+    background: white;
+    color: #5D493F !important;
     font-weight: bold;
     width: 220px;
     text-decoration: none;
     text-align: center;
+}
+.pr-md-pick-header a:hover{
+    background: #5D493F;
+    color: white !important;
 }
 .pr-real-img{
     width: 100%;
