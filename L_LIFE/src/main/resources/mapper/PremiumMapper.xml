@@ -229,6 +229,8 @@
                    on lfp.LF_PACKAGE_ID = lfc.LF_PACKAGE_ID
          left Join LLIFEFURNITURE f
                    on lfc.LF_ID = f.LF_ID
+        left join LFURNITUREBRAND fb
+                    on f.lf_brand_id = fb.lf_brand_id
         where lfp.LF_PACKAGE_ID = #{lfPackageId}
     </select>
 

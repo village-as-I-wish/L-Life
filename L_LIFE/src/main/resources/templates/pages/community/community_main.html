@@ -88,8 +88,9 @@
             <span class="first-styling">함께하는 집테리어들의</span>
             <span class="second-styling">"Livart Book"</span>
         </div>
-        <div class="styling-main-content slider-container">
-            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}" th:if="${iterStat.index} < 10">
+        <div class="styling-main-content book-swiper">
+            <div class="swiper-wrapper book-swiper-wrapper">
+            <div class="swiper-slide image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}" th:if="${iterStat.index} < 10">
                 <input id="bookId" type="hidden" th:value="${book.bookId}">
 <!--                <img class="book-image" th:id="'book-image'+ ${iterStat.index}" alt="메가진 사진" th:src="${book.bookMainImg}" th:onclick="showBook([[${iterStat.index}]])"/>-->
                 <img class="book-image"
@@ -97,6 +98,7 @@
                      alt="메가진 사진"
                      th:src="${book.bookMainImg != null && !book.bookMainImg.isEmpty() ? book.bookMainImg : 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Package/PK_%E1%84%8C%E1%85%A9%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%B7.jpeg'}"
                      th:onclick="showBook([[${iterStat.index}]])"/>
+            </div>
             </div>
         </div>
     </section>
