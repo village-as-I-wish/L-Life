@@ -4,19 +4,7 @@
     margin-top: 60px;
 }
 
-.product-image {
-    max-width: 130px;
-    margin-right: 20px;
-    border-radius: 5px;
-}
 
-.product-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 0px;
-    width: 100%;
-}
 
 .subscribe-buttons-wrapper {
     display: flex;
@@ -26,7 +14,8 @@
 .buttons {
     display: flex;
     gap: 5px;
-    margin-top: 70px
+    margin-top: 15px;
+    justify-content: flex-end;
 }
 
 .custom-button {
@@ -35,15 +24,13 @@
     color: white;
     padding: 5px 20px;
     border: none;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     cursor: pointer;
     transition: background-color 0.3s, opacity 0.3s;
     text-decoration-line: none;
 
 }
-.product-item{
-    width: 100%;
-}
+
 
 .custom-button:hover {
     background-color: #5D493F;
@@ -52,29 +39,21 @@
     text-decoration-line: none;
 }
 
-a.product-link {
-    display: flex;
-    text-decoration: none;
-    width: 100%;
-}
+
 
 .product-name {
     color: #333333;
+    margin-top: 10px;
+    font-weight: bold;
+
 }
 
 .product-price {
     color: #333333;
-    margin-top: 10px;
+    font-size: 18px;
+    margin-top: 5px;
 }
 
-.first-subscribe-info {
-    margin-top: 20px;
-}
-
-.subscribe-info {
-    text-align: right;
-    margin-top: 10px;
-}
 
 .list-item {
     display: flex;
@@ -99,19 +78,52 @@ a.product-link {
     transition: background-color 0.3s, opacity 0.3s;
     text-decoration-line: none;
 }
+
+
+
+a.product-link {
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    width: 20%;
+}
+
+
+.product-image {
+    display: flex;
+    flex-direction: column;
+    width: 130px;
+    height: 130px;
+}
+.product-item{
+    display: flex;
+    margin-top: 10px;
+    border-bottom: 1px solid #DCDCDC;
+    padding-bottom: 10px;
+
+}
+.product-details {
+    margin-left: 20px;
+    width: 80%;
+
+}
+
 .product-details-first{
     display: flex;
-    width: 100%;
-    align-items: center;
     justify-content: space-between;
 }
 .product-details-second{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
+
 }
 .product-details-third{
-    display: flex;
-    width: 100%;
+
+}
+.product-details-option{
+    font-size:14px;
+}
+.brand-name{
+    border-bottom:1px solid #5d493c;
+}
+.txt-orange{
+    color: #FF914D;
 }

@@ -5,46 +5,38 @@
 
     <div class="subscribe-title">프리미엄 구독 제품</div>
     <ul>
-        <li th:each="product : ${premiumSubscriptionList}" class="list-item">
-            <div class="product-item">
-                <a th:href="@{'#'}" class="product-link">
-                    <img class="product-image" th:src="${product.lfImgMain}" />
-                    <div class="product-details">
-                        <div class="product-details-first">
-                            <div class="brand-name" th:text="${product.lfBrandName}"></div>
-                            <div class="subscribe-info first-subscribe-info">최소 구독 기간은 <span th:text="${product.lfPrMinPeriod}"></span>개월 입니다.</div>
-                        </div>
-                        <div class="product-details-second">
-                            <span class="product-name" th:text="${product.lfName}"></span>
-                            <div class="subscribe-info">구독 만료일 </span><span th:text="${product.subLfEndDate}"></span></div>
-                        </div>
-                        <div class="product-details-third">
-                            <div class="product-option" th:text="'옵션: ' + ${product.lfOptName}"></div>
-                            <a href="#" class="custom-button">구독연장</a>
+        <li th:href="@{'#'}" th:each="product : ${premiumSubscriptionList}" class="product-item">
+                <img class="product-image" th:src="${product.lfImgMain}" />
+                <div class="product-details">
+                    <div class="product-details-first">
+                        <div>
+                            <span class="brand-name" th:text="${product.lfBrandName}"></span>
+                            <p class="product-name" th:text="${product.lfName}"></p>
+                            <p class="product-details-option" th:text="'옵션: ' + ${product.lfOptName}"></p>
 
                         </div>
+                        <div style="text-align: right">
+                            <p class="subscribe-info">구독 만료일 </span><span class="txt-orange" th:text="${product.subLfEndDate}"></span></p>
+                            <span class="subscribe-info first-subscribe-info">최소 구독 기간은 <span class="txt-orange" th:text="${product.lfPrMinPeriod} + 개월"></span>입니다</span>
+                            <p class="product-price" th:text="'월 '+ ${product.lfPrPrice}+ '원'"></p>
 
+                        </div>
                     </div>
-                </a>
-            </div>
-            <div class="buttons">
-                <a href="#" class="custom-button">구독연장</a>
-                    <button class="custom-button return-button"
-                            th:attr="data-product-id=${product.subLfId}">반납</button>
-                    <a href="#" class="custom-button">케어신청</a>
-                    <a href="#" class="custom-button">배송조회</a>
-            </div>
-            <!--            <div class="subscribe-info-wrap">-->
-<!--                <div class="subscribe-info first-subscribe-info">최소 구독 기간은 <span th:text="${product.lfPrMinPeriod}"></span>개월 입니다.</div>-->
-<!--                <div class="subscribe-info">구독 만료일 </span><span th:text="${product.subLfEndDate}"></span></div>-->
-<!--                <div class="buttons">-->
-<!--                    <a href="#" class="custom-button">구독연장</a>-->
-<!--                    <button class="custom-button return-button"-->
-<!--                            th:attr="data-product-id=${product.subLfId}">반납</button>-->
-<!--                    <a href="#" class="custom-button">케어신청</a>-->
-<!--                    <a href="#" class="custom-button">배송조회</a>-->
-<!--                </div>-->
-<!--            </div>-->
+<!--                    <div class="product-details-second">-->
+<!--                        <p class="product-details-option" th:text="'옵션: ' + ${product.lfOptName}"></p>-->
+<!--                    </div>-->
+<!--                    <div class="product-details-third">-->
+<!--                        <div class="product-option" th:text="'옵션: ' + ${product.lfOptName}"></div>-->
+<!--                    </div>-->
+                    <div class="buttons">
+                        <a href="#" class="custom-button">구독연장</a>
+                        <button class="custom-button return-button"
+                                th:attr="data-product-id=${product.subLfId}">반납</button>
+                        <a href="#" class="custom-button">케어신청</a>
+                        <a href="#" class="custom-button">배송조회</a>
+                    </div>
+
+                </div>
         </li>
     </ul>
 
