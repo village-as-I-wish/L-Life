@@ -22,75 +22,61 @@
 
 <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 
-<div class="body-content">
-    <div class="pr-top-banner">
+<div class="pr-top-banner"></div>
 
-        <div class="pr-main-content hd__inner1100">
-            <div class="pr-main-content-top">
-                <div class="pr-main-left">
-                    <div class="pr-left-top">
-                        <p class="brand"> 리바트 라이프 </p>
-                        <p class="package-name"> 프리미엄 패키지 샘플 </p>
-                    </div>
-                    <div class="pr-left-bottom">
-                        <video muted autoplay loop>
-                            <source th:src="@{/img/premium/premium-video.mp4}" type="video/mp4">
-                        </video>
-                    </div>
+<div class="pr-main-content hd__inner1100">
+    <div class="pr-main-content-top">
+        <div class="pr-main-left">
+            <div class="pr-left-top">
+                <p class="brand"> 리바트 라이프 </p>
+                <p class="package-name" th:text="${packageDetail.lfPackageName}">  </p>
+                <p style="margin-top:10px"> 프리미엄 가구로 편안하고 고급스러운 라이프스타일을 경험하세요. </p>
 
-                </div>
-                <div class="pr-main-right">
-                    <div class="pr-right-top">
-                        <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
-                    </div>
-                    <div class="pr-right-bottom">
-                        <p> 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명
-                            패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명</p>
-                    </div>
-                    <a>프리미엄 구독관 이동</a>
-
-                </div>
             </div>
-            <div class="pr-package-product">
-<!--                <i class="fas fa-chevron-left prev"></i>-->
-<!--                <i class="fas fa-chevron-right next"></i>-->
-
-                <div class="pr-pack-slider">
-                    <div class="pr-pack-slider-wrapper">
-                        <a class="pr-pack-product">
-                            <div class="lf-pr-slide-product-img">
-                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
-                                <p> 상품명 </p>
-                            </div>
-                        </a>
-                        <a class="pr-pack-product">
-                            <div class="lf-pr-slide-product-img">
-                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
-                                <p> 상품명 </p>
-                            </div>
-                        </a>
-                        <a class="pr-pack-product">
-                            <div class="lf-pr-slide-product-img">
-                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
-                                <p> 상품명 </p>
-                            </div>
-                        </a>
-                        <a class="pr-pack-product">
-                            <div class="lf-pr-slide-product-img">
-                                <img alt="패키지사진 " th:src="@{/img/premium/sample.png}"/>
-                                <p> 상품명 </p>
-                            </div>
-                        </a>
-
-                    </div>
-                </div>
-
+            <div class="pr-left-bottom">
+                <video muted autoplay loop>
+                    <source th:src="@{/img/premium/premium-video.mp4}" type="video/mp4">
+                </video>
             </div>
 
         </div>
+        <div class="pr-main-right">
+            <div class="pr-right-top">
+                <img alt="패키지사진 " th:src="${packageDetail.lfPackageImg}"/>
+            </div>
+            <div class="pr-right-bottom">
+                <p> 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명
+                    패키지 설명 패키지 설명 패키지 설명 패키지 설명 패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명패키지 설명</p>
+            </div>
+            <div>
+            <a href="/l-life/premium/main"> 프리미엄 가구 둘러보기</a>
+            </div>
+        </div>
+    </div>
+    <div class="pr-package-product">
+        <div class="pr-package-product-top">
+            <span class="pr-header-txt"> 패키지 상품 </span>
+            <div class="slide-btns">
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
+            </div>
+        </div>
+        <div class="pr-pack-slider">
+            <div class="pr-pack-slider-wrapper">
+                <a th:href="@{'/premium/' + ${product.lfId} + '/detail'}" class="pr-pack-product" th:each="product, iterStat  : ${packageDetail.lfPackageProducts}">
+                    <div class="lf-pr-slide-product-img">
+                        <img alt="패키지사진 " th:src="${product.lfImgMain}"/>
+                        <span class="pr-pack-product-brand" th:text="${product.lfBrandName}"></span>
+                        <p th:text="${product.lfName}"></p>
+                    </div>
+                </a>
 
+            </div>
+        </div>
 
     </div>
+
+
 </div>
 
 
