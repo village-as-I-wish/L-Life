@@ -202,9 +202,10 @@ height:200px;
 /* 북 부분 */
 .book {
     transition: opacity 0.4s 0.2s;
-    perspective: 3750px; /* 250vw = 3750px (assuming 1vw = 15px) */
+    perspective: 3750px;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 p{
@@ -352,7 +353,7 @@ p{
     transform: scaleX(-1);
     width: 90px;
     height: 100px;
-    position: fixed;
+    position: absolute;
     top: -75px;
     left: 810px;
     z-index: 9999;
