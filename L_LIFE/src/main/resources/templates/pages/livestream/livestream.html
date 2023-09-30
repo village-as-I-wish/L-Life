@@ -39,7 +39,7 @@
         </div>
 
         <div class="stream-info-txt-box">
-            <span class="dark-brown" th:text="${liveStreamDetail.lStreamTime}"> 오늘 저녁 6시  </span>
+            <span class="dark-brown" th:text="${#strings.substring(liveStreamDetail.lStreamTime, 0, 10)}"></span>
             <div class="livestream-name" th:text="${liveStreamDetail.lStreamName}">
                 ❤️ 리바트 라이프 LIVE ❤️ 8/27 (일) 주방&욕실 스탠다드 구독!
             </div>
@@ -121,11 +121,11 @@
         </div>
 
         <div class="stream-product-name">
-            <span class="dark-brown"> 패키지 </span>: <span th:text="${liveStreamDetail.getLfPackage().lfPackageName}"> </span>
+            <span class="stream-product-package-txt"> 패키지 </span> ⭐<span th:text="${liveStreamDetail.getLfPackage().lfPackageName}"></span><span>⭐</span>
         </div>
         <div class="stream-product-price">
-            <span class="stream-product-price-txt"> 패키지 구독 코인 :  </span>
-            <span> L-life Coin <span th:text="${liveStreamDetail.getLfPackage().getLfPackageStCoin()}">0</span>개 </span>
+            <span class="stream-product-price-txt"> 패키지 구독 코인  </span>
+            <span><span class="stream-product-coin" th:text="${liveStreamDetail.getLfPackage().getLfPackageStCoin()}">0</span>개 </span>
             <button class="stream-product-cart-btn dark-brown" th:onclick="packageToCart()"> 패키지 담기</button>
         </div>
         <hr>
@@ -150,7 +150,7 @@
                 <div class="stream-sub-product-info">
                     <div class="stream-sub-product-coins">
                         <img th:each="coinNum : ${#numbers.sequence(1, lsProduct.lfStCoin)}"
-                             class="coin" alt="리바트 라이프 코인" th:src="@{/img/livestream/coin.png}"/>
+                             class="coin" alt="리바트 라이프 코인" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>
                     </div>
                     <div class="stream-sub-product-btns">
                         <button class="stream-sub-product-cart-btn dark-brown" > 상품 보기 </button>

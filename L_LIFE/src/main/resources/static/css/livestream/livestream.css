@@ -120,7 +120,7 @@
 }
 .livestream-sharebtn{
     height: 40px;
-    background: #AEA49F;
+    background: #5D493E;
     border-radius: 10px;
     border: none;
     color: white;
@@ -206,7 +206,15 @@
 .stream-product-price-txt{
     font-size: 17px;
     font-weight: 600;
+    margin-right: 5px;
 }
+
+.stream-product-coin{
+    color: #ff4800;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .stream-product-price button{
     position: absolute;
     right: 18px;
@@ -244,9 +252,10 @@
 }
 
 .stream-sub-product-brand{
-    padding: 3px;
-    border-radius: 5px;
-    border: solid 1px;
+    /*padding: 3px;*/
+    /*border-radius: 5px;*/
+    /*border: solid 1px;*/
+    /*margin-right: 5px;*/
     margin-right: 5px;
 }
 
@@ -256,7 +265,9 @@
 }
 
 .stream-sub-product-option{
-    margin-top: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 13px;
 }
 
 .stream-sub-product-card{
@@ -280,19 +291,21 @@
     height:20px;
 }
 .stream-sub-product-cart-btn,.stream-product-cart-btn{
-    height: 35px;
+    height: 30px;
     /*padding: 10px;*/
     background: white;
     border: 1px solid lightgray;
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
-    margin-left:10px;
+    color: #5D493F;
+    font-size: 13px;
 }
 
-.stream-sub-product-cart-btn:hover{
+.stream-sub-product-cart-btn:hover, .stream-product-cart-btn:hover{
     background-color: #5D493F;
     color: white;
 }
+
 .hidden{
     display: none;
 }
@@ -304,15 +317,17 @@
 }
 .ad-slide p{
     background: lemonchiffon;
-    font-size: 15px;
+    font-size: 18px;
     margin-top: 12px;
     text-align: center;
     animation: textLoop 20s linear infinite;
     margin-left: 20px;
-    color: #ed2650;
+    font-weight: bold;
+    color: red;
 }
 .text-pink{
-    color: #ed2650;
+    color: #FF914D;
+    font-weight: bold;
 }
 
 .video-container-inner {
@@ -336,7 +351,7 @@
     margin-top: 25px;
 }
 .video-container-inner-subtxt{
-    color : #ed2650;
+    color : #FF914D;
 }
 @keyframes textLoop {
     0% {
@@ -366,3 +381,13 @@
 }
 
 
+.stream-product-package-txt{
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.stream-sub-product-coins > img {
+    width: 23px;
+    height: 23px;
+    margin-right: -4px;
+}

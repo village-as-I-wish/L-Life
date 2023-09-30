@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('.pd-more-slide-wrapper').slick({
+    $('.pr-pack-slider-wrapper').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: false,

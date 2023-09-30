@@ -58,6 +58,22 @@
                 <img class="standard-img-2" alt="커뮤니티 배너 2" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/esg.png}"/>
             </div>
         </div>
+        <div class="swiper-slide">
+            <a th:href="@{/subscription}">
+                <div class="standard-top-banner-3">
+                    <div class="standard-main-content hd__inner1400">
+                        <div class="first-title-3"> 🎉 라이브 방송 특별 패키지! 🎉 </div>
+                        <div class="second-title">코인 추가 증정!
+<!--                            <img th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>-->
+<!--                            <img th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>-->
+<!--                            <img th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>-->
+                                <br>평소보다 더 큰 혜택을 누리세요</div>
+                        <div class="third-title-3">지금 바로, 넉넉한 코인으로 인테리어를 업그레이드하세요.</div>
+                    </div>
+                    <img class="standard-img-3" alt="커뮤니티 배너 1" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/banner_live.png}"/>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -87,10 +103,10 @@
 
                             </div>
                             <p th:text="${LiveList.lStreamName}">라이브제목</p>
-                            <div class="sl-live-box-user">
+                            <!--<div class="sl-live-box-user">
                                 <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
                                 <span> 리바트 라이프 </span>
-                            </div>
+                            </div>-->
                         </a>
 
                         <!-- 방송 시작 후 -->
@@ -116,10 +132,10 @@
                                 </div>
                             </div>
                             <p th:text="${LiveList.lStreamName}">라이브제목</p>
-                            <div class="sl-live-box-user">
+                            <!--<div class="sl-live-box-user">
                                 <img alt="로고 사진" th:src="@{/img/standard/live_livart_logo.png}"/>
                                 <span> 리바트 라이프 </span>
-                            </div>
+                            </div>-->
                         </a>
                     </div>
                 </div>
@@ -154,14 +170,14 @@
                                 <img alt="상품 메인사진 " th:src="${standardProduct.lfImgMain}"/>
                             </div>
                             <div class="sl-main-sub-product-txt">
-                                <p th:text="${standardProduct.lfName}">상품명</p>
+                                <p class="sl-main-sub-product-name" th:text="${standardProduct.lfName}">상품명</p>
                                 <hr style="margin: 3px 0px 10px 0px">
                                 <div class="d-flex sl-main-sub-product-price">
                                     <span th:text="${standardProduct.lfBrandName}">브랜드이름</span>
                                     <div class="coin-img-box">
                                         <th:block
                                                 th:each="coins, stat : ${#numbers.sequence(1, standardProduct.lfStCoin)}">
-                                            <img class="coin-img" th:src="@{/img/member/coin.png}"/>
+                                            <img class="coin-img" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/coin.png}"/>
                                         </th:block>
                                     </div>
                                 </div>
@@ -187,10 +203,10 @@
         draggable: true,
         resistance: true,
         resistanceRatio: 0.85,
-        autoplay: {
-            delay: 5000, // 5초 후에 자동으로 다음 슬라이드로 넘어갑니다.
-            disableOnInteraction: false // 사용자가 슬라이드를 드래그하거나 다른 상호작용을 할 때 autoplay를 중지하지 않도록 설정합니다.
-        }
+        // autoplay: {
+        //     delay: 4000,
+        //     disableOnInteraction: false
+        // }
     });
 </script>
 </body>

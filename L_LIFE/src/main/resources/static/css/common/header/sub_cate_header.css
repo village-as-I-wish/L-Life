@@ -19,17 +19,22 @@
 }
 .sub-cate-header *{
     text-decoration: none;
-    color: #BBBBBB;
+    color: #967E76;
+    /*text-shadow:*/
+    /*        -0.5px -0.5px 0 #967E76,*/
+    /*        0.5px -0.5px 0 #967E76,*/
+    /*        -0.5px 0.5px 0 #967E76,*/
+    /*        0.5px 0.5px 0 #967E76;*/
 }
 
 .sub-cate-header *:hover{
     text-decoration: none;
-    color: #333333;
+    color: #967E76;
 }
 
 
 #menu li a:hover{
-    color: #79604f;
+    color: #333333;
     transform:scale(1.1);
 }
 

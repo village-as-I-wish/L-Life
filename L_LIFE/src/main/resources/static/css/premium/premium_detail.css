@@ -30,6 +30,7 @@
 }
 .lf-pr-name{
     font-size: 30px;
+    word-break: keep-all;
 }
 .lf-pr-summary-detail{
     margin-top: 20px;
@@ -335,11 +336,11 @@ ul.tabs li {
 
 .lf-recommendation-slide-product-img > span {
     font-size: 14px;
-    display: block;
+    border-bottom: 1px solid #333333;
+    width: 45%;
+    text-align: center;
     margin: 0px 0px 10px 0px !important;
     color: #333333;
-    background: wheat;
-    padding: 3px 10px 3px 10px;
 }
 
 .lf-recommendation-slide-product-img > p {
@@ -402,4 +403,7 @@ ul.tabs li {
 .pr-rec-price{
     color: #5d493c !important;
     font-weight: 400 !important;
+}
+.color-change {
+    color: #ff4800;
 }

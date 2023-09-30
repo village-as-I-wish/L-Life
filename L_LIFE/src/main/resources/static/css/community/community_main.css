@@ -1,3 +1,6 @@
+.swiper-slide {
+    overflow: hidden;
+}
 .community_main {
     margin-top: 200px;
 }
@@ -53,10 +56,10 @@
 .book-make-button {
     position: absolute;
     top: 212px;
-    background-color: #FF914D;
+    background-color: #ff4800;
     color: #ffffff;
     padding: 5px  40px;
-    border-radius: 20px;
+    border-radius: 10px;
     text-decoration: none;
     font-size: 17px;
     margin-top: 7px;
@@ -96,7 +99,7 @@
 }
 
 .first-livatist {
-    color: #f65c60;
+    color: #ff4800;
     font-size: 24px;
     margin-right: 5px;
 }
@@ -144,14 +147,15 @@
 
 .second-styling {
     font-size: 47px;
-    color: #f65c60;
+    color: #ff4800;
     margin-right: 10px;
 }
 
 .styling-main-content {
-    display: flex;
+    display: grid;
+    overflow: hidden;
     justify-content: space-between;
-    margin-bottom: 180px;
+
 }
 
 .image-box {
@@ -174,12 +178,12 @@ height:200px;
 }
 
 .image-box {
-    width:5280px;
+    width: 300px;
     position: relative;
-    height:100%;
-    display:flex;
-    flex-wrap:nowrap;
-    animation: bannermove 5s linear infinite;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    /*animation: bannermove 5s linear infinite;*/
 }
 
 @keyframes bannermove {
@@ -198,9 +202,10 @@ height:200px;
 /* 북 부분 */
 .book {
     transition: opacity 0.4s 0.2s;
-    perspective: 3750px; /* 250vw = 3750px (assuming 1vw = 15px) */
+    perspective: 3750px;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 p{
@@ -348,7 +353,7 @@ p{
     transform: scaleX(-1);
     width: 90px;
     height: 100px;
-    position: fixed;
+    position: absolute;
     top: -75px;
     left: 810px;
     z-index: 9999;
@@ -367,13 +372,14 @@ p{
 
 .book-main-subtitle {
     font-size: 22px;
-    display: flex;
-    justify-content: space-between;
     color: #333333;
     padding-right: 10px;
     margin-top: 20px;
     line-height: 33px;
     word-break: keep-all;
+}
+.highlighted-text {
+    color: #ff4800;
 }
 
 /* 1 페이지 스타일 */
@@ -407,7 +413,7 @@ p{
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 15px;
-    color: #0a652f;
+    color: #0a3065;
     margin-right: 50px;
     margin-left: 50px;
 }
@@ -515,7 +521,7 @@ p{
     flex: 4;
     font-size: 20px;
     margin-left: 30px;
-    color: #0a652f;
+    color: #0a3065;
 }
 
 .page3-ai-img {
@@ -634,4 +640,13 @@ p{
     transform: translateX(-50%);
     z-index: 10;
     font-size: 13px;
+}
+.swiper-container{
+    overflow:hidden;
+}
+.book-swiper-wrapper {
+    transition-timing-function: linear;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 180px;
 }

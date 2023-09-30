@@ -88,8 +88,9 @@
             <span class="first-styling">함께하는 집테리어들의</span>
             <span class="second-styling">"Livart Book"</span>
         </div>
-        <div class="styling-main-content slider-container">
-            <div class="image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}" th:if="${iterStat.index} < 10">
+        <div class="styling-main-content book-swiper">
+            <div class="swiper-wrapper book-swiper-wrapper">
+            <div class="swiper-slide image-box" th:id="'image-box-'+${iterStat.index}" th:each="book, iterStat : ${books}" th:if="${iterStat.index} < 10">
                 <input id="bookId" type="hidden" th:value="${book.bookId}">
 <!--                <img class="book-image" th:id="'book-image'+ ${iterStat.index}" alt="메가진 사진" th:src="${book.bookMainImg}" th:onclick="showBook([[${iterStat.index}]])"/>-->
                 <img class="book-image"
@@ -98,6 +99,7 @@
                      th:src="${book.bookMainImg != null && !book.bookMainImg.isEmpty() ? book.bookMainImg : 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-Package/PK_%E1%84%8C%E1%85%A9%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%B7.jpeg'}"
                      th:onclick="showBook([[${iterStat.index}]])"/>
             </div>
+            </div>
         </div>
     </section>
 
@@ -105,7 +107,9 @@
     <section class="book-main hd__inner1400">
         <div class="book-main-deco">
             <div class="book-main-title">가구 구독의 모든 순간, <br> 당신만의 플립북에 담아보세요 🛋️✨</div>
-            <div class="book-main-subtitle" th:text="'지금, ' + ${books.get(0).pages.get(0).bpTitle} + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.'"></div>
+            <div class="book-main-subtitle">
+                지금, <span th:text="${books.get(0).pages.get(0).bpTitle}" class="highlighted-text"></span>의 페이지들 속에서 당신만의 스타일을 발견해보세요.
+            </div>
             <div class="characters">
                 <img class="character-1" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/Character_bigman.png}"/>
                 <img class="character-2" alt="캐릭터 사진" th:src="@{https://img-resource.s3.ap-northeast-2.amazonaws.com/Character/character_img9.png}"/>
@@ -215,8 +219,12 @@
                     console.log(response);
                     console.log(response.result.furnitures)
 
-                    var subtitleText = '지금, ' + response.result.pages[0].bpTitle + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.';
-                    $(".book-main-subtitle").text(subtitleText);
+                    // bpTitle 값을 span 태그로 감싸서 색상을 변경
+                    var highlightedBpTitle = '<span class="highlighted-text">' + response.result.pages[0].bpTitle + '</span>';
+                    // 문자열 템플릿으로 전체 텍스트 구성
+                    var subtitleText = '지금, ' + highlightedBpTitle + '의 페이지들 속에서 당신만의 스타일을 발견해보세요.';
+                    $(".book-main-subtitle").html(subtitleText);
+
 
                     // 1번째 페이지 업데이트
                     $(".page1-img").attr("src", response.result.pages[0].bpImg);
