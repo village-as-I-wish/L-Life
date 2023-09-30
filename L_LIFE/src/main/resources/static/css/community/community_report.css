@@ -108,6 +108,8 @@
     width: 50%;
     text-align: center;
     color: white;
+    border-radius: 10px;
+    margin-right: 5px;
 }
 .rmImg-btn{
     margin-top: 10px;
@@ -118,6 +120,8 @@
     width: 50%;
     color: #5d493c;
     font-weight: bold;
+    border-radius: 10px;
+    margin-left: 5px;
 }
 
 .imgBtn-box{
@@ -136,7 +140,7 @@
     width: 50%;
     height: unset;
     background-size: 130% 100%;
-    background-image: url(../../img/community/캐릭터3.png);
+    /*background-image: url(../../img/community/캐릭터3.png);*/
     display: flex;
     text-align: center;
     background-attachment: initial;
@@ -151,16 +155,15 @@
 }
 .cm-report-graph > p:first-child{
     display: block;
-    color: white;
-    background: #ff4800;
+    color: black;
     width: fit-content;
     text-align: center;
     padding: 15px;
     font-weight: bold;
-    font-size: 18px;
     margin: 0 auto;
     margin-top: 25px;
     margin-bottom:20px;
+    font-size: 28px;
 }
 .txt-pink{
     color: #ff4800;
@@ -414,4 +417,47 @@
     position: absolute;
     bottom: 0;
     left: 130px;
+}
+
+
+
+.cm-report-graph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(248, 245, 215, 0.56);
+    margin-right: 20px;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px; /* title과 이미지 사이의 간격을 조정합니다. */
+}
+
+.content-section {
+    display: flex;
+    flex-direction: column; /* 이것은 섹션 내의 항목들을 세로로 배열합니다. */
+    align-items: center; /* 센터 정렬을 위해 추가 */
+    width: 100%;
+}
+
+.side-image {
+    width: 100%;
+    height: auto;
+    margin-top: -98px;
+    margin-bottom: -74px;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* 센터 정렬을 위해 추가 */
+    width: 100%;
+}
+
+.text-section p {
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
