@@ -485,6 +485,15 @@ function createReport(data1, data2, data3, data4) {
 
     const img2 = $('#report-sample-img2-box');
     img2.removeClass("hidden")
+
+    // 쇼룸 파트 ! 업로드
+
+    for (var i = 1; i <= 5; i++) {
+        // 예제: 카드 i의 이미지 변경
+        $(".showroom-card-" + i + " img").attr("src", baseUrl+"/l-life/img/3d/쇼룸_" + i + ".jpeg");
+    }
+
+
     return 'testing Success'
 
 }
