@@ -170,7 +170,7 @@
 <!--                    <p class=""></p>-->
 <!--                </a>-->
 
-                <a th:href="@{/community/3d}" class="showroom-card" th:each="index :  ${#numbers.sequence(1,5)}" th:class="'showroom-card showroom-card-' + ${index}">
+                <a th:href="@{/community/3d}" target="_blank" class="showroom-card" th:each="index :  ${#numbers.sequence(1,5)}" th:class="'showroom-card showroom-card-' + ${index}">
                     <img alt="베너 사진1 " th:src="@{/img/community/showroom_sample.jpeg}"/>
                     <p class=""></p>
                 </a>
