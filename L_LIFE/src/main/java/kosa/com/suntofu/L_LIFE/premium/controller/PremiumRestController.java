@@ -3,6 +3,8 @@ package kosa.com.suntofu.L_LIFE.premium.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewRequestVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
 import kosa.com.suntofu.L_LIFE.premium.service.PremiumService;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumOptionVo;
@@ -68,5 +70,33 @@ public class PremiumRestController {
         }
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("상품 장바구니 담기 성공").result(CartReturn.CART_ADD_SUCCESS).build(), HttpStatus.OK);
 
+    }
+
+    @Operation(summary = "스탠다드 상품 리뷰 작성 ", description = "스탠상품 리뷰를 작성합니다.")
+    @PostMapping("/review")
+    @ResponseBody
+    public ResponseEntity<BasicResponse> createReview(ReviewRequestVo reviewRequestVo){
+        log.info("[프리미엄 리뷰 등록 ] 요청 VO {} ", reviewRequestVo);
+        try{
+            ReviewVo result = premiumService.createReview(reviewRequestVo);
+            log.info("[프리미엄 리뷰 등록 완료 ] 결과 vo {} ", result);
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("리뷰 작성완료").result(result).build(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("리뷰 등록 실패").result(-1).build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Operation(summary = "스탠다드 상품 리뷰 삭제 ", description = "스탠상품 리뷰를 삭제합니다.")
+    @DeleteMapping("/review")
+    @ResponseBody
+    public ResponseEntity<BasicResponse> deleteReview(int lfReviewId){
+
+        log.info("[프리미엄 리뷰 삭제 ] 요청 ReviewId{} ", lfReviewId);
+        int result = premiumService.deleteReview(lfReviewId);
+        log.info("[프리미엄 리뷰 삭제 ] 결과 {} ", result);
+        if(result == 1){
+            return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("리뷰 식제 완료").build(), HttpStatus.OK);
+        }
+        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(500).message("리뷰 등록 실패").build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

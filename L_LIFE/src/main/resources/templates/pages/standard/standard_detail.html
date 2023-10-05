@@ -12,11 +12,11 @@
             src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet"
           href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
-    <script th:src="@{/js/standard/standard_detail.js}" type="text/javascript"></script>
     <script th:inline="javascript">
         var baseUrl = /*[[${baseUrl}]]*/ null;
     </script>
+    <script th:src="@{/js/standard/standard_detail.js}" type="text/javascript"></script>
+
 </head>
 <body>
 <th:block th:replace="common/fragment/header/header :: headerFragment(0)"></th:block>

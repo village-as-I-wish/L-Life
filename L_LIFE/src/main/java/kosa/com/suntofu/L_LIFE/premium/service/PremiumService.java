@@ -1,6 +1,8 @@
 package kosa.com.suntofu.L_LIFE.premium.service;
 
 import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewRequestVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.*;
 
 import java.util.List;
@@ -28,4 +30,12 @@ public interface PremiumService {
     PackageDetailVo getPremiumPackageDetail(int lfPackageId);
 
     List<PackageVo> getRecommendationPackages();
+
+    List<ReviewVo> getReviews(int lfId);
+
+    ReviewVo createReview(ReviewRequestVo reviewRequestVo) throws Exception;
+
+    int deleteReview(int lfReviewId);
+
+
 }

@@ -1,5 +1,39 @@
 let optionId;
+
+let selectedFiles = []; // 리뷰 파일 저장
+
 $(document).ready(function(){
+
+    $('#photoRegist').on('change', function(event) {
+        const files = event.target.files;
+        if (files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // 파일 데이터와 이미지 URL을 객체에 저장
+                    const fileData = {
+                        file: file,
+                        imageUrl: e.target.result
+                    };
+                    selectedFiles.push(fileData);
+
+                    // 선택한 이미지를 리스트에 추가
+                    const listItem = `
+                    <li id="upload-img">
+                        <img src="${fileData.imageUrl}" alt="리뷰 사진"/>
+                        <button class="btn-del" onclick="removeImage(this, ${i})"></button>
+                    </li>
+                `;
+                    $('#imageList').append(listItem);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+
     var productId = parseInt($('#productId').val());
 
     $(".dropdown-content div").click(function() {
@@ -51,6 +85,8 @@ $(document).ready(function(){
                 }
             }
         });
+
+        // 리뷰 사진 업로드
     });
 
     $('.lf-pr-submit-btns form').on('submit', function(event) {
@@ -105,7 +141,8 @@ $(document).ready(function(){
     });
 
 
-    $('.lf-pr-main-content .main-tab li').click(function(){
+
+    $('.lf-pr-main-content .tabs li').click(function(){
         var tab_id = $(this).attr('data-tab');
 
         $('ul.tabs li').removeClass('current');
@@ -172,4 +209,211 @@ window.onclick= (e)=>{
             }
         }
     }
+}
+
+
+function removeImage(button, index) {
+    $(button).parent().remove();
+    selectedFiles.splice(index, 1);
+
+}
+
+
+/* 첨부파일 검증 */
+function validation(obj){
+    const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+    if (obj.name.length > 100) {
+        alert("파일명이 100자 이상인 파일은 제외되었습니다.");
+        return false;
+    } else if (obj.size > (100 * 1024 * 1024)) {
+        alert("최대 파일 용량인 100MB를 초과한 파일은 제외되었습니다.");
+        return false;
+    } else if (obj.name.lastIndexOf('.') == -1) {
+        alert("확장자가 없는 파일은 제외되었습니다.");
+        return false;
+    } else if (!fileTypes.includes(obj.type)) {
+        alert("첨부가 불가능한 파일은 제외되었습니다.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function submitReview(memberId){
+    console.log("리뷰 작성")
+    const formData = new FormData();
+
+    let lfId = parseInt($('#modal-lf-id').text())
+    let title = $('#reviewTitle').val()
+    let content = $('#reviewContents').val()
+    let delratingValue = parseInt($("input[name='delivery-rating']:checked").val()) || 0;
+    let totalratingValue = parseInt($("input[name='rating']:checked").val()) || 0;
+    let serratingValue = parseInt($("input[name='service-rating']:checked").val()) || 0;
+
+    formData.append('mId', memberId);
+    formData.append('lfId', lfId);
+    formData.append('lfReviewTitle', title);
+    formData.append('lfReviewContent', content);
+    formData.append('lfReviewType', 0);
+    formData.append('lfReviewDelRating',delratingValue)
+    formData.append('lfReviewSerRating',serratingValue)
+    formData.append('lfReviewRating',totalratingValue)
+    var files = $('#photoRegist')[0].files;
+    for (var i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+    }
+    console.log(formData)
+    console.log("baseUrl", baseUrl)
+    $.ajax({
+        type : "POST",
+        data : formData,
+        contentType: false,
+        processData: false,
+        url : baseUrl +"/l-life/api/v1/premium/review",
+        success : function(res){
+            Swal.fire({
+                title: '리뷰 등록이 완료되었습니다.',
+                text: '소중한 의견 감사드립니다.',
+                imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 작성 완료된 리뷰 업데이트 하기 + 모달창 CLose
+                    // Rest Controller에서 리뷰 객체 리턴 & 리뷰 이미지 리턴해주어야 함.
+                    // Review Response Dto 만들어서 넣어 두기
+                    addReviewCard(res.result);
+                }
+            })
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+            Swal.fire({
+                title: '리뷰 등록에 실패하였습니다.',
+                text: '잠시 후 다시 작성 부탁드립니다.',
+                imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                }
+            });
+        }
+    });
+
+
+}
+
+function deleteReview(reviewId){
+    console.log("[ 리뷰 삭제 ] : ", reviewId);
+    Swal.fire({
+        title: '리뷰를 삭제하시겠습니까?',
+        text: '삭제 시 해당 리뷰는 더 이상 볼 수 없습니다.',
+        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            data = {
+                lfReviewId: reviewId,
+            }
+
+            $.ajax({
+                type : "DELETE",
+                data : data,
+                url : baseUrl +"/l-life/api/v1/premium/review",
+                success : function(res){
+                    Swal.fire({
+                        title: '리뷰 삭제가 완료되었습니다.',
+                        text: '이전 화면으로 돌아갑니다.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var className = "review-card-" + reviewId;
+                            $("." + className).remove();
+                            var currentReviewCount = parseInt($('#reviewCount').text());
+
+                            var newReviewCount = currentReviewCount - 1;
+                            $('#reviewCount').text(newReviewCount);
+                        }
+                    })
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        title: '리뷰 삭제에 실패하였습니다.',
+                        text: '잠시 후 다시 시도 부탁드립니다.',
+                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+}
+function addReviewCard(reviewData) {
+    // 리뷰 카드 HTML 생성
+    var reviewProductName = $('.lf-pr-name').text()
+    console.log("reviewData", reviewData)
+    console.log("reviewProductName", )
+    var reviewCardHtml = `
+    <div class="review-card review-card-${reviewData.lfReviewId}">
+        <span class="review-logo">리바트 라이프</span><span>${reviewProductName}</span> |
+        <span>스탠다드 구독</span> | <span>리바트 라이브 고객 후기</span>
+        <div class="review-writer-box">
+            <span class="review-writer">${' ' + reviewData.mname + ' | ' + reviewData.lfReviewDate}</span>
+            <span>
+                <i class="fa-solid fa-trash" style="cursor: pointer;" onclick="deleteReview('${reviewData.lfReviewId}')"></i>
+            </span>
+        </div>
+        <div class="review-card-content">
+            <div class="review-card-img">
+                <img alt="리뷰 사진" src="/img/standard/review_main_logo.png" ${reviewData.lfReviewImgs.length !== 0 ? 'style="display:none;"' : ''}/>
+                <img alt="리뷰 사진" src="${reviewData.lfReviewImgs.length > 0 ? reviewData.lfReviewImgs[0].rimgUrl : ''}" ${reviewData.lfReviewImgs.length === 0 ? 'style="display:none;"' : ''}/>
+            </div>
+            <div class="review-card-body">
+                <div class="review-card-body-top">
+                    <div class="review-card-sub-imgs">
+                        <div class="review-card-sub-img">
+                            ${reviewData.lfReviewImgs.slice(1).map(function(image, index) {
+        return `<img alt="리뷰 사진" src="${image.rimgUrl}" />`;
+    }).join('')}
+                        </div>
+                    </div>
+                    <div class="review-ratings">
+                        <p class="total-review-rating">총 점 : 
+                            <span>
+                                ${Array.from({ length: reviewData.lfReviewRating }, function(_, index) {
+        return `<i class="fa-solid fa-star"></i>`;
+    }).join('')}
+                            </span>
+                        </p>
+                        <p> 구독 서비스 : 
+                            <span>
+                                ${Array.from({ length: reviewData.lfReviewSerRating }, function(_, index) {
+        return `<i class="fa-solid fa-star"></i>`;
+    }).join('')}
+                            </span>
+                        </p>
+                        <p> 배송 서비스 : 
+                            <span>
+                                ${Array.from({ length: reviewData.lfReviewDelRating }, function(_, index) {
+        return `<i class="fa-solid fa-star"></i>`;
+    }).join('')}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <p class="review-body-content-title">${reviewData.lfReviewTitle}</p>
+                <p class="review-body-content">${reviewData.lfReviewContent}</p>
+            </div>
+        </div>
+    </div>
+    `;
+
+    var currentReviewCount = parseInt($('#reviewCount').text());
+
+    var newReviewCount = currentReviewCount + 1;
+    $('#reviewCount').text(newReviewCount);
+
+    $('#exampleModal').modal('hide');
+
+    // 맨 앞에 리뷰 카드를 추가
+    $('#review-list').prepend(reviewCardHtml);
 }
