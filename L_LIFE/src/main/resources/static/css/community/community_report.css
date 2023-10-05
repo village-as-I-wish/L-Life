@@ -315,10 +315,9 @@
 .picker-label{
     position: absolute;
     left: 40px;
-    top: 8px;
     font-weight: bold;
     font-size: 24px;
-    color: #5d493c;
+    color: #FF914D;
     width: 200px;
 }
 .picker-percent{
