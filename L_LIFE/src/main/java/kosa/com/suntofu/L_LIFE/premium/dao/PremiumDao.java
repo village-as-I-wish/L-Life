@@ -2,6 +2,9 @@ package kosa.com.suntofu.L_LIFE.premium.dao;
 
 
 import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewImgVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewRequestVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +33,16 @@ public interface PremiumDao {
     PackageDetailVo selectPackageDetail(int lfPackageId);
 
     List<PackageVo> selectRecommendationPackages();
+
+    List<ReviewVo> selectAllReviews(int lfId);
+
+    void insertReview(ReviewRequestVo reviewRequestVo);
+
+    int insertReviewImg(List<ReviewImgVo> list);
+
+    ReviewVo selectReviewById(int insertedReviewId);
+
+    int deleteReview(int lfReviewId);
+
+
 }

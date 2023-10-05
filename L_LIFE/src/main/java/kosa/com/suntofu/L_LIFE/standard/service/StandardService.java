@@ -1,6 +1,8 @@
 package kosa.com.suntofu.L_LIFE.standard.service;
 
 import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewRequestVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 
 import java.util.List;

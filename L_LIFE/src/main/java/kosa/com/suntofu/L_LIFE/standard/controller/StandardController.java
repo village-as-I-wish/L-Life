@@ -1,6 +1,6 @@
 package kosa.com.suntofu.L_LIFE.standard.controller;
 
-import kosa.com.suntofu.L_LIFE.member.vo.MemberVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
 import kosa.com.suntofu.L_LIFE.standard.service.StandardService;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.util.List;
 
