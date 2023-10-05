@@ -60,8 +60,8 @@
                     <option value="011">011</option>
                     <option value="017">017</option>
                 </select>
-                <input th:type="text" class="st-payment-tel-input">
-                <input th:type="text" class="st-payment-tel-input">
+                <input th:type="text" th:value="2355" class="st-payment-tel-input">
+                <input th:type="text" th:value="6997" class="st-payment-tel-input">
             </div>
         </div>
     </div>
@@ -91,9 +91,9 @@
                         </div>
                     </td>
                     <td class="table-td">1</td>
-                    <td class="table-td" th:text="${billVo.subscriptionPlanVo.subscriptionPlanPrice} + '원'"> 0원</td>
+                    <td class="table-td" th:text="${#numbers.formatInteger(billVo.subscriptionPlanVo.subscriptionPlanPrice,0,'COMMA')} + '원'"> 0원</td>
                     <td class="table-td" th:text="${billVo.subscriptionPlanVo.subscriptionStartDate + ' - ' + billVo.subscriptionPlanVo.subscriptionFinDate}">2023.08.14 - 2023.09.13</td>
-                    <td class="table-td" th:text="${billVo.subscriptionPlanVo.subscriptionPlanPrice} + '원'"> 0원</td>
+                    <td class="table-td" th:text="${#numbers.formatInteger(billVo.subscriptionPlanVo.subscriptionPlanPrice,0,'COMMA')} + '원'"> 0원</td>
 
                 </tr>
             </table>
@@ -176,7 +176,7 @@
                             총 판매가
                         </div>
                         <div class="sum-price-num">
-                            <span th:text="${billVo.totalPrice} +'원 '">0</span>
+                            <span th:text="${#numbers.formatInteger(billVo.totalPrice,0,'COMMA')} +'원'">0</span>
                         </div>
                     </div>
                     <hr class="hr price-hr">
@@ -185,7 +185,7 @@
                             판매가
                         </div>
                         <div class="price-num">
-                            <span th:text="${billVo.totalPrice} + '원'">0원</span>
+                            <span th:text="${#numbers.formatInteger(billVo.totalPrice,0,'COMMA')} +'원'">0원</span>
                         </div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                         최종결제금액
                     </div>
                     <div class="final-price-num text-lg bold-text">
-                        <span id="final-price" th:text="${billVo.totalPrice}">0</span> <span>원</span>
+                        <span id="final-price" th:text="${#numbers.formatInteger(billVo.totalPrice,0,'COMMA')}">0</span> <span>원</span>
                     </div>
                     <hr>
                     <div class="final-point">

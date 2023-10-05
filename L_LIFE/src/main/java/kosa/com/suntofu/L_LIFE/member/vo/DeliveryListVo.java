@@ -12,6 +12,7 @@ public class DeliveryListVo {
     private int subLfId;
     private String subscribeStartDate;
     private String deliveryCode;
+    private int lfId;
     private String lfName;
     private String lfImgMain;
     private int lfSubType;
