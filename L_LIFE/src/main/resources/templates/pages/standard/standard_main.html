@@ -82,8 +82,13 @@
 
     <div class="sl-main-products">
         <div class="sl-main-live">
-            <img alt="베너 사진1 " th:src="@{/img/standard/l-life-live-logo.png}"/>
-
+            <div class="sl-live-header">
+                <img alt="베너 사진1 " th:src="@{/img/standard/l-life-live-logo.png}"/>
+                <div class="slide-btns">
+                    <i class="fas fa-chevron-left prev"></i>
+                    <i class="fas fa-chevron-right next"></i>
+                </div>
+            </div>
             <div class="sl-live-slider">
                 <div class="sl-main-live-products">
                     <div class="sl-main-live-product" th:each="LiveList : ${standardLiveList}">

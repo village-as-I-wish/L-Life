@@ -155,6 +155,12 @@
     width: 1080px;
 
 }
+.sl-live-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 25px 0px 10px;
+    align-items: center;
+}
 .sl-main-live > img {
     height: 70px;
     margin-left: 10px;
@@ -202,6 +208,16 @@
     margin-top: 10px;
     line-height: 20px;
     color: #333333;
+}
+.prev{
+    font-size: 30px;
+    margin-right: 20px;
+    color: #5d493c;
+}
+.next{
+    font-size: 30px;
+    color: #5d493c;
+
 }
 .overlay{
     position: absolute;
