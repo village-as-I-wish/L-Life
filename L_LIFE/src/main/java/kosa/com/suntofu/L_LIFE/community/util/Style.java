@@ -1,13 +1,16 @@
 package kosa.com.suntofu.L_LIFE.community.util;
 
 public enum Style {
-    CASUAL("casual", 1),
-    NORDIC("nordic", 2),
-    CLASSIC("classic",3 ),
-    ROMANTIC("romantic",4),
-    VINTAGE("vintage",5 ),
+    MODERN("modern",1),
 
-    MODERN("modern",6);
+    CASUAL("casual", 2),
+    NATURAL("natural",3 ),
+    CLASSIC("classic",4 ),
+    ROMANTIC("romantic",5),
+    VINTAGE("vintage",6),
+    NORDIC("nordic", 7 );
+
+
 
     private final String value;
 
