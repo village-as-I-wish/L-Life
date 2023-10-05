@@ -33,7 +33,7 @@
         <div class="lf-pr-summary-detail">
             <div class="lf-pr-point d-flex">
                 <span class="lf-pr-point-txt text-sm f-bold"> 월 <span
-                        th:text="${premiumDetail.lfPrPrice}"></span>원~ </span>
+                        th:text="${#numbers.formatInteger(premiumDetail.lfPrPrice,0,'COMMA')}"></span>원 </span>
             </div>
             <div class="lf-pr-etc-infos">
 

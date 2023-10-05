@@ -256,7 +256,7 @@ function uploadImage() {
     }
     console.log("files", file)
     return $.ajax({
-        url: 'http://localhost:8080/l-life/api/v1/community/upload-files',
+        url: '/l-life/api/v1/community/upload-files',
         type: 'POST',
         data: formData,
         contentType: false,

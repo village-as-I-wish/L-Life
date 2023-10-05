@@ -29,10 +29,18 @@
             </td>
             <td>
                 <div class="product-info">
-                    <img class="product-img" th:src="${product.lfImgMain}">
-                    <div class="product-details">
-                        <span th:text="${product.lfName}"></span>
-                    </div>
+                    <th:block th:if="${product.lfSubType == 0}">
+                        <a th:href="'/l-life/standard/'+${product.lfId}+'/detail'" ><img class="product-img" th:src="${product.lfImgMain}"></a>
+                        <div class="product-details">
+                            <a th:href="'/l-life/standard/'+${product.lfId}+'/detail'" ><span th:text="${product.lfName}"></span></a>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${product.lfSubType == 1}">
+                        <a th:href="'/l-life/premium/'+${product.lfId}+'/detail'" ><img class="product-img" th:src="${product.lfImgMain}"></a>
+                        <div class="product-details">
+                            <a th:href="'/l-life/premium/'+${product.lfId}+'/detail'" ><span th:text="${product.lfName}"></span></a>
+                        </div>
+                    </th:block>
                 </div>
             </td>
             <td>
