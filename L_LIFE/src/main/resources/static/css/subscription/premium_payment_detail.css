@@ -567,3 +567,55 @@ font-weight: bold;
 input{
     padding-left: 10px;
 }
+
+
+
+.asterisk {
+    padding-left: 20px;
+    color: red;
+}
+
+
+/* 주소 */
+.delivery-reservation-address{
+    display: flex;
+    border: 0.5px solid #ccc;
+    height: 200px;
+}
+
+.delivery-reservation-address-title{
+    flex: 1.5;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+}
+
+.delivery-reservation-address-content{
+    flex: 8.5;
+}
+
+.delivery-reservation-address-num-input{
+    margin: 20px;
+    margin-bottom: 0;
+    width: 350px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-reservation-address-find-btn{
+    width: 200px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
+
+.delivery-reservation-address-text-input{
+    margin: 20px;
+    margin-top: 0;
+}
+
+.delivery-reservation-address-text-input > input{
+    width: 500px;
+    margin-top: 10px;
+    height: 45px;
+    border: 0.5px solid #ccc;
+}
