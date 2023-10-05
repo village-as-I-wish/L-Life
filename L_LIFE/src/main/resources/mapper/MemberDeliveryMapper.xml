@@ -10,6 +10,7 @@
             SUB_LF.SUB_LF_ID,
             S.SUBSCRIBE_START_DATE,
             D.DELIVERY_CODE,
+            LF.LF_ID,
             LF.LF_NAME,
             LF.LF_IMG_MAIN,
             LF.LF_SUB_TYPE,
