@@ -13,7 +13,9 @@
             lf.LF_ST_COIN,
             lf.LF_IMG_MAIN,
             lf_opt.LF_OPT_NAME,
-            lf_brand.LF_BRAND_NAME
+            lf_brand.LF_BRAND_NAME,
+            sub_lf.sub_lf_start_date,
+            sub_lf.sub_lf_end_date
         from
             SUBSCRIPTION subscribe
                 join

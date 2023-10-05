@@ -4,9 +4,10 @@
     margin-top: 60px;
 }
 .subscribe-sub-title {
-    font-size: 15px;
+    font-size: 20px;
     color: #333333;
     margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .subscribe-sub-name{
@@ -16,7 +17,6 @@
 
 .product-item {
     display: flex;
-    align-items: column;
 }
 
 .product-image {
@@ -30,8 +30,14 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 0px;
+    width: 100%;
 }
-
+.product-details-first{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
 .coins {
     display: flex;
     margin-top: 5px;
@@ -43,6 +49,9 @@
     position: absolute;
     bottom: 15px;
     right: 0px;
+}
+.txt-orange{
+    color:#FF914D;
 }
 
 .custom-button {
@@ -69,7 +78,6 @@
 .list-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid #d4d4d4;
     position: relative;
     padding-bottom: 10px;
