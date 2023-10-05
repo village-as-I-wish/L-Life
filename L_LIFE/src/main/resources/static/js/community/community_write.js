@@ -63,7 +63,20 @@ function chatGPT(index) {
         // console.log("생성된 이미지 파일" + imageFile)
         // console.log(imageFile)
         // imageFiles[index] = imageFile;
-        $('#ai-image-'+index).attr("src", response.images[0].image)
+        var image1 = $("#ai-image-1");
+        if (image1.length > 0) {
+            var imageId = image1.attr("id");
+            var imageCls = image1.attr("class")
+            image1.attr("src", response.images[0].image);
+            if (imageId.indexOf("imageCls") !== -1) {
+                image1.attr("class", imageCls.replace("before", "created"));
+            } else if (imageCls.indexOf("created") === -1) {
+                image1.attr("class", imageCls + " created");
+            }
+        }
+
+        var container = image1.closest(".ai-box");
+        container.find("p, span").remove();
 
         $('#loading').hide();
     });
