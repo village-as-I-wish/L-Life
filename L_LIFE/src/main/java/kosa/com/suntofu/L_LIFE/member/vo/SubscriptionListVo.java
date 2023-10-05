@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,8 +19,8 @@ public class SubscriptionListVo {
     private String lfImgMain;
     private String lfOptName;
     private String lfBrandName;
-    private String subLfStartDate;
-    private String subLfEndDate;
+    private LocalDateTime subLfStartDate;
+    private LocalDateTime subLfEndDate;
     private String subscriptionPlanName;
 
 }
