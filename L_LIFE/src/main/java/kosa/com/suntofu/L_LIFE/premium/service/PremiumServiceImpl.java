@@ -1,23 +1,43 @@
 package kosa.com.suntofu.L_LIFE.premium.service;
 
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewImgVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewRequestVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
 import kosa.com.suntofu.L_LIFE.constant.CacheKey;
 import kosa.com.suntofu.L_LIFE.premium.dao.PremiumDao;
 import kosa.com.suntofu.L_LIFE.premium.vo.*;
 import kosa.com.suntofu.L_LIFE.common.util.CartReturn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class PremiumServiceImpl implements PremiumService{
+
+
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+
+    private final AmazonS3Client amazonS3Client;
+
 
     private final PremiumDao premiumDao;
 
@@ -199,6 +219,74 @@ public class PremiumServiceImpl implements PremiumService{
     private void cachePackages(String cacheKey, List<PackageVo> cachingData) {
         redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);  // 하루동안 캐싱
         log.info("[REDIS] 패키지 - Cache 저장 - {}", cacheKey);
+    }
+    @Override
+    public List<ReviewVo> getReviews(int lfId) {
+
+        return premiumDao.selectAllReviews(lfId);
+
+    }
+
+    @Transactional
+    @Override
+    public ReviewVo createReview(ReviewRequestVo reviewRequestVo) throws Exception {
+        List<String> fileNameList = new ArrayList<>();
+
+        reviewRequestVo.getFiles().forEach(file -> {
+            String fileName = "review/" +createFileName(file.getOriginalFilename());
+            ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setContentLength(file.getSize());
+            objectMetadata.setContentType(file.getContentType());
+
+            try(InputStream inputStream = file.getInputStream()) {
+                amazonS3Client.putObject(bucket,fileName,file.getInputStream(),objectMetadata);
+            } catch(IOException e) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+            }
+            fileNameList.add(amazonS3Client.getUrl(bucket, fileName).toString());
+        });
+
+        try{
+            premiumDao.insertReview(reviewRequestVo);
+            int insertedReviewId = reviewRequestVo.getLfReviewId();
+
+            log.info("[리뷰 등록 ] 데이터 삽입 성공 {}", insertedReviewId);
+
+            List<ReviewImgVo> reviewImgList = new ArrayList<>();
+
+            if(fileNameList.size() !=0){
+                for( String reviewImgUrl : fileNameList){
+                    reviewImgList.add(ReviewImgVo.builder().rImgUrl(reviewImgUrl).lfReviewId(insertedReviewId).build());
+                }
+                premiumDao.insertReviewImg(reviewImgList);
+            }
+            ReviewVo reviewVo = premiumDao.selectReviewById(insertedReviewId);
+            return reviewVo;
+        }catch(Exception e) {
+            log.info("[리뷰 등록 ] 데이터 삽입 오류 {} ", e.getStackTrace().toString());
+            throw new Exception("데이터 삽입 오류");
+        }
+    }
+
+    @Override
+    public int deleteReview(int lfReviewId) {
+        try{
+            return premiumDao.deleteReview(lfReviewId);
+        }catch(Exception e){
+            return -1;
+        }
+    }
+
+    private String createFileName(String fileName) {
+        return UUID.randomUUID().toString().concat(getFileExtension(fileName));
+    }
+
+    private String getFileExtension(String fileName) {
+        try {
+            return fileName.substring(fileName.lastIndexOf("."));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
+        }
     }
 
 }

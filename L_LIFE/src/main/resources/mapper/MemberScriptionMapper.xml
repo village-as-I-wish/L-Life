@@ -13,7 +13,9 @@
             lf.LF_ST_COIN,
             lf.LF_IMG_MAIN,
             lf_opt.LF_OPT_NAME,
-            lf_brand.LF_BRAND_NAME
+            lf_brand.LF_BRAND_NAME,
+            sub_lf.sub_lf_start_date,
+            sub_lf.sub_lf_end_date
         from
             SUBSCRIPTION subscribe
                 join
@@ -67,13 +69,13 @@
             lf.LF_SUB_TYPE = 0
           and
             (
-            (#{startDate} <= sub_lf.SUB_LF_START_DATE
+            (TO_DATE(#{startDate},'YYYY-MM-DD') <= sub_lf.SUB_LF_START_DATE
                 and
-             sub_lf.SUB_LF_START_DATE<= #{endDate})
+             sub_lf.SUB_LF_START_DATE<= TO_DATE(#{endDate},'YYYY-MM-DD'))
             or
-            (#{startDate} <= sub_lf.SUB_LF_END_DATE
+            (TO_DATE(#{startDate},'YYYY-MM-DD') <= sub_lf.SUB_LF_END_DATE
                 and
-             sub_lf.SUB_LF_END_DATE  <= #{endDate})
+             sub_lf.SUB_LF_END_DATE  <= TO_DATE(#{endDate},'YYYY-MM-DD'))
             )
         ]]>
 
@@ -155,13 +157,13 @@
             lf.LF_SUB_TYPE = 1
           and
             (
-            (#{startDate} <= sub_lf.SUB_LF_START_DATE
+            (TO_DATE(#{startDate},'YYYY-MM-DD') <= sub_lf.SUB_LF_START_DATE
                 and
-             sub_lf.SUB_LF_START_DATE<= #{endDate})
+             sub_lf.SUB_LF_START_DATE<= TO_DATE(#{endDate},'YYYY-MM-DD'))
             or
-            (#{startDate} <= sub_lf.SUB_LF_END_DATE
+            (TO_DATE(#{startDate},'YYYY-MM-DD') <= sub_lf.SUB_LF_END_DATE
                 and
-             sub_lf.SUB_LF_END_DATE  <= #{endDate})
+             sub_lf.SUB_LF_END_DATE  <= TO_DATE(#{endDate},'YYYY-MM-DD'))
             )
         ]]>
 

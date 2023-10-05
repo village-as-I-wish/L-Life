@@ -57,8 +57,9 @@
                     <option value="011">011</option>
                     <option value="017">017</option>
                 </select>
-                <input th:type="text" class="st-payment-tel-input">
-                <input th:type="text" class="st-payment-tel-input">
+                <input th:type="text" th:value="8731" class="st-payment-tel-input">
+                <input th:type="text" th:value="2355" class="st-payment-tel-input">
+
             </div>
         </div>
     </div>
@@ -88,9 +89,12 @@
                         </div>
                     </td>
                     <td class="table-td" th:text="${product.quantity}"></td>
-                    <td class="table-td" th:text="${product.lfPrPrice}"></td>
-                    <td class="table-td" th:text="${product.lfPrMinPeriod}"></td>
-                    <td class="table-td sum-price" th:text="${product.quantity} * ${product.lfPrPrice}"></td>
+                    <td class="table-td"><span th:text="${#numbers.formatInteger(product.lfPrPrice, 0, 'COMMA')}"></span><span>원</span></td>
+
+
+                    <td class="table-td"><span>월 </span><span th:text="${product.lfPrMinPeriod}"></span><span>개월</span></td>
+                    <td class="table-td"><span th:text="${#numbers.formatInteger(product.lfPrPrice * product.quantity, 0, 'COMMA')}"></span><span>원</span></td>
+                    <input type="hidden" class="sum-price" th:value="${product.lfPrPrice}*${product.quantity}">
                 </tr>
             </table>
         </div>

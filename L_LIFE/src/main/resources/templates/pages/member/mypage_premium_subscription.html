@@ -5,20 +5,20 @@
 
     <div class="subscribe-title">프리미엄 구독 제품</div>
     <ul>
-        <li th:href="@{'#'}" th:each="product : ${premiumSubscriptionList}" class="product-item">
-                <img class="product-image" th:src="${product.lfImgMain}" />
+        <li th:each="product : ${premiumSubscriptionList}" class="product-item">
+            <a th:href="${baseUrl}+'/l-life/premium/'+${product.lfId}+'/detail'" ><img class="product-image" th:src="${product.lfImgMain}" /></a>
                 <div class="product-details">
                     <div class="product-details-first">
                         <div>
                             <span class="brand-name" th:text="${product.lfBrandName}"></span>
-                            <p class="product-name" th:text="${product.lfName}"></p>
+                            <a th:href="${baseUrl}+'/l-life/premium/'+${product.lfId}+'/detail'" ><p class="product-name" th:text="${product.lfName}"></p></a>
                             <p class="product-details-option" th:text="'옵션: ' + ${product.lfOptName}"></p>
 
                         </div>
                         <div style="text-align: right">
-                            <p class="subscribe-info">구독 만료일 </span><span class="txt-orange" th:text="${product.subLfEndDate}"></span></p>
+                            <p class="subscribe-info">구독 만료일 </span><span class="txt-orange" th:text="${#strings.substring(product.subLfEndDate,0,10)}"></span></p>
                             <span class="subscribe-info first-subscribe-info">최소 구독 기간은 <span class="txt-orange" th:text="${product.lfPrMinPeriod} + 개월"></span>입니다</span>
-                            <p class="product-price" th:text="'월 '+ ${product.lfPrPrice}+ '원'"></p>
+                            <p class="product-price"><span>월</span><span  th:text="${#numbers.formatInteger(product.lfPrPrice, 0, 'COMMA')}"></span><span>원</span></p>
 
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <button class="custom-button return-button"
                                 th:attr="data-product-id=${product.subLfId}">반납</button>
                         <a href="#" class="custom-button">케어신청</a>
-                        <a href="#" class="custom-button">배송조회</a>
+                        <a th:href="${baseUrl}+'/l-life/member/'+${session.existingMember.mId}+'/mypage/delivery'" class="custom-button">배송조회</a>
                     </div>
 
                 </div>

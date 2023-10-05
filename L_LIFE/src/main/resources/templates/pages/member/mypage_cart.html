@@ -101,7 +101,7 @@
                        th:value="${standardSubscription != null} ? ${standardSubscription.subscriptionId} : 0">
                 <div class="custom-button-link">
 
-                    <button th:if="${standardSubscription != null}"  class="custom-button" data-bs-toggle="modal" data-bs-target="#standardCartModal">
+                    <button class="custom-button standard-payment" th:if="${standardSubscription != null}" >
                         구독 시작하기
                     </button>
                     <button th:if="${standardSubscription == null}" class="no-subscription-btn">
@@ -109,7 +109,7 @@
                     </button>
                 </div>
             </div>
-            <th:block th:replace="pages/member/mypage_standard_cart_modal::standardCartModal()"></th:block>
+<!--            <th:block th:replace="pages/member/mypage_standard_cart_modal::standardCartModal()"></th:block>-->
 
             <!-- 프리미엄 장바구니 부분 -->
 

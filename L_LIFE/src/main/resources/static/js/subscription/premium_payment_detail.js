@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     var totalPrice = 0;
     $('.sum-price').each(function () {
-        var rowTotal = parseInt($(this).text());
+        var rowTotal = parseInt($(this).val());
         totalPrice += rowTotal;
     });
 
