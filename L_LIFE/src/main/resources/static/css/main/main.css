@@ -12,9 +12,10 @@
     font-size: 80px;
     font-weight: bold;
     line-height: 85px;
+    text-align: center;
     margin-bottom: 18px;
-    -webkit-animation: tracking-in-expand 6s cubic-bezier(0.215, 0.610, 0.355, 1.000)  infinite both;
-    animation: tracking-in-expand 5s cubic-bezier(0.215, 0.610, 0.355, 1.000)  infinite both;
+    -webkit-animation: tracking-in-expand 6s cubic-bezier(0.215, 0.610, 0.355, 1.000) infinite both;
+    animation: tracking-in-expand 5s cubic-bezier(0.215, 0.610, 0.355, 1.000) infinite both;
 }
 
 p{
@@ -31,7 +32,7 @@ img{
 }
 
 .hero{
-    position: absolute;
+    position: relative;
     width: 100%;
     height: auto;
 }
@@ -41,14 +42,29 @@ img{
     height: auto; /* 세로 크기는 자동으로 조절 (비율 유지) */
     animation: falling 1.5s ease-in-out;
 }
+.main-imgs{
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 700px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.hero__image{
+    width: 60%;
+    opacity: 1;
+    margin: 0 auto;
+}
+
 
 #mf-pink-sofa {
     position: absolute;
-    top: 80px;
-    left: 300px;
+    top: 10px;
+    left: -100px;
     opacity: 0;
     transition: all 3.5s;
-    width: 250px; /* 이미지의 가로 크기 조절 */
+    width: 250px;
     height: auto;
     filter: blur(1.5px);
     transform: rotate(10deg);
@@ -56,8 +72,8 @@ img{
 
 #mf-camel-closet {
     position: absolute;
-    top: 380px;
-    left: 300px;
+    top: 300px;
+    left: -200px;
     opacity: 0;
     transition: all 3s;
     filter: blur(0.5px);
@@ -66,8 +82,8 @@ img{
 
 #mf-lamp {
     position: absolute;
-    top: 520px;
-    left: 1200px;
+    top: 420px;
+    left: 1000px;
     opacity: 0;
     transition: all 5s;
     filter: blur(3px);
@@ -76,11 +92,11 @@ img{
 
 #mf-table {
     position: absolute;
-    top: 650px;
-    left: 500px;
+    top: 550px;
+    /* left: 150px; */
     opacity: 0;
     transition: all 6s;
-    width: 180px; /* 이미지의 가로 크기 조절 */
+    width: 180px;
     height: auto;
     filter: blur(1px);
     transform: rotate(10deg);
@@ -89,10 +105,10 @@ img{
 #mf-brown-sofa {
     position: absolute;
     top: 50px;
-    left: 1150px;
+    left: 900px;
     opacity: 0;
     transition: all 5s;
-    width: 200px; /* 이미지의 가로 크기 조절 */
+    width: 200px;
     height: auto;
     filter: blur(1px);
     transform: rotate(15deg);
