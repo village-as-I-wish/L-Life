@@ -39,7 +39,7 @@ public class NotificationRestController {
         context.setVariable("furniture", restockVo);
         String message = templateEngine.process("pages/notification/mail_alert", context);
 
-        NotificationMessageVo notificationMessageVo = new NotificationMessageVo("sskong777@gmail.com", "재입고 알림", message);
+        NotificationMessageVo notificationMessageVo = new NotificationMessageVo("hyewon5266@naver.com", "재입고 알림", message);
         notificationService.sendMail(notificationMessageVo);
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("재입고 메일 발송이 완료되었습니다.").result(1).build(), HttpStatus.OK);
     }
