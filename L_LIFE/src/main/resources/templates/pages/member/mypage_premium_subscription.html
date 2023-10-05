@@ -5,7 +5,7 @@
 
     <div class="subscribe-title">프리미엄 구독 제품</div>
     <ul>
-        <li th:each="product : ${premiumSubscriptionList}" class="product-item">
+        <li th:each="product,iterStat : ${premiumSubscriptionList}" class="product-item">
             <a th:href="${baseUrl}+'/l-life/premium/'+${product.lfId}+'/detail'" ><img class="product-image" th:src="${product.lfImgMain}" /></a>
                 <div class="product-details">
                     <div class="product-details-first">
@@ -30,11 +30,16 @@
 <!--                    </div>-->
                     <div class="buttons">
                         <a href="#" class="custom-button">구독연장</a>
-                        <button class="custom-button return-button"
+                        <button class="custom-button return-button" th:onclick="mail([[${iterStat.index}]])"
                                 th:attr="data-product-id=${product.subLfId}">반납</button>
                         <a href="#" class="custom-button">케어신청</a>
                         <a th:href="${baseUrl}+'/l-life/member/'+${session.existingMember.mId}+'/mypage/delivery'" class="custom-button">배송조회</a>
                     </div>
+                    <input type="hidden" th:class="'lfId_'+ ${iterStat.index}" th:value="${product.lfId}">
+                    <input type="hidden" th:class="'lfOptName_' + ${iterStat.index}" th:value="${product.lfOptName}">
+                    <input type="hidden" th:class="'lfBrandName_' + ${iterStat.index}" th:value="${product.lfBrandName}">
+                    <input type="hidden" th:class="'lfName_' + ${iterStat.index}" th:value="${product.lfName}">
+                    <input type="hidden" th:class="'lfImgMain_' + ${iterStat.index}" th:value="${product.lfImgMain}">
 
                 </div>
         </li>

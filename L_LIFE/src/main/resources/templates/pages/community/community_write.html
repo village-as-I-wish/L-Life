@@ -112,6 +112,11 @@
                             </div>
 
                             <button class="Ai-Img-btn" th:onclick="chatGPT([[${index}]])">AI 이미지 생성</button>
+                            <div class="input-btn">
+                                <button class="show-prev">이전 페이지</button>
+                                <button class="show-next">다음 페이지</button>
+                            </div>
+                            <div class="current-page-num">1페이지 / 3페이지</div>
 
                         </div>
 
@@ -123,11 +128,7 @@
                 </div>
             <input type="hidden" id="memberId" th:value="${session.existingMember?.mId}">
 
-            <div class="current-page-num">1페이지 / 3페이지</div>
-            <div class="input-btn">
-                <button class="show-prev">이전 페이지</button>
-                <button class="show-next">다음 페이지</button>
-            </div>
+
         </div>
         <div class="button-container">
             <button class="back-btn"><a th:href="@{/community/main}">돌아가기</a></button>

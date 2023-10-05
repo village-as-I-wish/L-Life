@@ -5,8 +5,10 @@ import kosa.com.suntofu.L_LIFE.premium.vo.PackageDetailVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PaginationVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumOptionVo;
 import kosa.com.suntofu.L_LIFE.premium.vo.PremiumVo;
+import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import java.util.List;
 @RequestMapping("/premium")
 public class PremiumController {
 
+    @Value("${baseurl}")
+    private String baseUrl;
     private final PremiumService premiumService;
 
     @GetMapping()
@@ -45,6 +49,7 @@ public class PremiumController {
     public String loadPremiumPackageDetail(@PathVariable int lfPackageId, Model model){
         PackageDetailVo packageDetail = premiumService.getPremiumPackageDetail(lfPackageId);
         log.info("packageDetail {}", packageDetail);
+        model.addAttribute("baseUrl", baseUrl);
 
         model.addAttribute("packageDetail", packageDetail);
         return "pages/premium/premium_package_detail";
@@ -109,6 +114,15 @@ public class PremiumController {
         List<PremiumVo> recommendProducts = premiumService.selectPremiumRecommendation(premiumDetailById);
         model.addAttribute("recommendProducts", recommendProducts);
         log.info("result{}", recommendProducts);
+
+        model.addAttribute("baseUrl", baseUrl);
+
+
+        // Review 정보 가져오기
+        List<ReviewVo> reviewList = premiumService.getReviews(lfId);
+        log.info("reviewList {}", reviewList);
+        model.addAttribute("reviewList", reviewList);
+
         return "pages/premium/premium_detail";
     }
 

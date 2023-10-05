@@ -205,7 +205,9 @@ p {
 }
 
 .input-group {
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 .input-group label {
@@ -213,7 +215,7 @@ p {
 }
 
 .input-group input, .input-group textarea {
-    width: 95%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -256,13 +258,13 @@ p {
 .input-btn {
     display: flex;
     justify-content: flex-end;
-    margin: 20px;
+    margin: 0px 13px 5px 0px;
 }
 
 .current-page-num{
     display: flex;
     justify-content: flex-end;
-    margin: 20px;
+    margin: 0px 20px 20px 20px;
     font-weight: bold;
     font-size: 20px;
 }
@@ -297,8 +299,8 @@ p {
 
 .submit-btn{
     width: 200px;
-    height: 50px;
-    border-radius: 5px;
+    height: 55px;
+    /* border-radius: 5px; */
     border: none;
     margin-bottom: 2px;
     color: white;
@@ -309,20 +311,17 @@ p {
 
 .back-btn{
     width: 200px;
-    height: 50px;
-    border-radius: 5px;
+    height: 55px;
     border: none;
     margin-bottom: 2px;
     color: #5D493F;
     font-weight: bold;
     font-size: 17px;
-    /*background-color: #DAC3A3;*/
-    margin-right: 10px;
 }
 
 .back-btn a{
-    color: #5D493F;
-    text-decoration: none;
+color: #5D493F;
+text-decoration: none;
 }
 
 /*.book-guide-img{*/
@@ -384,14 +383,14 @@ p {
 }
 
 .Ai-Img-btn{
-    margin-top: 10px;
     background: #7ED957;
     opacity: 80%;
     border: none;
     text-align: center;
     height: 56px;
-    width: 95%;
+    width: 96%;
     color: white;
+    margin: 0 auto;
 }
 
 .imgBtn-box{
@@ -435,7 +434,7 @@ p {
 
 
 select{
-    width: 47.5%;
+    width: 50%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -445,11 +444,11 @@ select{
 .ai-box {
     width: calc(100% - 15px);
     box-sizing: border-box;
-    margin-right: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 .ai-box .input-ai-image {
     width: 100%;
@@ -459,6 +458,7 @@ select{
     justify-content: center;
     align-items: center;
     border: 3px dashed #dbdbdb;
+    margin-bottom: 10px;
 }
 .ai-box .input-ai-image.highlight {
     border: 3px dashed red;

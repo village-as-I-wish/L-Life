@@ -12,30 +12,62 @@
     </div>
     <ul>
         <li th:each="product, iterStat : ${standardSubscriptionList}" class="list-item">
-            <div class="product-item">
-                <!-- a 태그안에 경로와 제품id를 넣어서 제품의 상세페이지로 이동하게 하기 - 일단 #
-                <a th:href="@{'/productDetails/' + ${product.id}}"> -->
-                <a th:href="@{'#'}" class="product-link">
-                    <img class="product-image" th:src="${product.lfImgMain}" />
-                    <div class="product-details">
-                        <div class="brand-name" th:text="${product.lfBrandName}"></div>
-                        <span class="product-name" th:text="${product.lfName}"></span>
+            <img class="product-image" th:src="${product.lfImgMain}" />
+            <div class="product-details">
+                <div class="product-details-first">
+                    <div>
+                        <span class="brand-name" th:text="${product.lfBrandName}"></span>
+                        <p class="product-name" th:text="${product.lfName}"></p>
+                        <p class="product-details-option" th:text="'옵션: ' + ${product.lfOptName}"></p>
                         <div class="coins">
                             <th:block th:each="coins, stat : ${#numbers.sequence(1, product.lfStCoin)}">
                                 <img th:src="@{/img/member/coin.png}" />
                             </th:block>
                         </div>
-                        <div class="product-option" th:text="'[옵션] : ' + ${product.getLfOptName()}"></div>
                     </div>
-                </a>
+
+
+                    <div style="text-align: right">
+                        <p class="subscribe-info">구독 만료일 </span><span class="txt-orange" th:text="${#temporals.format(product.subLfStartDate, 'yyyy.MM.dd')}"></span></p>
+                        <span class="subscribe-info first-subscribe-info">구독 기간은 <span class="txt-orange">1달</span> 입니다</span>
+                    </div>
+
+
+                </div>
+                <div class="buttons">
+                    <a href="#" class="custom-button">구독연장</a>
+                    <button class="custom-button return-button"
+                            th:attr="data-product-id=${product.subLfId}">반납</button>
+                    <a href="#" class="custom-button">케어신청</a>
+                    <a href="#" class="custom-button">배송조회</a>
+                </div>
             </div>
-            <div class="buttons">
-                <a href="#" class="custom-button">구독연장</a>
-                <button class="custom-button return-button" th:onclick="mail([[${iterStat.index}]])"
-                   th:attr="data-product-id=${product.subLfId}">반납</button>
-                <a href="#" class="custom-button">케어신청</a>
-                <a href="#" class="custom-button">배송조회</a>
-            </div>
+
+
+            <!--            <div class="product-item">-->
+<!--                &lt;!&ndash; a 태그안에 경로와 제품id를 넣어서 제품의 상세페이지로 이동하게 하기 - 일단 #-->
+<!--                <a th:href="@{'/productDetails/' + ${product.id}}"> &ndash;&gt;-->
+<!--                <a th:href="@{'#'}" class="product-link">-->
+<!--                    <img class="product-image" th:src="${product.lfImgMain}" />-->
+<!--                    <div class="product-details">-->
+<!--                        <div class="brand-name" th:text="${product.lfBrandName}"></div>-->
+<!--                        <span class="product-name" th:text="${product.lfName}"></span>-->
+<!--                        <div class="coins">-->
+<!--                            <th:block th:each="coins, stat : ${#numbers.sequence(1, product.lfStCoin)}">-->
+<!--                                <img th:src="@{/img/member/coin.png}" />-->
+<!--                            </th:block>-->
+<!--                        </div>-->
+<!--                        <div class="product-option" th:text="'[옵션] : ' + ${product.getLfOptName()}"></div>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="buttons">-->
+<!--                <a href="#" class="custom-button">구독연장</a>-->
+<!--                <button class="custom-button return-button" th:onclick="mail([[${iterStat.index}]])"-->
+<!--                   th:attr="data-product-id=${product.subLfId}">반납</button>-->
+<!--                <a href="#" class="custom-button">케어신청</a>-->
+<!--                <a href="#" class="custom-button">배송조회</a>-->
+<!--            </div>-->
             <input type="hidden" th:class="'lfId_'+ ${iterStat.index}" th:value="${product.lfId}">
             <input type="hidden" th:class="'lfOptName_' + ${iterStat.index}" th:value="${product.lfOptName}">
             <input type="hidden" th:class="'lfBrandName_' + ${iterStat.index}" th:value="${product.lfBrandName}">
