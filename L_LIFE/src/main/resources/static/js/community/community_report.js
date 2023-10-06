@@ -241,7 +241,7 @@ function sendAnalyzeRequest(requestUrl, imgUrl) {
  */
 function requestRecProducts(style) {
     return $.ajax({
-        url: 'http://localhost:8080/l-life/api/v1/community/rec-products?style=' + style,
+        url: baseUrl+'/l-life/api/v1/community/rec-products?style=' + style,
         type: 'GET',
         success: function (response) {
         },
