@@ -51,6 +51,7 @@ $(document).ready(function(){
                         event.preventDefault();
                         Swal.fire({
                             title: '재고가 없습니다.',
+                            imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
                             text: '재입고 알림을 신청하시겠습니까?',
                             confirmButtonText: '신청하기',
                             cancelButtonText: '취소',
@@ -68,12 +69,21 @@ $(document).ready(function(){
                                     method: 'POST',
                                     data: data,
                                     success: function (response) {
-                                        console.log("재입고 알림 신청 완료")
-                                        console.log(response)
+                                        Swal.fire({
+                                            title: '재입고 알림 신청이 완료되었습니다.',
+                                            text: '재고 입고 시 메일로 알림이 발송됩니다.',
+                                            imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
+                                            confirmButtonText: '닫기'
+                                        })
+
                                     },
                                     error: function (error) {
-                                        console.log("재입고 알림 신청 실패")
-                                        console.log(error)
+                                        Swal.fire({
+                                            title: '재입고 알림 신청에 실패하였습니다.',
+                                            imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
+                                            text: '잠시 후 다시 진행해주세요..',
+                                            confirmButtonText: '닫기'
+                                        })
                                     }
                                 });
                             }
@@ -110,6 +120,7 @@ $(document).ready(function(){
                             Swal.fire({
                                 title: '장바구니에 추가되었습니다.',
                                 text: '장바구니로 이동하시겠습니까?',
+                                imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
                                 confirmButtonText: '확인',
                                 cancelButtonText: '취소',
                                 showCancelButton: true,
@@ -123,6 +134,7 @@ $(document).ready(function(){
                             Swal.fire({
                                 title: '프리미엄 구독권이 없습니다.',
                                 text: '구독권 구매 후 이용 바랍니다.',
+                                imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
                                 confirmButtonText: '확인',
                                 cancelButtonText: '취소',
                                 showCancelButton: true,
@@ -319,7 +331,7 @@ function deleteReview(reviewId){
                     Swal.fire({
                         title: '리뷰 삭제가 완료되었습니다.',
                         text: '이전 화면으로 돌아갑니다.',
-                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                        imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
                     }).then((result) => {
                         if (result.isConfirmed) {
                             var className = "review-card-" + reviewId;
@@ -335,7 +347,7 @@ function deleteReview(reviewId){
                     Swal.fire({
                         title: '리뷰 삭제에 실패하였습니다.',
                         text: '잠시 후 다시 시도 부탁드립니다.',
-                        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+                        imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
                     }).then((result) => {
                         if (result.isConfirmed) {
 

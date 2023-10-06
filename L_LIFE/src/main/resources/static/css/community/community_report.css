@@ -279,6 +279,7 @@
 .slick-slide img {
     display: block;
     width: 95%;
+    height: 100%;
     object-fit: fill;
 }
 
@@ -315,10 +316,9 @@
 .picker-label{
     position: absolute;
     left: 40px;
-    top: 8px;
     font-weight: bold;
     font-size: 24px;
-    color: #5d493c;
+    color: #FF914D;
     width: 200px;
 }
 .picker-percent{
@@ -460,4 +460,8 @@
 .text-section p {
     margin-top: 3px;
     margin-bottom: 3px;
+}
+.showroom-card{
+    width:275px !important;
+    height: 275px !important;
 }

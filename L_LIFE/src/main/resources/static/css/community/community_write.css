@@ -451,7 +451,7 @@ select{
     margin: 0 auto;
 }
 .ai-box .input-ai-image {
-    width: 100%;
+    width: 500px;
     height: 360px;
     display: flex;
     flex-direction: column;
@@ -463,8 +463,12 @@ select{
 .ai-box .input-ai-image.highlight {
     border: 3px dashed red;
 }
-.ai-box .input-ai-image .input-ai-image-img {
+.ai-box .input-ai-image .input-ai-image-img.before{
     width: 40px;
+}
+.ai-box .input-ai-image .input-ai-image-img.created {
+    width: 90%;
+    height: 90%;
 }
 
 .ai-box .input-ai-image .message {

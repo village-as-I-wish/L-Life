@@ -65,6 +65,26 @@
     </div>
     <hr class="hr">
 
+    <!--  주소   -->
+    <div class="delivery-reservation-address">
+        <div class="delivery-reservation-address-title">
+            <span class="asterisk"> * </span>
+            <span> 주소 </span>
+        </div>
+        <div class="delivery-reservation-address-content">
+            <div>
+                <input type="text" id="zip_code" class="delivery-reservation-address-num-input">
+                <button class="delivery-reservation-address-find-btn"  onclick="daumAddress()">우편번호 확인</button>
+            </div>
+            <div class="delivery-reservation-address-text-input">
+                <input type="text" id="addr" disabled><br>
+                <input type="text" id="addr_dtl" placeholder="상세 주소 입력">
+            </div>
+
+        </div>
+    </div>
+
+
     <div class="st-payment-subscript">
         <div class="sub-title">
             주문 상품
@@ -304,5 +324,6 @@
 <th:block th:replace="common/fragment/footer/footer :: footerFragment()"></th:block>
 
 </body>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </html>
