@@ -19,25 +19,34 @@ function createOrderNum(){
  * 결제 함수
  */
 function payment(memberId){
-        var selectedPaymentMethod = $(".payment-btn-group input[type='radio']:checked").val();
-        if (selectedPaymentMethod === "") {
-            alert('결제 방식을 선택해주세요');
-            return;
+    Swal.fire({
+        title:'구독 중인 상품이 있습니다.',
+        text: '마이페이지를 확인해주세요.',
+        imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = baseUrl + '/l-life/standard/main'
         }
-        // 선택되지 않았을 때 예외 처리 필요
-
-        // 여기에 결제 로직 추가
-        if (selectedPaymentMethod === "kakao") {
-            paymentKaKao(payKeys.kakaoPayKey, memberId);
-        } else if (selectedPaymentMethod === "toss") {
-            paymentToss(payKeys.tossPayKey, memberId);
-        } else if(selectedPaymentMethod==""){
-            alert("결제 방식을 선택해주세요. ");
-            return;
-        }else{
-            alert('다른 결제 방식을 선택해주세요.');
-            return;
-        }
+    })
+        // var selectedPaymentMethod = $(".payment-btn-group input[type='radio']:checked").val();
+        // if (selectedPaymentMethod === "") {
+        //     alert('결제 방식을 선택해주세요');
+        //     return;
+        // }
+        // // 선택되지 않았을 때 예외 처리 필요
+        //
+        // // 여기에 결제 로직 추가
+        // if (selectedPaymentMethod === "kakao") {
+        //     paymentKaKao(payKeys.kakaoPayKey, memberId);
+        // } else if (selectedPaymentMethod === "toss") {
+        //     paymentToss(payKeys.tossPayKey, memberId);
+        // } else if(selectedPaymentMethod==""){
+        //     alert("결제 방식을 선택해주세요. ");
+        //     return;
+        // }else{
+        //     alert('다른 결제 방식을 선택해주세요.');
+        //     return;
+        // }
 }
 /**
  * 카카오 결제 함수
