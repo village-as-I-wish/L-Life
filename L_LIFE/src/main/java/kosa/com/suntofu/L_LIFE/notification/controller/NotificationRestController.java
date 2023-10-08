@@ -34,8 +34,8 @@ public class NotificationRestController {
     @PostMapping("/mail/restock/{lfId}")
     public  ResponseEntity<BasicResponse> sendRestockMail(@PathVariable int lfId,
                                                           @RequestBody RestockVo restockVo) {
+
         Context context = new Context();
-//        context.setVariable("nickname", member.getMName());
         context.setVariable("furniture", restockVo);
         String message = templateEngine.process("pages/notification/mail_alert", context);
 
@@ -43,6 +43,20 @@ public class NotificationRestController {
         notificationService.sendMail(notificationMessageVo);
         return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("재입고 메일 발송이 완료되었습니다.").result(1).build(), HttpStatus.OK);
     }
+
+//    @Operation(summary = "재입고 메일 전송", description = "재입고 메일 전송")
+//    @PostMapping("/mail/restock/{lfId}")
+//    public  ResponseEntity<BasicResponse> sendRestockMail(@PathVariable int lfId,
+//                                                          @RequestBody RestockVo restockVo) {
+//        Context context = new Context();
+////        context.setVariable("nickname", member.getMName());
+//        context.setVariable("furniture", restockVo);
+//        String message = templateEngine.process("pages/notification/mail_alert", context);
+//
+//        NotificationMessageVo notificationMessageVo = new NotificationMessageVo("hyewon5266@naver.com", "재입고 알림", message);
+//        notificationService.sendMail(notificationMessageVo);
+//        return new ResponseEntity<BasicResponse>(BasicResponse.builder().code(200).message("재입고 메일 발송이 완료되었습니다.").result(1).build(), HttpStatus.OK);
+//    }
 
 //    @Operation(summary = "결제 메일 전송", description = "결제 메일 전송")
 //    @GetMapping("/mail/bill/{memberId}")
