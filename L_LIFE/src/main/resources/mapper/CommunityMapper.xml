@@ -61,6 +61,7 @@
         LEFT JOIN BookFurniture bf ON b.book_id = bf.book_id
         LEFT JOIN LLifeFurniture blf ON bf.lf_id = blf.lf_id
         LEFT JOIN LFurnitureBrand lfb ON blf.lf_brand_id = lfb.lf_brand_id
+        ORDER BY b.book_id desc
     </select>
     <select id ="getProductByCategoryId" parameterType="int">
         select *

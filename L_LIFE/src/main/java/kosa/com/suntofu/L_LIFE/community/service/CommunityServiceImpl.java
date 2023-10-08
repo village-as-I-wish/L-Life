@@ -137,6 +137,16 @@ public class CommunityServiceImpl implements  CommunityService{
 
 //            String AIimgUrl = uploadFile(bookPageRequestVo.getAiImageFile(), "L-life-BOOK-AI");
             bookPageRequestVo.setBpAiImg(AIimgUrl);
+
+            if (file.exists()) {
+                if (file.delete()) {
+                    System.out.println("파일이 성공적으로 삭제되었습니다.");
+                } else {
+                    System.out.println("파일을 삭제하지 못했습니다.");
+                }
+            } else {
+                System.out.println("파일을 찾을 수 없습니다.");
+            }
         }
 
         try{
