@@ -35,6 +35,8 @@ $(document).ready(function(){
     });
 
     var productId = parseInt($('#productId').val());
+    var productImg = $('.product-img').val();
+    console.log(productImg)
 
     $(".dropdown-content div").click(function() {
         var selectedOptionId = parseInt($(this).data('lf-opt-id'));
@@ -86,6 +88,24 @@ $(document).ready(function(){
                                         })
                                     }
                                 });
+                                restockVo = {
+                                    lfId: productId,
+                                    lfImgMain: productImg
+                                }
+                                console.log(restockVo)
+                                $.ajax({
+                                    url: '/l-life/api/v1/member/return/'+productId,
+                                    method: 'POST',
+                                    data: JSON.stringify(restockVo),
+                                    dataType: "json",
+                                    contentType: 'application/json',                                    success: function(data) {
+                                        console.log('반납 요청 성공');
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('반납 요청 실패:', error);
+                                    }
+                                });
+
                             }
                         });
                     });
