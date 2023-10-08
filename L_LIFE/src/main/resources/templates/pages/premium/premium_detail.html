@@ -25,7 +25,9 @@
 <th:block th:replace="common/fragment/header/sub_header :: subHeaderFragment(0)"></th:block>
 <div class="lf-pr-summary-container hd__inner1100">
     <div class="lf-pr-summary-img-box">
-        <img alt="상품 사진 " th:src="${premiumDetail.lfImgMain}"/>
+        <img alt="상품 사진 " th:src="${premiumDetail.lfImgMain}" />
+        <input type="hidden" class="product-img" th:value="${premiumDetail.lfImgMain}"/>
+
     </div>
     <div class="lf-pr-summary-info">
         <span class="light-gray text-xsm pt-4" th:text="${premiumDetail.lfBrandName}"></span>
@@ -74,10 +76,11 @@
         </div>
 
         <div class="lf-pr-submit-btns">
+            <form>
             <input type="hidden" name="productId" id="productId" th:value="${premiumDetail.lfId}">
             <button type="submit" class="lf-btn-brown text-white">장바구니 담기</button>
             <span class="hidden" id="productPrice" th:text="${premiumDetail.lfPrPrice}"></span>
-
+            </form>
             <button class="lf-btn-light-brown text-white">
                 <img alt="카드 사진 " th:src="@{/img/standard/card_logo.png}"/>
                 할인 쿠폰 받기

@@ -39,7 +39,7 @@ function packageToCart(){
                         imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
                     }).then((result) => {
                         if (result.isConfirmed) { // 알림창 확인 시
-
+                            window.location.href = baseUrl + '/l-life/member/' + existingMemberId + '/mypage/cart'
                         }
                     })
                 }

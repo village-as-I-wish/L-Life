@@ -21,13 +21,15 @@ let furnitureDict = {
     'ottoman' : '오토만 의자',
     'table' : '테이블',
     'sofa' : '소파',
-    'potted plant' : '화분',
+    'potted plant' : '홈데코 소품',
     'chair' : '의자',
     'lighting' : '조명',
     'curtain' : '커튼',
     'accent table' : '사이드 테이블',
     'window' : '창문',
-    'rug' : '러그'
+    'rug' : '러그',
+    'bed' : '침대',
+    'picture frame' : '인테리어용 액자'
 
 }
 
@@ -239,7 +241,7 @@ function sendAnalyzeRequest(requestUrl, imgUrl) {
  */
 function requestRecProducts(style) {
     return $.ajax({
-        url: 'http://localhost:8080/l-life/api/v1/community/rec-products?style=' + style,
+        url: baseUrl+'/l-life/api/v1/community/rec-products?style=' + style,
         type: 'GET',
         success: function (response) {
         },
@@ -464,12 +466,15 @@ function createReport(data1, data2, data3, data4) {
         .sort(function (a, b) {
             return furnitureCount[b] - furnitureCount[a];
         })
-        .slice(0, 3);
+        .slice(0, 5);
 
     var furnitureTxt = ''
     console.log('가장 많이 사용된 가구 라벨 3개:');
     for (var j = 0; j < topFurniture.length; j++) {
         console.log(topFurniture[j]);
+        if(furnitureDict[topFurniture[j]]=='undefined' || furnitureDict[topFurniture[j]]==null || furnitureDict[topFurniture[j]]== 'None'){
+            continue;
+        }
         furnitureTxt += furnitureDict[topFurniture[j]] +', '
     }
     furnitureTxt = furnitureTxt.slice(0, -2);
@@ -480,6 +485,15 @@ function createReport(data1, data2, data3, data4) {
 
     const img2 = $('#report-sample-img2-box');
     img2.removeClass("hidden")
+
+    // 쇼룸 파트 ! 업로드
+
+    for (var i = 1; i <= 5; i++) {
+        // 예제: 카드 i의 이미지 변경
+        $(".showroom-card-" + i + " img").attr("src", baseUrl+"/l-life/img/3d/쇼룸_" + i + ".jpeg");
+    }
+
+
     return 'testing Success'
 
 }

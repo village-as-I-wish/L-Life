@@ -80,10 +80,10 @@
     <script>
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
+        output.innerHTML = slider.value.toLocaleString();
 
         slider.oninput = function() {
-            output.innerHTML = this.value;
+            output.innerHTML = this.value.toLocaleString();
         }
     </script>
 </th:block>

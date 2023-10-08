@@ -104,10 +104,10 @@
 
                             <div class="ai-box">
                                 <div class="input-ai-image">
-                                    <img class="input-ai-image-img" th:id="'ai-image-'+${index}" th:src="@{/img/community/ai-icon.png}"
+                                    <img class="input-ai-image-img before" th:id="'ai-image-'+${index}" th:src="@{/img/community/ai-icon.png}"
                                          alt="파일 아이콘">
-                                    <p class="message">AI Image</p>
-                                    <span> AI로 생성된 이미지가 보여질 곳 입니다. </span>
+                                    <p class="message" th:id="'ai-img-txt-'+${index}">AI Image</p>
+                                    <span th:id="'ai-img-txt-'+${index}"> AI로 생성된 이미지가 보여질 곳 입니다. </span>
                                 </div>
                             </div>
 
