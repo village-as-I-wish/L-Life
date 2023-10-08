@@ -177,7 +177,7 @@
                                     <img class="pr-real-img" alt="상품 사진" th:src="${product.lfImgMain}"/>
                                     <span th:text="${product.lfBrandName}"></span>
                                     <p th:text="${product.lfName}"></p>
-                                    <p class="pr-rec-price"> 월 <span th:text="${product.lfPrPrice}"></span>원~ </p>
+                                    <p class="pr-rec-price"> 월 <span th:text="${#numbers.formatInteger(product.lfPrPrice0,'COMMA')}"></span>원~ </p>
                                 </a>
                             </div>
                         </div>
