@@ -4,11 +4,13 @@ function search() {
     let lfMoodId = [];
     let baseUrl = [];
 
-    output.innerHTML = slider.value;
 
-    slider.oninput = function () {
-        output.innerHTML = this.value;
-    }
+
+    // output.innerHTML = slider.value;
+    //
+    // slider.oninput = function () {
+    //     output.innerHTML = this.value;
+    // }
 
     var lfBrandIds = $('input[name="lfBrandId"]:checked').map(function () {
         return this.value;
@@ -64,7 +66,7 @@ function search() {
                 var $img = $('<img>').attr('src', item.lfImgMain).attr('alt', '상품메인사진');
                 $imgCol.append($img);
                 var $txtDiv = $('<div>').addClass('pl-main-sub-product-txt');
-                var $p = $('<p>').text(item.lfName);
+                var $p = $('<p>').text(item.lfName).addClass('pl-main-sub-product-name');
                 $txtDiv.append($p);
                 var $hr = $('<hr>').css('margin', '3px 0px 10px 0px');
                 $txtDiv.append($hr);
@@ -73,7 +75,7 @@ function search() {
                 $priceDiv.append($span);
                 var $coinBox = $('<div>').addClass('coin-img-box');
                 $coinBox.text('월');
-                var $span = $('<span>').text(item.lfPrPrice);
+                var $span = $('<span>').text(item.lfPrPrice.toLocaleString());
                 $coinBox.append($span);
                 $priceDiv.append($coinBox);
                 $txtDiv.append($priceDiv);

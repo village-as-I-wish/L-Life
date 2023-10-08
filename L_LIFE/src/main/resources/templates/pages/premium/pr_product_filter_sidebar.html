@@ -65,7 +65,7 @@
             <div class="pf-main-list">
                 <div class="slidecontainer">
                     <input type="range" min="0" max="100000" value="50000" step="1000" class="slider" id="myRange" name="maxPrice">
-                    <p> 0원 ~ <span id="demo">500,000원</span>원 이하 </p>
+                    <p> 0원 ~ <span id="demo">50,000</span>원 이하 </p>
                 </div>
                 <input type="hidden" id="minCoin" name="minPrice" value="1">
             </div>
@@ -80,10 +80,16 @@
     <script>
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
-        output.innerHTML = slider.value.toLocaleString();
 
-        slider.oninput = function() {
-            output.innerHTML = this.value.toLocaleString();
+        function formatPrice(value) {
+            return value.toLocaleString();
         }
+
+        function updatePrice() {
+            var sliderValue = parseInt(slider.value, 10);
+            output.innerHTML = formatPrice(sliderValue);
+        }
+
+        slider.oninput = updatePrice;
     </script>
 </th:block>
