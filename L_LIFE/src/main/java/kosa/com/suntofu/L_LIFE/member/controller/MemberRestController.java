@@ -59,7 +59,8 @@ public class MemberRestController {
     @PostMapping("/return/{productId}")
     public ResponseEntity<BasicResponse> returnFurniture(@PathVariable int productId,
                                                          @RequestBody RestockVo restockVo){
-        memberService.updateSubcriptionStatus(productId);
+//        memberService.updateSubcriptionStatus(productId);
+        memberService.updateStock(restockVo);
 
         Context context = new Context();
         context.setVariable("furniture", restockVo);

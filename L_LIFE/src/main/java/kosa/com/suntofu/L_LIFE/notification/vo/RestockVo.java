@@ -11,6 +11,7 @@ public class RestockVo {
     private int lfId;
     private String lfName;
     private String lfImgMain;
+    private int lfOptId;
     private String lfOptName;
     private String lfBrandName;
 }

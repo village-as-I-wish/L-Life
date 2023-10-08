@@ -1,6 +1,7 @@
 package kosa.com.suntofu.L_LIFE.member.service;
 
 import kosa.com.suntofu.L_LIFE.member.vo.*;
+import kosa.com.suntofu.L_LIFE.notification.vo.RestockVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 
 import java.util.List;
@@ -42,4 +43,6 @@ public interface MemberService {
     SubscriptionVo getStandardSubscription(int memberId);
 
     SubscriptionVo getPremiumSubscription(int memberId);
+
+    void updateStock(RestockVo restockVo);
 }

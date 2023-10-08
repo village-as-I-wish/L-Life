@@ -2,6 +2,7 @@ package kosa.com.suntofu.L_LIFE.member.dao;
 
 
 import kosa.com.suntofu.L_LIFE.member.vo.*;
+import kosa.com.suntofu.L_LIFE.notification.vo.RestockVo;
 import kosa.com.suntofu.L_LIFE.subscription.vo.SubscriptionVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -48,4 +49,6 @@ public interface MemberDao {
     SubscriptionVo getPremiumSubscription(int memberId);
 
     MemberVo selectMemberById(int memberId);
+
+    void updateStock(RestockVo restockVo);
 }

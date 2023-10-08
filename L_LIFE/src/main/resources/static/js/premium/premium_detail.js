@@ -90,6 +90,7 @@ $(document).ready(function(){
                                 });
                                 restockVo = {
                                     lfId: productId,
+                                    lfOptId: selectedOptionId,
                                     lfImgMain: productImg
                                 }
                                 console.log(restockVo)
