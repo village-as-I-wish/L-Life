@@ -8,7 +8,7 @@ let skOpenApiKey = 'qhJAJSCI5X6kfEWt7MWHQ7pUwS29uYVL4hDdxrih'
 let spaceDict = {
     'livingroom': '거실',
     'bathroom': '욕실',
-    'room': '방',
+    'room': '침실',
     'dressingroom': '드레스룸',
     'entrance': '현관',
     'balcony': '발코니',

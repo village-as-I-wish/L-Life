@@ -6,12 +6,15 @@ import kosa.com.suntofu.L_LIFE.common.vo.CartItemVO;
 import kosa.com.suntofu.L_LIFE.common.vo.ReviewImgVo;
 import kosa.com.suntofu.L_LIFE.common.vo.ReviewRequestVo;
 import kosa.com.suntofu.L_LIFE.common.vo.ReviewVo;
+import kosa.com.suntofu.L_LIFE.constant.CacheKey;
+import kosa.com.suntofu.L_LIFE.premium.vo.PackageVo;
 import kosa.com.suntofu.L_LIFE.standard.dao.StandardDAO;
 import kosa.com.suntofu.L_LIFE.common.util.CartReturn;
 import kosa.com.suntofu.L_LIFE.standard.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
@@ -32,6 +36,9 @@ public class StandardServiceImpl implements StandardService {
     private final AmazonS3Client amazonS3Client;
 
     private final StandardDAO standardDAO;
+
+    private final RedisTemplate<String, Object> redisTemplate;
+
 
     @Override
     public StandardPaginationVo calculateAndSetOffset(StandardPaginationVo standardPaginationVo) {
@@ -93,7 +100,26 @@ public class StandardServiceImpl implements StandardService {
     @Override
     public StandardDetailVo getStandardDetailById(int lfId) {
 
-        return standardDAO.selectStandardDetailById(lfId);
+        String key= CacheKey.PRODUCT_DETAIL_BY_ID + lfId;
+        StandardDetailVo result = getCachedSearchResult(key);
+        if (result != null){
+            log.info("[REDIS] Product Detail - Cache Hit - {}", key);
+            return result;
+        }else{
+            log.info("[REDIS] Product Detail - Cache Miss - {}", key);
+            result = standardDAO.selectStandardDetailById(lfId);
+            cacheProduct(key, result);
+            return result;
+        }
+    }
+    private StandardDetailVo getCachedSearchResult(String cacheKey) {
+        @SuppressWarnings("unchecked")
+        StandardDetailVo cachedData = (StandardDetailVo) redisTemplate.opsForValue().get(cacheKey);
+        return cachedData;
+    }
+    private void cacheProduct(String cacheKey, StandardDetailVo cachingData) {
+        redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);  // 하루동안 캐싱
+        log.info("[REDIS] Product Detail - Cache 저장 - {}", cacheKey);
     }
 
     @Override

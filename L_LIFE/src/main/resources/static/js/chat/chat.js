@@ -57,31 +57,31 @@ $(document).ready(function(){
 
     }
 
-    // Fetch chat messages from the API and appends them to the chat display.
-    function fetchChatMessages() {
-        $.ajax({
-            url: "https://livart-life.com/l-life/api/v1/livestream/" + lStreamId,
-            method: "GET",
-            success: function(response) {
-                if (response.code === 200 && response.result && Array.isArray(response.result)) {
-                    response.result.forEach(function(chat) {
-                        appendChatMessage(chat);
-                    });
-                }
-
-            },
-            error: function(err) {
-                console.error("Error fetching chat messages:", err);
-            }
-        });
-    }
-
-    // Initial call to fetch and display existing messages
-    fetchChatMessages();
-//     const scrollableDiv = document.getElementById("msgArea");
-//     console.log("scroll", scrollableDiv.scrollHeight);
-// // 스크롤이 맨 아래로 내려가도록 설정합니다.
-//     scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
+//     // Fetch chat messages from the API and appends them to the chat display.
+//     function fetchChatMessages() {
+//         $.ajax({
+//             url: "http://localhost:8080/l-life/api/v1/livestream/" + lStreamId,
+//             method: "GET",
+//             success: function(response) {
+//                 if (response.code === 200 && response.result && Array.isArray(response.result)) {
+//                     response.result.forEach(function(chat) {
+//                         appendChatMessage(chat);
+//                     });
+//                 }
+//
+//             },
+//             error: function(err) {
+//                 console.error("Error fetching chat messages:", err);
+//             }
+//         });
+//     }
+//
+//     // Initial call to fetch and display existing messages
+//     fetchChatMessages();
+// //     const scrollableDiv = document.getElementById("msgArea");
+// //     console.log("scroll", scrollableDiv.scrollHeight);
+// // // 스크롤이 맨 아래로 내려가도록 설정합니다.
+// //     scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 
     // 1. 사전 정의된 사용자 및 메시지
     const users = ["김설희", "김우원", "노유민", "김진우", "박보선", "서명현", "송민진", "양석진", "오혁진", "이지호", "장서윤", "조상원", "조재룡", "최승열", "최시언", "홍진욱"];

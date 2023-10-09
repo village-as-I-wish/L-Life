@@ -11,4 +11,8 @@ public class CacheKey {
 
 
     public static final String PRODUCTS_BY_CATEGORY = "PRODUCTS_BY_CATE : ";
+
+    public static final String PRODUCT_DETAIL_BY_ID = "PRODUCT_DETAIL_CACHE : ";
+    public static final String PREMIUM_DETAIL_BY_ID = "PREMIUM_DETAIL_CACHE : ";
+
 }
