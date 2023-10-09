@@ -148,8 +148,8 @@ function paymentSuccess(memberId){
                 })
             }else{
                 Swal.fire({
-                    title:'구독 중인 상품이 있습니다.',
-                    text: '마이페이지를 확인해주세요.',
+                    title:'이미 33 스탠다드 구독권을 이용중입니다.',
+                    text: '스탠다드 구독관을 이용해주세요.',
                     imageUrl: baseUrl + '/l-life/img/header/logo_l_life_b.png',
                 }).then((result) => {
                     if (result.isConfirmed) {
