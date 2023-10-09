@@ -99,8 +99,29 @@ public class PremiumServiceImpl implements PremiumService{
 
     @Override
     public PremiumVo selectPremiumProductDetailById(int lfId) {
-        return premiumDao.selectPremiumProductDetailById(lfId);
+        String key= CacheKey.PREMIUM_DETAIL_BY_ID + lfId;
+        PremiumVo result = getCachedSearchProduct(key);
+        if (result != null){
+            log.info("[REDIS] Premium Product Detail - Cache Hit - {}", key);
+            return result;
+        }else{
+            log.info("[REDIS] Premium Product Detail - Cache Miss - {}", key);
+            result = premiumDao.selectPremiumProductDetailById(lfId);
+            cacheProduct(key, result);
+            return result;
+        }
     }
+
+    private PremiumVo getCachedSearchProduct(String cacheKey) {
+        @SuppressWarnings("unchecked")
+        PremiumVo cachedData = (PremiumVo) redisTemplate.opsForValue().get(cacheKey);
+        return cachedData;
+    }
+    private void cacheProduct(String cacheKey, PremiumVo cachingData) {
+        redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);  // 하루동안 캐싱
+        log.info("[REDIS] Premium Product Detail - Cache 저장 - {}", cacheKey);
+    }
+
 
     @Override
     public List<PremiumOptionVo> selectPremiumOptionById(int lfId) {
@@ -220,6 +241,11 @@ public class PremiumServiceImpl implements PremiumService{
         redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);  // 하루동안 캐싱
         log.info("[REDIS] 패키지 - Cache 저장 - {}", cacheKey);
     }
+
+
+
+
+
     @Override
     public List<ReviewVo> getReviews(int lfId) {
 
