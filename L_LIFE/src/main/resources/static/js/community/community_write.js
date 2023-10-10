@@ -268,7 +268,7 @@ $(document).ready(function(){
                         }
                         Swal.fire({
                             imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
-                            title: '플립북 생성이 완료 되었습니다.',
+                            title: 'Livart Book 생성이 완료 되었습니다.',
                             text: '커뮤니티 메인페이지로 이동합니다.',
                             confirmButtonText: '확인',
                         }).then((result) => {
@@ -278,7 +278,7 @@ $(document).ready(function(){
                         });
                     }else{// 북 생성 오류
                         Swal.fire({
-                            title: '플립북 생성에 오류가 발생하였습니다.',
+                            title: 'Livart Book 생성에 오류가 발생하였습니다.',
                             text: '잠시후 다시 이용해주세요.',
                             imageUrl: 'https://img-resource.s3.ap-northeast-2.amazonaws.com/L-life-common/logo_l_life_b.png',
                             confirmButtonText: '확인',
